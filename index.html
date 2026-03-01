@@ -36,6 +36,21 @@ input{outline:none;}
 .glow{text-shadow:0 0 40px rgba(139,92,246,.4)}
 .text-muted{color:var(--text-muted)}
 
+/* Animations из старого кода */
+@keyframes gradientShift{0%,to{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes float{0%,to{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes pulseGlow{0%,to{opacity:.2;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}}
+@keyframes pulse{50%{opacity:.4}}
+
+.anim-gradient{
+  position:absolute;inset:0;z-index:-2;
+  background:linear-gradient(-45deg, var(--bg-dark), #150525, var(--bg-dark), #1c0524);
+  background-size:400% 400%;
+  animation:gradientShift 15s ease infinite;
+}
+.anim-float{animation:float 6s ease-in-out infinite}
+.anim-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}
+
 /* Buttons */
 .btn-primary{background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;border-radius:99px;padding:.875rem 2rem;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s ease;box-shadow:0 4px 15px rgba(139,92,246,.3)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(139,92,246,.5);background:linear-gradient(135deg,#8b5cf6,#d946ef)}
@@ -66,8 +81,8 @@ input{outline:none;}
 /* Hero */
 #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:5rem;padding-bottom:15vh;}
 .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.4;z-index:-1}
-.orb1{width:30rem;height:30rem;background:#8b5cf6;top:-10%;left:-10%}
-.orb2{width:25rem;height:25rem;background:#d946ef;bottom:-10%;right:-10%}
+.orb1{width:30rem;height:30rem;background:#8b5cf6;top:-10%;left:-10%;animation:pulseGlow 8s ease-in-out infinite;}
+.orb2{width:25rem;height:25rem;background:#d946ef;bottom:-10%;right:-10%;animation:pulseGlow 8s ease-in-out infinite 2s;}
 .hero-grid{position:absolute;inset:0;opacity:.03;background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg, rgba(255,255,255,1) 1px,transparent 1px);background-size:40px 40px;z-index:-1}
 .hero-content{text-align:center;max-width:54rem;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.25rem;border-radius:99px;margin-bottom:2.5rem;background:rgba(255,255,255,.03);border:1px solid var(--border-light)}
@@ -125,8 +140,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
 .switch input:checked+.switch-slider{background:linear-gradient(135deg,var(--v),var(--f))}
 .switch input:checked+.switch-slider::before{transform:translateX(20px)}
 
-.price-box{padding:2rem;border-radius:1.5rem;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(217,70,239,.1));border:1px solid rgba(217,70,239,.2);margin:2rem 0;text-align:center}
-.price-val{font-size:2.5rem;font-weight:700;line-height:1.2;margin:.5rem 0}
+/* Currency Switcher */
+.price-box{padding:2rem;border-radius:1.5rem;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(217,70,239,.1));border:1px solid rgba(217,70,239,.2);margin:2rem 0;text-align:center;position:relative;}
+.currency-switch{display:inline-flex;background:rgba(0,0,0,.4);border-radius:99px;padding:4px;margin:1rem 0 .5rem;}
+.cur-btn{padding:6px 14px;font-size:.75rem;font-weight:600;color:var(--text-muted);border-radius:99px;transition:all .3s;}
+.cur-btn:hover{color:#fff;}
+.cur-btn.active{background:linear-gradient(135deg,var(--v),var(--f));color:#fff;box-shadow:0 4px 10px rgba(139,92,246,.3);}
+.price-val{font-size:2.5rem;font-weight:700;line-height:1.2;margin:0 0 .5rem}
 
 /* Quiz */
 .progress-wrap{margin-bottom:2.5rem}
@@ -142,7 +162,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
 .quiz-opt.selected{border-color:#a855f7;background:rgba(168,85,247,.1)}
 .quiz-opt svg{width:1.75rem;height:1.75rem;color:var(--text-muted);transition:color .3s}
 .quiz-opt.selected svg{color:#d946ef}
-.quiz-opt span{font-size:.9375rem;font-weight:500}
+.quiz-opt span{font-size:.9375rem;font-weight:500;text-align:center;}
 
 .quiz-nav{display:flex;justify-content:space-between;gap:1rem;align-items:center}
 
@@ -193,13 +213,14 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 </nav>
 
 <section id="hero">
+  <div class="anim-gradient"></div>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">
-        <span class="dot"></span>
+      <div class="hero-badge anim-float">
+        <span class="dot anim-pulse"></span>
         <span style="font-size:.875rem;color:var(--text-muted)">Открыты для новых проектов</span>
       </div>
       <h1 class="hero-h1">Создаем<br><span class="grad glow">цифровое будущее</span></h1>
@@ -264,6 +285,11 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
           </div>
           <div class="price-box">
             <div style="font-size:.875rem;color:var(--text-muted)">Предварительная оценка</div>
+            <div class="currency-switch">
+              <button class="cur-btn active" onclick="setCurrency('RUB')" id="cur-RUB">RUB</button>
+              <button class="cur-btn" onclick="setCurrency('BYN')" id="cur-BYN">BYN</button>
+              <button class="cur-btn" onclick="setCurrency('UAH')" id="cur-UAH">UAH</button>
+            </div>
             <div class="price-val grad" id="price-display">от 22 500 ₽</div>
             <div style="font-size:.75rem;color:var(--text-muted)">*Точная смета после брифинга</div>
           </div>
@@ -386,6 +412,22 @@ function closeModal(e){
   if(!e||e.target.id==='modal'||e.currentTarget.tagName==='BUTTON'){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 }
 
+// Currency Logic
+const currencies = {
+  RUB: { rate: 1, sym: '₽' },
+  BYN: { rate: 0.034, sym: 'Br' },
+  UAH: { rate: 0.41, sym: '₴' }
+};
+let cur = 'RUB';
+
+function setCurrency(c) {
+  cur = c;
+  document.querySelectorAll('.cur-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('cur-' + c).classList.add('active');
+  updateCalc();
+  if (qStep === 2) renderQuiz(); 
+}
+
 // Calculator
 const pTypes=[{v:'design',l:'Дизайн',b:30000,ic:icons.design},{v:'bot',l:'AI / Боты',b:50000,ic:icons.tech},{v:'complex',l:'Комплекс',b:90000,ic:icons.complex}];
 let selType='design';
@@ -398,12 +440,27 @@ function selectType(v){selType=v;pTypes.forEach(t=>document.getElementById('type
 function updateCalc(){
   const t=pTypes.find(x=>x.v===selType), c=+document.getElementById('complexity').value;
   document.getElementById('complexity-val').textContent=c+'%';
-  const price=Math.round(t.b*(1+c/100)*(document.getElementById('urgent').checked?1.3:1)*(document.getElementById('ai').checked?1.4:1));
-  document.getElementById('price-display').textContent='от '+price.toLocaleString('ru-RU')+' ₽';
+  
+  const basePrice = t.b * (1 + c/100) * (document.getElementById('urgent').checked ? 1.3 : 1) * (document.getElementById('ai').checked ? 1.4 : 1);
+  const finalPrice = Math.round(basePrice * currencies[cur].rate);
+  
+  document.getElementById('price-display').textContent = 'от ' + finalPrice.toLocaleString('ru-RU') + ' ' + currencies[cur].sym;
 }
 updateCalc();
 
 // Quiz
+const getBudgetOpts = () => {
+  const r = currencies[cur].rate;
+  const s = currencies[cur].sym;
+  const fmt = (v) => Math.round(v * r).toLocaleString('ru-RU');
+  return [
+    {v:'small', l:`До ${fmt(50000)} ${s}`, ic:icons.money},
+    {v:'medium', l:`${fmt(50000)} — ${fmt(150000)} ${s}`, ic:icons.money},
+    {v:'large', l:`${fmt(150000)} — ${fmt(300000)} ${s}`, ic:icons.money},
+    {v:'enterprise', l:`${fmt(300000)}+ ${s}`, ic:icons.money}
+  ];
+};
+
 const questions = [
   {q:'Какой тип проекта вам нужен?', multi:false, opts:[
     {v:'design', l:'Дизайн', ic:icons.design},
@@ -419,12 +476,7 @@ const questions = [
     {v:'illustration', l:'Иллюстрации', ic:icons.star},
     {v:'motion', l:'Моушн', ic:icons.star}
   ]},
-  {q:'Какой бюджет вы планируете?', multi:false, opts:[
-    {v:'small', l:'До 50 000 ₽', ic:icons.money},
-    {v:'medium', l:'50 000 — 150 000 ₽', ic:icons.money},
-    {v:'large', l:'150 000 — 300 000 ₽', ic:icons.money},
-    {v:'enterprise', l:'300 000+ ₽', ic:icons.money}
-  ]},
+  {q:'Какой бюджет вы планируете?', multi:false, isDynamic: true, opts:[]},
   {q:'Ориентировочные сроки?', multi:false, opts:[
     {v:'urgent', l:'Срочно (< 2 нед.)', ic:icons.time},
     {v:'month', l:'В течение месяца', ic:icons.time},
@@ -446,8 +498,10 @@ function renderQuiz() {
     
   if (qStep < questions.length) {
     const q = questions[qStep];
+    const opts = q.isDynamic ? getBudgetOpts() : q.opts;
+
     html += `<h3 style="font-size:1.75rem;font-weight:700;margin-bottom:2rem">${q.q}</h3>`;
-    html += `<div class="quiz-options">${q.opts.map(o => {
+    html += `<div class="quiz-options">${opts.map(o => {
       const isSel = Array.isArray(qAnswers[qStep]) ? qAnswers[qStep].includes(o.v) : qAnswers[qStep] === o.v;
       return `<button class="quiz-opt${isSel ? ' selected' : ''}" onclick="qSelect('${o.v}')">
                 <svg viewBox="0 0 24 24">${o.ic}</svg>
@@ -517,7 +571,7 @@ function qNext() { if(qCanProceed()) { qStep++; renderQuiz(); } }
 function qBack() { if(qStep > 0) { qStep--; renderQuiz(); } }
 
 function qSubmit() {
-  console.log("Данные брифа:", { answers: qAnswers, name: qName, tg: qTg });
+  console.log("Данные брифа:", { answers: qAnswers, name: qName, tg: qTg, currency: cur });
   
   document.getElementById('quiz-body').innerHTML = `
     <div style="text-align:center;padding:2rem 0">
