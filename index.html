@@ -25,6 +25,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* Подключение кастомного шрифта для логотипа */
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('https://raw.githubusercontent.com/HardyXQ/site/main/PixelifySans-Regular.ttf') format('truetype');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --v:#8b5cf6; --f:#d946ef; --p:#a855f7;
@@ -49,6 +57,15 @@ input, select{outline:none;}
 .grad{background:linear-gradient(135deg,var(--v),var(--f));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .glow{text-shadow:0 0 40px rgba(139,92,246,.4)}
 .text-muted{color:var(--text-muted)}
+
+/* Класс для текстового логотипа */
+.logo-text {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
 
 @keyframes gradientShift{0%,to{background-position:0% 50%}50%{background-position:100% 50%}}
 @keyframes pulseGlow{0%,to{opacity:.2;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}}
@@ -253,7 +270,7 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   <div class="container nav-inner">
     <div class="nav-logo">
       <img src="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
-      <span class="grad" style="font-size:1.375rem;font-weight:700">WaveSign</span>
+      <span class="grad logo-text">WaveSign</span>
     </div>
     <div class="nav-links">
       <a href="#services" class="nav-link" data-i18n="nav_services">Услуги</a>
@@ -379,7 +396,7 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
       <div>
         <div class="nav-logo" style="margin-bottom:1.5rem">
           <img src="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
-          <span class="grad" style="font-size:1.375rem;font-weight:700">WaveSign</span>
+          <span class="grad logo-text">WaveSign</span>
         </div>
         <p class="text-muted" style="max-width:24rem" data-i18n="foot_desc">Студия цифрового дизайна и технологий. Создаем уникальные решения, объединяющие эстетику и функциональность.</p>
       </div>
