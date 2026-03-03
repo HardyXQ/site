@@ -17,28 +17,23 @@
 }
 html{scroll-behavior:smooth}
 
-/* Глобальный фикс шрифтов */
-body, input, button, textarea {
+body, input, button, textarea, select {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 body{background:var(--bg-dark);color:var(--text-main);overflow-x:hidden;min-height:100vh;line-height:1.6;font-size:16px;}
 button{cursor:pointer;border:none;background:none;color:inherit;}
 a{color:inherit;text-decoration:none}
-input{outline:none;}
+input, select{outline:none;}
 
-/* Glass & Surfaces */
 .glass{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.2);}
 .glass-s{background:rgba(15,15,18,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,.3);}
 .glass-card{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);transition:all .4s cubic-bezier(.4,0,.2,1);}
 
-/* Text & Utilities */
 .grad{background:linear-gradient(135deg,var(--v),var(--f));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .glow{text-shadow:0 0 40px rgba(139,92,246,.4)}
 .text-muted{color:var(--text-muted)}
 
-/* Animations из старого кода */
 @keyframes gradientShift{0%,to{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes float{0%,to{transform:translateY(0)}50%{transform:translateY(-15px)}}
 @keyframes pulseGlow{0%,to{opacity:.2;transform:scale(1)}50%{opacity:.5;transform:scale(1.05)}}
 @keyframes pulse{50%{opacity:.4}}
 
@@ -48,18 +43,21 @@ input{outline:none;}
   background-size:400% 400%;
   animation:gradientShift 15s ease infinite;
 }
-.anim-float{animation:float 6s ease-in-out infinite}
 .anim-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}
 
-/* Buttons */
-.btn-primary{background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;border-radius:99px;padding:.875rem 2rem;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s ease;box-shadow:0 4px 15px rgba(139,92,246,.3)}
+.btn-primary{background:linear-gradient(135deg,#7c3aed,#c026d3);color:#fff;border-radius:99px;padding:.875rem 2rem;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;transition:all .3s ease;box-shadow:0 4px 15px rgba(139,92,246,.3)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(139,92,246,.5);background:linear-gradient(135deg,#8b5cf6,#d946ef)}
-.btn-outline{background:rgba(255,255,255,.03);color:#fff;border:1px solid var(--border-light);border-radius:99px;padding:.875rem 2rem;font-weight:500;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s ease}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.btn-outline{background:rgba(255,255,255,.03);color:#fff;border:1px solid var(--border-light);border-radius:99px;padding:.875rem 2rem;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;transition:all .3s ease}
 .btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)}
 .btn-sm{padding:.6rem 1.5rem;font-size:.875rem}
-.btn-full{width:100%;justify-content:center}
+.btn-full{width:100%;}
 
-/* Layout */
+.lang-switch { display:flex; gap: .25rem; background: rgba(255,255,255,.05); padding: .25rem; border-radius: 99px; }
+.lang-btn { padding: .3rem .7rem; font-size: .75rem; font-weight: 600; color: var(--text-muted); border-radius: 99px; transition: all .3s; }
+.lang-btn.active { background: rgba(255,255,255,.1); color: #fff; }
+.lang-btn:hover:not(.active) { color: #fff; }
+
 .container{max-width:1200px;margin:0 auto;padding:0 2rem}
 .section{padding:10rem 0;position:relative}
 .section-label{color:#c084fc;font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:1rem}
@@ -67,18 +65,16 @@ input{outline:none;}
 .section-subtitle{color:var(--text-muted);max-width:36rem;margin:0 auto;font-size:1.125rem}
 .section-head{text-align:center;margin-bottom:6rem}
 
-/* Nav */
 #nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:1.5rem 0;transition:all .4s ease}
 #nav.scrolled{background:rgba(5,5,5,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1rem 0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:.75rem}
-.nav-icon{width:2.5rem;height:2.5rem;border-radius:.75rem;background:linear-gradient(135deg,var(--v),var(--f));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(139,92,246,.3)}
 .nav-links{display:flex;align-items:center;gap:2.5rem}
 .nav-link{font-size:.875rem;font-weight:500;color:var(--text-muted);position:relative;transition:color .3s}
 .nav-link:hover{color:#fff}
+.nav-actions{display:flex;align-items:center;gap:1rem;}
 @media(max-width:768px){.nav-links{display:none}}
 
-/* Hero */
 #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:5rem;padding-bottom:15vh;}
 .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.4;z-index:-1}
 .orb1{width:30rem;height:30rem;background:#8b5cf6;top:-10%;left:-10%;animation:pulseGlow 8s ease-in-out infinite;}
@@ -88,10 +84,11 @@ input{outline:none;}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.25rem;border-radius:99px;margin-bottom:2.5rem;background:rgba(255,255,255,.03);border:1px solid var(--border-light)}
 .dot{width:8px;height:8px;background:#10b981;border-radius:50%;box-shadow:0 0 10px rgba(16,185,129,.5)}
 .hero-h1{font-size:clamp(3.5rem,8vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:1.5rem;letter-spacing:-.03em}
-.hero-p{font-size:clamp(1.125rem,2vw,1.25rem);color:var(--text-muted);max-width:42rem;margin:0 auto 3rem}
+
+/* Сделали текст белым и задали фиксированный размер для десктопа */
+.hero-p{font-size:1.25rem;color:#ffffff;max-width:42rem;margin:0 auto 3rem}
 .hero-btns{display:flex;justify-content:center;gap:1.5rem}
 
-/* Services */
 .services-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .svc-card{border-radius:1.5rem;padding:2.5rem}
 .svc-card:hover{transform:translateY(-5px);border-color:rgba(139,92,246,.3);box-shadow:0 20px 40px rgba(0,0,0,.4)}
@@ -102,7 +99,6 @@ input{outline:none;}
 .svc-item:hover{background:rgba(255,255,255,.05)}
 .svc-item h4{font-weight:600;font-size:.9375rem;color:var(--text-main)}
 
-/* Portfolio */
 .portfolio-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
 .proj-card{border-radius:1.5rem;overflow:hidden;cursor:pointer;background:var(--glass);border:1px solid var(--border);transition:all .4s}
 .proj-card:hover{transform:translateY(-5px);border-color:var(--border-light);box-shadow:0 20px 40px rgba(0,0,0,.4)}
@@ -114,10 +110,8 @@ input{outline:none;}
 .tags{display:flex;flex-wrap:wrap;gap:.5rem}
 .tag{padding:.375rem .75rem;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:.5rem;font-size:.75rem;color:#c084fc;font-weight:500}
 
-/* Calculator */
 .calc-wrapper{background:var(--glass-s);border-radius:2rem;padding:3rem;max-width:900px;margin:0 auto}
 .calc-grid{display:grid;gap:4rem;grid-template-columns:1fr 1fr}
-@media(max-width:768px){.calc-grid{grid-template-columns:1fr; gap:2rem;}}
 .calc-label{font-weight:600;margin-bottom:1rem;display:flex;justify-content:space-between;font-size:.9375rem}
 .proj-types{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .type-btn{padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:rgba(255,255,255,.02);display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .3s}
@@ -140,23 +134,39 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
 .switch input:checked+.switch-slider{background:linear-gradient(135deg,var(--v),var(--f))}
 .switch input:checked+.switch-slider::before{transform:translateX(20px)}
 
-/* Currency Switcher */
 .price-box{padding:2rem;border-radius:1.5rem;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(217,70,239,.1));border:1px solid rgba(217,70,239,.2);margin:2rem 0;text-align:center;position:relative;}
-.currency-switch{display:inline-flex;background:rgba(0,0,0,.4);border-radius:99px;padding:4px;margin:1rem 0 .5rem;}
-.cur-btn{padding:6px 14px;font-size:.75rem;font-weight:600;color:var(--text-muted);border-radius:99px;transition:all .3s;}
-.cur-btn:hover{color:#fff;}
-.cur-btn.active{background:linear-gradient(135deg,var(--v),var(--f));color:#fff;box-shadow:0 4px 10px rgba(139,92,246,.3);}
 .price-val{font-size:2.5rem;font-weight:700;line-height:1.2;margin:0 0 .5rem}
 
-/* Quiz */
+.currency-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(0,0,0,.4);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 8px 36px 8px 16px;
+  border-radius: 99px;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  margin: 1rem 0 .5rem;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
+}
+.currency-select:hover { border-color: rgba(139,92,246,.5); }
+.currency-select:focus { border-color: #a855f7; }
+.currency-select option { background: var(--bg-dark); color: #fff; }
+
 .progress-wrap{margin-bottom:2.5rem}
 .progress-meta{display:flex;justify-content:space-between;font-size:.875rem;color:var(--text-muted);margin-bottom:.75rem;font-weight:500}
 .progress-bar{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--v),var(--f));transition:width .4s cubic-bezier(.4,0,.2,1)}
 
 .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
-@media(max-width:640px){.quiz-options{grid-template-columns:1fr}}
-
 .quiz-opt{padding:1.25rem;border-radius:1rem;border:1px solid var(--border);background:rgba(255,255,255,.02);display:flex;flex-direction:column;align-items:center;gap:.75rem;cursor:pointer;transition:all .3s ease;color:var(--text-main)}
 .quiz-opt:hover{background:rgba(255,255,255,.05);border-color:var(--border-light);transform:translateY(-2px)}
 .quiz-opt.selected{border-color:#a855f7;background:rgba(168,85,247,.1)}
@@ -165,7 +175,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
 .quiz-opt span{font-size:.9375rem;font-weight:500;text-align:center;}
 
 .quiz-nav{display:flex;justify-content:space-between;gap:1rem;align-items:center}
-
 .quiz-input{width:100%;padding:1rem 1.25rem;border-radius:1rem;background:rgba(255,255,255,.03);border:1px solid var(--border);color:#ffffff;font-size:1rem;outline:none;transition:all .3s;margin-bottom:1.5rem}
 .quiz-input:focus{border-color:#a855f7;background:rgba(255,255,255,.06);box-shadow:0 0 0 4px rgba(168,85,247,.15)}
 .quiz-input::placeholder{color:rgba(255,255,255,.3)}
@@ -174,10 +183,8 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
 .success-icon{width:5rem;height:5rem;border-radius:50%;background:linear-gradient(135deg,#10b981,#059669);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 10px 25px rgba(16,185,129,.3)}
 .success-icon svg{width:2.5rem;height:2.5rem;color:#fff}
 
-/* Footer */
 footer{padding:6rem 0 3rem;border-top:1px solid var(--border);background:rgba(0,0,0,.5)}
 .footer-grid{display:grid;gap:4rem;grid-template-columns:2fr 1fr 1fr;margin-bottom:4rem}
-@media(max-width:768px){.footer-grid{grid-template-columns:1fr}}
 .social-btn{width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;transition:all .3s}
 .social-btn:hover{background:#8b5cf6;transform:translateY(-2px)}
 .footer-h4{font-weight:600;margin-bottom:1.5rem;color:#fff}
@@ -186,13 +193,46 @@ footer{padding:6rem 0 3rem;border-top:1px solid var(--border);background:rgba(0,
 .footer-links a:hover{color:#d946ef}
 .footer-bottom{padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--text-muted);font-size:.875rem}
 
-/* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:1.5rem;opacity:0;transition:opacity .3s}
 .modal-overlay.open{display:flex;opacity:1}
 .modal{background:var(--bg-dark);border:1px solid var(--border-light);border-radius:2rem;max-width:600px;width:100%;padding:3rem;position:relative;transform:translateY(20px);transition:transform .3s}
 .modal-overlay.open .modal{transform:translateY(0)}
 
 svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* --- Мобильная оптимизация (Media Queries) --- */
+@media(max-width:768px){
+  .section { padding: 5rem 0; }
+  .section-head { margin-bottom: 3rem; }
+  .calc-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .modal { padding: 2rem; }
+  .calc-wrapper { padding: 2rem; }
+  
+  /* Уменьшаем текст "Студия полного цикла..." на мобильных */
+  .hero-p { font-size: 0.95rem; margin-bottom: 2rem; }
+}
+
+@media(max-width:640px){
+  .quiz-options { grid-template-columns: 1fr; }
+}
+
+@media(max-width:480px){
+  .container { padding: 0 1.25rem; }
+  
+  /* Кнопки в Hero выстраиваются друг под другом на узких экранах */
+  .hero-btns { flex-direction: column; gap: 1rem; }
+  .hero-btns button { width: 100%; }
+  
+  /* Уплотняем шапку для мобильных телефонов */
+  .nav-actions { gap: 0.5rem; }
+  .btn-sm { padding: 0.5rem 1rem; font-size: 0.75rem; }
+  .lang-switch { padding: 0.2rem; }
+  .lang-btn { padding: 0.25rem 0.5rem; font-size: 0.7rem; }
+  
+  /* Уменьшаем ценник в калькуляторе, чтобы не ломался блок */
+  .price-val { font-size: 2rem; }
+}
 </style>
 </head>
 <body>
@@ -200,15 +240,22 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 <nav id="nav">
   <div class="container nav-inner">
     <div class="nav-logo">
-<img src="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
+      <img src="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
       <span class="grad" style="font-size:1.375rem;font-weight:700">WaveSign</span>
     </div>
     <div class="nav-links">
-      <a href="#services" class="nav-link">Услуги</a>
-      <a href="#portfolio" class="nav-link">Портфолио</a>
-      <a href="#calculator" class="nav-link">Оценка</a>
+      <a href="#services" class="nav-link" data-i18n="nav_services">Услуги</a>
+      <a href="#portfolio" class="nav-link" data-i18n="nav_portfolio">Портфолио</a>
+      <a href="#calculator" class="nav-link" data-i18n="nav_calc">Оценка</a>
     </div>
-    <button class="btn-primary btn-sm" onclick="scrollToId('quiz')">Начать проект</button>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('ru')" id="lang-ru">RU</button>
+        <button class="lang-btn" onclick="setLang('uk')" id="lang-uk">UA</button>
+        <button class="lang-btn" onclick="setLang('en')" id="lang-en">EN</button>
+      </div>
+      <button class="btn-primary btn-sm" onclick="scrollToId('quiz')" data-i18n="nav_start">Начать проект</button>
+    </div>
   </div>
 </nav>
 
@@ -219,15 +266,15 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge anim-float">
+      <div class="hero-badge">
         <span class="dot anim-pulse"></span>
-        <span style="font-size:.875rem;color:var(--text-muted)">Открыты для новых проектов</span>
+        <span style="font-size:.875rem;color:var(--text-muted)" data-i18n="hero_badge">Открыты для новых проектов</span>
       </div>
-      <h1 class="hero-h1">Создаем<br><span class="grad glow">цифровое будущее</span></h1>
-      <p class="hero-p">Студия полного цикла. От глубокого графического дизайна до передовых AI-решений. Превращаем ваши идеи в работающие цифровые продукты.</p>
+      <h1 class="hero-h1" data-i18n="hero_title">Создаем<br><span class="grad glow">цифровое будущее</span></h1>
+      <p class="hero-p" data-i18n="hero_desc">От глубокого графического дизайна до передовых AI-решений. Превращаем ваши идеи в работающие цифровые продукты.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="scrollToId('quiz')">Обсудить идею <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-        <button class="btn-outline" onclick="scrollToId('portfolio')">Смотреть работы</button>
+        <button class="btn-primary" onclick="scrollToId('quiz')" id="hero_btn1">Обсудить идею <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="btn-outline" onclick="scrollToId('portfolio')" data-i18n="hero_btn2">Смотреть работы</button>
       </div>
     </div>
   </div>
@@ -236,9 +283,9 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 <section id="services" class="section">
   <div class="container">
     <div class="section-head">
-      <span class="section-label">Экспертиза</span>
-      <h2 class="section-title">Три направления —<br><span class="grad">бесконечные возможности</span></h2>
-      <p class="section-subtitle">Мы не просто рисуем картинки или пишем код. Мы подбираем оптимальное сочетание технологий для решения задач вашего бизнеса.</p>
+      <span class="section-label" data-i18n="sec_exp_label">Экспертиза</span>
+      <h2 class="section-title" data-i18n="sec_exp_title">Три направления —<br><span class="grad">бесконечные возможности</span></h2>
+      <p class="section-subtitle" data-i18n="sec_exp_desc">Мы не просто рисуем картинки или пишем код. Мы подбираем оптимальное сочетание технологий для решения задач вашего бизнеса.</p>
     </div>
     <div class="services-grid" id="services-grid"></div>
   </div>
@@ -247,8 +294,8 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 <section id="portfolio" class="section" style="background:rgba(255,255,255,.01)">
   <div class="container">
     <div class="section-head">
-      <span class="section-label">Кейсы</span>
-      <h2 class="section-title">Наши <span class="grad">лучшие работы</span></h2>
+      <span class="section-label" data-i18n="sec_port_label">Кейсы</span>
+      <h2 class="section-title" data-i18n="sec_port_title">Наши <span class="grad">лучшие работы</span></h2>
     </div>
     <div class="portfolio-grid" id="portfolio-grid"></div>
   </div>
@@ -257,43 +304,47 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 <section id="calculator" class="section">
   <div class="container">
     <div class="section-head">
-      <span class="section-label">Калькулятор</span>
-      <h2 class="section-title">Рассчитайте <span class="grad">стоимость</span></h2>
+      <span class="section-label" data-i18n="sec_calc_label">Калькулятор</span>
+      <h2 class="section-title" data-i18n="sec_calc_title">Рассчитайте <span class="grad">стоимость</span></h2>
     </div>
     <div class="calc-wrapper">
       <div class="calc-grid">
         <div>
           <div style="margin-bottom:2.5rem">
-            <div class="calc-label"><span>Тип продукта</span></div>
+            <div class="calc-label"><span data-i18n="calc_type">Тип продукта</span></div>
             <div class="proj-types" id="proj-types"></div>
           </div>
           <div style="margin-bottom:2rem">
-            <div class="calc-label"><span>Сложность логики</span><span id="complexity-val" style="color:#d946ef">50%</span></div>
+            <div class="calc-label"><span data-i18n="calc_complexity">Сложность логики</span><span id="complexity-val" style="color:#d946ef">50%</span></div>
             <input type="range" id="complexity" min="0" max="100" step="10" value="50" oninput="updateCalc()">
-            <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-muted);margin-top:.5rem"><span>Базовая</span><span>Продвинутая</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-muted);margin-top:.5rem"><span data-i18n="calc_base">Базовая</span><span data-i18n="calc_adv">Продвинутая</span></div>
           </div>
         </div>
         <div>
-          <div class="calc-label" style="margin-bottom:1.5rem"><span>Дополнительные опции</span></div>
+          <div class="calc-label" style="margin-bottom:1.5rem"><span data-i18n="calc_options">Дополнительные опции</span></div>
           <div class="toggle-row">
-            <div style="display:flex;align-items:center;gap:.75rem"><svg width="20" height="20" style="color:#facc15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Срочный заказ</div>
+            <div style="display:flex;align-items:center;gap:.75rem"><svg width="20" height="20" viewBox="0 0 24 24" style="color:#facc15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> <span data-i18n="calc_urgent">Срочный заказ</span></div>
             <label class="switch"><input type="checkbox" id="urgent" onchange="updateCalc()"><span class="switch-slider"></span></label>
           </div>
           <div class="toggle-row">
-            <div style="display:flex;align-items:center;gap:.75rem"><svg width="20" height="20" style="color:#a855f7"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> AI Интеграция</div>
+            <div style="display:flex;align-items:center;gap:.75rem"><svg width="20" height="20" viewBox="0 0 24 24" style="color:#a855f7"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> <span data-i18n="calc_ai">AI Интеграция</span></div>
             <label class="switch"><input type="checkbox" id="ai" onchange="updateCalc()"><span class="switch-slider"></span></label>
           </div>
           <div class="price-box">
-            <div style="font-size:.875rem;color:var(--text-muted)">Предварительная оценка</div>
-            <div class="currency-switch">
-              <button class="cur-btn active" onclick="setCurrency('RUB')" id="cur-RUB">RUB</button>
-              <button class="cur-btn" onclick="setCurrency('BYN')" id="cur-BYN">BYN</button>
-              <button class="cur-btn" onclick="setCurrency('UAH')" id="cur-UAH">UAH</button>
-            </div>
-            <div class="price-val grad" id="price-display">от 22 500 ₽</div>
-            <div style="font-size:.75rem;color:var(--text-muted)">*Точная смета после брифинга</div>
+            <div style="font-size:.875rem;color:var(--text-muted)" data-i18n="calc_pre_eval">Предварительная оценка</div>
+            
+            <select class="currency-select" id="cur-select" onchange="setCurrency(this.value)">
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="RUB">RUB (₽)</option>
+              <option value="UAH">UAH (₴)</option>
+              <option value="BYN">BYN (Br)</option>
+            </select>
+
+            <div class="price-val grad" id="price-display">...</div>
+            <div style="font-size:.75rem;color:var(--text-muted)" data-i18n="calc_exact">*Точная смета после брифинга</div>
           </div>
-          <button class="btn-primary btn-full" onclick="scrollToId('quiz')">Заполнить бриф</button>
+          <button class="btn-primary btn-full" onclick="scrollToId('quiz')" data-i18n="calc_fill_brief">Заполнить бриф</button>
         </div>
       </div>
     </div>
@@ -303,8 +354,8 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 <section id="quiz" class="section">
   <div class="container" style="max-width:768px">
     <div class="section-head">
-      <span class="section-label">Бриф</span>
-      <h2 class="section-title">Расскажите о <span class="grad">проекте</span></h2>
+      <span class="section-label" data-i18n="sec_quiz_label">Бриф</span>
+      <h2 class="section-title" data-i18n="sec_quiz_title">Расскажите о <span class="grad">проекте</span></h2>
     </div>
     <div class="calc-wrapper" style="padding:4rem" id="quiz-body"></div>
   </div>
@@ -318,27 +369,27 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
           <img src="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
           <span class="grad" style="font-size:1.375rem;font-weight:700">WaveSign</span>
         </div>
-        <p class="text-muted" style="max-width:24rem">Студия цифрового дизайна и технологий. Создаем уникальные решения, объединяющие эстетику и функциональность.</p>
+        <p class="text-muted" style="max-width:24rem" data-i18n="foot_desc">Студия цифрового дизайна и технологий. Создаем уникальные решения, объединяющие эстетику и функциональность.</p>
       </div>
       <div>
-        <div class="footer-h4">Навигация</div>
+        <div class="footer-h4" data-i18n="foot_nav">Навигация</div>
         <ul class="footer-links">
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#portfolio">Портфолио</a></li>
-          <li><a href="#calculator">Оценка стоимости</a></li>
+          <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
+          <li><a href="#portfolio" data-i18n="nav_portfolio">Портфолио</a></li>
+          <li><a href="#calculator" data-i18n="nav_calc">Оценка</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-h4">Контакты</div>
+        <div class="footer-h4" data-i18n="foot_contacts">Контакты</div>
         <ul class="footer-links">
-          <li><a href="#">Telegram: @wavesign</a></li>
-          <li><a href="#">contact@wavesign.art</a></li>
+          <li><a href="https://t.me/wavesign" target="_blank" rel="noopener noreferrer">Telegram: @wavesign</a></li>
+          <li><a href="mailto:contact@wavesign.art">contact@wavesign.art</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 WaveSign Studio.</span>
-      <span>Спроектировано с любовью</span>
+      <span data-i18n="foot_rights">© 2026 WaveSign Studio.</span>
+      <span data-i18n="foot_love">Спроектировано с любовью</span>
     </div>
   </div>
 </footer>
@@ -351,6 +402,119 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 </div>
 
 <script>
+// --- Локализация (I18N) ---
+let currentLang = 'ru';
+
+const i18n = {
+  ru: {
+    nav_services: 'Услуги', nav_portfolio: 'Портфолио', nav_calc: 'Оценка', nav_start: 'Начать проект',
+    hero_badge: 'Открыты для новых проектов', hero_title: 'Создаем<br><span class="grad glow">цифровое будущее</span>',
+    hero_desc: 'Студия полного цикла. От глубокого графического дизайна до передовых AI-решений. Превращаем ваши идеи в работающие цифровые продукты.',
+    hero_btn1: 'Обсудить идею <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Смотреть работы',
+    sec_exp_label: 'Экспертиза', sec_exp_title: 'Три направления —<br><span class="grad">бесконечные возможности</span>',
+    sec_exp_desc: 'Мы не просто рисуем картинки или пишем код. Мы подбираем оптимальное сочетание технологий для решения задач вашего бизнеса.',
+    sec_port_label: 'Кейсы', sec_port_title: 'Наши <span class="grad">лучшие работы</span>',
+    sec_calc_label: 'Калькулятор', sec_calc_title: 'Рассчитайте <span class="grad">стоимость</span>',
+    calc_type: 'Тип продукта', calc_complexity: 'Сложность логики', calc_base: 'Базовая', calc_adv: 'Продвинутая',
+    calc_options: 'Дополнительные опции', calc_urgent: 'Срочный заказ', calc_ai: 'AI Интеграция',
+    calc_pre_eval: 'Предварительная оценка', calc_exact: '*Точная смета после брифинга', calc_fill_brief: 'Заполнить бриф',
+    sec_quiz_label: 'Бриф', sec_quiz_title: 'Расскажите о <span class="grad">проекте</span>',
+    foot_desc: 'Студия цифрового дизайна и технологий. Создаем уникальные решения, объединяющие эстетику и функциональность.',
+    foot_nav: 'Навигация', foot_contacts: 'Контакты', foot_rights: '© 2026 WaveSign Studio.', foot_love: 'Спроектировано с любовью',
+    price_from: 'от',
+    quiz_budget_up: 'До', quiz_step: 'Шаг', quiz_from: 'из', quiz_almost: 'Почти готово!',
+    quiz_leave: 'Оставьте контакты, и мы подготовим для вас персональное предложение.',
+    quiz_name: 'Как к вам обращаться?', quiz_tg: 'Ваш Telegram (@username)',
+    quiz_back: 'Назад', quiz_next: 'Далее', quiz_send: 'Отправить бриф',
+    quiz_success: 'Бриф успешно отправлен!', quiz_another: 'Заполнить для другого проекта',
+    quiz_thanks: 'Спасибо, {name}! Мы уже изучаем ваши ответы и скоро напишем вам в Telegram ({tg}) для обсуждения деталей.',
+    modal_order: 'Заказать похожий', q1: 'Какой тип проекта вам нужен?',
+    q1_o1: 'Дизайн', q1_o2: 'Telegram бот', q1_o3: 'Арт/Иллюстрации', q1_o4: 'Комплексное решение',
+    q2: 'Какие услуги вас интересуют?', q2_o1: 'Брендинг', q2_o2: 'Web-дизайн', q2_o3: 'UI/UX', q2_o4: 'AI-решения', q2_o5: 'Иллюстрации', q2_o6: 'Моушн',
+    q3: 'Какой бюджет вы планируете?', q4: 'Ориентировочные сроки?',
+    q4_o1: 'Срочно (< 2 нед.)', q4_o2: 'В течение месяца', q4_o3: 'Гибкие сроки',
+    type_design: 'Дизайн', type_bot: 'AI / Боты', type_complex: 'Комплекс'
+  },
+  uk: {
+    nav_services: 'Послуги', nav_portfolio: 'Портфоліо', nav_calc: 'Оцінка', nav_start: 'Почати проєкт',
+    hero_badge: 'Відкриті для нових проєктів', hero_title: 'Створюємо<br><span class="grad glow">цифрове майбутнє</span>',
+    hero_desc: 'Студія повного циклу. Від глибокого графічного дизайну до передових AI-рішень. Перетворюємо ваші ідеї на працюючі цифрові продукти.',
+    hero_btn1: 'Обговорити ідею <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Дивитися роботи',
+    sec_exp_label: 'Експертиза', sec_exp_title: 'Три напрямки —<br><span class="grad">нескінченні можливості</span>',
+    sec_exp_desc: 'Ми не просто малюємо картинки чи пишемо код. Ми підбираємо оптимальне поєднання технологій для вирішення завдань вашого бізнесу.',
+    sec_port_label: 'Кейси', sec_port_title: 'Наші <span class="grad">найкращі роботи</span>',
+    sec_calc_label: 'Калькулятор', sec_calc_title: 'Розрахуйте <span class="grad">вартість</span>',
+    calc_type: 'Тип продукту', calc_complexity: 'Складність логіки', calc_base: 'Базова', calc_adv: 'Просунута',
+    calc_options: 'Додаткові опції', calc_urgent: 'Термінове замовлення', calc_ai: 'AI Інтеграція',
+    calc_pre_eval: 'Попередня оцінка', calc_exact: '*Точний кошторис після брифінгу', calc_fill_brief: 'Заповнити бриф',
+    sec_quiz_label: 'Бриф', sec_quiz_title: 'Розкажіть про <span class="grad">проєкт</span>',
+    foot_desc: 'Студія цифрового дизайну та технологій. Створюємо унікальні рішення, що поєднують естетику та функціональність.',
+    foot_nav: 'Навігація', foot_contacts: 'Контакти', foot_rights: '© 2026 WaveSign Studio.', foot_love: 'Спроєктовано з любов\'ю',
+    price_from: 'від',
+    quiz_budget_up: 'До', quiz_step: 'Крок', quiz_from: 'з', quiz_almost: 'Майже готово!',
+    quiz_leave: 'Залиште контакти, і ми підготуємо персональну пропозицію.',
+    quiz_name: 'Як до вас звертатися?', quiz_tg: 'Ваш Telegram (@username)',
+    quiz_back: 'Назад', quiz_next: 'Далі', quiz_send: 'Відправити бриф',
+    quiz_success: 'Бриф успішно відправлено!', quiz_another: 'Заповнити для іншого проєкту',
+    quiz_thanks: 'Дякуємо, {name}! Ми вже вивчаємо ваші відповіді і скоро напишемо вам у Telegram ({tg}) для обговорення деталей.',
+    modal_order: 'Замовити схожий', q1: 'Який тип проєкту вам потрібен?',
+    q1_o1: 'Дизайн', q1_o2: 'Telegram бот', q1_o3: 'Арт/Ілюстрації', q1_o4: 'Комплексне рішення',
+    q2: 'Які послуги вас цікавлять?', q2_o1: 'Брендинг', q2_o2: 'Web-дизайн', q2_o3: 'UI/UX', q2_o4: 'AI-рішення', q2_o5: 'Ілюстрації', q2_o6: 'Моушн',
+    q3: 'Який бюджет ви плануєте?', q4: 'Орієнтовні терміни?',
+    q4_o1: 'Терміново (< 2 тиж.)', q4_o2: 'Протягом місяця', q4_o3: 'Гнучкі терміни',
+    type_design: 'Дизайн', type_bot: 'AI / Боти', type_complex: 'Комплекс'
+  },
+  en: {
+    nav_services: 'Services', nav_portfolio: 'Portfolio', nav_calc: 'Estimate', nav_start: 'Start Project',
+    hero_badge: 'Open for new projects', hero_title: 'Creating the<br><span class="grad glow">digital future</span>',
+    hero_desc: 'Full-cycle studio. From deep graphic design to cutting-edge AI solutions. We turn your ideas into working digital products.',
+    hero_btn1: 'Discuss idea <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'View works',
+    sec_exp_label: 'Expertise', sec_exp_title: 'Three directions —<br><span class="grad">endless possibilities</span>',
+    sec_exp_desc: 'We don’t just draw pictures or write code. We select the optimal combination of technologies to solve your business goals.',
+    sec_port_label: 'Cases', sec_port_title: 'Our <span class="grad">best works</span>',
+    sec_calc_label: 'Calculator', sec_calc_title: 'Calculate <span class="grad">cost</span>',
+    calc_type: 'Product type', calc_complexity: 'Logic complexity', calc_base: 'Basic', calc_adv: 'Advanced',
+    calc_options: 'Additional options', calc_urgent: 'Urgent order', calc_ai: 'AI Integration',
+    calc_pre_eval: 'Preliminary estimate', calc_exact: '*Exact quote after briefing', calc_fill_brief: 'Fill out the brief',
+    sec_quiz_label: 'Brief', sec_quiz_title: 'Tell us about the <span class="grad">project</span>',
+    foot_desc: 'Digital design and technology studio. We create unique solutions that combine aesthetics and functionality.',
+    foot_nav: 'Navigation', foot_contacts: 'Contacts', foot_rights: '© 2026 WaveSign Studio.', foot_love: 'Designed with love',
+    price_from: 'from',
+    quiz_budget_up: 'Up to', quiz_step: 'Step', quiz_from: 'of', quiz_almost: 'Almost done!',
+    quiz_leave: 'Leave your contacts, and we will prepare a personalized offer for you.',
+    quiz_name: 'How should we address you?', quiz_tg: 'Your Telegram (@username)',
+    quiz_back: 'Back', quiz_next: 'Next', quiz_send: 'Send brief',
+    quiz_success: 'Brief successfully sent!', quiz_another: 'Fill out for another project',
+    quiz_thanks: 'Thank you, {name}! We are already reviewing your answers and will write to you on Telegram ({tg}) soon to discuss the details.',
+    modal_order: 'Order similar', q1: 'What type of project do you need?',
+    q1_o1: 'Design', q1_o2: 'Telegram bot', q1_o3: 'Art/Illustrations', q1_o4: 'Complex solution',
+    q2: 'What services are you interested in?', q2_o1: 'Branding', q2_o2: 'Web design', q2_o3: 'UI/UX', q2_o4: 'AI solutions', q2_o5: 'Illustrations', q2_o6: 'Motion',
+    q3: 'What is your planned budget?', q4: 'Estimated deadlines?',
+    q4_o1: 'Urgent (< 2 weeks)', q4_o2: 'Within a month', q4_o3: 'Flexible deadlines',
+    type_design: 'Design', type_bot: 'AI / Bots', type_complex: 'Complex'
+  }
+};
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  document.documentElement.lang = lang;
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
+  });
+  
+  document.getElementById('hero_btn1').innerHTML = i18n[lang].hero_btn1;
+  
+  renderServices();
+  renderPortfolio();
+  renderTypes();
+  updateCalc();
+  if (document.getElementById('quiz-body').innerHTML !== '') renderQuiz();
+}
+
 // Scroll & Nav
 function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50));
@@ -367,43 +531,73 @@ const icons = {
   time: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`
 };
 
-// Services
-const svcs=[
-  {cat:'Digital Design',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Проектируем интерфейсы, которые говорят с пользователем на одном языке.', items:['Брендинг & Айдентика','Web-дизайн','UI/UX Design']},
-  {cat:'Tech & AI',ic:icons.tech, grad:'linear-gradient(135deg,#c026d3,#db2777)',desc:'Автоматизируем рутину и внедряем нейросети в бизнес-процессы.', items:['Telegram боты','AI интеграции','Автоматизация (API)']},
-  {cat:'Digital Art',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Создаем визуальный контент, который пробивает баннерную слепоту.', items:['Концепт-арты','Моушн-дизайн','Иллюстрации']}
-];
-document.getElementById('services-grid').innerHTML=svcs.map(s=>`
-  <div class="glass-card svc-card">
-    <div class="svc-icon" style="background:${s.grad}"><svg width="24" height="24" viewBox="0 0 24 24" stroke="white">${s.ic}</svg></div>
-    <h3 class="svc-h3">${s.cat}</h3><p class="svc-p">${s.desc}</p>
-    <div>${s.items.map(i=>`<div class="svc-item"><svg width="18" height="18" viewBox="0 0 24 24" stroke="#c084fc"><polyline points="20 6 9 17 4 12"/></svg> <h4 style="color:var(--text-main); font-weight: 500;">${i}</h4></div>`).join('')}</div>
-  </div>`).join('');
+// Services Data
+const svcsData = {
+  ru: [
+    {cat:'Digital Design',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Проектируем интерфейсы, которые говорят с пользователем на одном языке.', items:['Брендинг & Айдентика','Web-дизайн','UI/UX Design']},
+    {cat:'Tech & AI',ic:icons.tech, grad:'linear-gradient(135deg,#c026d3,#db2777)',desc:'Автоматизируем рутину и внедряем нейросети в бизнес-процессы.', items:['Telegram боты','AI интеграции','Автоматизация (API)']},
+    {cat:'Digital Art',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Создаем визуальный контент, который пробивает баннерную слепоту.', items:['Концепт-арты','Моушн-дизайн','Иллюстрации']}
+  ],
+  uk: [
+    {cat:'Digital Design',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Проєктуємо інтерфейси, які розмовляють з користувачем однією мовою.', items:['Брендинг & Айдентика','Web-дизайн','UI/UX Design']},
+    {cat:'Tech & AI',ic:icons.tech, grad:'linear-gradient(135deg,#c026d3,#db2777)',desc:'Автоматизуємо рутину та впроваджуємо нейромережі у бізнес-процеси.', items:['Telegram боти','AI інтеграції','Автоматизація (API)']},
+    {cat:'Digital Art',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Створюємо візуальний контент, який пробиває банерну сліпоту.', items:['Концепт-арти','Моушн-дизайн','Ілюстрації']}
+  ],
+  en: [
+    {cat:'Digital Design',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Designing interfaces that speak the same language as the user.', items:['Branding & Identity','Web Design','UI/UX Design']},
+    {cat:'Tech & AI',ic:icons.tech, grad:'linear-gradient(135deg,#c026d3,#db2777)',desc:'Automating routines and integrating neural networks into business processes.', items:['Telegram Bots','AI Integrations','Automation (API)']},
+    {cat:'Digital Art',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Creating visual content that breaks through banner blindness.', items:['Concept Art','Motion Design','Illustrations']}
+  ]
+};
+
+function renderServices() {
+  document.getElementById('services-grid').innerHTML=svcsData[currentLang].map(s=>`
+    <div class="glass-card svc-card">
+      <div class="svc-icon" style="background:${s.grad}"><svg width="24" height="24" viewBox="0 0 24 24" stroke="white">${s.ic}</svg></div>
+      <h3 class="svc-h3">${s.cat}</h3><p class="svc-p">${s.desc}</p>
+      <div>${s.items.map(i=>`<div class="svc-item"><svg width="18" height="18" viewBox="0 0 24 24" stroke="#c084fc"><polyline points="20 6 9 17 4 12"/></svg> <h4 style="color:var(--text-main); font-weight: 500;">${i}</h4></div>`).join('')}</div>
+    </div>`).join('');
+}
 
 // Portfolio
-const projs=[
-  {title:'Neon Brand',cat:'Digital Design',desc:'Комплексный ребрендинг финтех стартапа. Разработка дизайн-системы и гайдлайнов.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-  {title:'Crypto AI Bot',cat:'Tech & AI',desc:'Telegram бот для аналитики крипторынка с использованием OpenAI API.',tags:['Python','AI'],css:'linear-gradient(135deg,#9333ea,#be185d)'},
-  {title:'Flow Dashboard',cat:'Digital Design',desc:'Интерфейс аналитической панели для SaaS-платформы.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'},
-];
-document.getElementById('portfolio-grid').innerHTML=projs.map((p,i)=>`
-  <div class="proj-card" onclick="openModal(${i})">
-    <div class="proj-thumb" style="background:${p.css}"><span class="proj-cat">${p.cat}</span></div>
-    <div class="proj-body">
-      <h3 class="proj-h3">${p.title}</h3><p class="proj-desc">${p.desc}</p>
-      <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-    </div>
-  </div>`).join('');
+const projsData = {
+  ru: [
+    {title:'Neon Brand',cat:'Digital Design',desc:'Комплексный ребрендинг финтех стартапа. Разработка дизайн-системы и гайдлайнов.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
+    {title:'Crypto AI Bot',cat:'Tech & AI',desc:'Telegram бот для аналитики крипторынка с использованием OpenAI API.',tags:['Python','AI'],css:'linear-gradient(135deg,#9333ea,#be185d)'},
+    {title:'Flow Dashboard',cat:'Digital Design',desc:'Интерфейс аналитической панели для SaaS-платформы.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
+  ],
+  uk: [
+    {title:'Neon Brand',cat:'Digital Design',desc:'Комплексний ребрендинг фінтех стартапу. Розробка дизайн-системи та гайдлайнів.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
+    {title:'Crypto AI Bot',cat:'Tech & AI',desc:'Telegram бот для аналітики крипторинку з використанням OpenAI API.',tags:['Python','AI'],css:'linear-gradient(135deg,#9333ea,#be185d)'},
+    {title:'Flow Dashboard',cat:'Digital Design',desc:'Інтерфейс аналітичної панелі для SaaS-платформи.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
+  ],
+  en: [
+    {title:'Neon Brand',cat:'Digital Design',desc:'Comprehensive rebranding of a fintech startup. Design system and guidelines development.',tags:['Branding','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
+    {title:'Crypto AI Bot',cat:'Tech & AI',desc:'Telegram bot for crypto market analytics using OpenAI API.',tags:['Python','AI'],css:'linear-gradient(135deg,#9333ea,#be185d)'},
+    {title:'Flow Dashboard',cat:'Digital Design',desc:'Analytical dashboard interface for a SaaS platform.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
+  ]
+};
 
-// Modal
+function renderPortfolio() {
+  document.getElementById('portfolio-grid').innerHTML=projsData[currentLang].map((p,i)=>`
+    <div class="proj-card" onclick="openModal(${i})">
+      <div class="proj-thumb" style="background:${p.css}"><span class="proj-cat">${p.cat}</span></div>
+      <div class="proj-body">
+        <h3 class="proj-h3">${p.title}</h3><p class="proj-desc">${p.desc}</p>
+        <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+
 function openModal(i){
-  const p=projs[i];
+  const p = projsData[currentLang][i];
+  const orderBtn = i18n[currentLang].modal_order;
   document.getElementById('modal-content').innerHTML=`
     <h2 style="font-size:1.75rem;margin-bottom:1rem">${p.title}</h2>
     <div style="height:200px;border-radius:1rem;background:${p.css};margin-bottom:1.5rem"></div>
     <p style="color:var(--text-muted);margin-bottom:1.5rem">${p.desc}</p>
     <div class="tags" style="margin-bottom:2rem">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-    <button class="btn-primary btn-full" onclick="closeModal();scrollToId('quiz')">Заказать похожий</button>
+    <button class="btn-primary btn-full" onclick="closeModal();scrollToId('quiz')">${orderBtn}</button>
   `;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
@@ -412,87 +606,107 @@ function closeModal(e){
   if(!e||e.target.id==='modal'||e.currentTarget.tagName==='BUTTON'){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 }
 
-// Currency Logic
+// Currency Logic (RUB is base = 1)
 const currencies = {
   RUB: { rate: 1, sym: '₽' },
+  UAH: { rate: 0.41, sym: '₴' },
   BYN: { rate: 0.034, sym: 'Br' },
-  UAH: { rate: 0.41, sym: '₴' }
+  USD: { rate: 0.011, sym: '$' },
+  EUR: { rate: 0.010, sym: '€' }
 };
-let cur = 'RUB';
+
+// Default currency USD
+let cur = 'USD';
 
 function setCurrency(c) {
   cur = c;
-  document.querySelectorAll('.cur-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('cur-' + c).classList.add('active');
   updateCalc();
   if (qStep === 2) renderQuiz(); 
 }
 
 // Calculator
-const pTypes=[{v:'design',l:'Дизайн',b:30000,ic:icons.design},{v:'bot',l:'AI / Боты',b:50000,ic:icons.tech},{v:'complex',l:'Комплекс',b:90000,ic:icons.complex}];
 let selType='design';
-document.getElementById('proj-types').innerHTML=pTypes.map(t=>`
-  <button class="type-btn${t.v===selType?' active':''}" onclick="selectType('${t.v}')" id="type-${t.v}">
-    <svg viewBox="0 0 24 24">${t.ic}</svg><span>${t.l}</span>
-  </button>`).join('');
+function getTypes() {
+  return [
+    {v:'design', l:i18n[currentLang].type_design, b:30000, ic:icons.design},
+    {v:'bot', l:i18n[currentLang].type_bot, b:50000, ic:icons.tech},
+    {v:'complex', l:i18n[currentLang].type_complex, b:90000, ic:icons.complex}
+  ];
+}
 
-function selectType(v){selType=v;pTypes.forEach(t=>document.getElementById('type-'+t.v).classList.toggle('active',t.v===v));updateCalc();}
+function renderTypes() {
+  const pTypes = getTypes();
+  document.getElementById('proj-types').innerHTML=pTypes.map(t=>`
+    <button class="type-btn${t.v===selType?' active':''}" onclick="selectType('${t.v}')" id="type-${t.v}">
+      <svg viewBox="0 0 24 24">${t.ic}</svg><span>${t.l}</span>
+    </button>`).join('');
+}
+
+function selectType(v){
+  selType=v;
+  const pTypes = getTypes();
+  pTypes.forEach(t=>document.getElementById('type-'+t.v).classList.toggle('active',t.v===v));
+  updateCalc();
+}
+
 function updateCalc(){
-  const t=pTypes.find(x=>x.v===selType), c=+document.getElementById('complexity').value;
+  const pTypes = getTypes();
+  const t = pTypes.find(x=>x.v===selType);
+  const c = +document.getElementById('complexity').value;
   document.getElementById('complexity-val').textContent=c+'%';
   
   const basePrice = t.b * (1 + c/100) * (document.getElementById('urgent').checked ? 1.3 : 1) * (document.getElementById('ai').checked ? 1.4 : 1);
   const finalPrice = Math.round(basePrice * currencies[cur].rate);
   
-  document.getElementById('price-display').textContent = 'от ' + finalPrice.toLocaleString('ru-RU') + ' ' + currencies[cur].sym;
+  document.getElementById('price-display').textContent = i18n[currentLang].price_from + ' ' + finalPrice.toLocaleString('ru-RU') + ' ' + currencies[cur].sym;
 }
-updateCalc();
 
 // Quiz
 const getBudgetOpts = () => {
   const r = currencies[cur].rate;
   const s = currencies[cur].sym;
   const fmt = (v) => Math.round(v * r).toLocaleString('ru-RU');
+  const l = i18n[currentLang];
   return [
-    {v:'small', l:`До ${fmt(50000)} ${s}`, ic:icons.money},
+    {v:'small', l:`${l.quiz_budget_up} ${fmt(50000)} ${s}`, ic:icons.money},
     {v:'medium', l:`${fmt(50000)} — ${fmt(150000)} ${s}`, ic:icons.money},
     {v:'large', l:`${fmt(150000)} — ${fmt(300000)} ${s}`, ic:icons.money},
     {v:'enterprise', l:`${fmt(300000)}+ ${s}`, ic:icons.money}
   ];
 };
 
-const questions = [
-  {q:'Какой тип проекта вам нужен?', multi:false, opts:[
-    {v:'design', l:'Дизайн', ic:icons.design},
-    {v:'bot', l:'Telegram бот', ic:icons.bot},
-    {v:'art', l:'Арт/Иллюстрации', ic:icons.art},
-    {v:'complex', l:'Комплексное решение', ic:icons.complex}
-  ]},
-  {q:'Какие услуги вас интересуют?', multi:true, opts:[
-    {v:'branding', l:'Брендинг', ic:icons.star},
-    {v:'web', l:'Web-дизайн', ic:icons.star},
-    {v:'uiux', l:'UI/UX', ic:icons.star},
-    {v:'ai', l:'AI-решения', ic:icons.star},
-    {v:'illustration', l:'Иллюстрации', ic:icons.star},
-    {v:'motion', l:'Моушн', ic:icons.star}
-  ]},
-  {q:'Какой бюджет вы планируете?', multi:false, isDynamic: true, opts:[]},
-  {q:'Ориентировочные сроки?', multi:false, opts:[
-    {v:'urgent', l:'Срочно (< 2 нед.)', ic:icons.time},
-    {v:'month', l:'В течение месяца', ic:icons.time},
-    {v:'flexible', l:'Гибкие сроки', ic:icons.time}
-  ]}
-];
+function getQuestions() {
+  const l = i18n[currentLang];
+  return [
+    {q:l.q1, multi:false, opts:[
+      {v:'design', l:l.q1_o1, ic:icons.design}, {v:'bot', l:l.q1_o2, ic:icons.bot},
+      {v:'art', l:l.q1_o3, ic:icons.art}, {v:'complex', l:l.q1_o4, ic:icons.complex}
+    ]},
+    {q:l.q2, multi:true, opts:[
+      {v:'branding', l:l.q2_o1, ic:icons.star}, {v:'web', l:l.q2_o2, ic:icons.star},
+      {v:'uiux', l:l.q2_o3, ic:icons.star}, {v:'ai', l:l.q2_o4, ic:icons.star},
+      {v:'illustration', l:l.q2_o5, ic:icons.star}, {v:'motion', l:l.q2_o6, ic:icons.star}
+    ]},
+    {q:l.q3, multi:false, isDynamic: true, opts:[]},
+    {q:l.q4, multi:false, opts:[
+      {v:'urgent', l:l.q4_o1, ic:icons.time}, {v:'month', l:l.q4_o2, ic:icons.time}, {v:'flexible', l:l.q4_o3, ic:icons.time}
+    ]}
+  ];
+}
 
-let qStep = 0, qAnswers = {}, qName = '', qTg = '';
+let qStep = 0, qAnswers = {}, qName = '', qTg = '', quizSubmitted = false;
 
 function renderQuiz() {
+  if (quizSubmitted) { qSubmit(); return; }
+  
+  const questions = getQuestions();
   const total = questions.length + 1;
   const pct = Math.round(((qStep + 1) / total) * 100);
+  const l = i18n[currentLang];
   
   let html = `
     <div class="progress-wrap">
-      <div class="progress-meta"><span>Шаг ${qStep + 1} из ${total}</span><span>${pct}%</span></div>
+      <div class="progress-meta"><span>${l.quiz_step} ${qStep + 1} ${l.quiz_from} ${total}</span><span>${pct}%</span></div>
       <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
     </div>`;
     
@@ -511,24 +725,24 @@ function renderQuiz() {
     
     html += `
       <div class="quiz-nav">
-        <button class="btn-outline" onclick="qBack()" ${qStep === 0 ? 'style="visibility:hidden"' : ''}>Назад</button>
-        <button class="btn-primary" onclick="qNext()" ${!qCanProceed() ? 'disabled style="opacity:.5;cursor:not-allowed"' : ''}>Далее <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="btn-outline" onclick="qBack()" ${qStep === 0 ? 'style="visibility:hidden"' : ''}>${l.quiz_back}</button>
+        <button class="btn-primary" onclick="qNext()" ${!qCanProceed() ? 'disabled' : ''}>${l.quiz_next} <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>`;
   } else {
     html += `
-      <h3 style="font-size:1.75rem;font-weight:700;margin-bottom:.5rem">Почти готово!</h3>
-      <p style="color:var(--text-muted);margin-bottom:2.5rem">Оставьте контакты, и мы подготовим для вас персональное предложение.</p>
+      <h3 style="font-size:1.75rem;font-weight:700;margin-bottom:.5rem">${l.quiz_almost}</h3>
+      <p style="color:var(--text-muted);margin-bottom:2.5rem">${l.quiz_leave}</p>
       
-      <label class="field-label">Как к вам обращаться?</label>
-      <input id="form-name" class="quiz-input" placeholder="Иван" value="${qName}" oninput="updateContactState()" />
+      <label class="field-label">${l.quiz_name}</label>
+      <input id="form-name" class="quiz-input" placeholder="Иван / John" value="${qName}" oninput="updateContactState()" />
       
-      <label class="field-label">Ваш Telegram (@username)</label>
+      <label class="field-label">${l.quiz_tg}</label>
       <input id="form-tg" class="quiz-input" placeholder="@username" value="${qTg}" oninput="updateContactState()" />
       
       <div class="quiz-nav" style="margin-top:2rem">
-        <button class="btn-outline" onclick="qBack()">Назад</button>
-        <button id="form-submit" class="btn-primary" onclick="qSubmit()" ${(!qName.trim() || !qTg.trim()) ? 'disabled style="opacity:.5;cursor:not-allowed"' : ''}>
-          Отправить бриф <svg width="20" height="20" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <button class="btn-outline" onclick="qBack()">${l.quiz_back}</button>
+        <button id="form-submit" class="btn-primary" onclick="qSubmitExec()" ${(!qName.trim() || !qTg.trim()) ? 'disabled' : ''}>
+          ${l.quiz_send} <svg width="20" height="20" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
       </div>`;
   }
@@ -542,16 +756,13 @@ function updateContactState() {
   
   if(qName.trim() !== '' && qTg.trim() !== '') {
     btn.removeAttribute('disabled');
-    btn.style.opacity = '1';
-    btn.style.cursor = 'pointer';
   } else {
     btn.setAttribute('disabled', 'true');
-    btn.style.opacity = '0.5';
-    btn.style.cursor = 'not-allowed';
   }
 }
 
 function qSelect(v) {
+  const questions = getQuestions();
   const q = questions[qStep];
   if (q.multi) {
     const cur = qAnswers[qStep] || [];
@@ -570,21 +781,31 @@ function qCanProceed() {
 function qNext() { if(qCanProceed()) { qStep++; renderQuiz(); } }
 function qBack() { if(qStep > 0) { qStep--; renderQuiz(); } }
 
+function qSubmitExec() {
+  quizSubmitted = true;
+  qSubmit();
+}
+
 function qSubmit() {
-  console.log("Данные брифа:", { answers: qAnswers, name: qName, tg: qTg, currency: cur });
+  const l = i18n[currentLang];
+  const thanksMsg = l.quiz_thanks.replace('{name}', qName).replace('{tg}', qTg);
   
   document.getElementById('quiz-body').innerHTML = `
     <div style="text-align:center;padding:2rem 0">
       <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <h3 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem">Бриф успешно отправлен!</h3>
-      <p style="color:var(--text-muted);margin-bottom:2.5rem;line-height:1.6">Спасибо, ${qName}! Мы уже изучаем ваши ответы и скоро напишем вам в Telegram (${qTg}) для обсуждения деталей.</p>
-      <button class="btn-outline" onclick="qReset()">Заполнить для другого проекта</button>
+      <h3 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem">${l.quiz_success}</h3>
+      <p style="color:var(--text-muted);margin-bottom:2.5rem;line-height:1.6">${thanksMsg}</p>
+      <button class="btn-outline" onclick="qReset()">${l.quiz_another}</button>
     </div>`;
 }
 
-function qReset() { qStep=0; qAnswers={}; qName=''; qTg=''; renderQuiz(); }
+function qReset() { qStep=0; qAnswers={}; qName=''; qTg=''; quizSubmitted=false; renderQuiz(); }
 
-// Init Quiz
+// Init
+renderServices();
+renderPortfolio();
+renderTypes();
+updateCalc();
 renderQuiz();
 </script>
 </body>
