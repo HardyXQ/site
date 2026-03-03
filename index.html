@@ -37,7 +37,9 @@
 :root{
   --v:#8b5cf6; --f:#d946ef; --p:#a855f7;
   /* Темно-фиолетовый, почти черный цвет фона */
-  --bg-dark:#0c0812; --text-main:#f2edf5; --text-muted:#9ca3af;
+  --bg-dark:#0c0812; --text-main:#f2edf5; 
+  /* Светло-серый с сиреневым оттенком */
+  --text-muted:#b9adcc;
   --glass:rgba(12,8,18,.6); --glass-hover:rgba(20,15,25,.8);
   --border:rgba(242,237,245,.06); --border-light:rgba(242,237,245,.12);
 }
@@ -324,7 +326,7 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 <section id="portfolio" class="section" style="background:rgba(242,237,245,.01)">
   <div class="container">
     <div class="section-head">
-      <span class="section-label" data-i18n="sec_port_label">Кейсы</span>
+      <span class="section-label" data-i18n="sec_port_label">Проекты</span>
       <h2 class="section-title" data-i18n="sec_port_title">Наши <span class="grad">лучшие работы</span></h2>
     </div>
     <div class="portfolio-grid" id="portfolio-grid"></div>
@@ -443,7 +445,7 @@ const i18n = {
     hero_btn1: 'Обсудить идею <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Смотреть работы',
     sec_exp_label: 'Экспертиза', sec_exp_title: 'Три направления —<br><span class="grad">бесконечные возможности</span>',
     sec_exp_desc: 'Мы не просто рисуем картинки или пишем код. Мы подбираем оптимальное сочетание технологий для решения задач вашего бизнеса.',
-    sec_port_label: 'Кейсы', sec_port_title: 'Наши <span class="grad">лучшие работы</span>',
+    sec_port_label: 'Проекты', sec_port_title: 'Наши <span class="grad">лучшие работы</span>',
     sec_calc_label: 'Калькулятор', sec_calc_title: 'Рассчитайте <span class="grad">стоимость</span>',
     calc_type: 'Тип продукта', calc_complexity: 'Сложность логики', calc_base: 'Базовая', calc_adv: 'Продвинутая',
     calc_options: 'Дополнительные опции', calc_urgent: 'Срочный заказ', calc_ai: 'AI Интеграция',
@@ -472,7 +474,7 @@ const i18n = {
     hero_btn1: 'Обговорити ідею <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Дивитися роботи',
     sec_exp_label: 'Експертиза', sec_exp_title: 'Три напрямки —<br><span class="grad">нескінченні можливості</span>',
     sec_exp_desc: 'Ми не просто малюємо картинки чи пишемо код. Ми підбираємо оптимальне поєднання технологій для вирішення завдань вашого бізнесу.',
-    sec_port_label: 'Кейси', sec_port_title: 'Наші <span class="grad">найкращі роботи</span>',
+    sec_port_label: 'Проєкти', sec_port_title: 'Наші <span class="grad">найкращі роботи</span>',
     sec_calc_label: 'Калькулятор', sec_calc_title: 'Розрахуйте <span class="grad">вартість</span>',
     calc_type: 'Тип продукту', calc_complexity: 'Складність логіки', calc_base: 'Базова', calc_adv: 'Просунута',
     calc_options: 'Додаткові опції', calc_urgent: 'Термінове замовлення', calc_ai: 'AI Інтеграція',
@@ -501,7 +503,7 @@ const i18n = {
     hero_btn1: 'Discuss idea <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'View works',
     sec_exp_label: 'Expertise', sec_exp_title: 'Three directions —<br><span class="grad">endless possibilities</span>',
     sec_exp_desc: 'We don’t just draw pictures or write code. We select the optimal combination of technologies to solve your business goals.',
-    sec_port_label: 'Cases', sec_port_title: 'Our <span class="grad">best works</span>',
+    sec_port_label: 'Projects', sec_port_title: 'Our <span class="grad">best works</span>',
     sec_calc_label: 'Calculator', sec_calc_title: 'Calculate <span class="grad">cost</span>',
     calc_type: 'Product type', calc_complexity: 'Logic complexity', calc_base: 'Basic', calc_adv: 'Advanced',
     calc_options: 'Additional options', calc_urgent: 'Urgent order', calc_ai: 'AI Integration',
@@ -593,17 +595,17 @@ function renderServices() {
 const projsData = {
   ru: [
     {title:'Neon Brand',cat:'Digital Design',desc:'Комплексный ребрендинг финтех стартапа. Разработка дизайн-системы и гайдлайнов.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'Crypto AI Bot',cat:'Tech & AI',desc:'Telegram бот для аналитики крипторынка с использованием OpenAI API.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
+    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram бот для планирования и формирования привычек со встроенным искусственным интеллектом.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
     {title:'Flow Dashboard',cat:'Digital Design',desc:'Интерфейс аналитической панели для SaaS-платформы.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
   ],
   uk: [
     {title:'Neon Brand',cat:'Digital Design',desc:'Комплексний ребрендинг фінтех стартапу. Розробка дизайн-системи та гайдлайнів.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'Crypto AI Bot',cat:'Tech & AI',desc:'Telegram бот для аналітики крипторинку з використанням OpenAI API.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
+    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram бот для планування та формування звичок із вбудованим штучним інтелектом.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
     {title:'Flow Dashboard',cat:'Digital Design',desc:'Інтерфейс аналітичної панелі для SaaS-платформи.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
   ],
   en: [
     {title:'Neon Brand',cat:'Digital Design',desc:'Comprehensive rebranding of a fintech startup. Design system and guidelines development.',tags:['Branding','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'Crypto AI Bot',cat:'Tech & AI',desc:'Telegram bot for crypto market analytics using OpenAI API.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
+    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram bot for planning and habit tracking with built-in artificial intelligence.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
     {title:'Flow Dashboard',cat:'Digital Design',desc:'Analytical dashboard interface for a SaaS platform.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
   ]
 };
