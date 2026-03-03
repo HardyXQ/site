@@ -3,10 +3,27 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
 <title>WaveSign Studio</title>
+<meta name="description" content="Создаём цифровые решения. Мы — студия WaveSign. Разрабатываем выразительный графический дизайн и функциональные Telegram-боты, которые работают на ваш бизнес.">
+<meta name="keywords" content="WaveSign, WaveSign Studio, дизайн студия, разработка сайтов, Telegram боты, AI интеграции, брендинг, UI/UX, веб-дизайн, моушн-дизайн">
+<meta name="robots" content="index, follow">
+<meta name="author" content="WaveSign Studio">
+<link rel="canonical" href="https://wavesign.art/">
+
+<link rel="icon" type="image/png" href="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true">
+<link rel="apple-touch-icon" href="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wavesign.art/">
+<meta property="og:title" content="WaveSign Studio">
+<meta property="og:description" content="Создаём цифровые решения. Мы — студия WaveSign. Разрабатываем выразительный графический дизайн и функциональные Telegram-боты, которые работают на ваш бизнес.">
+<meta property="og:image" content="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -85,7 +102,6 @@ input, select{outline:none;}
 .dot{width:8px;height:8px;background:#10b981;border-radius:50%;box-shadow:0 0 10px rgba(16,185,129,.5)}
 .hero-h1{font-size:clamp(3.5rem,8vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:1.5rem;letter-spacing:-.03em}
 
-/* Сделали текст белым и задали фиксированный размер для десктопа */
 .hero-p{font-size:1.25rem;color:#ffffff;max-width:42rem;margin:0 auto 3rem}
 .hero-btns{display:flex;justify-content:center;gap:1.5rem}
 
@@ -209,7 +225,6 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   .modal { padding: 2rem; }
   .calc-wrapper { padding: 2rem; }
   
-  /* Уменьшаем текст "Студия полного цикла..." на мобильных */
   .hero-p { font-size: 0.95rem; margin-bottom: 2rem; }
 }
 
@@ -220,17 +235,14 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 @media(max-width:480px){
   .container { padding: 0 1.25rem; }
   
-  /* Кнопки в Hero выстраиваются друг под другом на узких экранах */
   .hero-btns { flex-direction: column; gap: 1rem; }
   .hero-btns button { width: 100%; }
   
-  /* Уплотняем шапку для мобильных телефонов */
   .nav-actions { gap: 0.5rem; }
   .btn-sm { padding: 0.5rem 1rem; font-size: 0.75rem; }
   .lang-switch { padding: 0.2rem; }
   .lang-btn { padding: 0.25rem 0.5rem; font-size: 0.7rem; }
   
-  /* Уменьшаем ценник в калькуляторе, чтобы не ломался блок */
   .price-val { font-size: 2rem; }
 }
 </style>
@@ -271,7 +283,7 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
         <span style="font-size:.875rem;color:var(--text-muted)" data-i18n="hero_badge">Открыты для новых проектов</span>
       </div>
       <h1 class="hero-h1" data-i18n="hero_title">Создаем<br><span class="grad glow">цифровое будущее</span></h1>
-      <p class="hero-p" data-i18n="hero_desc">От глубокого графического дизайна до передовых AI-решений. Превращаем ваши идеи в работающие цифровые продукты.</p>
+      <p class="hero-p" data-i18n="hero_desc">Студия полного цикла. От глубокого графического дизайна до передовых AI-решений. Превращаем ваши идеи в работающие цифровые продукты.</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="scrollToId('quiz')" id="hero_btn1">Обсудить идею <svg width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         <button class="btn-outline" onclick="scrollToId('portfolio')" data-i18n="hero_btn2">Смотреть работы</button>
