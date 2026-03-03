@@ -11,14 +11,14 @@
 <meta name="author" content="WaveSign Studio">
 <link rel="canonical" href="https://wavesign.art/">
 
-<link rel="icon" type="image/png" href="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true">
-<link rel="apple-touch-icon" href="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/HardyXQ/site/main/logo100.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/HardyXQ/site/main/logo100.png">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wavesign.art/">
 <meta property="og:title" content="WaveSign Studio">
 <meta property="og:description" content="Создаём цифровые решения. Мы — студия WaveSign. Разрабатываем выразительный графический дизайн и функциональные Telegram-боты, которые работают на ваш бизнес.">
-<meta property="og:image" content="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true">
+<meta property="og:image" content="https://raw.githubusercontent.com/HardyXQ/site/main/logo100.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,7 +126,8 @@ input, select{outline:none;}
 #nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:1.5rem 0;transition:all .4s ease}
 #nav.scrolled{background:rgba(12,8,18,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1rem 0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:.75rem}
+.nav-logo{display:flex;align-items:center;gap:.75rem;cursor:pointer;transition:transform 0.3s ease;}
+.nav-logo:hover{transform:scale(1.02);}
 .nav-links{display:flex;align-items:center;gap:2.5rem}
 .nav-link{font-size:.875rem;font-weight:500;color:var(--text-muted);position:relative;transition:color .3s}
 .nav-link:hover{color:#f2edf5}
@@ -157,7 +158,8 @@ input, select{outline:none;}
 .svc-item h4{font-weight:600;font-size:.9375rem;color:var(--text-main)}
 
 .portfolio-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-.proj-card{border-radius:1.5rem;overflow:hidden;cursor:pointer;background:var(--glass);border:1px solid var(--border);transition:all .4s}
+/* Убран курсор pointer, так как модальные окна отключены */
+.proj-card{border-radius:1.5rem;overflow:hidden;background:var(--glass);border:1px solid var(--border);transition:all .4s}
 .proj-card:hover{transform:translateY(-5px);border-color:var(--border-light);box-shadow:0 20px 40px rgba(0,0,0,.4)}
 .proj-thumb{height:14rem;position:relative;display:flex;align-items:center;justify-content:center}
 .proj-cat{position:absolute;top:1.5rem;left:1.5rem;padding:.375rem 1rem;background:rgba(12,8,18,.6);backdrop-filter:blur(10px);border-radius:99px;font-size:.75rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
@@ -250,11 +252,6 @@ footer{padding:6rem 0 3rem;border-top:1px solid var(--border);background:rgba(12
 .footer-links a:hover{color:#d946ef}
 .footer-bottom{padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--text-muted);font-size:.875rem}
 
-.modal-overlay{position:fixed;inset:0;background:rgba(12,8,18,.85);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:1.5rem;opacity:0;transition:opacity .3s}
-.modal-overlay.open{display:flex;opacity:1}
-.modal{background:var(--bg-dark);border:1px solid var(--border-light);border-radius:2rem;max-width:600px;width:100%;padding:3rem;position:relative;transform:translateY(20px);transition:transform .3s}
-.modal-overlay.open .modal{transform:translateY(0)}
-
 svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* --- Мобильная оптимизация (Media Queries) --- */
@@ -263,7 +260,6 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   .section-head { margin-bottom: 3rem; }
   .calc-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .modal { padding: 2rem; }
   .calc-wrapper { padding: 2rem; }
   
   .hero-p { font-size: 0.95rem; margin-bottom: 2rem; }
@@ -295,8 +291,8 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 
 <nav id="nav">
   <div class="container nav-inner">
-    <div class="nav-logo">
-      <img src="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
+    <div class="nav-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+      <img src="https://raw.githubusercontent.com/HardyXQ/site/main/logo100.png" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
       <span class="grad logo-text">WaveSign</span>
     </div>
     <div class="nav-links">
@@ -420,8 +416,8 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="nav-logo" style="margin-bottom:1.5rem">
-          <img src="https://github.com/HardyXQ/site/blob/main/logo100.png?raw=true" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
+        <div class="nav-logo" style="margin-bottom:1.5rem" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+          <img src="https://raw.githubusercontent.com/HardyXQ/site/main/logo100.png" alt="WaveSign" style="height: 40px; width: auto; object-fit: contain;">
           <span class="grad logo-text">WaveSign</span>
         </div>
         <p class="text-muted" style="max-width:24rem" data-i18n="foot_desc">Студия цифрового дизайна и технологий. Создаем уникальные решения, объединяющие эстетику и функциональность.</p>
@@ -449,14 +445,25 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   </div>
 </footer>
 
-<div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal">
-    <button style="position:absolute;top:1.5rem;right:1.5rem;color:var(--text-muted)" onclick="closeModal()"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-    <div id="modal-content"></div>
-  </div>
-</div>
-
 <script>
+// --- Обновленный обработчик скролла (Фикс для мобильных) ---
+function checkScroll() {
+  const nav = document.getElementById('nav');
+  // Используем scrollY и documentElement.scrollTop для максимальной совместимости на iOS/Android
+  if (window.scrollY > 10 || document.documentElement.scrollTop > 10) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+}
+
+// Слушаем события плавно (passive: true) для производительности
+window.addEventListener('scroll', checkScroll, { passive: true });
+window.addEventListener('touchmove', checkScroll, { passive: true });
+// Проверяем скролл сразу при загрузке страницы
+document.addEventListener('DOMContentLoaded', checkScroll);
+
+
 // --- Локализация (I18N) ---
 let currentLang = 'ru';
 
@@ -572,7 +579,6 @@ function setLang(lang) {
 
 // Scroll & Nav
 function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50));
 
 // Icons
 const icons = {
@@ -614,51 +620,35 @@ function renderServices() {
     </div>`).join('');
 }
 
-// Portfolio
+// Portfolio (убраны всплывающие окна)
 const projsData = {
   ru: [
     {title:'Neon Brand',cat:'Digital Design',desc:'Комплексный ребрендинг финтех стартапа. Разработка дизайн-системы и гайдлайнов.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram бот для планирования и формирования привычек со встроенным искусственным интеллектом.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
+    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram бот для планирования и формирования привычек со встроенным искусственным интеллектом.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center / 135% no-repeat'},
     {title:'Flow Dashboard',cat:'Digital Design',desc:'Интерфейс аналитической панели для SaaS-платформы.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
   ],
   uk: [
     {title:'Neon Brand',cat:'Digital Design',desc:'Комплексний ребрендинг фінтех стартапу. Розробка дизайн-системи та гайдлайнів.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram бот для планування та формування звичок із вбудованим штучним інтелектом.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
+    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram бот для планування та формування звичок із вбудованим штучним інтелектом.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center / 135% no-repeat'},
     {title:'Flow Dashboard',cat:'Digital Design',desc:'Інтерфейс аналітичної панелі для SaaS-платформи.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
   ],
   en: [
     {title:'Neon Brand',cat:'Digital Design',desc:'Comprehensive rebranding of a fintech startup. Design system and guidelines development.',tags:['Branding','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram bot for planning and habit tracking with built-in artificial intelligence.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center/cover no-repeat'},
+    {title:'GRISHA AI',cat:'Tech & AI',desc:'Telegram bot for planning and habit tracking with built-in artificial intelligence.',tags:['Python','AI'],css:'url(https://raw.githubusercontent.com/HardyXQ/site/main/grisha.png) center / 135% no-repeat'},
     {title:'Flow Dashboard',cat:'Digital Design',desc:'Analytical dashboard interface for a SaaS platform.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
   ]
 };
 
 function renderPortfolio() {
-  document.getElementById('portfolio-grid').innerHTML=projsData[currentLang].map((p,i)=>`
-    <div class="proj-card" onclick="openModal(${i})">
+  // Убран onclick="openModal(${i})"
+  document.getElementById('portfolio-grid').innerHTML=projsData[currentLang].map((p)=>`
+    <div class="proj-card">
       <div class="proj-thumb" style="background:${p.css}"><span class="proj-cat">${p.cat}</span></div>
       <div class="proj-body">
         <h3 class="proj-h3">${p.title}</h3><p class="proj-desc">${p.desc}</p>
         <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
       </div>
     </div>`).join('');
-}
-
-function openModal(i){
-  const p = projsData[currentLang][i];
-  const orderBtn = i18n[currentLang].modal_order;
-  document.getElementById('modal-content').innerHTML=`
-    <h2 style="font-size:1.75rem;margin-bottom:1rem">${p.title}</h2>
-    <div style="height:200px;border-radius:1rem;background:${p.css};margin-bottom:1.5rem"></div>
-    <p style="color:var(--text-muted);margin-bottom:1.5rem">${p.desc}</p>
-    <div class="tags" style="margin-bottom:2rem">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-    <button class="btn-primary btn-full" onclick="closeModal();scrollToId('quiz')">${orderBtn}</button>
-  `;
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(e){
-  if(!e||e.target.id==='modal'||e.currentTarget.tagName==='BUTTON'){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 }
 
 // Currency Logic (RUB is base = 1)
