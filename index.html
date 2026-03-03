@@ -33,6 +33,14 @@
   font-display: swap;
 }
 
+/* Подключение нового шрифта Public Pixel для лейблов (Экспертиза, Проекты и т.д.) */
+@font-face {
+  font-family: 'Public Pixel';
+  src: url('https://raw.githubusercontent.com/HardyXQ/site/main/PublicPixel.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --v:#8b5cf6; --f:#d946ef; --p:#a855f7;
@@ -98,7 +106,19 @@ input, select{outline:none;}
 .container{max-width:1200px;margin:0 auto;padding:0 2rem}
 .section{padding:10rem 0;position:relative}
 
-.section-label{color:#c084fc;font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:1rem}
+/* Применяем шрифт Public Pixel и делаем его значительно меньше */
+.section-label{
+  font-family: 'Public Pixel', sans-serif;
+  color:#c084fc;
+  font-size: 0.6rem; 
+  font-weight:400;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:1.5rem;
+  line-height:1.5;
+}
+
 .section-title{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:700;margin-bottom:1.5rem;line-height:1.2;letter-spacing:-.02em}
 .section-subtitle{color:var(--text-muted);max-width:36rem;margin:0 auto;font-size:1.125rem}
 .section-head{text-align:center;margin-bottom:6rem}
@@ -265,6 +285,9 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   .lang-btn { padding: 0.25rem 0.5rem; font-size: 0.7rem; }
   
   .price-val { font-size: 2rem; }
+  
+  /* Уменьшаем пиксельный шрифт лейблов для маленьких экранов еще сильнее */
+  .section-label { font-size: 0.5rem; margin-bottom: 1.5rem; }
 }
 </style>
 </head>
