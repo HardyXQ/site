@@ -826,9 +826,64 @@ function qCanProceed() {
 function qNext() { if(qCanProceed()) { qStep++; renderQuiz(); } }
 function qBack() { if(qStep > 0) { qStep--; renderQuiz(); } }
 
-function qSubmitExec() {
-  quizSubmitted = true;
-  qSubmit();
+async function qSubmitExec() {
+  const btn = document.getElementById('form-submit');
+  const originalBtnContent = btn.innerHTML;
+  btn.innerHTML = 'Отправка... <svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="0" stroke-width="2"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>';
+  btn.disabled = true;
+
+  // Собираем базовые данные калькулятора
+  const pTypes = getTypes();
+  const typeLabel = pTypes.find(x => x.v === selType)?.l || selType;
+  
+  // Собираем и форматируем ответы брифа в удобный объект
+  const formattedAnswers = {};
+  const questions = getQuestions();
+  questions.forEach((q, idx) => {
+    if (qAnswers[idx] !== undefined) {
+      let ans = qAnswers[idx];
+      let opts = q.isDynamic ? getBudgetOpts() : q.opts;
+      
+      if (Array.isArray(ans)) {
+        formattedAnswers[q.q] = ans.map(v => opts.find(o => o.v === v)?.l || v).join(', ');
+      } else {
+        formattedAnswers[q.q] = opts.find(o => o.v === ans)?.l || ans;
+      }
+    }
+  });
+
+  // Формируем JSON-тело для бэкенда
+  const payload = {
+    name: qName,
+    telegram: qTg,
+    project_type: typeLabel,
+    complexity: document.getElementById('complexity').value + '%',
+    is_urgent: document.getElementById('urgent').checked ? 'Да' : 'Нет',
+    has_ai: document.getElementById('ai').checked ? 'Да' : 'Нет',
+    price: document.getElementById('price-display').textContent,
+    answers: formattedAnswers
+  };
+
+  try {
+    // Внимание: замени localhost на URL твоего реального сервера при деплое
+    const response = await fetch('http://localhost:8000/api/submit-brief', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      quizSubmitted = true;
+      qSubmit();
+    } else {
+      throw new Error('Ошибка при обращении к серверу');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.');
+    btn.innerHTML = originalBtnContent;
+    btn.disabled = false;
+  }
 }
 
 function qSubmit() {
