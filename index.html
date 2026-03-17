@@ -63,7 +63,8 @@ input, select{outline:none;}
 .glass-s{background:rgba(12,8,18,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);box-shadow:0 12px 40px rgba(0,0,0,.3);}
 .glass-card{background:linear-gradient(135deg,rgba(242,237,245,.03),rgba(242,237,245,.01));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);transition:all .4s cubic-bezier(.4,0,.2,1);}
 
-.grad{background:linear-gradient(135deg,var(--v),var(--f));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+/* Добавлен padding-right чтобы градиентный текст с кастомными шрифтами не обрезался */
+.grad{background:linear-gradient(135deg,var(--v),var(--f));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; padding-right:0.1em;}
 .glow{text-shadow:0 0 40px rgba(139,92,246,.4)}
 .text-muted{color:var(--text-muted)}
 
@@ -140,7 +141,8 @@ input, select{outline:none;}
 .dot{width:8px;height:8px;background:#10b981;border-radius:50%;box-shadow:0 0 10px rgba(16,185,129,.5)}
 .hero-h1{font-size:clamp(3.5rem,8vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:1.5rem;letter-spacing:-.03em}
 
-.hero-p{font-size:1.25rem;color:#f2edf5;max-width:54rem;margin:0 auto 3rem;line-height:1.6;}
+/* Обновленные стили для описания: меньше шрифт, мягче цвет, лучше читаемость */
+.hero-p{font-size:1.125rem;color:rgba(242,237,245,0.85);max-width:48rem;margin:0 auto 3rem;line-height:1.7;}
 .hero-btns{display:flex;justify-content:center;gap:1.5rem}
 
 .services-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
@@ -257,7 +259,7 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   .calc-grid { grid-template-columns: 1fr; gap: 2rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .calc-wrapper { padding: 2rem; }
-  .hero-p { font-size: 0.95rem; margin-bottom: 2rem; }
+  .hero-p { font-size: 1rem; margin-bottom: 2rem; }
 }
 @media(max-width:640px){
   .quiz-options { grid-template-columns: 1fr; }
@@ -322,7 +324,7 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
 <section id="services" class="section">
   <div class="container">
     <div class="section-head">
-      <span class="section-label" data-i18n="sec_exp_label">Экспертиза</span>
+      <span class="section-label" data-i18n="sec_exp_label">Услуги</span>
       <h2 class="section-title" data-i18n="sec_exp_title">От чистого холста до<br><span class="grad">умного кода</span></h2>
       <p class="section-subtitle" data-i18n="sec_exp_desc">Никаких абстрактных решений для бизнеса. Вам нужен визуал, который цепляет, или бот, который снимет с&nbsp;вас рутину? Мы объединяем креатив и технологии, чтобы вы получили готовый продукт, за&nbsp;который не&nbsp;стыдно.</p>
     </div>
@@ -461,7 +463,7 @@ const i18n = {
     hero_badge: 'Открыты, можно заказывать)', hero_title: 'Эстетика и<br><span class="grad glow">технологии</span>',
     hero_desc: 'Переводим ваши задумки на язык красивого визуала и&nbsp;безотказного кода.<br>От&nbsp;моушн-дизайна до&nbsp;интеграции нейросетей&nbsp;—<br>делаем так, чтобы всё работало легко и&nbsp;выглядело стильно',
     hero_btn1: 'Обсудить идею <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Смотреть работы',
-    sec_exp_label: 'Экспертиза', sec_exp_title: 'От чистого холста до<br><span class="grad">умного кода</span>',
+    sec_exp_label: 'Услуги', sec_exp_title: 'От чистого холста до<br><span class="grad">умного кода</span>',
     sec_exp_desc: 'Никаких абстрактных решений для бизнеса. Вам нужен визуал, который цепляет, или бот, который снимет с&nbsp;вас рутину? Мы объединяем креатив и технологии, чтобы вы получили готовый продукт, за&nbsp;который не&nbsp;стыдно.',
     sec_port_label: 'Проекты', sec_port_title: 'Примеры <span class="grad">наших работ</span>',
     sec_calc_label: 'Калькулятор', sec_calc_title: 'Рассчитайте <span class="grad">стоимость</span>',
@@ -490,7 +492,7 @@ const i18n = {
     hero_badge: 'Відкриті, можна замовляти)', hero_title: 'Естетика та<br><span class="grad glow">технології</span>',
     hero_desc: 'Втілюємо ваші задуми мовою красивого візуалу та&nbsp;безвідмовного коду.<br>Від&nbsp;моушн-дизайну до&nbsp;інтеграції нейромереж&nbsp;—<br>робимо так, щоб усе працювало легко і&nbsp;виглядало стильно',
     hero_btn1: 'Обговорити ідею <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Дивитися роботи',
-    sec_exp_label: 'Експертиза', sec_exp_title: 'Від чистого полотна до<br><span class="grad">розумного коду</span>',
+    sec_exp_label: 'Послуги', sec_exp_title: 'Від чистого полотна до<br><span class="grad">розумного коду</span>',
     sec_exp_desc: 'Жодних абстрактних рішень для бізнесу. Потрібен візуал, що чіпляє, або бот, який зніме з&nbsp;вас рутину? Ми поєднуємо креатив і технології, щоб ви отримали готовий продукт, за&nbsp;який не&nbsp;соромно.',
     sec_port_label: 'Проєкти', sec_port_title: 'Приклади <span class="grad">наших робіт</span>',
     sec_calc_label: 'Калькулятор', sec_calc_title: 'Розрахуйте <span class="grad">вартість</span>',
@@ -519,7 +521,7 @@ const i18n = {
     hero_badge: 'Open, ready for orders)', hero_title: 'Aesthetics and<br><span class="grad glow">technology</span>',
     hero_desc: 'Translating your ideas into the language of beautiful visuals and&nbsp;flawless code.<br>From&nbsp;motion design to&nbsp;AI integration&nbsp;—<br>we make sure everything works smoothly and&nbsp;looks stylish.',
     hero_btn1: 'Discuss idea <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'View works',
-    sec_exp_label: 'Expertise', sec_exp_title: 'From a blank canvas to<br><span class="grad">smart code</span>',
+    sec_exp_label: 'Services', sec_exp_title: 'From a blank canvas to<br><span class="grad">smart code</span>',
     sec_exp_desc: 'No abstract solutions for business. Need eye-catching visuals or a bot to handle your routine? We combine creativity and technology to deliver a finished product you can be proud of.',
     sec_port_label: 'Projects', sec_port_title: 'Examples of <span class="grad">our work</span>',
     sec_calc_label: 'Calculator', sec_calc_title: 'Calculate <span class="grad">cost</span>',
@@ -580,19 +582,19 @@ const icons = {
 
 const svcsData = {
   ru: [
-    {cat:'Дизайн & Иллюстрации',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Создаем визуальные концепции, графику и айдентику для вашего бренда.', items:['Иконки','Простые иллюстрации','Лого и брендинг','Создание макетов под печать']},
+    {cat:'Дизайн & Иллюстрации',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Визуальные концепции, графика, визитки и другое для вашего бренда.', items:['Иконки','Простые иллюстрации','Лого и брендинг','Создание макетов под печать']},
     {cat:'Бэкенд & ИИ',ic:icons.tech, grad:'linear-gradient(135deg,#c026d3,#db2777)',desc:'Автоматизируем рутину и внедряем нейросети в бизнес-процессы.', items:['Telegram боты','AI интеграции','Автоматизация (API)']},
-    {cat:'Анимации & Моушн-дизайн',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Оживляем графику и создаем динамичный контент для вашего бизнеса.', items:['Анимации логотипов','Рекламные видео (до 30 секунд)','2d анимация (включая прозрачный фон)','Простая 3d анимация']}
+    {cat:'Анимации & Моушн-дизайн',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Создаем динамичный контент.', items:['Анимации логотипов','Рекламные видео (до 30 секунд)','2d анимация (включая прозрачный фон)','Простая 3d анимация']}
   ],
   uk: [
-    {cat:'Дизайн & Ілюстрації',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Створюємо візуальні концепції, графіку та айдентику для вашого бренду.', items:['Іконки','Прості ілюстрації','Лого та брендинг','Створення макетів під друк']},
+    {cat:'Дизайн & Ілюстрації',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Візуальні концепції, графіка, візитки та інше для вашого бренду.', items:['Іконки','Прості ілюстрації','Лого та брендинг','Створення макетів під друк']},
     {cat:'Бекенд & ШІ',ic:icons.tech, grad:'linear-gradient(135deg,#c026d3,#db2777)',desc:'Автоматизуємо рутину та впроваджуємо нейромережі у бізнес-процеси.', items:['Telegram боти','AI інтеграції','Автоматизація (API)']},
-    {cat:'Анімації & Моушн-дизайн',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Оживляємо графіку та створюємо динамічний контент для вашого бізнесу.', items:['Анімації логотипів','Рекламні відео (до 30 секунд)','2d анімація (включаючи прозорий фон)','Проста 3d анімація']}
+    {cat:'Анімації & Моушн-дизайн',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'Створюємо динамічний контент.', items:['Анімації логотипів','Рекламні відео (до 30 секунд)','2d анімація (включаючи прозорий фон)','Проста 3d анімація']}
   ],
   en: [
-    {cat:'Design & Illustrations',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'We create visual concepts, graphics, and identity for your brand.', items:['Icons','Simple illustrations','Logo and branding','Print layouts creation']},
+    {cat:'Design & Illustrations',ic:icons.design, grad:'linear-gradient(135deg,#7c3aed,#9333ea)',desc:'Visual concepts, graphics, business cards, and more for your brand.', items:['Icons','Simple illustrations','Logo and branding','Print layouts creation']},
     {cat:'Backend & AI',ic:icons.tech, grad:'linear-gradient(135deg,#c026d3,#db2777)',desc:'Automating routines and integrating neural networks into business processes.', items:['Telegram Bots','AI Integrations','Automation (API)']},
-    {cat:'Animations & Motion Design',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'We bring graphics to life and create dynamic content for your business.', items:['Logo animations','Promo videos (up to 30s)','2D animation (incl. transparent bg)','Simple 3D animation']}
+    {cat:'Animations & Motion Design',ic:icons.art, grad:'linear-gradient(135deg,#4f46e5,#7c3aed)',desc:'We create dynamic content.', items:['Logo animations','Promo videos (up to 30s)','2D animation (incl. transparent bg)','Simple 3D animation']}
   ]
 };
 
