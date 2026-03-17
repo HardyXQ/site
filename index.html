@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
 <title>WaveSign Studio</title>
-<meta name="description" content="Создаём цифровые решения. Мы — студия WaveSign. Разрабатываем выразительный графический дизайн и функциональные Telegram-боты, которые работают на ваш бизнес.">
+<meta name="description" content="Переводим ваши задумки на язык красивого визуала и безотказного кода. От моушн-дизайна до интеграции нейросетей — делаем так, чтобы всё работало легко и выглядело стильно">
 <meta name="keywords" content="WaveSign, WaveSign Studio, дизайн студия, разработка сайтов, Telegram боты, AI интеграции, брендинг, UI/UX, веб-дизайн, моушн-дизайн">
 <meta name="robots" content="index, follow">
 <meta name="author" content="WaveSign Studio">
@@ -17,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wavesign.art/">
 <meta property="og:title" content="WaveSign Studio">
-<meta property="og:description" content="Создаём цифровые решения. Мы — студия WaveSign. Разрабатываем выразительный графический дизайн и функциональные Telegram-боты, которые работают на ваш бизнес.">
+<meta property="og:description" content="Переводим ваши задумки на язык красивого визуала и безотказного кода. От моушн-дизайна до интеграции нейросетей — делаем так, чтобы всё работало легко и выглядело стильно">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/HardyXQ/site@main/logo100.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -116,7 +116,7 @@ input, select{outline:none;}
 }
 
 .section-title{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:700;margin-bottom:1.5rem;line-height:1.2;letter-spacing:-.02em}
-.section-subtitle{color:var(--text-muted);max-width:36rem;margin:0 auto;font-size:1.125rem}
+.section-subtitle{color:var(--text-muted);max-width:40rem;margin:0 auto;font-size:1.125rem}
 .section-head{text-align:center;margin-bottom:6rem}
 
 #nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:1.5rem 0;transition:all .4s ease}
@@ -135,12 +135,12 @@ input, select{outline:none;}
 .orb1{width:30rem;height:30rem;background:#8b5cf6;top:-10%;left:-10%;animation:pulseGlow 8s ease-in-out infinite;}
 .orb2{width:25rem;height:25rem;background:#d946ef;bottom:-10%;right:-10%;animation:pulseGlow 8s ease-in-out infinite 2s;}
 .hero-grid{position:absolute;inset:0;opacity:.03;background-image:linear-gradient(rgba(242,237,245,1) 1px,transparent 1px),linear-gradient(90deg, rgba(242,237,245,1) 1px,transparent 1px);background-size:40px 40px;z-index:-1}
-.hero-content{text-align:center;max-width:54rem;margin:0 auto}
+.hero-content{text-align:center;max-width:56rem;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1.25rem;border-radius:99px;margin-bottom:2.5rem;background:rgba(242,237,245,.03);border:1px solid #f2edf5}
 .dot{width:8px;height:8px;background:#10b981;border-radius:50%;box-shadow:0 0 10px rgba(16,185,129,.5)}
 .hero-h1{font-size:clamp(3.5rem,8vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:1.5rem;letter-spacing:-.03em}
 
-.hero-p{font-size:1.25rem;color:#f2edf5;max-width:42rem;margin:0 auto 3rem}
+.hero-p{font-size:1.25rem;color:#f2edf5;max-width:54rem;margin:0 auto 3rem;line-height:1.6;}
 .hero-btns{display:flex;justify-content:center;gap:1.5rem}
 
 .services-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
@@ -156,7 +156,7 @@ input, select{outline:none;}
 .portfolio-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
 .proj-card{border-radius:1.5rem;overflow:hidden;background:var(--glass);border:1px solid var(--border);transition:all .4s}
 .proj-card:hover{transform:translateY(-5px);border-color:var(--border-light);box-shadow:0 20px 40px rgba(0,0,0,.4)}
-.proj-thumb{height:14rem;position:relative;display:flex;align-items:center;justify-content:center}
+.proj-thumb{height:14rem;position:relative;display:flex;align-items:center;justify-content:center;background-color:rgba(12,8,18,.4);}
 .proj-cat{position:absolute;top:1.5rem;left:1.5rem;padding:.375rem 1rem;background:rgba(12,8,18,.6);backdrop-filter:blur(10px);border-radius:99px;font-size:.75rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
 .proj-body{padding:2rem}
 .proj-h3{font-size:1.375rem;font-weight:700;margin-bottom:.75rem}
@@ -249,7 +249,9 @@ footer{padding:6rem 0 3rem;border-top:1px solid var(--border);background:rgba(12
 
 svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
+/* Прячем ручные переносы на мобилках, чтобы текст красиво адаптировался */
 @media(max-width:768px){
+  .hero-p br { display: none; }
   .section { padding: 5rem 0; }
   .section-head { margin-bottom: 3rem; }
   .calc-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -283,8 +285,8 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
     </div>
     <div class="nav-links">
       <a href="#services" class="nav-link" data-i18n="nav_services">Услуги</a>
-      <a href="#portfolio" class="nav-link" data-i18n="nav_portfolio">Портфолио</a>
-      <a href="#calculator" class="nav-link" data-i18n="nav_calc">Оценка</a>
+      <a href="#portfolio" class="nav-link" data-i18n="nav_portfolio">Проекты</a>
+      <a href="#calculator" class="nav-link" data-i18n="nav_calc">Прайс</a>
     </div>
     <div class="nav-actions">
       <div class="lang-switch">
@@ -305,10 +307,10 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
     <div class="hero-content">
       <div class="hero-badge">
         <span class="dot anim-pulse"></span>
-        <span style="font-size:.875rem;color:#f2edf5" data-i18n="hero_badge">Открыты для новых проектов</span>
+        <span style="font-size:.875rem;color:#f2edf5" data-i18n="hero_badge">Открыты, можно заказывать)</span>
       </div>
-      <h1 class="hero-h1" data-i18n="hero_title">Создаем<br><span class="grad glow">цифровое будущее</span></h1>
-      <p class="hero-p" data-i18n="hero_desc">Студия полного цикла. От глубокого графического дизайна до передовых AI-решений. Превращаем ваши идеи в работающие цифровые продукты.</p>
+      <h1 class="hero-h1" data-i18n="hero_title">Эстетика и<br><span class="grad glow">технологии</span></h1>
+      <p class="hero-p" data-i18n="hero_desc">Переводим ваши задумки на язык красивого визуала и&nbsp;безотказного кода.<br>От&nbsp;моушн-дизайна до&nbsp;интеграции нейросетей&nbsp;—<br>делаем так, чтобы всё работало легко и&nbsp;выглядело стильно</p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="scrollToId('quiz')" id="hero_btn1">Обсудить идею <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
         <button class="btn-outline" onclick="scrollToId('portfolio')" data-i18n="hero_btn2">Смотреть работы</button>
@@ -321,8 +323,8 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   <div class="container">
     <div class="section-head">
       <span class="section-label" data-i18n="sec_exp_label">Экспертиза</span>
-      <h2 class="section-title" data-i18n="sec_exp_title">Три направления —<br><span class="grad">бесконечные возможности</span></h2>
-      <p class="section-subtitle" data-i18n="sec_exp_desc">Мы не просто рисуем картинки или пишем код. Мы подбираем оптимальное сочетание технологий для решения задач вашего бизнеса.</p>
+      <h2 class="section-title" data-i18n="sec_exp_title">От чистого холста до<br><span class="grad">умного кода</span></h2>
+      <p class="section-subtitle" data-i18n="sec_exp_desc">Никаких абстрактных решений для бизнеса. Вам нужен визуал, который цепляет, или бот, который снимет с&nbsp;вас рутину? Мы объединяем креатив и технологии, чтобы вы получили готовый продукт, за&nbsp;который не&nbsp;стыдно.</p>
     </div>
     <div class="services-grid" id="services-grid"></div>
   </div>
@@ -332,7 +334,7 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
   <div class="container">
     <div class="section-head">
       <span class="section-label" data-i18n="sec_port_label">Проекты</span>
-      <h2 class="section-title" data-i18n="sec_port_title">Наши <span class="grad">лучшие работы</span></h2>
+      <h2 class="section-title" data-i18n="sec_port_title">Примеры <span class="grad">наших работ</span></h2>
     </div>
     <div class="portfolio-grid" id="portfolio-grid"></div>
   </div>
@@ -412,8 +414,8 @@ svg{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;str
         <div class="footer-h4" data-i18n="foot_nav">Навигация</div>
         <ul class="footer-links">
           <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
-          <li><a href="#portfolio" data-i18n="nav_portfolio">Портфолио</a></li>
-          <li><a href="#calculator" data-i18n="nav_calc">Оценка</a></li>
+          <li><a href="#portfolio" data-i18n="nav_portfolio">Проекты</a></li>
+          <li><a href="#calculator" data-i18n="nav_calc">Прайс</a></li>
         </ul>
       </div>
       <div>
@@ -444,7 +446,6 @@ window.addEventListener('scroll', checkScroll, { passive: true });
 window.addEventListener('touchmove', checkScroll, { passive: true });
 document.addEventListener('DOMContentLoaded', checkScroll);
 
-// --- Функция для защиты от XSS ---
 function escapeHTML(str) {
   if (!str) return '';
   return str.replace(/[&<>'"]/g, tag => ({
@@ -456,13 +457,13 @@ let currentLang = 'ru';
 
 const i18n = {
   ru: {
-    nav_services: 'Услуги', nav_portfolio: 'Портфолио', nav_calc: 'Оценка', nav_start: 'Начать проект',
-    hero_badge: 'Открыты для новых проектов', hero_title: 'Создаем<br><span class="grad glow">цифровое будущее</span>',
-    hero_desc: 'Студия полного цикла. От глубокого графического дизайна до передовых AI-решений. Превращаем ваши идеи в работающие цифровые продукты.',
+    nav_services: 'Услуги', nav_portfolio: 'Проекты', nav_calc: 'Прайс', nav_start: 'Начать проект',
+    hero_badge: 'Открыты, можно заказывать)', hero_title: 'Эстетика и<br><span class="grad glow">технологии</span>',
+    hero_desc: 'Переводим ваши задумки на язык красивого визуала и&nbsp;безотказного кода.<br>От&nbsp;моушн-дизайна до&nbsp;интеграции нейросетей&nbsp;—<br>делаем так, чтобы всё работало легко и&nbsp;выглядело стильно',
     hero_btn1: 'Обсудить идею <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Смотреть работы',
-    sec_exp_label: 'Экспертиза', sec_exp_title: 'Три направления —<br><span class="grad">бесконечные возможности</span>',
-    sec_exp_desc: 'Мы не просто рисуем картинки или пишем код. Мы подбираем оптимальное сочетание технологий для решения задач вашего бизнеса.',
-    sec_port_label: 'Проекты', sec_port_title: 'Наши <span class="grad">лучшие работы</span>',
+    sec_exp_label: 'Экспертиза', sec_exp_title: 'От чистого холста до<br><span class="grad">умного кода</span>',
+    sec_exp_desc: 'Никаких абстрактных решений для бизнеса. Вам нужен визуал, который цепляет, или бот, который снимет с&nbsp;вас рутину? Мы объединяем креатив и технологии, чтобы вы получили готовый продукт, за&nbsp;который не&nbsp;стыдно.',
+    sec_port_label: 'Проекты', sec_port_title: 'Примеры <span class="grad">наших работ</span>',
     sec_calc_label: 'Калькулятор', sec_calc_title: 'Рассчитайте <span class="grad">стоимость</span>',
     calc_type: 'Тип продукта', calc_complexity: 'Сложность логики', calc_base: 'Базовая', calc_adv: 'Продвинутая',
     calc_options: 'Дополнительные опции', calc_urgent: 'Срочный заказ', calc_ai: 'AI Интеграция',
@@ -485,13 +486,13 @@ const i18n = {
     type_design: 'Дизайн & Илл.', type_bot: 'Бэкенд & ИИ', type_motion: 'Моушн-дизайн'
   },
   uk: {
-    nav_services: 'Послуги', nav_portfolio: 'Портфоліо', nav_calc: 'Оцінка', nav_start: 'Почати проєкт',
-    hero_badge: 'Відкриті для нових проєктів', hero_title: 'Створюємо<br><span class="grad glow">цифрове майбутнє</span>',
-    hero_desc: 'Студія повного циклу. Від глибокого графічного дизайну до передових AI-рішень. Перетворюємо ваші ідеї на працюючі цифрові продукти.',
+    nav_services: 'Послуги', nav_portfolio: 'Проєкти', nav_calc: 'Прайс', nav_start: 'Почати проєкт',
+    hero_badge: 'Відкриті, можна замовляти)', hero_title: 'Естетика та<br><span class="grad glow">технології</span>',
+    hero_desc: 'Втілюємо ваші задуми мовою красивого візуалу та&nbsp;безвідмовного коду.<br>Від&nbsp;моушн-дизайну до&nbsp;інтеграції нейромереж&nbsp;—<br>робимо так, щоб усе працювало легко і&nbsp;виглядало стильно',
     hero_btn1: 'Обговорити ідею <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'Дивитися роботи',
-    sec_exp_label: 'Експертиза', sec_exp_title: 'Три напрямки —<br><span class="grad">нескінченні можливості</span>',
-    sec_exp_desc: 'Ми не просто малюємо картинки чи пишемо код. Ми підбираємо оптимальне поєднання технологій для вирішення завдань вашого бізнесу.',
-    sec_port_label: 'Проєкти', sec_port_title: 'Наші <span class="grad">найкращі роботи</span>',
+    sec_exp_label: 'Експертиза', sec_exp_title: 'Від чистого полотна до<br><span class="grad">розумного коду</span>',
+    sec_exp_desc: 'Жодних абстрактних рішень для бізнесу. Потрібен візуал, що чіпляє, або бот, який зніме з&nbsp;вас рутину? Ми поєднуємо креатив і технології, щоб ви отримали готовий продукт, за&nbsp;який не&nbsp;соромно.',
+    sec_port_label: 'Проєкти', sec_port_title: 'Приклади <span class="grad">наших робіт</span>',
     sec_calc_label: 'Калькулятор', sec_calc_title: 'Розрахуйте <span class="grad">вартість</span>',
     calc_type: 'Тип продукту', calc_complexity: 'Складність логіки', calc_base: 'Базова', calc_adv: 'Просунута',
     calc_options: 'Додаткові опції', calc_urgent: 'Термінове замовлення', calc_ai: 'AI Інтеграція',
@@ -511,16 +512,16 @@ const i18n = {
     q2: 'Які послуги вас цікавлять?', q2_o1: 'Іконки / Ілюстрації', q2_o2: 'Лого та брендинг', q2_o3: 'Макети під друк', q2_o4: 'Бекенд & ШІ', q2_o5: '2D/3D Анімація', q2_o6: 'Рекламні відео',
     q3: 'Який бюджет ви плануєте?', q4: 'Орієнтовні терміни?',
     q4_o1: 'Терміново (< 2 тиж.)', q4_o2: 'Протягом місяця', q4_o3: 'Гнучкі терміни',
-    type_design: 'Дизайн & Іллюстрації', type_bot: 'Бекенд & ШІ', type_motion: 'Моушн-дизайн'
+    type_design: 'Дизайн & Ілл.', type_bot: 'Бекенд & ШІ', type_motion: 'Моушн-дизайн'
   },
   en: {
-    nav_services: 'Services', nav_portfolio: 'Portfolio', nav_calc: 'Estimate', nav_start: 'Start Project',
-    hero_badge: 'Open for new projects', hero_title: 'Creating the<br><span class="grad glow">digital future</span>',
-    hero_desc: 'Full-cycle studio. From deep graphic design to cutting-edge AI solutions. We turn your ideas into working digital products.',
+    nav_services: 'Services', nav_portfolio: 'Projects', nav_calc: 'Pricing', nav_start: 'Start Project',
+    hero_badge: 'Open, ready for orders)', hero_title: 'Aesthetics and<br><span class="grad glow">technology</span>',
+    hero_desc: 'Translating your ideas into the language of beautiful visuals and&nbsp;flawless code.<br>From&nbsp;motion design to&nbsp;AI integration&nbsp;—<br>we make sure everything works smoothly and&nbsp;looks stylish.',
     hero_btn1: 'Discuss idea <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>', hero_btn2: 'View works',
-    sec_exp_label: 'Expertise', sec_exp_title: 'Three directions —<br><span class="grad">endless possibilities</span>',
-    sec_exp_desc: 'We don’t just draw pictures or write code. We select the optimal combination of technologies to solve your business goals.',
-    sec_port_label: 'Projects', sec_port_title: 'Our <span class="grad">best works</span>',
+    sec_exp_label: 'Expertise', sec_exp_title: 'From a blank canvas to<br><span class="grad">smart code</span>',
+    sec_exp_desc: 'No abstract solutions for business. Need eye-catching visuals or a bot to handle your routine? We combine creativity and technology to deliver a finished product you can be proud of.',
+    sec_port_label: 'Projects', sec_port_title: 'Examples of <span class="grad">our work</span>',
     sec_calc_label: 'Calculator', sec_calc_title: 'Calculate <span class="grad">cost</span>',
     calc_type: 'Product type', calc_complexity: 'Logic complexity', calc_base: 'Basic', calc_adv: 'Advanced',
     calc_options: 'Additional options', calc_urgent: 'Urgent order', calc_ai: 'AI Integration',
@@ -540,7 +541,7 @@ const i18n = {
     q2: 'What services are you interested in?', q2_o1: 'Icons / Illustrations', q2_o2: 'Logo & Branding', q2_o3: 'Print Layouts', q2_o4: 'Backend & AI', q2_o5: '2D/3D Animation', q2_o6: 'Promo Videos',
     q3: 'What is your planned budget?', q4: 'Estimated deadlines?',
     q4_o1: 'Urgent (< 2 weeks)', q4_o2: 'Within a month', q4_o3: 'Flexible deadlines',
-    type_design: 'Design & Illustrations', type_bot: 'Backend & AI', type_motion: 'Motion Design'
+    type_design: 'Design & Ill.', type_bot: 'Backend & AI', type_motion: 'Motion Design'
   }
 };
 
@@ -561,7 +562,7 @@ function setLang(lang) {
   renderPortfolio();
   renderTypes();
   updateCalc();
-  if (document.getElementById('quiz-body').innerHTML !== '') renderQuiz();
+  if (document.getElementById('quiz-body') && document.getElementById('quiz-body').innerHTML !== '') renderQuiz();
 }
 
 function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
@@ -595,42 +596,52 @@ const svcsData = {
   ]
 };
 
-function renderServices() {
-  document.getElementById('services-grid').innerHTML=svcsData[currentLang].map(s=>`
-    <div class="glass-card svc-card">
-      <div class="svc-icon" style="background:${s.grad}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke="#f2edf5">${s.ic}</svg></div>
-      <h3 class="svc-h3">${s.cat}</h3><p class="svc-p">${s.desc}</p>
-      <div>${s.items.map(i=>`<div class="svc-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" stroke="#c084fc"><polyline points="20 6 9 17 4 12"/></svg> <h4 style="color:var(--text-main); font-weight: 500;">${i}</h4></div>`).join('')}</div>
-    </div>`).join('');
-}
-
 const projsData = {
   ru: [
-    {title:'Neon Brand',cat:'Digital Design',desc:'Комплексный ребрендинг финтех стартапа. Разработка дизайн-системы и гайдлайнов.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'GRISHA AI',cat:'Бэкенд & ИИ',desc:'Telegram бот для планирования и формирования привычек со встроенным искусственным интеллектом.',tags:['Python','AI'],css:'url(https://cdn.jsdelivr.net/gh/HardyXQ/site@main/grisha.png) center center / cover no-repeat'},
-    {title:'Flow Dashboard',cat:'Digital Design',desc:'Интерфейс аналитической панели для SaaS-платформы.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
+    { title: 'Анимации и иллюстрации', cat: 'Анимации & Моушн-дизайн', desc: 'Разработка иллюстраций для бренда, а также их анимация.', tags: ['Брендинг', 'UI/UX'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/banner1.png' },
+    { title: 'GRISHA AI', cat: 'Бэкенд & ИИ', desc: 'Telegram бот для планирования и формирования привычек со встроенным искусственным интеллектом.', tags: ['Python', 'AI'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/grisha.png' },
+    { title: 'Брендинг для кафе', cat: 'Дизайн & Иллюстрации', desc: 'Разработка и анимация логотипа, а также создание фирменного стиля бренда.', tags: ['Брендинг', 'Логотип'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/banner3.png' }
   ],
   uk: [
-    {title:'Neon Brand',cat:'Digital Design',desc:'Комплексний ребрендинг фінтех стартапу. Розробка дизайн-системи та гайдлайнів.',tags:['Брендинг','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'GRISHA AI',cat:'Бекенд & ШІ',desc:'Telegram бот для планування та формування звичок із вбудованим штучним інтелектом.',tags:['Python','AI'],css:'url(https://cdn.jsdelivr.net/gh/HardyXQ/site@main/grisha.png) center center / cover no-repeat'},
-    {title:'Flow Dashboard',cat:'Digital Design',desc:'Інтерфейс аналітичної панелі для SaaS-платформи.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
+    { title: 'Анімації та ілюстрації', cat: 'Анімації & Моушн-дизайн', desc: 'Розробка ілюстрацій для бренду, а також їх анімація.', tags: ['Брендинг', 'UI/UX'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/banner1.png' },
+    { title: 'GRISHA AI', cat: 'Бекенд & ШІ', desc: 'Telegram бот для планування та формування звичок із вбудованим штучним інтелектом.', tags: ['Python', 'AI'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/grisha.png' },
+    { title: 'Брендинг для кафе', cat: 'Дизайн & Ілюстрації', desc: 'Розробка та анімація логотипа, а також створення фірмового стилю бренду.', tags: ['Брендинг', 'Логотип'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/banner3.png' }
   ],
   en: [
-    {title:'Neon Brand',cat:'Digital Design',desc:'Comprehensive rebranding of a fintech startup. Design system and guidelines development.',tags:['Branding','UI/UX'],css:'linear-gradient(135deg,#6d28d9,#7e22ce)'},
-    {title:'GRISHA AI',cat:'Backend & AI',desc:'Telegram bot for planning and habit tracking with built-in artificial intelligence.',tags:['Python','AI'],css:'url(https://cdn.jsdelivr.net/gh/HardyXQ/site@main/grisha.png) center center / cover no-repeat'},
-    {title:'Flow Dashboard',cat:'Digital Design',desc:'Analytical dashboard interface for a SaaS platform.',tags:['Dashboard','Figma'],css:'linear-gradient(135deg,#6d28d9,#a21caf)'}
+    { title: 'Animations and Illustrations', cat: 'Animations & Motion Design', desc: 'Development of illustrations for the brand, as well as their animation.', tags: ['Branding', 'UI/UX'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/banner1.png' },
+    { title: 'GRISHA AI', cat: 'Backend & AI', desc: 'Telegram bot for planning and habit tracking with built-in artificial intelligence.', tags: ['Python', 'AI'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/grisha.png' },
+    { title: 'Cafe Branding', cat: 'Design & Illustrations', desc: 'Logo development and animation, as well as the creation of a brand identity.', tags: ['Branding', 'Logo'], bgImage: 'https://cdn.jsdelivr.net/gh/HardyXQ/site@main/banner3.png' }
   ]
 };
 
-function renderPortfolio() {
-  document.getElementById('portfolio-grid').innerHTML=projsData[currentLang].map((p)=>`
-    <div class="proj-card">
-      <div class="proj-thumb" style="background:${p.css}"><span class="proj-cat">${p.cat}</span></div>
-      <div class="proj-body">
-        <h3 class="proj-h3">${p.title}</h3><p class="proj-desc">${p.desc}</p>
-        <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      </div>
+function renderServices() {
+  const container = document.getElementById('services-grid');
+  if (!container) return;
+  container.innerHTML = svcsData[currentLang].map(s => `
+    <div class="glass-card svc-card">
+      <div class="svc-icon" style="background:${s.grad}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" stroke="#f2edf5">${s.ic}</svg></div>
+      <h3 class="svc-h3">${s.cat}</h3><p class="svc-p">${s.desc}</p>
+      <div>${s.items.map(i => `<div class="svc-item"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" stroke="#c084fc"><polyline points="20 6 9 17 4 12"/></svg> <h4 style="color:var(--text-main); font-weight: 500;">${i}</h4></div>`).join('')}</div>
     </div>`).join('');
+}
+
+function renderPortfolio() {
+  const grid = document.getElementById('portfolio-grid');
+  if (!grid) return;
+  
+  grid.innerHTML = projsData[currentLang].map((p) => {
+    return `
+      <div class="proj-card">
+        <div class="proj-thumb" style="background-image: url('${p.bgImage}'); background-position: center; background-size: cover; background-repeat: no-repeat;">
+          <span class="proj-cat">${p.cat}</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-h3">${p.title}</h3>
+          <p class="proj-desc">${p.desc}</p>
+          <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        </div>
+      </div>`;
+  }).join('');
 }
 
 const currencies = {
@@ -659,9 +670,11 @@ function getTypes() {
 }
 
 function renderTypes() {
+  const container = document.getElementById('proj-types');
+  if (!container) return;
   const pTypes = getTypes();
-  document.getElementById('proj-types').innerHTML=pTypes.map(t=>`
-    <button class="type-btn${t.v===selType?' active':''}" onclick="selectType('${t.v}')" id="type-${t.v}">
+  container.innerHTML = pTypes.map(t => `
+    <button class="type-btn${t.v === selType ? ' active' : ''}" onclick="selectType('${t.v}')" id="type-${t.v}">
       <svg aria-hidden="true" viewBox="0 0 24 24">${t.ic}</svg><span>${t.l}</span>
     </button>`).join('');
 }
@@ -669,20 +682,35 @@ function renderTypes() {
 function selectType(v){
   selType=v;
   const pTypes = getTypes();
-  pTypes.forEach(t=>document.getElementById('type-'+t.v).classList.toggle('active',t.v===v));
+  pTypes.forEach(t => {
+    const el = document.getElementById('type-'+t.v);
+    if(el) el.classList.toggle('active', t.v === v);
+  });
   updateCalc();
 }
 
 function updateCalc(){
   const pTypes = getTypes();
-  const t = pTypes.find(x=>x.v===selType);
-  const c = +document.getElementById('complexity').value;
-  document.getElementById('complexity-val').textContent=c+'%';
+  const t = pTypes.find(x => x.v === selType);
+  if (!t) return;
   
-  const basePrice = t.b * (1 + c/100) * (document.getElementById('urgent').checked ? 1.3 : 1) * (document.getElementById('ai').checked ? 1.4 : 1);
+  const compEl = document.getElementById('complexity');
+  if (!compEl) return;
+  
+  const c = +compEl.value;
+  const compVal = document.getElementById('complexity-val');
+  if (compVal) compVal.textContent = c + '%';
+  
+  const urgentEl = document.getElementById('urgent');
+  const aiEl = document.getElementById('ai');
+  
+  const basePrice = t.b * (1 + c/100) * (urgentEl && urgentEl.checked ? 1.3 : 1) * (aiEl && aiEl.checked ? 1.4 : 1);
   const finalPrice = Math.round(basePrice * currencies[cur].rate);
   
-  document.getElementById('price-display').textContent = i18n[currentLang].price_from + ' ' + finalPrice.toLocaleString('ru-RU') + ' ' + currencies[cur].sym;
+  const display = document.getElementById('price-display');
+  if (display) {
+    display.textContent = i18n[currentLang].price_from + ' ' + finalPrice.toLocaleString('ru-RU') + ' ' + currencies[cur].sym;
+  }
 }
 
 const getBudgetOpts = () => {
@@ -720,6 +748,9 @@ function getQuestions() {
 let qStep = 0, qAnswers = {}, qName = '', qTg = '', quizSubmitted = false;
 
 function renderQuiz() {
+  const container = document.getElementById('quiz-body');
+  if (!container) return;
+  
   if (quizSubmitted) { qSubmit(); return; }
   
   const questions = getQuestions();
@@ -752,7 +783,6 @@ function renderQuiz() {
         <button class="btn-primary" onclick="qNext()" ${!qCanProceed() ? 'disabled' : ''}>${l.quiz_next} <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>`;
   } else {
-    // Используем escapeHTML для защиты от инъекций старых данных
     html += `
       <h3 style="font-size:1.75rem;font-weight:700;margin-bottom:.5rem">${l.quiz_almost}</h3>
       <p style="color:var(--text-muted);margin-bottom:2.5rem">${l.quiz_leave}</p>
@@ -770,13 +800,18 @@ function renderQuiz() {
         </button>
       </div>`;
   }
-  document.getElementById('quiz-body').innerHTML = html;
+  container.innerHTML = html;
 }
 
 function updateContactState() {
-  qName = document.getElementById('form-name').value;
-  qTg = document.getElementById('form-tg').value;
+  const nameEl = document.getElementById('form-name');
+  const tgEl = document.getElementById('form-tg');
   const btn = document.getElementById('form-submit');
+  
+  if (!nameEl || !tgEl || !btn) return;
+  
+  qName = nameEl.value;
+  qTg = tgEl.value;
   
   if(qName.trim() !== '' && qTg.trim() !== '') {
     btn.removeAttribute('disabled');
@@ -807,6 +842,8 @@ function qBack() { if(qStep > 0) { qStep--; renderQuiz(); } }
 
 async function qSubmitExec() {
   const btn = document.getElementById('form-submit');
+  if (!btn) return;
+  
   const originalBtnContent = btn.innerHTML;
   btn.innerHTML = 'Отправка... <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="0" stroke-width="2"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle></svg>';
   btn.disabled = true;
@@ -840,7 +877,7 @@ async function qSubmitExec() {
     answers: formattedAnswers
   };
 
-try {
+  try {
     const response = await fetch('https://wavesign-api.onrender.com/api/submit-brief', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -862,13 +899,15 @@ try {
 }
 
 function qSubmit() {
+  const container = document.getElementById('quiz-body');
+  if (!container) return;
+  
   const l = i18n[currentLang];
-  // Используем escapeHTML, чтобы безопасно вывести введенные пользователем данные
   const safeName = escapeHTML(qName);
   const safeTg = escapeHTML(qTg);
   const thanksMsg = l.quiz_thanks.replace('{name}', safeName).replace('{tg}', safeTg);
   
-  document.getElementById('quiz-body').innerHTML = `
+  container.innerHTML = `
     <div style="text-align:center;padding:2rem 0">
       <div class="success-icon"><svg aria-hidden="true" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
       <h3 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem">${l.quiz_success}</h3>
@@ -879,12 +918,16 @@ function qSubmit() {
 
 function qReset() { qStep=0; qAnswers={}; qName=''; qTg=''; quizSubmitted=false; renderQuiz(); }
 
-// Init
-renderServices();
-renderPortfolio();
-renderTypes();
-updateCalc();
-renderQuiz();
+// Инициализация с защитой от ошибок
+try {
+  renderServices();
+  renderPortfolio();
+  renderTypes();
+  updateCalc();
+  renderQuiz();
+} catch (e) {
+  console.error("Ошибка при инициализации: ", e);
+}
 </script>
 </body>
 </html>
