@@ -58,32 +58,20 @@ a{color:inherit;text-decoration:none}
   position:relative;
   overflow:hidden;
 }
-.app::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(21,14,32,.82) 0%,rgba(32,18,58,.78) 40%,rgba(94,53,175,.78) 100%),
-    linear-gradient(rgba(251,232,255,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(251,232,255,.045) 1px,transparent 1px);
-  background-size:auto,55px 55px,55px 55px;
-  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.86) 48%,rgba(0,0,0,.18) 100%);
-}
-.app::after{
-  content:"";
-  position:absolute;
-  z-index:1;
-  right:-14vw;
-  bottom:-18vw;
-  width:48vw;
-  height:48vw;
-  background:radial-gradient(circle,rgba(238,153,255,.24),rgba(124,37,244,.12) 42%,transparent 70%);
-  pointer-events:none;
-}
 .view{display:none;position:relative;z-index:1;min-height:100vh}
-.view.active{display:block}
+.view.active{display:block;animation:viewFadeIn .28s ease both}
+.view.is-leaving{display:block;animation:viewFadeOut .18s ease both}
+@keyframes viewFadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes viewFadeOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .view.active,.view.is-leaving{animation:none}
+}
 .page-shell{width:min(1710px,100%);margin:0 auto;padding:0 58px}
 .app>.page-shell{position:relative;z-index:2}
 
@@ -201,9 +189,9 @@ a{color:inherit;text-decoration:none}
   width:100%;
   height:100%;
   object-fit:cover;
-  opacity:.22;
-  filter:saturate(.9) contrast(1.08);
-  mix-blend-mode:screen;
+  opacity:1;
+  filter:none;
+  mix-blend-mode:normal;
   z-index:0;
 }
 .home{
@@ -523,19 +511,6 @@ a{color:inherit;text-decoration:none}
   z-index:1;
   overflow:hidden;
 }
-.detail-transition::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background-image:
-    linear-gradient(rgba(251,232,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(251,232,255,.04) 1px,transparent 1px);
-  background-size:55px 55px;
-}
-.detail-transition{
-  display:none;
-}
 .detail-layout{
   display:grid;
   grid-template-columns:minmax(360px,790px) minmax(245px,370px);
@@ -605,6 +580,69 @@ a{color:inherit;text-decoration:none}
   height:532px;
   margin-left:58px;
   background:var(--photo);
+}
+
+.order-page{
+  min-height:100vh;
+}
+.order-section{
+  min-height:calc(100vh - 96px);
+  display:grid;
+  place-items:center;
+  padding:70px 0 120px;
+}
+.order-form-wrap{
+  width:min(616px,100%);
+  margin:0 auto;
+}
+.order-page-title{
+  font-family:"Unbounded","Nunito",sans-serif;
+  font-size:clamp(42px,4.6vw,64px);
+  line-height:1;
+  text-transform:uppercase;
+  color:#fff;
+  text-align:center;
+  width:max-content;
+  margin-left:50%;
+  transform:translateX(-50%);
+  margin-bottom:48px;
+  white-space:nowrap;
+}
+.order-form{
+  display:grid;
+  gap:44px;
+}
+.order-field{
+  width:100%;
+  height:38px;
+  color:var(--text);
+  background:transparent;
+  border:0;
+  border-bottom:2px solid rgba(251,232,255,.62);
+  border-radius:0;
+  padding:0 0 7px;
+  font-size:21px;
+  line-height:1.35;
+  font-weight:700;
+  outline:none;
+}
+.order-field::placeholder{color:rgba(238,153,255,.8)}
+.order-field:focus{border-bottom-color:var(--accent)}
+.order-submit{
+  height:62px;
+  margin-top:28px;
+  border:1.5px solid rgba(251,232,255,.72);
+  border-radius:14px;
+  color:var(--text);
+  font-size:30px;
+  line-height:1;
+  font-weight:700;
+  text-transform:lowercase;
+}
+.order-submit:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+  background:rgba(238,153,255,.06);
 }
 
 .site-footer{
@@ -738,7 +776,6 @@ a{color:inherit;text-decoration:none}
   .detail-main-photo{aspect-ratio:1/1}
   .detail-title{font-size:38px}
   .detail-order{margin-top:42px;max-width:none}
-  .detail-transition{height:58px}
   .detail-body{min-height:720px;padding-top:80px}
   .detail-second-photo{width:100%;max-width:none;height:auto;aspect-ratio:1/1;margin-left:0}
   .footer-inner{grid-template-columns:1fr;gap:26px;padding:34px 28px 44px}
@@ -789,6 +826,8 @@ a{color:inherit;text-decoration:none}
   .photo-box{aspect-ratio:1/1}
   .detail-main-photo{max-height:620px}
   .detail-body{min-height:900px}
+  .order-section{padding:70px 0 110px}
+  .order-form-wrap{width:min(616px,86vw)}
 }
 
 @media(max-width:680px){
@@ -867,6 +906,24 @@ a{color:inherit;text-decoration:none}
   .detail-body{min-height:560px;padding:60px 0 80px}
   .detail-second-photo{aspect-ratio:1/1}
 
+  .order-section{
+    min-height:calc(100svh - 72px);
+    padding:44px 0 70px;
+    place-items:start center;
+  }
+  .order-form-wrap{width:100%}
+  .order-page-title{
+    font-size:clamp(34px,10vw,44px);
+    margin-bottom:36px;
+    width:auto;
+    margin-left:0;
+    transform:none;
+    white-space:normal;
+  }
+  .order-form{gap:32px}
+  .order-field{height:36px;font-size:18px}
+  .order-submit{height:54px;margin-top:18px;font-size:24px}
+
   .footer-inner{padding:30px 20px 38px;gap:24px}
   .footer-brand .brand-text{font-size:24px}
   .footer-desc{font-size:14px}
@@ -886,6 +943,9 @@ a{color:inherit;text-decoration:none}
   .cat-items{margin-left:10px}
   .cards-grid{gap:34px}
   .footer-inner{padding-left:18px;padding-right:18px}
+  .order-page-title{font-size:31px;margin-bottom:30px}
+  .order-form{gap:28px}
+  .order-field{height:35px;font-size:17px}
 }
 
 @media(max-width:340px){
@@ -904,6 +964,9 @@ a{color:inherit;text-decoration:none}
   .menu-search{margin:18px 0 28px auto}
   .menu-card{padding-top:22px;padding-bottom:22px}
   .menu-list{gap:14px}
+  .order-section{padding:20px 0 40px}
+  .order-page-title{font-size:34px;margin-bottom:28px}
+  .order-form{gap:20px}
 }
 </style>
 </head>
@@ -924,7 +987,7 @@ a{color:inherit;text-decoration:none}
           </div>
           <div></div>
           <div class="header-right">
-            <a class="order-link" href="#contacts">Заказать</a>
+            <a class="order-link" href="#order">Заказать</a>
             <div class="lang-switch" aria-label="Выбор языка">
               <button class="lang-btn active" type="button" data-lang="ru">RU</button>
               <button class="lang-btn" type="button" data-lang="ua">UA</button>
@@ -940,7 +1003,7 @@ a{color:inherit;text-decoration:none}
               <span class="search-line"></span>
             </button>
             <nav class="side-nav">
-              <a class="side-link" href="#contacts">Заказать</a>
+              <a class="side-link" href="#order">Заказать</a>
               <a class="side-link" href="#services">Услуги</a>
             </nav>
           </aside>
@@ -971,7 +1034,7 @@ a{color:inherit;text-decoration:none}
           <a class="menu-secondary" href="#services">Разработка</a>
           <a class="menu-secondary" href="#services">Дополнительно</a>
           <span class="menu-spacer"></span>
-          <a class="menu-primary" href="#contacts">Заказать</a>
+          <a class="menu-primary" href="#order">Заказать</a>
           <a class="menu-primary" href="#contacts">Контакты</a>
         </div>
       </nav>
@@ -989,7 +1052,7 @@ a{color:inherit;text-decoration:none}
         </div>
         <div></div>
         <div class="header-right">
-          <a class="order-link" href="#contacts">Заказать</a>
+          <a class="order-link" href="#order">Заказать</a>
           <div class="lang-switch" aria-label="Выбор языка">
             <button class="lang-btn active" type="button" data-lang="ru">RU</button>
             <button class="lang-btn" type="button" data-lang="ua">UA</button>
@@ -1054,7 +1117,7 @@ a{color:inherit;text-decoration:none}
               <span class="search-label">Поиск</span>
               <span class="search-line"></span>
             </button>
-            <a class="side-link" href="#contacts">Заказать</a>
+            <a class="side-link" href="#order">Заказать</a>
             <a class="side-link" href="#services">Услуги</a>
           </aside>
         </div>
@@ -1074,7 +1137,7 @@ a{color:inherit;text-decoration:none}
           <div class="footer-title">Навигация</div>
           <div class="footer-links">
             <a href="#services">Услуги</a>
-            <a href="#contacts">Заказать</a>
+            <a href="#order">Заказать</a>
           </div>
         </div>
         <div>
@@ -1089,6 +1152,40 @@ a{color:inherit;text-decoration:none}
     </footer>
   </section>
 
+  <section class="view content-page order-page" data-view="order" aria-label="Форма заказа">
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="header-left">
+          <button class="hamburger" type="button" data-menu-open aria-label="Открыть меню"><span></span></button>
+          <a class="brand" href="#home" aria-label="WaveSign">
+            <span class="brand-text">WaveSign</span>
+          </a>
+        </div>
+        <div></div>
+        <div class="header-right">
+          <a class="order-link" href="#order">Заказать</a>
+          <div class="lang-switch" aria-label="Выбор языка">
+            <button class="lang-btn active" type="button" data-lang="ru">RU</button>
+            <button class="lang-btn" type="button" data-lang="ua">UA</button>
+            <button class="lang-btn" type="button" data-lang="en">EN</button>
+          </div>
+        </div>
+      </header>
+      <section class="order-section">
+        <div class="order-form-wrap">
+          <h1 class="order-page-title">Форма заказа</h1>
+          <form class="order-form" id="orderForm">
+            <input class="order-field" id="orderService" name="service" autocomplete="off" placeholder="услуга">
+            <input class="order-field" id="orderIdea" name="idea" autocomplete="off" placeholder="описание идеи">
+            <input class="order-field" id="orderBudget" name="budget" autocomplete="off" placeholder="бюджет">
+            <input class="order-field" id="orderContact" name="contact" autocomplete="off" placeholder="Контакты для связи">
+            <button class="order-submit" type="submit">заказать</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </section>
+
   <section class="view detail-page" data-view="detail" aria-label="Карточка услуги">
     <div class="detail-hero">
       <div class="page-shell">
@@ -1101,7 +1198,7 @@ a{color:inherit;text-decoration:none}
           </div>
           <div></div>
           <div class="header-right">
-            <a class="order-link" href="#contacts">Заказать</a>
+            <a class="order-link" href="#order">Заказать</a>
             <div class="lang-switch" aria-label="Выбор языка">
               <button class="lang-btn active" type="button" data-lang="ru">RU</button>
               <button class="lang-btn" type="button" data-lang="ua">UA</button>
@@ -1115,12 +1212,11 @@ a{color:inherit;text-decoration:none}
             <h1 class="detail-title" id="detailTitle">Лого</h1>
             <div class="detail-price" id="detailPrice">$500</div>
             <p class="detail-desc">описание описаниеописаниеописаниеописаниеописаниеописаниеописание</p>
-            <a class="detail-order" href="#contacts">заказать</a>
+            <a class="detail-order" href="#order">заказать</a>
           </aside>
         </section>
       </div>
     </div>
-    <div class="detail-transition"></div>
     <section class="detail-body">
       <div class="page-shell">
         <div class="detail-second-photo" aria-label="Место для фото"></div>
@@ -1140,7 +1236,7 @@ a{color:inherit;text-decoration:none}
           <div class="footer-title">Навигация</div>
           <div class="footer-links">
             <a href="#services">Услуги</a>
-            <a href="#contacts">Заказать</a>
+            <a href="#order">Заказать</a>
           </div>
         </div>
         <div>
@@ -1164,6 +1260,12 @@ const locales = {
     contacts:"Контакты",
     search:"Поиск",
     heroTitle:"Дизайн, анимация<br>и разработка",
+    orderTitle:"Форма заказа",
+    orderService:"услуга",
+    orderIdea:"описание идеи",
+    orderBudget:"бюджет",
+    orderContact:"Контакты для связи",
+    orderSubmit:"заказать",
     design:"Дизайн и анимация",
     development:"Разработка",
     additional:"Дополнительно",
@@ -1193,6 +1295,12 @@ const locales = {
     contacts:"Контакти",
     search:"Пошук",
     heroTitle:"Дизайн, анімація<br>і розробка",
+    orderTitle:"Форма замовлення",
+    orderService:"послуга",
+    orderIdea:"опис ідеї",
+    orderBudget:"бюджет",
+    orderContact:"Контакти для зв'язку",
+    orderSubmit:"замовити",
     design:"Дизайн і анімація",
     development:"Розробка",
     additional:"Додатково",
@@ -1222,6 +1330,12 @@ const locales = {
     contacts:"Contacts",
     search:"Search",
     heroTitle:"Design, animation<br>and development",
+    orderTitle:"Order form",
+    orderService:"service",
+    orderIdea:"idea description",
+    orderBudget:"budget",
+    orderContact:"contact details",
+    orderSubmit:"order",
     design:"Design and animation",
     development:"Development",
     additional:"Additional",
@@ -1287,6 +1401,21 @@ function renderServices() {
   `).join("");
 }
 
+function renderOrderText() {
+  const l = locales[currentLang];
+  setText(".order-page-title", l.orderTitle);
+  if (orderService) orderService.placeholder = l.orderService;
+  if (orderIdea) orderIdea.placeholder = l.orderIdea;
+  if (orderBudget) orderBudget.placeholder = l.orderBudget;
+  if (orderContact) orderContact.placeholder = l.orderContact;
+  setText(".order-submit", l.orderSubmit);
+}
+
+function fillOrderFormFromDraft() {
+  if (orderService) orderService.value = orderDraft.service || "";
+  if (orderBudget) orderBudget.value = orderDraft.budget || "";
+}
+
 const views = Array.from(document.querySelectorAll(".view"));
 const menuView = document.querySelector(".menu-view");
 const menuBackdrop = document.querySelector(".menu-backdrop");
@@ -1294,6 +1423,13 @@ const menuBrand = document.querySelector(".menu-top .brand");
 const menuBackButton = document.querySelector(".menu-top .back-btn");
 const detailTitle = document.getElementById("detailTitle");
 const detailPrice = document.getElementById("detailPrice");
+const orderForm = document.getElementById("orderForm");
+const orderService = document.getElementById("orderService");
+const orderIdea = document.getElementById("orderIdea");
+const orderBudget = document.getElementById("orderBudget");
+const orderContact = document.getElementById("orderContact");
+let orderDraft = {service:"", budget:""};
+let viewTransitionTimer = null;
 
 function setText(selector, value) {
   document.querySelectorAll(selector).forEach((node) => {
@@ -1318,6 +1454,7 @@ function applyLang() {
   setText(".order-link", l.order);
   setText(".search-label", l.search);
   document.querySelectorAll(".side-link[href='#contacts']").forEach((node) => node.textContent = l.order);
+  document.querySelectorAll(".side-link[href='#order']").forEach((node) => node.textContent = l.order);
   document.querySelectorAll(".side-link[href='#services']").forEach((node) => node.textContent = l.services);
 
   const menuLinks = document.querySelectorAll(".menu-card a");
@@ -1342,12 +1479,14 @@ function applyLang() {
   });
   document.querySelectorAll(".footer-links a[href='#services']").forEach((node) => node.textContent = l.services);
   document.querySelectorAll(".footer-links a[href='#contacts']").forEach((node) => node.textContent = l.order);
+  document.querySelectorAll(".footer-links a[href='#order']").forEach((node) => node.textContent = l.order);
   document.querySelectorAll(".footer-links a[href='https://t.me/wavesign']").forEach((node) => node.textContent = l.contactTelegram);
   document.querySelectorAll(".footer-links a[href='https://wa.me/']").forEach((node) => node.textContent = l.contactWhatsapp);
 
   setText(".detail-desc", l.detailDescription);
   setText(".detail-order", l.detailOrder);
   renderServices();
+  renderOrderText();
 }
 
 function setLang(lang) {
@@ -1359,8 +1498,29 @@ function setLang(lang) {
 }
 
 function setView(name) {
-  views.forEach((view) => view.classList.toggle("active", view.dataset.view === name));
-  window.scrollTo(0, 0);
+  const nextView = views.find((view) => view.dataset.view === name);
+  const currentView = views.find((view) => view.classList.contains("active") && view.dataset.view !== name);
+  if (!nextView) return;
+
+  window.clearTimeout(viewTransitionTimer);
+  views.forEach((view) => view.classList.remove("is-leaving"));
+
+  if (!currentView) {
+    views.forEach((view) => view.classList.toggle("active", view === nextView));
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  currentView.classList.add("is-leaving");
+  currentView.classList.remove("active");
+
+  viewTransitionTimer = window.setTimeout(() => {
+    views.forEach((view) => {
+      view.classList.toggle("active", view === nextView);
+      view.classList.remove("is-leaving");
+    });
+    window.scrollTo(0, 0);
+  }, 180);
 }
 
 function getActiveHeaderHamburger() {
@@ -1419,6 +1579,13 @@ function route(shouldScroll = true) {
     openMenu();
     return;
   }
+  if (hash === "order") {
+    closeMenu();
+    setView("order");
+    renderOrderText();
+    fillOrderFormFromDraft();
+    return;
+  }
   if (hash === "services") {
     closeMenu();
     setView("services");
@@ -1447,9 +1614,19 @@ function route(shouldScroll = true) {
 }
 
 document.addEventListener("click", (event) => {
-  const routeButton = event.target.closest("[data-route]");
-  if (!routeButton) return;
-  window.location.hash = routeButton.dataset.route;
+  const detailOrder = event.target.closest(".detail-order");
+  if (detailOrder) {
+    orderDraft = {
+      service: detailTitle?.textContent.trim() || "",
+      budget: detailPrice?.textContent.trim() || ""
+    };
+    return;
+  }
+
+  const genericOrder = event.target.closest("a[href='#order']");
+  if (genericOrder && !detailOrder) {
+    orderDraft = {service:"", budget:""};
+  }
 });
 
 document.addEventListener("click", (event) => {
@@ -1479,6 +1656,21 @@ document.addEventListener("click", (event) => {
   if (!langButton) return;
   setLang(langButton.dataset.lang);
 });
+
+if (orderForm) {
+  orderForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const l = locales[currentLang];
+    const subject = encodeURIComponent(l.orderTitle);
+    const body = encodeURIComponent([
+      `${l.orderService}: ${orderService?.value || ""}`,
+      `${l.orderIdea}: ${orderIdea?.value || ""}`,
+      `${l.orderBudget}: ${orderBudget?.value || ""}`,
+      `${l.orderContact}: ${orderContact?.value || ""}`
+    ].join("\n"));
+    window.location.href = `mailto:wavesign.art@gmail.com?subject=${subject}&body=${body}`;
+  });
+}
 
 const heroVideo = document.querySelector(".video-bg");
 if (heroVideo) {
