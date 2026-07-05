@@ -1231,6 +1231,344 @@ a{color:inherit;text-decoration:none}
   .order-page-title{font-size:30px;margin-bottom:22px}
   .order-form{gap:16px}
 }
+
+/* Extra compact scale */
+.page-shell{width:min(1420px,100%);padding:0 40px}
+.site-header{height:74px;gap:20px}
+.header-left{gap:10px}
+.hamburger{width:38px;height:38px;gap:7px}
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after{width:30px;height:2px}
+.hamburger span::before{top:-8px}
+.hamburger span::after{top:8px}
+.brand{gap:9px}
+.brand-mark{width:34px;height:34px}
+.brand-text{font-size:26px}
+.header-right{gap:58px}
+.order-link,.side-link,.search-label{font-size:17px}
+.lang-switch{gap:5px;padding:4px}
+.lang-btn{min-width:34px;height:26px;font-size:12px}
+
+.home-hero{
+  min-height:calc(100vh - 74px);
+  grid-template-columns:minmax(0,1fr) 250px;
+  gap:36px;
+  padding:42px 24px 76px 84px;
+}
+.hero-title{font-size:clamp(32px,4.4vw,66px);max-width:720px}
+.home-side{padding-top:52px;gap:54px}
+.search-block{width:210px}
+.side-nav{gap:18px}
+
+.menu-view{
+  left:calc((100vw - min(1420px,100vw))/2 + 40px);
+  width:min(540px,calc(100vw - 24px));
+  height:min(680px,calc(100vh - 24px));
+}
+.menu-shell{padding:0 42px 48px}
+.menu-top{height:74px;gap:18px}
+.back-btn{width:38px;height:38px}
+.back-btn svg{width:34px;height:34px}
+.menu-search{width:205px;margin:32px 0 54px auto}
+.menu-card{min-height:270px;border-radius:18px;padding:30px 40px}
+.menu-list{gap:16px}
+.menu-primary,.menu-secondary{font-size:19px}
+.menu-secondary{margin-left:32px}
+.menu-spacer{height:16px}
+
+.catalog{padding-top:70px}
+.catalog-grid{grid-template-columns:220px minmax(0,1fr) 96px;gap:38px}
+.catalog-title{font-size:42px;margin-bottom:30px}
+.cat-all{font-size:15px;margin-bottom:12px}
+.cat-heading{font-size:16px;margin:16px 0 10px}
+.cat-items{font-size:16px;gap:6px;margin:0 0 22px 16px}
+.cards-grid{gap:70px 40px;padding-top:64px}
+.service-meta{margin-top:10px}
+.service-name{font-size:22px}
+.service-price{height:28px;font-size:20px;padding:0 7px}
+.catalog-side{padding-top:106px;gap:15px}
+
+.detail-hero{min-height:540px}
+.detail-layout{grid-template-columns:minmax(320px,620px) minmax(220px,300px);gap:24px;padding:38px 48px 0}
+.detail-main-photo{height:440px}
+.detail-title{font-size:34px}
+.detail-price{min-width:120px;height:21px;font-size:15px}
+.detail-desc{margin-top:20px;font-size:14px;max-width:280px}
+.detail-order{margin-top:58px;height:32px;font-size:14px}
+.detail-body{min-height:940px;padding:92px 0 78px}
+.detail-second-photo{width:490px;height:408px;margin-left:40px}
+
+.order-section{min-height:calc(100vh - 74px);padding:42px 0 72px}
+.order-form-wrap{width:min(480px,100%)}
+.order-page-title{font-size:clamp(30px,3.4vw,44px);margin-bottom:30px}
+.order-form{gap:26px}
+.order-field{height:31px;font-size:16px}
+.order-idea-field{min-height:82px;height:auto}
+.order-submit{height:46px;margin-top:12px;font-size:21px}
+
+.site-footer{min-height:190px}
+.footer-inner{width:min(1040px,100%);padding:24px 32px 28px;gap:48px}
+.footer-brand{gap:14px}
+.footer-brand .brand-text{font-size:21px}
+.footer-brand .brand-mark{width:29px;height:29px}
+.footer-desc{font-size:13px}
+.copyright{margin-top:30px;font-size:11px}
+.footer-title{font-size:13px;margin:12px 0 15px}
+.footer-links{gap:7px;font-size:12px}
+
+@media(max-width:1440px){
+  .page-shell{padding:0 32px}
+  .menu-view{left:32px}
+  .home-hero{padding-left:56px;grid-template-columns:minmax(0,1fr) 205px}
+  .hero-title{font-size:clamp(32px,4.2vw,56px)}
+  .header-right{gap:42px}
+  .catalog-grid{grid-template-columns:205px minmax(0,1fr) 84px;gap:32px}
+  .cards-grid{gap:58px 32px}
+  .service-name{font-size:21px}
+  .service-price{font-size:19px}
+  .detail-layout{grid-template-columns:minmax(320px,580px) minmax(220px,290px);padding-left:32px;padding-right:32px}
+}
+
+@media(max-width:1180px){
+  .page-shell{padding:0 20px}
+  .menu-view{left:20px;width:min(540px,calc(100vw - 40px))}
+  .header-right{gap:22px}
+  .home-hero{padding:52px 0 70px 24px}
+  .home-side{right:20px;top:200px}
+  .catalog-grid{grid-template-columns:200px 1fr;gap:26px}
+  .cards-grid{gap:52px 28px;padding-top:56px}
+  .detail-layout{padding-left:20px;padding-right:20px}
+}
+
+@media(max-width:900px){
+  .brand-text{font-size:23px}
+  .order-link,.side-link,.search-label{font-size:15px}
+  .lang-btn{min-width:30px;height:24px;font-size:11px}
+  .hero-title{font-size:clamp(30px,7vw,48px);max-width:560px}
+  .home-side{bottom:48px;gap:22px}
+  .search-block{width:185px}
+  .menu-view{left:20px;width:min(540px,calc(100vw - 40px));height:min(680px,calc(100vh - 24px))}
+  .catalog{padding-top:54px}
+  .category-list{margin-bottom:32px}
+  .catalog-title{font-size:34px;margin-bottom:24px}
+  .detail-layout{padding-top:28px}
+  .footer-inner{gap:28px}
+}
+
+@media(max-width:760px){
+  .page-shell{padding:0 13px}
+  .site-header{height:62px;gap:8px}
+  .hamburger{width:34px;height:34px;gap:6px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:26px;height:2px}
+  .hamburger span::before{top:-7px}
+  .hamburger span::after{top:7px}
+  .brand-text{font-size:19px}
+  .brand-mark{width:28px;height:28px}
+  .header-left{gap:8px}
+  .header-right{gap:8px}
+  .lang-btn{min-width:27px;height:22px;font-size:9px}
+  .home-hero{min-height:calc(100vh - 62px);padding:34px 0 42px;gap:30px}
+  .hero-title{font-size:clamp(26px,8.4vw,38px);line-height:1.13}
+  .home-side{gap:20px}
+  .search-block{width:min(180px,66vw)}
+  .search-label,.side-link{font-size:13px}
+  .side-nav{gap:12px}
+  .menu-view{left:6px;width:calc(100vw - 12px);height:calc(100vh - 12px)}
+  .menu-shell{padding:0 22px 42px}
+  .menu-top{height:62px;gap:13px}
+  .menu-search{margin:30px 0 44px auto;width:min(180px,66vw)}
+  .menu-card{padding:24px 26px;min-height:250px}
+  .menu-primary,.menu-secondary{font-size:16px}
+  .menu-secondary{margin-left:18px}
+  .catalog{padding-top:40px}
+  .catalog-title{font-size:29px;margin-bottom:22px}
+  .category-list{margin-bottom:28px}
+  .cat-items{font-size:14px;margin-left:10px}
+  .cards-grid{gap:28px}
+  .service-name{font-size:20px}
+  .service-price{height:25px;font-size:17px}
+  .detail-layout{padding:22px 13px 0}
+  .detail-title{font-size:27px}
+  .detail-order{margin-top:26px}
+  .detail-body{min-height:540px;padding-top:52px}
+  .footer-inner{gap:18px;padding:22px 18px 28px}
+}
+
+@media(max-width:680px){
+  body{font-size:13px}
+  .page-shell{padding:0 12px}
+  .site-header{height:56px}
+  .hamburger{width:32px;height:32px;flex-basis:32px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:24px;height:2px}
+  .brand-text{font-size:clamp(15px,5vw,19px)}
+  .brand-mark{width:25px;height:25px}
+  .lang-btn{min-width:24px;height:20px;font-size:8px}
+  .home-hero{min-height:calc(100svh - 56px);padding:30px 0 24px;gap:26px}
+  .hero-title{font-size:clamp(24px,9vw,34px)}
+  .home-side{gap:18px}
+  .search-block{width:min(165px,66vw)}
+  .search-label,.side-link{font-size:12px}
+  .menu-shell{padding:0 13px 30px}
+  .menu-top{height:56px}
+  .back-btn{width:32px;height:32px}
+  .back-btn svg{width:30px;height:30px}
+  .menu-search{width:min(165px,64vw);margin:22px 0 28px auto}
+  .menu-card{border-radius:14px;padding:20px 17px}
+  .menu-list{gap:12px}
+  .menu-primary,.menu-secondary{font-size:clamp(14px,4.2vw,16px)}
+  .menu-secondary{margin-left:10px}
+  .menu-spacer{height:10px}
+  .catalog{padding-top:34px}
+  .catalog-title{font-size:clamp(24px,7.8vw,29px);margin-bottom:18px}
+  .cat-heading{font-size:13px;margin:15px 0 8px}
+  .cat-items{font-size:13px;gap:5px;margin:0 0 16px 8px}
+  .cards-grid{gap:24px}
+  .service-name{font-size:clamp(18px,6vw,22px)}
+  .service-price{height:24px;font-size:16px}
+  .detail-layout{padding:18px 12px 0;gap:18px}
+  .detail-title{font-size:clamp(23px,7.4vw,28px)}
+  .detail-desc{font-size:13px}
+  .detail-order{height:32px;margin-top:22px}
+  .detail-body{min-height:430px;padding:40px 0 54px}
+  .order-section{min-height:calc(100svh - 56px);padding:26px 0 42px}
+  .order-page-title{font-size:clamp(24px,7.5vw,31px);margin-bottom:22px}
+  .order-form{gap:20px}
+  .order-field{height:28px;font-size:14px}
+  .order-idea-field{min-height:72px;height:auto}
+  .order-submit{height:40px;margin-top:8px;font-size:17px}
+  .footer-inner{padding:20px 15px 24px;gap:16px}
+  .footer-brand .brand-text{font-size:18px}
+  .footer-desc{font-size:12px}
+}
+
+@media(max-width:430px){
+  .page-shell{padding:0 8px}
+  .brand-text{font-size:15px}
+  .home-hero{padding-top:22px;gap:22px}
+  .hero-title{font-size:clamp(23px,9.3vw,30px)}
+  .search-block{width:min(150px,68vw)}
+  .menu-card{padding:18px 15px}
+  .catalog-title{font-size:26px}
+  .cards-grid{gap:22px}
+  .footer-inner{padding-left:14px;padding-right:14px}
+  .order-page-title{font-size:24px;margin-bottom:20px}
+  .order-form{gap:18px}
+  .order-field{height:27px;font-size:13px}
+  .order-idea-field{min-height:68px;height:auto}
+}
+
+@media(max-width:340px){
+  .brand-text{font-size:14px}
+  .hero-title{font-size:22px}
+  .menu-primary,.menu-secondary{font-size:14px}
+  .service-name{font-size:17px}
+}
+
+@media(max-height:620px) and (orientation:landscape){
+  .home-hero{padding-top:14px;padding-bottom:14px;gap:14px}
+  .hero-title{font-size:clamp(22px,6vw,34px)}
+  .home-side{gap:12px}
+  .menu-search{margin:10px 0 18px auto}
+  .menu-card{padding-top:14px;padding-bottom:14px}
+  .menu-list{gap:10px}
+  .order-section{padding:12px 0 26px}
+  .order-page-title{font-size:26px;margin-bottom:18px}
+  .order-form{gap:14px}
+}
+
+/* Order form label layout */
+.order-row{
+  display:grid;
+  grid-template-columns:max-content minmax(0,1fr);
+  align-items:baseline;
+  gap:14px;
+  min-height:31px;
+  border-bottom:2px solid rgba(251,232,255,.62);
+  cursor:text;
+}
+.order-row:focus-within{border-bottom-color:var(--accent)}
+.order-label{
+  color:rgba(238,153,255,.86);
+  font-size:16px;
+  line-height:1.35;
+  font-weight:700;
+  white-space:nowrap;
+  padding-bottom:6px;
+}
+.order-field{
+  height:31px;
+  border-bottom:0;
+  padding:0 0 6px;
+}
+textarea.order-field{font:inherit;color:var(--text)}
+.order-field:focus{border-bottom-color:transparent}
+.order-idea-row{align-items:start}
+.order-idea-row .order-label{padding-top:0}
+.order-idea-field{
+  min-height:82px;
+  line-height:1.35;
+  padding-bottom:8px;
+  resize:vertical;
+  overflow:auto;
+  white-space:pre-wrap;
+  background-image:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(1.35em - 2px),
+    rgba(251,232,255,.34) calc(1.35em - 2px),
+    rgba(251,232,255,.34) 1.35em
+  );
+  background-size:100% 1.35em;
+  background-attachment:local;
+}
+
+@media(max-width:680px){
+  .order-row{grid-template-columns:max-content minmax(0,1fr);gap:10px;min-height:28px}
+  .order-label{font-size:14px;padding-bottom:5px}
+  .order-field{height:28px;padding-bottom:5px}
+  .order-idea-field{min-height:72px;height:auto}
+}
+
+@media(max-width:430px){
+  .order-row{gap:8px;min-height:27px}
+  .order-label{font-size:13px}
+  .order-field{height:27px;font-size:13px}
+  .order-idea-field{min-height:68px;height:auto}
+}
+
+/* Keep footer flush with the viewport bottom */
+.content-page.active{
+  display:flex;
+  flex-direction:column;
+}
+.content-page.active>.page-shell{
+  flex:1 0 auto;
+}
+.content-page.active>.site-footer{
+  flex-shrink:0;
+  margin-top:auto;
+  margin-bottom:-1px;
+  box-shadow:0 2px 0 #100a19;
+}
+.detail-page.active{
+  display:flex;
+  flex-direction:column;
+}
+.detail-page.active>.detail-hero,
+.detail-page.active>.detail-body{
+  flex:0 0 auto;
+}
+.detail-page.active>.site-footer{
+  flex-shrink:0;
+  margin-top:auto;
+  margin-bottom:-1px;
+  box-shadow:0 2px 0 #100a19;
+}
 </style>
 </head>
 <body>
@@ -1438,10 +1776,22 @@ a{color:inherit;text-decoration:none}
         <div class="order-form-wrap">
           <h1 class="order-page-title">Форма заказа</h1>
           <form class="order-form" id="orderForm">
-            <input class="order-field" id="orderService" name="service" autocomplete="off" enterkeyhint="next" placeholder="услуга">
-            <textarea class="order-field order-idea-field" id="orderIdea" name="idea" autocomplete="off" rows="4" placeholder="описание идеи"></textarea>
-            <input class="order-field" id="orderBudget" name="budget" autocomplete="off" enterkeyhint="next" placeholder="бюджет">
-            <input class="order-field" id="orderContact" name="contact" autocomplete="off" enterkeyhint="next" placeholder="Контакты для связи">
+            <label class="order-row" for="orderService">
+              <span class="order-label" id="orderServiceLabel">услуга</span>
+              <input class="order-field" id="orderService" name="service" autocomplete="off" enterkeyhint="next">
+            </label>
+            <label class="order-row order-idea-row" for="orderIdea">
+              <span class="order-label" id="orderIdeaLabel">описание идеи</span>
+              <textarea class="order-field order-idea-field" id="orderIdea" name="idea" autocomplete="off" rows="4" spellcheck="true"></textarea>
+            </label>
+            <label class="order-row" for="orderBudget">
+              <span class="order-label" id="orderBudgetLabel">бюджет</span>
+              <input class="order-field" id="orderBudget" name="budget" autocomplete="off" enterkeyhint="next">
+            </label>
+            <label class="order-row" for="orderContact">
+              <span class="order-label" id="orderContactLabel">Контакты для связи</span>
+              <input class="order-field" id="orderContact" name="contact" autocomplete="off" enterkeyhint="next">
+            </label>
             <button class="order-submit" type="submit">заказать</button>
           </form>
         </div>
@@ -1667,10 +2017,10 @@ function renderServices() {
 function renderOrderText() {
   const l = locales[currentLang];
   setText(".order-page-title", l.orderTitle);
-  if (orderService) orderService.placeholder = l.orderService;
-  if (orderIdea) orderIdea.placeholder = l.orderIdea;
-  if (orderBudget) orderBudget.placeholder = l.orderBudget;
-  if (orderContact) orderContact.placeholder = l.orderContact;
+  setText("#orderServiceLabel", l.orderService);
+  setText("#orderIdeaLabel", l.orderIdea);
+  setText("#orderBudgetLabel", l.orderBudget);
+  setText("#orderContactLabel", l.orderContact);
   setText(".order-submit", l.orderSubmit);
 }
 
