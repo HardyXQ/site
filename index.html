@@ -41,7 +41,7 @@ body{
   font-weight:700;
   overflow-x:hidden;
 }
-button,input{font:inherit;color:inherit}
+button,input,textarea{font:inherit;color:inherit}
 button{border:0;background:transparent;cursor:pointer}
 a{color:inherit;text-decoration:none}
 
@@ -1476,66 +1476,6 @@ a{color:inherit;text-decoration:none}
   .order-form{gap:14px}
 }
 
-/* Order form label layout */
-.order-row{
-  display:grid;
-  grid-template-columns:max-content minmax(0,1fr);
-  align-items:baseline;
-  gap:14px;
-  min-height:31px;
-  border-bottom:2px solid rgba(251,232,255,.62);
-  cursor:text;
-}
-.order-row:focus-within{border-bottom-color:var(--accent)}
-.order-label{
-  color:rgba(238,153,255,.86);
-  font-size:16px;
-  line-height:1.35;
-  font-weight:700;
-  white-space:nowrap;
-  padding-bottom:6px;
-}
-.order-field{
-  height:31px;
-  border-bottom:0;
-  padding:0 0 6px;
-}
-textarea.order-field{font:inherit;color:var(--text)}
-.order-field:focus{border-bottom-color:transparent}
-.order-idea-row{align-items:start}
-.order-idea-row .order-label{padding-top:0}
-.order-idea-field{
-  min-height:82px;
-  line-height:1.35;
-  padding-bottom:8px;
-  resize:vertical;
-  overflow:auto;
-  white-space:pre-wrap;
-  background-image:repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent calc(1.35em - 2px),
-    rgba(251,232,255,.34) calc(1.35em - 2px),
-    rgba(251,232,255,.34) 1.35em
-  );
-  background-size:100% 1.35em;
-  background-attachment:local;
-}
-
-@media(max-width:680px){
-  .order-row{grid-template-columns:max-content minmax(0,1fr);gap:10px;min-height:28px}
-  .order-label{font-size:14px;padding-bottom:5px}
-  .order-field{height:28px;padding-bottom:5px}
-  .order-idea-field{min-height:72px;height:auto}
-}
-
-@media(max-width:430px){
-  .order-row{gap:8px;min-height:27px}
-  .order-label{font-size:13px}
-  .order-field{height:27px;font-size:13px}
-  .order-idea-field{min-height:68px;height:auto}
-}
-
 /* Keep footer flush with the viewport bottom */
 .content-page.active{
   display:flex;
@@ -1563,6 +1503,82 @@ textarea.order-field{font:inherit;color:var(--text)}
   margin-top:auto;
   margin-bottom:-1px;
   box-shadow:0 2px 0 #100a19;
+}
+
+/* Order form captions inside fields */
+.order-line{
+  --caption-width:120px;
+  --caption-gap:8px;
+  --order-row-height:31px;
+  --order-line-color:rgba(251,232,255,.62);
+  position:relative;
+  display:block;
+}
+.order-line--service{--caption-width:76px}
+.order-line--idea{--caption-width:132px}
+.order-line--budget{--caption-width:78px}
+.order-line--contact{--caption-width:172px}
+.order-line:focus-within{--order-line-color:var(--accent)}
+.order-caption{
+  position:absolute;
+  left:0;
+  top:0;
+  width:var(--caption-width);
+  color:rgba(238,153,255,.86);
+  font-size:inherit;
+  line-height:1.35;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  pointer-events:none;
+}
+.order-line>.order-field{
+  border-bottom:2px solid var(--order-line-color);
+  padding-left:calc(var(--caption-width) + var(--caption-gap));
+}
+.order-line>.order-grow-field{
+  border-bottom:0;
+  min-height:var(--order-row-height);
+  height:var(--order-row-height);
+  line-height:var(--order-row-height);
+  padding-top:0;
+  resize:none;
+  overflow:hidden;
+  white-space:pre-wrap;
+  background-image:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--order-row-height) - 2px),
+    var(--order-line-color) calc(var(--order-row-height) - 2px),
+    var(--order-line-color) var(--order-row-height)
+  );
+  background-origin:border-box;
+  background-clip:border-box;
+  background-size:100% var(--order-row-height);
+  background-attachment:local;
+}
+
+@media(max-width:680px){
+  .order-line{--caption-width:104px}
+  .order-line{--caption-gap:7px}
+  .order-line{--order-row-height:28px}
+  .order-line--service{--caption-width:62px}
+  .order-line--idea{--caption-width:112px}
+  .order-line--budget{--caption-width:66px}
+  .order-line--contact{--caption-width:138px}
+  .order-caption{font-size:14px}
+}
+
+@media(max-width:430px){
+  .order-line{--caption-width:94px}
+  .order-line{--caption-gap:6px}
+  .order-line{--order-row-height:27px}
+  .order-line--service{--caption-width:54px}
+  .order-line--idea{--caption-width:98px}
+  .order-line--budget{--caption-width:58px}
+  .order-line--contact{--caption-width:124px}
+  .order-caption{font-size:12px}
 }
 </style>
 </head>
@@ -1771,21 +1787,21 @@ textarea.order-field{font:inherit;color:var(--text)}
         <div class="order-form-wrap">
           <h1 class="order-page-title">Форма заказа</h1>
           <form class="order-form" id="orderForm">
-            <label class="order-row" for="orderService">
-              <span class="order-label" id="orderServiceLabel">услуга</span>
-              <input class="order-field" id="orderService" name="service" autocomplete="off" enterkeyhint="next">
+            <label class="order-line order-line--service" for="orderService">
+              <span class="order-caption" id="orderServiceLabel">услуга</span>
+              <textarea class="order-field order-grow-field" id="orderService" name="service" autocomplete="off" rows="1"></textarea>
             </label>
-            <label class="order-row order-idea-row" for="orderIdea">
-              <span class="order-label" id="orderIdeaLabel">описание идеи</span>
-              <textarea class="order-field order-idea-field" id="orderIdea" name="idea" autocomplete="off" rows="4" spellcheck="true"></textarea>
+            <label class="order-line order-line--idea" for="orderIdea">
+              <span class="order-caption" id="orderIdeaLabel">описание идеи</span>
+              <textarea class="order-field order-grow-field order-idea-field" id="orderIdea" name="idea" autocomplete="off" rows="1"></textarea>
             </label>
-            <label class="order-row" for="orderBudget">
-              <span class="order-label" id="orderBudgetLabel">бюджет</span>
+            <label class="order-line order-line--budget" for="orderBudget">
+              <span class="order-caption" id="orderBudgetLabel">бюджет</span>
               <input class="order-field" id="orderBudget" name="budget" autocomplete="off" enterkeyhint="next">
             </label>
-            <label class="order-row" for="orderContact">
-              <span class="order-label" id="orderContactLabel">Контакты для связи</span>
-              <input class="order-field" id="orderContact" name="contact" autocomplete="off" enterkeyhint="next">
+            <label class="order-line order-line--contact" for="orderContact">
+              <span class="order-caption" id="orderContactLabel">Контакты для связи</span>
+              <textarea class="order-field order-grow-field" id="orderContact" name="contact" autocomplete="off" rows="1"></textarea>
             </label>
             <button class="order-submit" type="submit">заказать</button>
           </form>
@@ -2016,12 +2032,17 @@ function renderOrderText() {
   setText("#orderIdeaLabel", l.orderIdea);
   setText("#orderBudgetLabel", l.orderBudget);
   setText("#orderContactLabel", l.orderContact);
+  if (orderService) orderService.setAttribute("aria-label", l.orderService);
+  if (orderIdea) orderIdea.setAttribute("aria-label", l.orderIdea);
+  if (orderBudget) orderBudget.setAttribute("aria-label", l.orderBudget);
+  if (orderContact) orderContact.setAttribute("aria-label", l.orderContact);
   setText(".order-submit", l.orderSubmit);
 }
 
 function fillOrderFormFromDraft() {
   if (orderService) orderService.value = orderDraft.service || "";
   if (orderBudget) orderBudget.value = orderDraft.budget || "";
+  requestAnimationFrame(resizeOrderTextareas);
 }
 
 const views = Array.from(document.querySelectorAll(".view"));
@@ -2036,8 +2057,32 @@ const orderService = document.getElementById("orderService");
 const orderIdea = document.getElementById("orderIdea");
 const orderBudget = document.getElementById("orderBudget");
 const orderContact = document.getElementById("orderContact");
+const orderTextareas = Array.from(document.querySelectorAll(".order-grow-field"));
 let orderDraft = {service:"", budget:""};
 let viewTransitionTimer = null;
+
+function resizeOrderTextareas(preserveScroll = false) {
+  const scrollLeft = window.scrollX;
+  const scrollTop = window.scrollY;
+  const root = document.documentElement;
+  const previousScrollBehavior = root.style.scrollBehavior;
+  if (preserveScroll) root.style.scrollBehavior = "auto";
+
+  orderTextareas.forEach((field) => {
+    const minHeight = parseFloat(window.getComputedStyle(field).minHeight) || 0;
+    field.style.height = `${minHeight}px`;
+    field.style.height = `${Math.max(field.scrollHeight, minHeight)}px`;
+    if (field === document.activeElement) field.scrollTop = field.scrollHeight;
+  });
+
+  if (preserveScroll) {
+    window.scrollTo(scrollLeft, scrollTop);
+    requestAnimationFrame(() => {
+      window.scrollTo(scrollLeft, scrollTop);
+      root.style.scrollBehavior = previousScrollBehavior;
+    });
+  }
+}
 
 function setText(selector, value) {
   document.querySelectorAll(selector).forEach((node) => {
@@ -2266,6 +2311,24 @@ document.addEventListener("click", (event) => {
 });
 
 if (orderForm) {
+  orderTextareas.forEach((field) => {
+    field.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" || event.isComposing) return;
+      event.preventDefault();
+      field.setRangeText("\n", field.selectionStart, field.selectionEnd, "end");
+      field.dispatchEvent(new Event("input", {bubbles:true}));
+      resizeOrderTextareas(true);
+      field.focus({preventScroll:true});
+      field.scrollTop = field.scrollHeight;
+      requestAnimationFrame(() => {
+        field.focus({preventScroll:true});
+        field.scrollTop = field.scrollHeight;
+      });
+    });
+    field.addEventListener("input", () => resizeOrderTextareas(true));
+  });
+  resizeOrderTextareas();
+
   orderForm.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" || event.isComposing || event.target.tagName === "TEXTAREA") return;
     const formSteps = Array.from(orderForm.querySelectorAll(".order-field, .order-submit"));
