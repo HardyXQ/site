@@ -628,6 +628,14 @@ a{color:inherit;text-decoration:none}
 }
 .order-field::placeholder{color:rgba(238,153,255,.8)}
 .order-field:focus{border-bottom-color:var(--accent)}
+.order-idea-field{
+  min-height:112px;
+  height:auto;
+  resize:vertical;
+  overflow:auto;
+  padding-top:0;
+  white-space:pre-wrap;
+}
 .order-submit{
   height:62px;
   margin-top:28px;
@@ -922,6 +930,7 @@ a{color:inherit;text-decoration:none}
   }
   .order-form{gap:32px}
   .order-field{height:36px;font-size:18px}
+  .order-idea-field{min-height:104px;height:auto}
   .order-submit{height:54px;margin-top:18px;font-size:24px}
 
   .footer-inner{padding:30px 20px 38px;gap:24px}
@@ -946,6 +955,7 @@ a{color:inherit;text-decoration:none}
   .order-page-title{font-size:31px;margin-bottom:30px}
   .order-form{gap:28px}
   .order-field{height:35px;font-size:17px}
+  .order-idea-field{min-height:98px;height:auto}
 }
 
 @media(max-width:340px){
@@ -967,6 +977,259 @@ a{color:inherit;text-decoration:none}
   .order-section{padding:20px 0 40px}
   .order-page-title{font-size:34px;margin-bottom:28px}
   .order-form{gap:20px}
+}
+
+/* Compact site scale */
+.page-shell{width:min(1540px,100%);padding:0 48px}
+.site-header{height:84px;gap:24px}
+.header-left{gap:13px}
+.hamburger{width:44px;height:44px;gap:8px}
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after{width:35px;height:3px}
+.hamburger span::before{top:-10px}
+.hamburger span::after{top:10px}
+.brand{gap:11px}
+.brand-mark{width:39px;height:39px}
+.brand-text{font-size:30px}
+.header-right{gap:78px}
+.order-link,.side-link,.search-label{font-size:19px}
+.lang-switch{gap:6px;padding:5px}
+.lang-btn{min-width:40px;height:30px;font-size:14px}
+
+.home-hero{
+  min-height:calc(100vh - 84px);
+  grid-template-columns:minmax(0,1fr) 290px;
+  gap:46px;
+  padding:58px 28px 96px 110px;
+}
+.hero-title{font-size:clamp(38px,5vw,78px);max-width:840px}
+.home-side{padding-top:68px;gap:70px}
+.search-block{width:240px}
+.side-nav{gap:22px}
+
+.menu-view{
+  left:calc((100vw - min(1540px,100vw))/2 + 48px);
+  width:min(620px,calc(100vw - 24px));
+  height:min(760px,calc(100vh - 24px));
+}
+.menu-shell{padding:0 52px 58px}
+.menu-top{height:84px;gap:22px}
+.back-btn{width:44px;height:44px}
+.back-btn svg{width:40px;height:40px}
+.menu-search{width:230px;margin:42px 0 72px auto}
+.menu-card{min-height:320px;border-radius:22px;padding:36px 48px}
+.menu-list{gap:20px}
+.menu-primary,.menu-secondary{font-size:22px}
+.menu-secondary{margin-left:40px}
+.menu-spacer{height:22px}
+
+.catalog{padding-top:88px}
+.catalog-grid{grid-template-columns:250px minmax(0,1fr) 112px;gap:48px}
+.catalog-title{font-size:50px;margin-bottom:38px}
+.cat-all{font-size:17px;margin-bottom:15px}
+.cat-heading{font-size:18px;margin:20px 0 13px}
+.cat-items{font-size:18px;gap:7px;margin:0 0 26px 20px}
+.cards-grid{gap:92px 52px;padding-top:82px}
+.service-meta{margin-top:13px}
+.service-name{font-size:26px}
+.service-price{height:31px;font-size:24px;padding:0 8px}
+.catalog-side{padding-top:132px;gap:18px}
+
+.detail-hero{min-height:620px}
+.detail-layout{grid-template-columns:minmax(340px,700px) minmax(230px,330px);gap:28px;padding:46px 58px 0}
+.detail-main-photo{height:505px}
+.detail-title{font-size:40px}
+.detail-price{min-width:135px;height:23px;font-size:17px}
+.detail-desc{margin-top:24px;font-size:15px;max-width:310px}
+.detail-order{margin-top:76px;height:34px;font-size:15px}
+.detail-body{min-height:1120px;padding:118px 0 96px}
+.detail-second-photo{width:560px;height:466px;margin-left:48px}
+
+.order-section{min-height:calc(100vh - 84px);padding:54px 0 94px}
+.order-form-wrap{width:min(540px,100%)}
+.order-page-title{font-size:clamp(34px,4vw,52px);margin-bottom:38px}
+.order-form{gap:34px}
+.order-field{height:34px;font-size:18px}
+.order-idea-field{min-height:96px;height:auto}
+.order-submit{height:52px;margin-top:18px;font-size:24px}
+
+.site-footer{min-height:220px}
+.footer-inner{width:min(1160px,100%);padding:30px 38px 34px;gap:62px}
+.footer-brand{gap:18px}
+.footer-brand .brand-text{font-size:24px}
+.footer-brand .brand-mark{width:33px;height:33px}
+.footer-desc{font-size:14px}
+.copyright{margin-top:38px;font-size:12px}
+.footer-title{font-size:14px;margin:14px 0 18px}
+.footer-links{gap:8px;font-size:13px}
+
+@media(max-width:1440px){
+  .page-shell{padding:0 38px}
+  .menu-view{left:38px}
+  .home-hero{padding-left:70px;grid-template-columns:minmax(0,1fr) 230px}
+  .hero-title{font-size:clamp(38px,4.9vw,66px)}
+  .header-right{gap:54px}
+  .catalog-grid{grid-template-columns:230px minmax(0,1fr) 96px;gap:38px}
+  .cards-grid{gap:76px 38px}
+  .service-name{font-size:24px}
+  .service-price{font-size:22px}
+  .detail-layout{grid-template-columns:minmax(340px,650px) minmax(230px,320px);padding-left:38px;padding-right:38px}
+}
+
+@media(max-width:1180px){
+  .page-shell{padding:0 24px}
+  .menu-view{left:24px;width:min(620px,calc(100vw - 48px))}
+  .header-right{gap:28px}
+  .home-hero{padding:64px 0 88px 32px}
+  .home-side{right:24px;top:230px}
+  .catalog-grid{grid-template-columns:220px 1fr;gap:30px}
+  .cards-grid{gap:64px 34px;padding-top:72px}
+  .detail-layout{padding-left:24px;padding-right:24px}
+}
+
+@media(max-width:900px){
+  .brand-text{font-size:26px}
+  .order-link,.side-link,.search-label{font-size:17px}
+  .lang-btn{min-width:34px;height:27px;font-size:12px}
+  .hero-title{font-size:clamp(36px,8vw,56px);max-width:640px}
+  .home-side{bottom:58px;gap:28px}
+  .search-block{width:210px}
+  .menu-view{left:24px;width:min(620px,calc(100vw - 48px));height:min(760px,calc(100vh - 24px))}
+  .catalog{padding-top:66px}
+  .category-list{margin-bottom:40px}
+  .catalog-title{font-size:40px;margin-bottom:30px}
+  .detail-layout{padding-top:34px}
+  .footer-inner{gap:34px}
+}
+
+@media(max-width:760px){
+  .page-shell{padding:0 16px}
+  .site-header{height:70px;gap:10px}
+  .hamburger{width:40px;height:40px;gap:7px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:30px;height:3px}
+  .hamburger span::before{top:-9px}
+  .hamburger span::after{top:9px}
+  .brand-text{font-size:22px}
+  .brand-mark{width:32px;height:32px}
+  .header-left{gap:10px}
+  .header-right{gap:10px}
+  .lang-btn{min-width:31px;height:25px;font-size:10px}
+  .home-hero{min-height:calc(100vh - 70px);padding:46px 0 54px;gap:38px}
+  .hero-title{font-size:clamp(30px,9.6vw,44px);line-height:1.15}
+  .home-side{gap:26px}
+  .search-block{width:min(210px,68vw)}
+  .search-label,.side-link{font-size:15px}
+  .side-nav{gap:15px}
+  .menu-view{left:8px;width:calc(100vw - 16px);height:calc(100vh - 16px)}
+  .menu-shell{padding:0 26px 52px}
+  .menu-top{height:70px;gap:16px}
+  .menu-search{margin:38px 0 56px auto;width:min(210px,68vw)}
+  .menu-card{padding:30px 32px;min-height:300px}
+  .menu-primary,.menu-secondary{font-size:19px}
+  .menu-secondary{margin-left:22px}
+  .catalog{padding-top:50px}
+  .catalog-title{font-size:34px;margin-bottom:28px}
+  .category-list{margin-bottom:34px}
+  .cat-items{font-size:16px;margin-left:14px}
+  .cards-grid{gap:36px}
+  .service-name{font-size:23px}
+  .service-price{height:28px;font-size:20px}
+  .detail-layout{padding:28px 16px 0}
+  .detail-title{font-size:32px}
+  .detail-order{margin-top:34px}
+  .detail-body{min-height:620px;padding-top:64px}
+  .footer-inner{gap:22px;padding:28px 22px 36px}
+}
+
+@media(max-width:680px){
+  body{font-size:14px}
+  .page-shell{padding:0 14px}
+  .site-header{height:64px}
+  .hamburger{width:36px;height:36px;flex-basis:36px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:27px;height:2px}
+  .hamburger span::before{top:-8px}
+  .hamburger span::after{top:8px}
+  .brand-text{font-size:clamp(16px,5.6vw,22px)}
+  .brand-mark{width:29px;height:29px}
+  .lang-btn{min-width:27px;height:23px;font-size:9px}
+  .home-hero{min-height:calc(100svh - 64px);padding:38px 0 30px;gap:32px}
+  .hero-title{font-size:clamp(27px,10.5vw,40px)}
+  .home-side{gap:22px}
+  .search-block{width:min(190px,68vw)}
+  .search-label,.side-link{font-size:14px}
+  .menu-view{left:0;width:100vw;height:100svh}
+  .menu-shell{padding:0 16px 36px}
+  .menu-top{height:64px}
+  .back-btn{width:36px;height:36px}
+  .back-btn svg{width:34px;height:34px}
+  .menu-search{width:min(190px,66vw);margin:28px 0 36px auto}
+  .menu-card{border-radius:16px;padding:24px 20px}
+  .menu-list{gap:14px}
+  .menu-primary,.menu-secondary{font-size:clamp(16px,4.6vw,18px)}
+  .menu-secondary{margin-left:14px}
+  .menu-spacer{height:14px}
+  .catalog{padding-top:42px}
+  .catalog-title{font-size:clamp(28px,8.8vw,34px);margin-bottom:22px}
+  .cat-heading{font-size:15px;margin:18px 0 10px}
+  .cat-items{font-size:14px;gap:6px;margin:0 0 20px 10px}
+  .cards-grid{gap:30px}
+  .service-meta{margin-top:10px}
+  .service-name{font-size:clamp(20px,6.8vw,25px)}
+  .service-price{height:26px;font-size:18px}
+  .detail-layout{padding:22px 14px 0;gap:22px}
+  .detail-title{font-size:clamp(26px,8.4vw,32px)}
+  .detail-desc{font-size:14px}
+  .detail-order{height:36px;margin-top:26px}
+  .detail-body{min-height:500px;padding:48px 0 64px}
+  .order-section{min-height:calc(100svh - 64px);padding:34px 0 54px}
+  .order-page-title{font-size:clamp(28px,8.7vw,36px);margin-bottom:28px}
+  .order-form{gap:25px}
+  .order-field{height:32px;font-size:16px}
+  .order-idea-field{min-height:88px;height:auto}
+  .order-submit{height:46px;margin-top:12px;font-size:20px}
+  .footer-inner{padding:24px 18px 30px;gap:20px}
+  .footer-brand .brand-text{font-size:21px}
+  .footer-desc{font-size:13px}
+}
+
+@media(max-width:430px){
+  .page-shell{padding:0 10px}
+  .brand-text{font-size:16px}
+  .home-hero{padding-top:28px;gap:28px}
+  .hero-title{font-size:clamp(26px,10.5vw,34px)}
+  .search-block{width:min(178px,70vw)}
+  .menu-card{padding:22px 18px}
+  .catalog-title{font-size:30px}
+  .cards-grid{gap:28px}
+  .footer-inner{padding-left:16px;padding-right:16px}
+  .order-page-title{font-size:28px;margin-bottom:24px}
+  .order-form{gap:22px}
+  .order-field{height:30px;font-size:15px}
+  .order-idea-field{min-height:82px;height:auto}
+}
+
+@media(max-width:340px){
+  .brand-text{font-size:15px}
+  .hero-title{font-size:25px}
+  .menu-primary,.menu-secondary{font-size:15px}
+  .service-name{font-size:19px}
+}
+
+@media(max-height:620px) and (orientation:landscape){
+  .home-hero{padding-top:18px;padding-bottom:18px;gap:18px}
+  .hero-title{font-size:clamp(24px,7vw,38px)}
+  .home-side{gap:14px}
+  .menu-search{margin:14px 0 22px auto}
+  .menu-card{padding-top:18px;padding-bottom:18px}
+  .menu-list{gap:12px}
+  .order-section{padding:16px 0 32px}
+  .order-page-title{font-size:30px;margin-bottom:22px}
+  .order-form{gap:16px}
 }
 </style>
 </head>
@@ -1175,10 +1438,10 @@ a{color:inherit;text-decoration:none}
         <div class="order-form-wrap">
           <h1 class="order-page-title">Форма заказа</h1>
           <form class="order-form" id="orderForm">
-            <input class="order-field" id="orderService" name="service" autocomplete="off" placeholder="услуга">
-            <input class="order-field" id="orderIdea" name="idea" autocomplete="off" placeholder="описание идеи">
-            <input class="order-field" id="orderBudget" name="budget" autocomplete="off" placeholder="бюджет">
-            <input class="order-field" id="orderContact" name="contact" autocomplete="off" placeholder="Контакты для связи">
+            <input class="order-field" id="orderService" name="service" autocomplete="off" enterkeyhint="next" placeholder="услуга">
+            <textarea class="order-field order-idea-field" id="orderIdea" name="idea" autocomplete="off" rows="4" placeholder="описание идеи"></textarea>
+            <input class="order-field" id="orderBudget" name="budget" autocomplete="off" enterkeyhint="next" placeholder="бюджет">
+            <input class="order-field" id="orderContact" name="contact" autocomplete="off" enterkeyhint="next" placeholder="Контакты для связи">
             <button class="order-submit" type="submit">заказать</button>
           </form>
         </div>
@@ -1658,6 +1921,15 @@ document.addEventListener("click", (event) => {
 });
 
 if (orderForm) {
+  orderForm.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || event.isComposing || event.target.tagName === "TEXTAREA") return;
+    const formSteps = Array.from(orderForm.querySelectorAll(".order-field, .order-submit"));
+    const nextStep = formSteps[formSteps.indexOf(event.target) + 1];
+    if (!nextStep) return;
+    event.preventDefault();
+    nextStep.focus();
+  });
+
   orderForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const l = locales[currentLang];
