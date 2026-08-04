@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "generate:media": "node scripts/generate-service-media.mjs",
+    "generate:media:python": "python scripts/generate-service-media.py",
+    "watch:media": "node scripts/generate-service-media.mjs --watch",
+    "dev": "npm run generate:media",
+    "build": "npm run generate:media"
+  }
+}

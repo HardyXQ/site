@@ -1,0 +1,585 @@
+{
+  "ai-agents": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "ai-integration": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "app-development": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "brand-identity": {
+    "folder": "дизайн и анимация/фирменный стиль",
+    "folders": [
+      "дизайн и анимация/фирменный стиль"
+    ],
+    "cover": {
+      "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/cover.jpg",
+      "type": "image",
+      "filename": "cover.jpg",
+      "extension": "jpg",
+      "relativePath": "cover.jpg",
+      "width": 2800,
+      "height": 1867,
+      "orientation": "landscape",
+      "isCover": true
+    },
+    "items": [
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/cover.jpg",
+        "type": "image",
+        "filename": "cover.jpg",
+        "extension": "jpg",
+        "relativePath": "cover.jpg",
+        "width": 2800,
+        "height": 1867,
+        "orientation": "landscape",
+        "isCover": true
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/Cup-with-a-Straw-Mockup.png",
+        "type": "image",
+        "filename": "Cup-with-a-Straw-Mockup.png",
+        "extension": "png",
+        "relativePath": "Cup-with-a-Straw-Mockup.png",
+        "width": 3210,
+        "height": 2140,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/ID_Cards_Mockup.jpg",
+        "type": "image",
+        "filename": "ID_Cards_Mockup.jpg",
+        "extension": "jpg",
+        "relativePath": "ID_Cards_Mockup.jpg",
+        "width": 2800,
+        "height": 2100,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/Poster_Wall_Mockup.jpg",
+        "type": "image",
+        "filename": "Poster_Wall_Mockup.jpg",
+        "extension": "jpg",
+        "relativePath": "Poster_Wall_Mockup.jpg",
+        "width": 3000,
+        "height": 2000,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/T-Shirts-PSD-Mockup.jpg",
+        "type": "image",
+        "filename": "T-Shirts-PSD-Mockup.jpg",
+        "extension": "jpg",
+        "relativePath": "T-Shirts-PSD-Mockup.jpg",
+        "width": 3200,
+        "height": 2133,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/%D0%B2%D0%B8%D0%B7%D0%B8%D1%82%D0%BA%D0%B0.jpg",
+        "type": "image",
+        "filename": "визитка.jpg",
+        "extension": "jpg",
+        "relativePath": "визитка.jpg",
+        "width": 3000,
+        "height": 2000,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/%D0%B7%D0%BD%D0%B0%D1%87%D0%BA%D0%B8%20%D1%81%20%D0%BB%D0%BE%D0%B3%D0%BE.png",
+        "type": "image",
+        "filename": "значки с лого.png",
+        "extension": "png",
+        "relativePath": "значки с лого.png",
+        "width": 4700,
+        "height": 3300,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/%D0%BD%D0%B0%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B5%20%D0%BB%D0%BE%D0%B3%D0%BE.png",
+        "type": "image",
+        "filename": "на телефоне лого.png",
+        "extension": "png",
+        "relativePath": "на телефоне лого.png",
+        "width": 5460,
+        "height": 4095,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/%D1%84%D1%80%D0%B0%D0%B3%D0%BC%D0%B5%D0%BD%D1%82%20%D0%B8%D0%B7%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B1%D1%83%D0%BA%D0%B0.jpg",
+        "type": "image",
+        "filename": "фрагмент из брендбука.jpg",
+        "extension": "jpg",
+        "relativePath": "фрагмент из брендбука.jpg",
+        "width": 3000,
+        "height": 2250,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/%D1%84%D1%80%D0%B0%D0%B3%D0%BC%D0%B5%D0%BD%D1%82%20%D0%B8%D0%B7%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%B3%D0%BE%20%D0%B1%D1%80%D0%B5%D0%BD%D0%B4%D0%B1%D1%83%D0%BA%D0%B0.jpg.jpg",
+        "type": "image",
+        "filename": "фрагмент из другого брендбука.jpg.jpg",
+        "extension": "jpg",
+        "relativePath": "фрагмент из другого брендбука.jpg.jpg",
+        "width": 2400,
+        "height": 1400,
+        "orientation": "landscape"
+      }
+    ]
+  },
+  "consultation": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "custom-software": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "graphic-design": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "info-search": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "logo": {
+    "folder": "дизайн и анимация/лого",
+    "folders": [
+      "дизайн и анимация/лого"
+    ],
+    "cover": {
+      "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BB%D0%BE%D0%B3%D0%BE/cover.png",
+      "type": "image",
+      "filename": "cover.png",
+      "extension": "png",
+      "relativePath": "cover.png",
+      "width": 1920,
+      "height": 2872,
+      "orientation": "portrait",
+      "isCover": true
+    },
+    "items": [
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BB%D0%BE%D0%B3%D0%BE/559_1x_shots_so.png",
+        "type": "image",
+        "filename": "559_1x_shots_so.png",
+        "extension": "png",
+        "relativePath": "559_1x_shots_so.png",
+        "width": 1920,
+        "height": 1440,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BB%D0%BE%D0%B3%D0%BE/cover.png",
+        "type": "image",
+        "filename": "cover.png",
+        "extension": "png",
+        "relativePath": "cover.png",
+        "width": 1920,
+        "height": 2872,
+        "orientation": "portrait",
+        "isCover": true
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BB%D0%BE%D0%B3%D0%BE/Notebook%20with%20Flowers%20Mockup.png",
+        "type": "image",
+        "filename": "Notebook with Flowers Mockup.png",
+        "extension": "png",
+        "relativePath": "Notebook with Flowers Mockup.png",
+        "width": 3000,
+        "height": 4500,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BB%D0%BE%D0%B3%D0%BE/%D0%BF%D1%82%D0%B8%D1%86%D0%B0%20%2B%20%D0%B2%D0%B5%D0%B5%D1%80%20-%20%D0%BB%D0%BE%D0%B3%D0%BE.png",
+        "type": "image",
+        "filename": "птица + веер - лого.png",
+        "extension": "png",
+        "relativePath": "птица + веер - лого.png",
+        "width": 1920,
+        "height": 801,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BB%D0%BE%D0%B3%D0%BE/%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D1%80%D0%B0%D0%B7%D0%BD%D1%8B%D1%85%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D0%BE%D0%B2%20%D0%BB%D0%BE%D0%B3%D0%BE.jpg",
+        "type": "image",
+        "filename": "разработка разных вариантов лого.jpg",
+        "extension": "jpg",
+        "relativePath": "разработка разных вариантов лого.jpg",
+        "width": 1920,
+        "height": 1921,
+        "orientation": "square"
+      }
+    ]
+  },
+  "logo-animation": {
+    "folder": "дизайн и анимация/анимация лого",
+    "folders": [
+      "дизайн и анимация/анимация лого"
+    ],
+    "cover": {
+      "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%20%D0%B2%20%D0%B0%D1%84%D1%82%D0%B5%D1%80%20%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%81.gif",
+      "type": "image",
+      "filename": "процесс в афтер эффектс.gif",
+      "extension": "gif",
+      "relativePath": "процесс в афтер эффектс.gif",
+      "width": 1920,
+      "height": 1080,
+      "orientation": "landscape",
+      "isCover": true
+    },
+    "items": [
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/____cafe_____.mp4",
+        "type": "video",
+        "filename": "____cafe_____.mp4",
+        "extension": "mp4",
+        "relativePath": "____cafe_____.mp4"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/Comp%206_1.mp4",
+        "type": "video",
+        "filename": "Comp 6_1.mp4",
+        "extension": "mp4",
+        "relativePath": "Comp 6_1.mp4"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/crypto-1.mp4",
+        "type": "video",
+        "filename": "crypto-1.mp4",
+        "extension": "mp4",
+        "relativePath": "crypto-1.mp4"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/horizontal.mp4",
+        "type": "video",
+        "filename": "horizontal.mp4",
+        "extension": "mp4",
+        "relativePath": "horizontal.mp4"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/logo%203d_final.mp4",
+        "type": "video",
+        "filename": "logo 3d_final.mp4",
+        "extension": "mp4",
+        "relativePath": "logo 3d_final.mp4"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B7%D1%80%D0%B0%D1%87%D0%BD%D0%BE%D0%BC%20%D1%84%D0%BE%D0%BD%D0%B5.webm",
+        "type": "video",
+        "filename": "на прозрачном фоне.webm",
+        "extension": "webm",
+        "relativePath": "на прозрачном фоне.webm"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BB%D0%BE%D0%B3%D0%BE/%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%20%D0%B2%20%D0%B0%D1%84%D1%82%D0%B5%D1%80%20%D1%8D%D1%84%D1%84%D0%B5%D0%BA%D1%82%D1%81.gif",
+        "type": "image",
+        "filename": "процесс в афтер эффектс.gif",
+        "extension": "gif",
+        "relativePath": "процесс в афтер эффектс.gif",
+        "width": 1920,
+        "height": 1080,
+        "orientation": "landscape",
+        "isCover": true
+      }
+    ]
+  },
+  "logo-animation-bundle": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "naming": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "print-layouts": {
+    "folder": "дизайн и анимация/макеты под печать",
+    "folders": [
+      "дизайн и анимация/макеты под печать",
+      "дизайн и анимация/постеры"
+    ],
+    "cover": {
+      "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/cover.png",
+      "type": "image",
+      "filename": "cover.png",
+      "extension": "png",
+      "relativePath": "cover.png",
+      "width": 2000,
+      "height": 1600,
+      "orientation": "landscape",
+      "isCover": true
+    },
+    "items": [
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/3.png",
+        "type": "image",
+        "filename": "3.png",
+        "extension": "png",
+        "relativePath": "3.png",
+        "width": 4700,
+        "height": 3300,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/c200816747.gif",
+        "type": "image",
+        "filename": "c200816747.gif",
+        "extension": "gif",
+        "relativePath": "c200816747.gif",
+        "width": 1536,
+        "height": 864,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/calendar-2025.jpg",
+        "type": "image",
+        "filename": "calendar-2025.jpg",
+        "extension": "jpg",
+        "relativePath": "calendar-2025.jpg",
+        "width": 2480,
+        "height": 1748,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/calendar-20253.jpg",
+        "type": "image",
+        "filename": "calendar-20253.jpg",
+        "extension": "jpg",
+        "relativePath": "calendar-20253.jpg",
+        "width": 2480,
+        "height": 1748,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/calendar-20256.jpg",
+        "type": "image",
+        "filename": "calendar-20256.jpg",
+        "extension": "jpg",
+        "relativePath": "calendar-20256.jpg",
+        "width": 2480,
+        "height": 1748,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/calendar-%D0%BB%D1%96%D1%82%D0%BE%20(2).jpg",
+        "type": "image",
+        "filename": "calendar-літо (2).jpg",
+        "extension": "jpg",
+        "relativePath": "calendar-літо (2).jpg",
+        "width": 2480,
+        "height": 1748,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/cover.png",
+        "type": "image",
+        "filename": "cover.png",
+        "extension": "png",
+        "relativePath": "cover.png",
+        "width": 2000,
+        "height": 1600,
+        "orientation": "landscape",
+        "isCover": true
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/Paper_Wristbands_Mockup_01.png",
+        "type": "image",
+        "filename": "Paper_Wristbands_Mockup_01.png",
+        "extension": "png",
+        "relativePath": "Paper_Wristbands_Mockup_01.png",
+        "width": 5000,
+        "height": 5000,
+        "orientation": "square"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/%D0%BF%D1%80%D0%B8%D0%BD%D1%82%20%D0%BD%D0%B0%20%D1%82%D0%BA%D0%B0%D0%BD%D1%8C.jpg",
+        "type": "image",
+        "filename": "принт на ткань.jpg",
+        "extension": "jpg",
+        "relativePath": "принт на ткань.jpg",
+        "width": 2949,
+        "height": 2836,
+        "orientation": "square"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BC%D0%B0%D0%BA%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%B4%20%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C/%D1%80%D0%B0%D0%B7%D0%BD%D1%8B%D0%B5%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B.png",
+        "type": "image",
+        "filename": "разные варианты.png",
+        "extension": "png",
+        "relativePath": "разные варианты.png",
+        "width": 5464,
+        "height": 5528,
+        "orientation": "square"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/%D1%82%D0%B5%D1%81%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%B4%D1%80%D1%83%D0%BA%D1%83%402x.png",
+        "type": "image",
+        "filename": "тест для друку@2x.png",
+        "extension": "png",
+        "relativePath": "тест для друку@2x.png",
+        "width": 1191,
+        "height": 1684,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/1%402x.png",
+        "type": "image",
+        "filename": "1@2x.png",
+        "extension": "png",
+        "relativePath": "1@2x.png",
+        "width": 1685,
+        "height": 2382,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/3%402x.png",
+        "type": "image",
+        "filename": "3@2x.png",
+        "extension": "png",
+        "relativePath": "3@2x.png",
+        "width": 1685,
+        "height": 2382,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/cover.png",
+        "type": "image",
+        "filename": "cover.png",
+        "extension": "png",
+        "relativePath": "cover.png",
+        "width": 1024,
+        "height": 1536,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/1%402x.png",
+        "type": "image",
+        "filename": "1@2x.png",
+        "extension": "png",
+        "relativePath": "кофейня/1@2x.png",
+        "width": 1191,
+        "height": 1684,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/2%402x.png",
+        "type": "image",
+        "filename": "2@2x.png",
+        "extension": "png",
+        "relativePath": "кофейня/2@2x.png",
+        "width": 1192,
+        "height": 1684,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/3%402x.png",
+        "type": "image",
+        "filename": "3@2x.png",
+        "extension": "png",
+        "relativePath": "кофейня/3@2x.png",
+        "width": 1191,
+        "height": 1684,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%20%D0%BE%D0%B4%D0%B5%D0%B6%D0%B4%D1%8B.png",
+        "type": "image",
+        "filename": "магазин одежды.png",
+        "extension": "png",
+        "relativePath": "магазин одежды.png",
+        "width": 1685,
+        "height": 2382,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D0%B0%D1%80%D0%B8%D0%B9.png",
+        "type": "image",
+        "filename": "планетарий.png",
+        "extension": "png",
+        "relativePath": "планетарий.png",
+        "width": 1685,
+        "height": 2382,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/%D1%84%D0%B5%D1%81%D1%821.png",
+        "type": "image",
+        "filename": "фест1.png",
+        "extension": "png",
+        "relativePath": "фест1.png",
+        "width": 1225,
+        "height": 1719,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/%D1%84%D0%B5%D1%81%D1%822.png",
+        "type": "image",
+        "filename": "фест2.png",
+        "extension": "png",
+        "relativePath": "фест2.png",
+        "width": 1248,
+        "height": 1742,
+        "orientation": "portrait"
+      },
+      {
+        "src": "./%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%8B/%D1%84%D0%B5%D1%81%D1%823.png",
+        "type": "image",
+        "filename": "фест3.png",
+        "extension": "png",
+        "relativePath": "фест3.png",
+        "width": 1226,
+        "height": 1719,
+        "orientation": "portrait"
+      }
+    ]
+  },
+  "security-audit": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "slogans": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "smart-contracts": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "telegram-bot": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "transcription": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "turnkey-website": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  },
+  "web3-development": {
+    "folder": null,
+    "cover": null,
+    "items": []
+  }
+}

@@ -1,0 +1,4138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WaveSign Studio</title>
+<meta name="description" content="IT-студия. Графический дизайн, моушн дизайн и разработка.">
+<meta name="keywords" content="WaveSign, дизайн, анимация, разработка, логотип, Telegram бот, Web3">
+<meta name="robots" content="index, follow">
+<meta name="author" content="WaveSign Studio">
+<link rel="canonical" href="https://wavesign.art/">
+<link rel="icon" type="image/png" href="new_logo.png">
+<link rel="apple-touch-icon" href="new_logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WaveSign Studio">
+<meta property="og:description" content="IT-студия. Графический дизайн, моушн дизайн и разработка.">
+<meta property="og:image" content="new_logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Pixelify+Sans:wght@400..700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text:#FBE8FF;
+  --muted:rgba(251,232,255,.68);
+  --bg:#150E20;
+  --purple:#5E35AF;
+  --accent:#EE99FF;
+  --service-placeholder-bg:#EE99FF;
+  --service-placeholder-text:#150E20;
+  --hot:#7C25F4;
+  --panel:#100a19;
+  --line:rgba(251,232,255,.12);
+  --photo:#ff9298;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scrollbar-gutter:stable}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Nunito",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-weight:700;
+  overflow-x:hidden;
+}
+button,input,textarea{font:inherit;color:inherit}
+button{border:0;background:transparent;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+.app{
+  min-height:100vh;
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+}
+.view{display:none;position:relative;z-index:1;min-height:100vh}
+.view.active{display:block;animation:viewFadeIn .28s ease both}
+.view.is-leaving{display:block;animation:viewFadeOut .18s ease both}
+@keyframes viewFadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes viewFadeOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .view.active,.view.is-leaving{animation:none}
+}
+.page-shell{width:min(1710px,100%);margin:0 auto;padding:0 58px}
+.app>.page-shell{position:relative;z-index:2}
+
+.site-header{
+  position:relative;
+  z-index:5;
+  height:96px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:30px;
+}
+.header-left{display:flex;align-items:center;gap:16px}
+.hamburger{
+  width:50px;
+  height:50px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  position:relative;
+  overflow:hidden;
+}
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after{
+  content:"";
+  width:40px;
+  height:3px;
+  border-radius:2px;
+  background:#b455ff;
+  display:block;
+  box-shadow:none;
+  position:relative;
+  z-index:1;
+}
+.hamburger span::before,
+.hamburger span::after{
+  position:absolute;
+  left:0;
+}
+.hamburger span::before{top:-11px}
+.hamburger span::after{top:11px}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  min-width:max-content;
+}
+.brand-mark{
+  width:45px;
+  height:45px;
+  object-fit:contain;
+  image-rendering:auto;
+}
+.brand-text{
+  font-family:"Pixelify Sans",monospace;
+  font-weight:400;
+  font-synthesis:none;
+  font-size:35px;
+  line-height:1;
+  letter-spacing:.02em;
+  color:#c061ff;
+  text-shadow:0 0 18px rgba(124,37,244,.28);
+}
+.header-right{
+  justify-self:end;
+  display:flex;
+  align-items:center;
+  gap:110px;
+}
+.order-link,.side-link,.search-label{
+  color:rgba(251,232,255,.77);
+  font-size:22px;
+  line-height:1;
+  text-transform:uppercase;
+  font-weight:900;
+}
+.order-link,.side-link,.lang-btn,.detail-order,.footer-links a,.cat-items a,.service-card{
+  transition:color .18s ease,border-color .18s ease,background-color .18s ease,filter .18s ease,text-shadow .18s ease;
+}
+.order-link:hover,.side-link:hover,.footer-links a:hover,.cat-items a:hover{
+  color:var(--accent);
+  text-shadow:0 0 14px rgba(238,153,255,.28);
+}
+.search-block:hover .search-label{color:var(--accent);text-shadow:0 0 14px rgba(238,153,255,.28)}
+.lang-switch{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px;
+  border-radius:999px;
+  background:rgba(251,232,255,.06);
+}
+.lang-btn{
+  min-width:46px;
+  height:34px;
+  border-radius:999px;
+  color:rgba(251,232,255,.6);
+  font-size:16px;
+  font-weight:900;
+}
+.lang-btn.active{
+  color:var(--text);
+  background:rgba(251,232,255,.12);
+  box-shadow:inset 0 0 12px rgba(251,232,255,.06);
+}
+.lang-btn:hover{color:var(--text);background:rgba(238,153,255,.1)}
+
+.video-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:1;
+  filter:none;
+  mix-blend-mode:normal;
+  z-index:0;
+}
+.home{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+.home .page-shell{min-height:100vh;position:relative}
+.home-hero{
+  min-height:calc(100vh - 96px);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  align-items:center;
+  gap:58px;
+  padding:80px 35px 120px 140px;
+}
+.hero-title{
+  font-family:"Unbounded","Nunito",sans-serif;
+  font-size:clamp(44px,5.7vw,92px);
+  line-height:1.18;
+  letter-spacing:0;
+  font-weight:800;
+  max-width:960px;
+  color:var(--text);
+}
+.home-side{
+  align-self:center;
+  justify-self:end;
+  padding-top:90px;
+  display:grid;
+  justify-items:end;
+  gap:92px;
+}
+.search-block{
+  width:280px;
+  text-align:right;
+}
+.search-line{
+  display:block;
+  width:100%;
+  height:2px;
+  margin-top:15px;
+  background:rgba(251,232,255,.72);
+}
+.side-nav{
+  display:grid;
+  gap:28px;
+  justify-items:end;
+}
+
+.menu-view{
+  display:block;
+  position:fixed;
+  top:0;
+  left:calc((100vw - min(1710px,100vw))/2 + 58px);
+  width:min(704px,calc(100vw - 24px));
+  height:min(861px,calc(100vh - 24px));
+  min-height:0;
+  z-index:100;
+  border-radius:0 0 12px 12px;
+  overflow:auto;
+  background:
+    linear-gradient(180deg,rgba(21,14,32,.98) 0%,rgba(35,20,64,.97) 46%,rgba(94,53,175,.95) 100%),
+    var(--bg);
+  box-shadow:0 28px 80px rgba(0,0,0,.48);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .26s ease, visibility 0s linear .26s;
+}
+.menu-view.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transition:opacity .26s ease, visibility 0s linear 0s;
+}
+.menu-view::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 78% 30%,rgba(238,153,255,.13),transparent 36%),
+    linear-gradient(180deg,rgba(124,37,244,.05),rgba(238,153,255,.05));
+}
+.menu-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:90;
+  background:transparent;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .24s ease;
+}
+.menu-backdrop.open{
+  opacity:1;
+  pointer-events:auto;
+}
+.menu-shell{
+  width:100%;
+  min-height:100%;
+  margin:0;
+  padding:0 62px 70px;
+  position:relative;
+  z-index:1;
+}
+.menu-top{
+  height:96px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+.back-btn{
+  width:50px;
+  height:50px;
+  display:grid;
+  place-items:center;
+  color:#b455ff;
+}
+.back-btn svg{width:46px;height:46px;stroke-width:2.2}
+.menu-search{
+  display:block;
+  margin:54px 0 94px auto;
+  width:266px;
+  text-align:right;
+}
+.menu-card{
+  min-height:370px;
+  border:1.5px solid rgba(251,232,255,.94);
+  border-radius:28px;
+  padding:43px 58px;
+  background:linear-gradient(155deg,rgba(20,12,34,.18),rgba(94,53,175,.18));
+}
+.menu-list{display:grid;gap:24px;justify-items:start}
+.menu-card a{
+  border-radius:6px;
+  transition:color .18s ease,text-shadow .18s ease,background-color .18s ease;
+}
+.menu-card a:hover{
+  color:var(--accent);
+  text-shadow:0 0 16px rgba(238,153,255,.32);
+}
+.menu-primary:hover{background:rgba(238,153,255,.06)}
+.menu-primary{
+  font-size:25px;
+  font-weight:900;
+  line-height:1.15;
+  text-transform:uppercase;
+}
+.menu-secondary{
+  font-size:25px;
+  font-weight:700;
+  line-height:1.15;
+  text-transform:uppercase;
+  margin-left:48px;
+}
+.menu-spacer{height:28px}
+
+.content-page{
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+}
+.content-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(9,6,14,.88) 0%,rgba(22,12,42,.82) 40%,rgba(94,53,175,.78) 100%),
+    linear-gradient(rgba(251,232,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(251,232,255,.045) 1px,transparent 1px);
+  background-size:auto,55px 55px,55px 55px;
+  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.86) 48%,rgba(0,0,0,.32) 100%);
+}
+.content-page::after{
+  content:none;
+}
+.content-page>.page-shell,
+.content-page>.site-footer{position:relative;z-index:1}
+.catalog{
+  padding:118px 0 clamp(64px,8vw,120px);
+}
+.catalog-grid{
+  display:grid;
+  grid-template-columns:290px minmax(0,1fr) 134px;
+  gap:60px;
+  align-items:start;
+}
+.catalog-title{
+  font-family:"Unbounded","Nunito",sans-serif;
+  font-size:58px;
+  line-height:1;
+  margin-bottom:48px;
+  color:#fff;
+  text-transform:uppercase;
+}
+.category-list{color:rgba(251,232,255,.9)}
+.cat-all{
+  color:var(--accent);
+  font-size:19px;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.cat-heading{
+  font-size:20px;
+  line-height:1.2;
+  margin:24px 0 16px;
+  text-transform:uppercase;
+  font-weight:900;
+}
+.cat-items{
+  display:grid;
+  gap:8px;
+  margin:0 0 30px 25px;
+  font-size:20px;
+  line-height:1.18;
+  color:rgba(251,232,255,.8);
+  font-weight:700;
+}
+.cat-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  width:100%;
+  text-align:left;
+}
+.cat-toggle-icon{
+  width:16px;
+  height:16px;
+  flex:0 0 16px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent);
+  transition:transform .22s ease;
+}
+.cat-toggle-icon svg{width:100%;height:100%}
+.cat-toggle[aria-expanded="true"] .cat-toggle-icon{transform:rotate(180deg)}
+.cat-toggle:hover .cat-toggle-label,
+.cat-toggle:focus-visible .cat-toggle-label{color:var(--accent)}
+.cat-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:4px}
+.cat-panel{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .26s ease;
+}
+.cat-panel.open{grid-template-rows:1fr}
+.cat-panel-inner{
+  overflow:hidden;
+  min-height:0;
+}
+@media(prefers-reduced-motion:reduce){
+  .cat-panel{transition:none}
+  .cat-toggle-icon{transition:none}
+}
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(190px,1fr));
+  gap:126px 68px;
+  padding-top:105px;
+}
+.service-card{
+  display:block;
+  min-width:0;
+}
+.service-card:hover{filter:brightness(1.08)}
+.service-card:hover .service-name{color:var(--accent)}
+.service-card:hover .photo-box{box-shadow:0 0 0 2px rgba(238,153,255,.18)}
+.photo-box{
+  display:block;
+  aspect-ratio:1/1.1;
+  width:100%;
+  background:var(--photo);
+  border-radius:3px;
+}
+.service-meta{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;
+  gap:12px;
+  margin-top:16px;
+}
+.service-name{
+  font-size:31px;
+  line-height:1.05;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.service-price{
+  display:inline-flex;
+  align-items:center;
+  height:36px;
+  padding:0 9px;
+  background:var(--hot);
+  color:var(--text);
+  font-size:29px;
+  line-height:1;
+  font-weight:700;
+  white-space:nowrap;
+}
+.catalog-side{
+  justify-self:end;
+  padding-top:164px;
+  display:grid;
+  gap:22px;
+  justify-items:end;
+}
+
+.detail-page{
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+}
+.detail-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(21,14,32,.82) 0%,rgba(32,18,58,.78) 40%,rgba(94,53,175,.78) 100%),
+    linear-gradient(rgba(251,232,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(251,232,255,.045) 1px,transparent 1px);
+  background-size:auto,55px 55px,55px 55px;
+  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.86) 48%,rgba(0,0,0,.32) 100%);
+}
+.detail-page::after{
+  content:none;
+}
+.detail-hero{
+  min-height:725px;
+  background:transparent;
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+}
+.detail-layout{
+  display:grid;
+  grid-template-columns:minmax(360px,790px) minmax(245px,370px);
+  gap:32px;
+  padding:58px 70px 0;
+  align-items:start;
+}
+.detail-main-photo{
+  height:590px;
+  background:var(--photo);
+}
+.detail-info{
+  padding-top:2px;
+}
+.detail-title{
+  font-family:"Unbounded","Nunito",sans-serif;
+  font-size:48px;
+  line-height:.95;
+  font-weight:600;
+  color:#fff;
+  text-transform:uppercase;
+}
+.detail-price{
+  display:inline-flex;
+  margin-top:10px;
+  min-width:157px;
+  height:25px;
+  align-items:center;
+  padding:0 7px;
+  background:var(--hot);
+  font-size:19px;
+  line-height:1;
+  font-weight:700;
+}
+.detail-desc{
+  margin-top:29px;
+  color:rgba(251,232,255,.62);
+  max-width:335px;
+  font-size:17px;
+  line-height:1.45;
+  font-weight:900;
+}
+.detail-order{
+  margin-top:102px;
+  width:100%;
+  height:38px;
+  border:1px solid rgba(251,232,255,.66);
+  border-radius:8px;
+  display:grid;
+  place-items:center;
+  font-size:17px;
+  line-height:1;
+  font-weight:800;
+  color:rgba(251,232,255,.86);
+}
+.detail-order:hover{border-color:var(--text);color:var(--text)}
+.detail-body{
+  min-height:1350px;
+  background:transparent;
+  padding:153px 0 120px;
+  position:relative;
+  z-index:1;
+}
+.detail-second-photo{
+  width:640px;
+  max-width:64vw;
+  height:532px;
+  margin-left:58px;
+  background:var(--photo);
+}
+
+.order-page{
+  min-height:100vh;
+}
+.order-section{
+  min-height:calc(100vh - 96px);
+  display:grid;
+  place-items:center;
+  padding:70px 0 120px;
+}
+.order-form-wrap{
+  width:min(616px,100%);
+  margin:0 auto;
+}
+.order-section-inner{
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(420px,616px) minmax(190px,1fr);
+  align-items:center;
+  gap:44px;
+}
+.order-side{
+  grid-column:3;
+  justify-self:end;
+  display:grid;
+  justify-items:end;
+  gap:54px;
+  padding-top:84px;
+}
+.order-form-wrap{grid-column:2}
+.order-page-title{
+  font-family:"Unbounded","Nunito",sans-serif;
+  font-size:clamp(42px,4.6vw,64px);
+  line-height:1;
+  text-transform:uppercase;
+  color:#fff;
+  text-align:center;
+  width:max-content;
+  margin-left:50%;
+  transform:translateX(-50%);
+  margin-bottom:48px;
+  white-space:nowrap;
+}
+.order-form{
+  display:grid;
+  gap:44px;
+}
+.order-field{
+  width:100%;
+  height:38px;
+  color:var(--text);
+  background:transparent;
+  border:0;
+  border-bottom:2px solid rgba(251,232,255,.62);
+  border-radius:0;
+  padding:0 0 7px;
+  font-size:21px;
+  line-height:1.35;
+  font-weight:700;
+  outline:none;
+}
+.order-field::placeholder{color:rgba(238,153,255,.8)}
+.order-field:focus{border-bottom-color:var(--accent)}
+.order-idea-field{
+  min-height:112px;
+  height:auto;
+  resize:vertical;
+  overflow:auto;
+  padding-top:0;
+  white-space:pre-wrap;
+}
+.order-submit{
+  height:62px;
+  margin-top:28px;
+  border:1.5px solid rgba(251,232,255,.72);
+  border-radius:14px;
+  color:var(--text);
+  font-size:30px;
+  line-height:1;
+  font-weight:700;
+  text-transform:lowercase;
+}
+.order-submit:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+  background:rgba(238,153,255,.06);
+}
+
+.site-footer{
+  background:var(--bg);
+  min-height:250px;
+  position:relative;
+  z-index:2;
+}
+.footer-inner{
+  width:min(1280px,100%);
+  margin:0 auto;
+  padding:36px 44px 40px;
+  display:grid;
+  grid-template-columns:1.7fr .62fr .9fr;
+  gap:80px;
+  color:rgba(251,232,255,.76);
+}
+.footer-brand{display:grid;gap:22px}
+.footer-brand .brand-text{font-size:27px}
+.footer-brand .brand-mark{width:37px;height:37px}
+.footer-desc{
+  max-width:290px;
+  font-size:15px;
+  line-height:1.35;
+  color:rgba(251,232,255,.84);
+}
+.copyright{
+  margin-top:52px;
+  font-size:13px;
+  color:rgba(251,232,255,.58);
+}
+.footer-title{
+  color:var(--accent);
+  text-transform:uppercase;
+  font-size:15px;
+  font-weight:900;
+  margin:18px 0 23px;
+}
+.footer-links{
+  display:grid;
+  gap:9px;
+  font-size:14px;
+  color:rgba(251,232,255,.62);
+  font-weight:700;
+}
+
+@media(max-width:1440px){
+  .page-shell{padding:0 44px}
+  .menu-view{left:44px}
+  .home-hero{padding-left:84px;grid-template-columns:minmax(0,1fr) 260px}
+  .hero-title{font-size:clamp(48px,5.6vw,78px)}
+  .header-right{gap:70px}
+  .catalog-grid{grid-template-columns:260px minmax(0,1fr) 112px;gap:46px}
+  .cards-grid{gap:98px 46px}
+  .service-name{font-size:28px}
+  .service-price{font-size:25px}
+  .detail-layout{grid-template-columns:minmax(360px,720px) minmax(245px,350px);padding-left:44px;padding-right:44px}
+}
+
+@media(max-width:1180px){
+  .page-shell{padding:0 28px}
+  .menu-view{left:28px;width:min(704px,calc(100vw - 56px))}
+  .site-header{grid-template-columns:1fr 1px auto}
+  .header-right{gap:34px}
+  .home-hero{grid-template-columns:1fr;padding:80px 0 110px 40px}
+  .home-side{position:absolute;right:28px;top:270px}
+  .catalog-grid{grid-template-columns:250px 1fr;gap:36px}
+  .catalog-side{display:none}
+  .cards-grid{grid-template-columns:repeat(2,minmax(220px,1fr));gap:80px 42px;padding-top:92px}
+  .detail-layout{grid-template-columns:1fr;padding-left:28px;padding-right:28px}
+  .detail-main-photo{height:auto;aspect-ratio:1.35/1}
+  .detail-info{max-width:420px}
+  .detail-order{max-width:360px}
+}
+
+@media(max-width:900px){
+  .brand-text{font-size:30px}
+  .order-link,.side-link,.search-label{font-size:19px}
+  .lang-switch{gap:4px}
+  .lang-btn{min-width:40px;height:30px;font-size:13px}
+  .home-hero{padding-left:0;align-content:center}
+  .hero-title{font-size:clamp(44px,9vw,68px);max-width:720px}
+  .home-side{top:auto;bottom:72px;gap:36px}
+  .search-block{width:240px}
+  .menu-view{left:28px;width:min(704px,calc(100vw - 56px));height:min(861px,calc(100vh - 24px))}
+  .catalog{padding-top:84px}
+  .catalog-grid{display:block}
+  .category-list{margin-bottom:52px}
+  .catalog-title{font-size:48px;margin-bottom:38px}
+  .cat-items{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
+  .cards-grid{padding-top:0}
+  .detail-layout{padding-top:42px}
+  .footer-inner{grid-template-columns:1.2fr .8fr .9fr;gap:42px}
+}
+
+@media(max-width:760px){
+  .page-shell{padding:0 18px}
+  .site-header{height:82px;grid-template-columns:1fr 1px auto;gap:12px}
+  .hamburger{width:50px;height:50px;gap:8px}
+  .hamburger span,.hamburger span::before,.hamburger span::after{width:36px;height:3px}
+  .hamburger span::before{top:-10px}
+  .hamburger span::after{top:10px}
+  .brand-text{font-size:25px}
+  .brand-mark{width:36px;height:36px}
+  .header-left{gap:12px}
+  .header-right{gap:14px}
+  .order-link{display:none}
+  .lang-btn{min-width:36px;height:28px;font-size:12px}
+  .home-hero{min-height:calc(100vh - 82px);padding:68px 0 72px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:54px}
+  .hero-title{font-size:clamp(38px,11vw,54px);line-height:1.18;max-width:100%}
+  .home-side{position:static;align-self:stretch;padding-top:0;gap:34px;justify-items:end}
+  .search-block{width:min(240px,70vw)}
+  .search-label,.side-link{font-size:18px}
+  .side-nav{gap:18px}
+  .menu-view{left:12px;width:calc(100vw - 24px);height:calc(100vh - 24px)}
+  .menu-shell{min-height:100%;padding:0 34px 70px}
+  .menu-top{height:82px;gap:20px}
+  .menu-search{margin:54px 0 80px auto;width:min(240px,70vw)}
+  .menu-card{padding:38px 40px;min-height:360px}
+  .menu-primary,.menu-secondary{font-size:22px}
+  .menu-secondary{margin-left:28px}
+  .catalog{padding-top:64px}
+  .catalog-title{font-size:40px;margin-bottom:34px}
+  .category-list{margin-bottom:46px}
+  .cat-items{grid-template-columns:1fr;margin-left:18px;font-size:18px}
+  .cards-grid{grid-template-columns:1fr;gap:46px}
+  .service-name{font-size:28px}
+  .service-price{font-size:24px;height:32px}
+  .detail-hero{min-height:auto;padding-bottom:60px}
+  .detail-layout{padding:35px 18px 0}
+  .detail-main-photo{aspect-ratio:1/1}
+  .detail-title{font-size:38px}
+  .detail-order{margin-top:42px;max-width:none}
+  .detail-body{min-height:720px;padding-top:80px}
+  .detail-second-photo{width:100%;max-width:none;height:auto;aspect-ratio:1/1;margin-left:0}
+  .footer-inner{grid-template-columns:1fr;gap:26px;padding:34px 28px 44px}
+  .copyright{margin-top:22px}
+}
+
+@media(max-width:520px){
+  .page-shell{padding:0 14px}
+  .site-header{height:74px}
+  .hamburger{width:44px;height:44px}
+  .hamburger span,.hamburger span::before,.hamburger span::after{width:32px;height:3px}
+  .brand-text{font-size:21px}
+  .lang-switch{padding:4px}
+  .lang-btn{min-width:32px;height:26px;font-size:11px}
+  .home-hero{gap:44px;padding-bottom:58px}
+  .hero-title{font-size:clamp(33px,12vw,44px)}
+  .menu-view{left:8px;width:calc(100vw - 16px);height:calc(100vh - 16px)}
+  .menu-shell{padding:0 22px 56px}
+  .menu-search{margin:40px 0 58px auto;width:min(220px,72vw)}
+  .menu-card{border-radius:22px;padding:32px 28px;min-height:330px}
+  .menu-list{gap:20px}
+  .menu-primary,.menu-secondary{font-size:20px}
+  .menu-secondary{margin-left:18px}
+  .catalog-title{font-size:34px}
+  .cat-heading{font-size:18px}
+  .cat-items{font-size:17px}
+  .service-meta{grid-template-columns:1fr;align-items:start;gap:9px}
+  .service-price{justify-self:start}
+  .detail-title{font-size:32px}
+  .footer-inner{padding-left:22px;padding-right:22px}
+}
+
+@media(max-width:380px){
+  .brand-text{font-size:18px}
+  .lang-switch{display:none}
+  .hero-title{font-size:31px}
+  .menu-card{padding:28px 22px}
+  .menu-primary,.menu-secondary{font-size:18px}
+  .service-name{font-size:24px}
+}
+
+@media(max-width:1024px){
+  .site-header{height:88px}
+  .header-right{gap:28px}
+  .home-hero{padding-top:64px;padding-bottom:92px}
+  .catalog{padding-top:70px}
+  .cards-grid{grid-template-columns:repeat(2,minmax(220px,1fr));gap:64px 34px}
+  .photo-box{aspect-ratio:1/1}
+  .detail-main-photo{max-height:620px}
+  .detail-body{min-height:900px}
+  .order-section{padding:70px 0 110px}
+  .order-form-wrap{width:min(616px,86vw)}
+}
+
+@media(max-width:680px){
+  html{scrollbar-gutter:auto}
+  body{font-size:15px}
+  .page-shell{padding:0 16px}
+  .site-header{
+    height:72px;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:10px;
+  }
+  .site-header>div:nth-child(2){display:none}
+  .header-left{min-width:0;gap:10px}
+  .hamburger{width:40px;height:40px;flex:0 0 40px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:30px;height:3px}
+  .hamburger span::before{top:-9px}
+  .hamburger span::after{top:9px}
+  .brand{min-width:0}
+  .brand-text{font-size:clamp(18px,6.2vw,25px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .header-right{gap:8px;justify-self:end}
+  .lang-switch{gap:2px;padding:3px}
+  .lang-btn{min-width:30px;height:25px;font-size:10px}
+
+  .home .page-shell{min-height:100svh}
+  .home-hero{
+    min-height:calc(100svh - 72px);
+    padding:48px 0 34px;
+    gap:42px;
+    justify-content:center;
+  }
+  .hero-title{
+    font-size:clamp(32px,12vw,48px);
+    line-height:1.14;
+    overflow-wrap:anywhere;
+  }
+  .home-side{width:100%;gap:28px;justify-items:end}
+  .search-block{width:min(220px,72vw)}
+  .search-label,.side-link{font-size:16px}
+
+  .menu-view{
+    left:0;
+    width:100vw;
+    height:100svh;
+    border-radius:0;
+  }
+  .menu-shell{padding:0 18px 42px}
+  .menu-top{height:72px;gap:12px}
+  .back-btn{width:40px;height:40px}
+  .back-btn svg{width:38px;height:38px}
+  .menu-search{width:min(220px,68vw);margin:36px 0 48px auto}
+  .menu-card{
+    min-height:0;
+    border-radius:20px;
+    padding:30px 24px;
+  }
+  .menu-list{gap:18px}
+  .menu-primary,.menu-secondary{font-size:clamp(18px,5vw,21px)}
+  .menu-secondary{margin-left:18px}
+  .menu-spacer{height:18px}
+
+  .catalog{padding-top:52px}
+  .catalog-title{font-size:clamp(32px,10vw,40px);margin-bottom:28px}
+  .cat-heading{font-size:17px;margin:22px 0 12px}
+  .cat-items{font-size:16px;gap:7px;margin:0 0 24px 14px}
+  .cards-grid{grid-template-columns:1fr;gap:38px}
+  .service-meta{margin-top:12px}
+  .service-name{font-size:clamp(24px,8vw,30px)}
+  .service-price{height:30px;font-size:22px}
+
+  .detail-layout{padding:28px 16px 0;gap:28px}
+  .detail-title{font-size:clamp(30px,10vw,38px)}
+  .detail-desc{font-size:16px;max-width:none}
+  .detail-order{height:42px;margin-top:32px}
+  .detail-body{min-height:560px;padding:60px 0 80px}
+  .detail-second-photo{aspect-ratio:1/1}
+
+  .order-section{
+    min-height:calc(100svh - 72px);
+    padding:44px 0 70px;
+    place-items:start center;
+  }
+  .order-form-wrap{width:100%}
+  .order-page-title{
+    font-size:clamp(34px,10vw,44px);
+    margin-bottom:36px;
+    width:auto;
+    margin-left:0;
+    transform:none;
+    white-space:normal;
+  }
+  .order-form{gap:32px}
+  .order-field{height:36px;font-size:18px}
+  .order-idea-field{min-height:104px;height:auto}
+  .order-submit{height:54px;margin-top:18px;font-size:24px}
+
+  .footer-inner{padding:30px 20px 38px;gap:24px}
+  .footer-brand .brand-text{font-size:24px}
+  .footer-desc{font-size:14px}
+}
+
+@media(max-width:430px){
+  .page-shell{padding:0 12px}
+  .brand-text{font-size:18px}
+  .lang-btn{min-width:28px;height:24px;font-size:10px}
+  .home-hero{padding-top:34px;gap:34px}
+  .hero-title{font-size:clamp(30px,12.5vw,38px)}
+  .search-block{width:min(200px,74vw)}
+  .menu-shell{padding-left:14px;padding-right:14px}
+  .menu-card{padding:26px 20px}
+  .menu-secondary{margin-left:12px}
+  .category-list{margin-bottom:36px}
+  .cat-items{margin-left:10px}
+  .cards-grid{gap:34px}
+  .footer-inner{padding-left:18px;padding-right:18px}
+  .order-page-title{font-size:31px;margin-bottom:30px}
+  .order-form{gap:28px}
+  .order-field{height:35px;font-size:17px}
+  .order-idea-field{min-height:98px;height:auto}
+}
+
+@media(max-width:340px){
+  .brand-text{font-size:16px}
+  .lang-switch{display:none}
+  .hero-title{font-size:28px}
+  .menu-primary,.menu-secondary{font-size:17px}
+  .service-name{font-size:22px}
+}
+
+@media(max-height:620px) and (orientation:landscape){
+  .home-hero{padding-top:24px;padding-bottom:24px;gap:22px}
+  .hero-title{font-size:clamp(28px,8vw,44px)}
+  .home-side{gap:18px}
+  .menu-view{height:100vh}
+  .menu-search{margin:18px 0 28px auto}
+  .menu-card{padding-top:22px;padding-bottom:22px}
+  .menu-list{gap:14px}
+  .order-section{padding:20px 0 40px}
+  .order-page-title{font-size:34px;margin-bottom:28px}
+  .order-form{gap:20px}
+}
+
+/* Compact site scale */
+.page-shell{width:min(1540px,100%);padding:0 48px}
+.site-header{height:84px;gap:24px}
+.header-left{gap:13px}
+.hamburger{width:44px;height:44px;gap:8px}
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after{width:35px;height:3px}
+.hamburger span::before{top:-10px}
+.hamburger span::after{top:10px}
+.brand{gap:11px}
+.brand-mark{width:39px;height:39px}
+.brand-text{font-size:30px}
+.header-right{gap:78px}
+.order-link,.side-link,.search-label{font-size:19px}
+.lang-switch{gap:6px;padding:5px}
+.lang-btn{min-width:40px;height:30px;font-size:14px}
+
+.home-hero{
+  min-height:calc(100vh - 84px);
+  grid-template-columns:minmax(0,1fr) 290px;
+  gap:46px;
+  padding:58px 28px 96px 110px;
+}
+.hero-title{font-size:clamp(38px,5vw,78px);max-width:840px}
+.home-side{padding-top:68px;gap:70px}
+.search-block{width:240px}
+.side-nav{gap:22px}
+
+.menu-view{
+  left:calc((100vw - min(1540px,100vw))/2 + 48px);
+  width:min(620px,calc(100vw - 24px));
+  height:min(760px,calc(100vh - 24px));
+}
+.menu-shell{padding:0 52px 58px}
+.menu-top{height:84px;gap:22px}
+.back-btn{width:44px;height:44px}
+.back-btn svg{width:40px;height:40px}
+.menu-search{width:230px;margin:42px 0 72px auto}
+.menu-card{min-height:320px;border-radius:22px;padding:36px 48px}
+.menu-list{gap:20px}
+.menu-primary,.menu-secondary{font-size:22px}
+.menu-secondary{margin-left:40px}
+.menu-spacer{height:22px}
+
+.catalog{padding-top:88px}
+.catalog-grid{grid-template-columns:250px minmax(0,1fr) 112px;gap:48px}
+.catalog-title{font-size:50px;margin-bottom:38px}
+.cat-all{font-size:17px;margin-bottom:15px}
+.cat-heading{font-size:18px;margin:20px 0 13px}
+.cat-items{font-size:18px;gap:7px;margin:0 0 26px 20px}
+.cards-grid{gap:92px 52px;padding-top:82px}
+.service-meta{margin-top:13px}
+.service-name{font-size:26px}
+.service-price{height:31px;font-size:24px;padding:0 8px}
+.catalog-side{padding-top:132px;gap:18px}
+
+.detail-hero{min-height:620px}
+.detail-layout{grid-template-columns:minmax(340px,700px) minmax(230px,330px);gap:28px;padding:46px 58px 0}
+.detail-main-photo{height:505px}
+.detail-title{font-size:40px}
+.detail-price{min-width:135px;height:23px;font-size:17px}
+.detail-desc{margin-top:24px;font-size:15px;max-width:310px}
+.detail-order{margin-top:76px;height:34px;font-size:15px}
+.detail-body{min-height:1120px;padding:118px 0 96px}
+.detail-second-photo{width:560px;height:466px;margin-left:48px}
+
+.order-section{min-height:calc(100vh - 84px);padding:54px 0 94px}
+.order-form-wrap{width:min(540px,100%)}
+.order-page-title{font-size:clamp(34px,4vw,52px);margin-bottom:38px}
+.order-form{gap:34px}
+.order-field{height:34px;font-size:18px}
+.order-idea-field{min-height:96px;height:auto}
+.order-submit{height:52px;margin-top:18px;font-size:24px}
+
+.site-footer{min-height:220px}
+.footer-inner{width:min(1160px,100%);padding:30px 38px 34px;gap:62px}
+.footer-brand{gap:18px}
+.footer-brand .brand-text{font-size:24px}
+.footer-brand .brand-mark{width:33px;height:33px}
+.footer-desc{font-size:14px}
+.copyright{margin-top:38px;font-size:12px}
+.footer-title{font-size:14px;margin:14px 0 18px}
+.footer-links{gap:8px;font-size:13px}
+
+@media(max-width:1440px){
+  .page-shell{padding:0 38px}
+  .menu-view{left:38px}
+  .home-hero{padding-left:70px;grid-template-columns:minmax(0,1fr) 230px}
+  .hero-title{font-size:clamp(38px,4.9vw,66px)}
+  .header-right{gap:54px}
+  .catalog-grid{grid-template-columns:230px minmax(0,1fr) 96px;gap:38px}
+  .cards-grid{gap:76px 38px}
+  .service-name{font-size:24px}
+  .service-price{font-size:22px}
+  .detail-layout{grid-template-columns:minmax(340px,650px) minmax(230px,320px);padding-left:38px;padding-right:38px}
+}
+
+@media(max-width:1180px){
+  .page-shell{padding:0 24px}
+  .menu-view{left:24px;width:min(620px,calc(100vw - 48px))}
+  .header-right{gap:28px}
+  .home-hero{padding:64px 0 88px 32px}
+  .home-side{right:24px;top:230px}
+  .catalog-grid{grid-template-columns:220px 1fr;gap:30px}
+  .cards-grid{gap:64px 34px;padding-top:72px}
+  .detail-layout{padding-left:24px;padding-right:24px}
+}
+
+@media(max-width:900px){
+  .brand-text{font-size:26px}
+  .order-link,.side-link,.search-label{font-size:17px}
+  .lang-btn{min-width:34px;height:27px;font-size:12px}
+  .hero-title{font-size:clamp(36px,8vw,56px);max-width:640px}
+  .home-side{bottom:58px;gap:28px}
+  .search-block{width:210px}
+  .menu-view{left:24px;width:min(620px,calc(100vw - 48px));height:min(760px,calc(100vh - 24px))}
+  .catalog{padding-top:66px}
+  .category-list{margin-bottom:40px}
+  .catalog-title{font-size:40px;margin-bottom:30px}
+  .detail-layout{padding-top:34px}
+  .footer-inner{gap:34px}
+}
+
+@media(max-width:760px){
+  .page-shell{padding:0 16px}
+  .site-header{height:70px;gap:10px}
+  .hamburger{width:40px;height:40px;gap:7px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:30px;height:3px}
+  .hamburger span::before{top:-9px}
+  .hamburger span::after{top:9px}
+  .brand-text{font-size:22px}
+  .brand-mark{width:32px;height:32px}
+  .header-left{gap:10px}
+  .header-right{gap:10px}
+  .lang-btn{min-width:31px;height:25px;font-size:10px}
+  .home-hero{min-height:calc(100vh - 70px);padding:46px 0 54px;gap:38px}
+  .hero-title{font-size:clamp(30px,9.6vw,44px);line-height:1.15}
+  .home-side{gap:26px}
+  .search-block{width:min(210px,68vw)}
+  .search-label,.side-link{font-size:15px}
+  .side-nav{gap:15px}
+  .menu-view{left:8px;width:calc(100vw - 16px);height:calc(100vh - 16px)}
+  .menu-shell{padding:0 26px 52px}
+  .menu-top{height:70px;gap:16px}
+  .menu-search{margin:38px 0 56px auto;width:min(210px,68vw)}
+  .menu-card{padding:30px 32px;min-height:300px}
+  .menu-primary,.menu-secondary{font-size:19px}
+  .menu-secondary{margin-left:22px}
+  .catalog{padding-top:50px}
+  .catalog-title{font-size:34px;margin-bottom:28px}
+  .category-list{margin-bottom:34px}
+  .cat-items{font-size:16px;margin-left:14px}
+  .cards-grid{gap:36px}
+  .service-name{font-size:23px}
+  .service-price{height:28px;font-size:20px}
+  .detail-layout{padding:28px 16px 0}
+  .detail-title{font-size:32px}
+  .detail-order{margin-top:34px}
+  .detail-body{min-height:620px;padding-top:64px}
+  .footer-inner{gap:22px;padding:28px 22px 36px}
+}
+
+@media(max-width:680px){
+  body{font-size:14px}
+  .page-shell{padding:0 14px}
+  .site-header{height:64px}
+  .hamburger{width:36px;height:36px;flex-basis:36px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:27px;height:2px}
+  .hamburger span::before{top:-8px}
+  .hamburger span::after{top:8px}
+  .brand-text{font-size:clamp(16px,5.6vw,22px)}
+  .brand-mark{width:29px;height:29px}
+  .lang-btn{min-width:27px;height:23px;font-size:9px}
+  .home-hero{min-height:calc(100svh - 64px);padding:38px 0 30px;gap:32px}
+  .hero-title{font-size:clamp(27px,10.5vw,40px)}
+  .home-side{gap:22px}
+  .search-block{width:min(190px,68vw)}
+  .search-label,.side-link{font-size:14px}
+  .menu-view{left:0;width:100vw;height:100svh}
+  .menu-shell{padding:0 16px 36px}
+  .menu-top{height:64px}
+  .back-btn{width:36px;height:36px}
+  .back-btn svg{width:34px;height:34px}
+  .menu-search{width:min(190px,66vw);margin:28px 0 36px auto}
+  .menu-card{border-radius:16px;padding:24px 20px}
+  .menu-list{gap:14px}
+  .menu-primary,.menu-secondary{font-size:clamp(16px,4.6vw,18px)}
+  .menu-secondary{margin-left:14px}
+  .menu-spacer{height:14px}
+  .catalog{padding-top:42px}
+  .catalog-title{font-size:clamp(28px,8.8vw,34px);margin-bottom:22px}
+  .cat-heading{font-size:15px;margin:18px 0 10px}
+  .cat-items{font-size:14px;gap:6px;margin:0 0 20px 10px}
+  .cards-grid{gap:30px}
+  .service-meta{margin-top:10px}
+  .service-name{font-size:clamp(20px,6.8vw,25px)}
+  .service-price{height:26px;font-size:18px}
+  .detail-layout{padding:22px 14px 0;gap:22px}
+  .detail-title{font-size:clamp(26px,8.4vw,32px)}
+  .detail-desc{font-size:14px}
+  .detail-order{height:36px;margin-top:26px}
+  .detail-body{min-height:500px;padding:48px 0 64px}
+  .order-section{min-height:calc(100svh - 64px);padding:34px 0 54px}
+  .order-page-title{font-size:clamp(28px,8.7vw,36px);margin-bottom:28px}
+  .order-form{gap:25px}
+  .order-field{height:32px;font-size:16px}
+  .order-idea-field{min-height:88px;height:auto}
+  .order-submit{height:46px;margin-top:12px;font-size:20px}
+  .footer-inner{padding:24px 18px 30px;gap:20px}
+  .footer-brand .brand-text{font-size:21px}
+  .footer-desc{font-size:13px}
+}
+
+@media(max-width:430px){
+  .page-shell{padding:0 10px}
+  .brand-text{font-size:16px}
+  .home-hero{padding-top:28px;gap:28px}
+  .hero-title{font-size:clamp(26px,10.5vw,34px)}
+  .search-block{width:min(178px,70vw)}
+  .menu-card{padding:22px 18px}
+  .catalog-title{font-size:30px}
+  .cards-grid{gap:28px}
+  .footer-inner{padding-left:16px;padding-right:16px}
+  .order-page-title{font-size:28px;margin-bottom:24px}
+  .order-form{gap:22px}
+  .order-field{height:30px;font-size:15px}
+  .order-idea-field{min-height:82px;height:auto}
+}
+
+@media(max-width:340px){
+  .brand-text{font-size:15px}
+  .hero-title{font-size:25px}
+  .menu-primary,.menu-secondary{font-size:15px}
+  .service-name{font-size:19px}
+}
+
+@media(max-height:620px) and (orientation:landscape){
+  .home-hero{padding-top:18px;padding-bottom:18px;gap:18px}
+  .hero-title{font-size:clamp(24px,7vw,38px)}
+  .home-side{gap:14px}
+  .menu-search{margin:14px 0 22px auto}
+  .menu-card{padding-top:18px;padding-bottom:18px}
+  .menu-list{gap:12px}
+  .order-section{padding:16px 0 32px}
+  .order-page-title{font-size:30px;margin-bottom:22px}
+  .order-form{gap:16px}
+}
+
+/* Extra compact scale */
+.page-shell{width:min(1420px,100%);padding:0 40px}
+.site-header{height:74px;gap:20px}
+.header-left{gap:10px}
+.hamburger{width:38px;height:38px;gap:7px}
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after{width:30px;height:2px}
+.hamburger span::before{top:-8px}
+.hamburger span::after{top:8px}
+.brand{gap:9px}
+.brand-mark{width:34px;height:34px}
+.brand-text{font-size:26px}
+.header-right{gap:58px}
+.order-link,.side-link,.search-label{font-size:17px}
+.lang-switch{gap:5px;padding:4px}
+.lang-btn{min-width:34px;height:26px;font-size:12px}
+
+.home-hero{
+  min-height:calc(100vh - 74px);
+  grid-template-columns:minmax(0,1fr) 250px;
+  gap:36px;
+  padding:42px 24px 76px 84px;
+}
+.hero-title{font-size:clamp(32px,4.4vw,66px);max-width:720px}
+.home-side{padding-top:52px;gap:54px}
+.search-block{width:210px}
+.side-nav{gap:18px}
+
+.menu-view{
+  left:calc((100vw - min(1420px,100vw))/2 + 40px);
+  width:min(540px,calc(100vw - 24px));
+  height:min(680px,calc(100vh - 24px));
+}
+.menu-shell{padding:0 42px 48px}
+.menu-top{height:74px;gap:18px}
+.back-btn{width:38px;height:38px}
+.back-btn svg{width:34px;height:34px}
+.menu-search{width:205px;margin:32px 0 54px auto}
+.menu-card{min-height:270px;border-radius:18px;padding:30px 40px}
+.menu-list{gap:16px}
+.menu-primary,.menu-secondary{font-size:19px}
+.menu-secondary{margin-left:32px}
+.menu-spacer{height:16px}
+
+.catalog{padding-top:70px}
+.catalog-grid{grid-template-columns:220px minmax(0,1fr) 96px;gap:38px}
+.catalog-title{font-size:42px;margin-bottom:30px}
+.cat-all{font-size:15px;margin-bottom:12px}
+.cat-heading{font-size:16px;margin:16px 0 10px}
+.cat-items{font-size:16px;gap:6px;margin:0 0 22px 16px}
+.cards-grid{gap:70px 40px;padding-top:64px}
+.service-meta{margin-top:10px}
+.service-name{font-size:22px}
+.service-price{height:28px;font-size:20px;padding:0 7px}
+.catalog-side{padding-top:106px;gap:15px}
+
+.detail-hero{min-height:540px}
+.detail-layout{grid-template-columns:minmax(320px,620px) minmax(220px,300px);gap:24px;padding:38px 48px 0}
+.detail-main-photo{height:440px}
+.detail-title{font-size:34px}
+.detail-price{min-width:120px;height:21px;font-size:15px}
+.detail-desc{margin-top:20px;font-size:14px;max-width:280px}
+.detail-order{margin-top:58px;height:32px;font-size:14px}
+.detail-body{min-height:940px;padding:92px 0 78px}
+.detail-second-photo{width:490px;height:408px;margin-left:40px}
+
+.order-section{min-height:calc(100vh - 74px);padding:42px 0 72px}
+.order-form-wrap{width:min(480px,100%)}
+.order-page-title{font-size:clamp(30px,3.4vw,44px);margin-bottom:30px}
+.order-form{gap:26px}
+.order-field{height:31px;font-size:16px}
+.order-idea-field{min-height:82px;height:auto}
+.order-submit{height:46px;margin-top:12px;font-size:21px}
+
+.site-footer{min-height:190px}
+.footer-inner{width:min(1040px,100%);padding:24px 32px 28px;gap:48px}
+.footer-brand{gap:14px}
+.footer-brand .brand-text{font-size:21px}
+.footer-brand .brand-mark{width:29px;height:29px}
+.footer-desc{font-size:13px}
+.copyright{margin-top:30px;font-size:11px}
+.footer-title{font-size:13px;margin:12px 0 15px}
+.footer-links{gap:7px;font-size:12px}
+
+@media(max-width:1440px){
+  .page-shell{padding:0 32px}
+  .menu-view{left:32px}
+  .home-hero{padding-left:56px;grid-template-columns:minmax(0,1fr) 205px}
+  .hero-title{font-size:clamp(32px,4.2vw,56px)}
+  .header-right{gap:42px}
+  .catalog-grid{grid-template-columns:205px minmax(0,1fr) 84px;gap:32px}
+  .cards-grid{gap:58px 32px}
+  .service-name{font-size:21px}
+  .service-price{font-size:19px}
+  .detail-layout{grid-template-columns:minmax(320px,580px) minmax(220px,290px);padding-left:32px;padding-right:32px}
+}
+
+@media(max-width:1180px){
+  .page-shell{padding:0 20px}
+  .menu-view{left:20px;width:min(540px,calc(100vw - 40px))}
+  .header-right{gap:22px}
+  .home-hero{padding:52px 0 70px 24px}
+  .home-side{right:20px;top:200px}
+  .catalog-grid{grid-template-columns:200px 1fr;gap:26px}
+  .cards-grid{gap:52px 28px;padding-top:56px}
+  .detail-layout{padding-left:20px;padding-right:20px}
+  .order-section-inner{grid-template-columns:minmax(0,1fr) minmax(420px,540px) minmax(150px,1fr);gap:28px}
+  .order-side{gap:34px}
+}
+
+@media(max-width:900px){
+  .brand-text{font-size:23px}
+  .order-link,.side-link,.search-label{font-size:15px}
+  .lang-btn{min-width:30px;height:24px;font-size:11px}
+  .hero-title{font-size:clamp(30px,7vw,48px);max-width:560px}
+  .home-side{bottom:48px;gap:22px}
+  .search-block{width:185px}
+  .menu-view{left:20px;width:min(540px,calc(100vw - 40px));height:min(680px,calc(100vh - 24px))}
+  .catalog{padding-top:54px}
+  .category-list{margin-bottom:32px}
+  .catalog-title{font-size:34px;margin-bottom:24px}
+  .detail-layout{padding-top:28px}
+  .footer-inner{gap:28px}
+  .order-section-inner{display:block}
+  .order-side{
+    margin-top:34px;
+    padding-top:0;
+    justify-items:end;
+  }
+}
+
+@media(max-width:760px){
+  .page-shell{padding:0 13px}
+  .site-header{height:62px;gap:8px}
+  .hamburger{width:34px;height:34px;gap:6px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:26px;height:2px}
+  .hamburger span::before{top:-7px}
+  .hamburger span::after{top:7px}
+  .brand-text{font-size:19px}
+  .brand-mark{width:28px;height:28px}
+  .header-left{gap:8px}
+  .header-right{gap:8px}
+  .lang-btn{min-width:27px;height:22px;font-size:9px}
+  .home-hero{min-height:calc(100vh - 62px);padding:34px 0 42px;gap:30px}
+  .hero-title{font-size:clamp(26px,8.4vw,38px);line-height:1.13}
+  .home-side{gap:20px}
+  .search-block{width:min(180px,66vw)}
+  .search-label,.side-link{font-size:13px}
+  .side-nav{gap:12px}
+  .menu-view{left:6px;width:calc(100vw - 12px);height:calc(100vh - 12px)}
+  .menu-shell{padding:0 22px 42px}
+  .menu-top{height:62px;gap:13px}
+  .menu-search{margin:30px 0 44px auto;width:min(180px,66vw)}
+  .menu-card{padding:24px 26px;min-height:250px}
+  .menu-primary,.menu-secondary{font-size:16px}
+  .menu-secondary{margin-left:18px}
+  .catalog{padding-top:40px}
+  .catalog-title{font-size:29px;margin-bottom:22px}
+  .category-list{margin-bottom:28px}
+  .cat-items{font-size:14px;margin-left:10px}
+  .cards-grid{gap:28px}
+  .service-name{font-size:20px}
+  .service-price{height:25px;font-size:17px}
+  .detail-layout{padding:22px 13px 0}
+  .detail-title{font-size:27px}
+  .detail-order{margin-top:26px}
+  .detail-body{min-height:540px;padding-top:52px}
+  .footer-inner{gap:18px;padding:22px 18px 28px}
+}
+
+@media(max-width:680px){
+  body{font-size:13px}
+  .page-shell{padding:0 12px}
+  .site-header{height:56px}
+  .hamburger{width:32px;height:32px;flex-basis:32px}
+  .hamburger span,
+  .hamburger span::before,
+  .hamburger span::after{width:24px;height:2px}
+  .brand-text{font-size:clamp(15px,5vw,19px)}
+  .brand-mark{width:25px;height:25px}
+  .lang-btn{min-width:24px;height:20px;font-size:8px}
+  .home-hero{min-height:calc(100svh - 56px);padding:30px 0 24px;gap:26px}
+  .hero-title{font-size:clamp(24px,9vw,34px)}
+  .home-side{gap:18px}
+  .search-block{width:min(165px,66vw)}
+  .search-label,.side-link{font-size:12px}
+  .menu-shell{padding:0 13px 30px}
+  .menu-top{height:56px}
+  .back-btn{width:32px;height:32px}
+  .back-btn svg{width:30px;height:30px}
+  .menu-search{width:min(165px,64vw);margin:22px 0 28px auto}
+  .menu-card{border-radius:14px;padding:20px 17px}
+  .menu-list{gap:12px}
+  .menu-primary,.menu-secondary{font-size:clamp(14px,4.2vw,16px)}
+  .menu-secondary{margin-left:10px}
+  .menu-spacer{height:10px}
+  .catalog{padding-top:34px}
+  .catalog-title{font-size:clamp(24px,7.8vw,29px);margin-bottom:18px}
+  .cat-heading{font-size:13px;margin:15px 0 8px}
+  .cat-items{font-size:13px;gap:5px;margin:0 0 16px 8px}
+  .cards-grid{gap:24px}
+  .service-name{font-size:clamp(18px,6vw,22px)}
+  .service-price{height:24px;font-size:16px}
+  .detail-layout{padding:18px 12px 0;gap:18px}
+  .detail-title{font-size:clamp(23px,7.4vw,28px)}
+  .detail-desc{font-size:13px}
+  .detail-order{height:32px;margin-top:22px}
+  .detail-body{min-height:430px;padding:40px 0 54px}
+  .order-section{min-height:calc(100svh - 56px);padding:26px 0 42px}
+  .order-page-title{font-size:clamp(24px,7.5vw,31px);margin-bottom:22px}
+  .order-form{gap:20px}
+  .order-field{height:28px;font-size:14px}
+  .order-idea-field{min-height:72px;height:auto}
+  .order-submit{height:40px;margin-top:8px;font-size:17px}
+  .order-side{display:none}
+  .footer-inner{padding:20px 15px 24px;gap:16px}
+  .footer-brand .brand-text{font-size:18px}
+  .footer-desc{font-size:12px}
+}
+
+@media(max-width:430px){
+  .page-shell{padding:0 8px}
+  .brand-text{font-size:15px}
+  .home-hero{padding-top:22px;gap:22px}
+  .hero-title{font-size:clamp(23px,9.3vw,30px)}
+  .search-block{width:min(150px,68vw)}
+  .menu-card{padding:18px 15px}
+  .catalog-title{font-size:26px}
+  .cards-grid{gap:22px}
+  .footer-inner{padding-left:14px;padding-right:14px}
+  .order-page-title{font-size:24px;margin-bottom:20px}
+  .order-form{gap:18px}
+  .order-field{height:27px;font-size:13px}
+  .order-idea-field{min-height:68px;height:auto}
+}
+
+@media(max-width:340px){
+  .brand-text{font-size:14px}
+  .hero-title{font-size:22px}
+  .menu-primary,.menu-secondary{font-size:14px}
+  .service-name{font-size:17px}
+}
+
+@media(max-height:620px) and (orientation:landscape){
+  .home-hero{padding-top:14px;padding-bottom:14px;gap:14px}
+  .hero-title{font-size:clamp(22px,6vw,34px)}
+  .home-side{gap:12px}
+  .menu-search{margin:10px 0 18px auto}
+  .menu-card{padding-top:14px;padding-bottom:14px}
+  .menu-list{gap:10px}
+  .order-section{padding:12px 0 26px}
+  .order-page-title{font-size:26px;margin-bottom:18px}
+  .order-form{gap:14px}
+}
+
+/* Keep footer flush with the viewport bottom */
+.content-page.active{
+  display:flex;
+  flex-direction:column;
+}
+.content-page.active>.page-shell{
+  flex:1 0 auto;
+}
+.content-page.active>.site-footer{
+  flex-shrink:0;
+  margin-top:auto;
+  margin-bottom:-1px;
+  box-shadow:0 2px 0 #100a19;
+}
+.detail-page.active{
+  display:flex;
+  flex-direction:column;
+}
+.detail-page.active>.detail-hero,
+.detail-page.active>.detail-body{
+  flex:0 0 auto;
+}
+.detail-page.active>.site-footer{
+  flex-shrink:0;
+  margin-top:auto;
+  margin-bottom:-1px;
+  box-shadow:0 2px 0 #100a19;
+}
+
+/* Order form captions inside fields */
+.order-line{
+  --caption-width:120px;
+  --caption-gap:8px;
+  --order-row-height:31px;
+  --order-line-color:rgba(251,232,255,.62);
+  position:relative;
+  display:block;
+}
+.order-line--service{--caption-width:76px}
+.order-line--idea{--caption-width:132px}
+.order-line--budget{--caption-width:78px}
+.order-line--contact{--caption-width:172px}
+.order-line:focus-within{--order-line-color:var(--accent)}
+.order-caption{
+  position:absolute;
+  left:0;
+  top:0;
+  width:var(--caption-width);
+  color:rgba(238,153,255,.86);
+  font-size:inherit;
+  line-height:1.35;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  pointer-events:none;
+}
+.order-line>.order-field{
+  border-bottom:2px solid var(--order-line-color);
+  padding-left:calc(var(--caption-width) + var(--caption-gap));
+}
+.order-line>.order-grow-field{
+  border-bottom:0;
+  min-height:var(--order-row-height);
+  height:var(--order-row-height);
+  line-height:var(--order-row-height);
+  padding-top:0;
+  resize:none;
+  overflow:hidden;
+  white-space:pre-wrap;
+  background-image:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--order-row-height) - 2px),
+    var(--order-line-color) calc(var(--order-row-height) - 2px),
+    var(--order-line-color) var(--order-row-height)
+  );
+  background-origin:border-box;
+  background-clip:border-box;
+  background-size:100% var(--order-row-height);
+  background-attachment:local;
+}
+
+@media(max-width:680px){
+  .order-line{--caption-width:104px}
+  .order-line{--caption-gap:7px}
+  .order-line{--order-row-height:28px}
+  .order-line--service{--caption-width:62px}
+  .order-line--idea{--caption-width:112px}
+  .order-line--budget{--caption-width:66px}
+  .order-line--contact{--caption-width:138px}
+  .order-caption{font-size:14px}
+}
+
+@media(max-width:430px){
+  .order-line{--caption-width:94px}
+  .order-line{--caption-gap:6px}
+  .order-line{--order-row-height:27px}
+  .order-line--service{--caption-width:54px}
+  .order-line--idea{--caption-width:98px}
+  .order-line--budget{--caption-width:58px}
+  .order-line--contact{--caption-width:124px}
+  .order-caption{font-size:12px}
+}
+
+/* Inline search: renders inside whichever nav/menu container triggered it,
+   never as a separate floating panel */
+.search-inline{
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+  width:var(--search-inline-width,100%);
+  max-width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  background:linear-gradient(180deg,#150E20 0%,rgba(39,17,59,.98) 100%);
+  border:1px solid rgba(238,153,255,.18);
+  border-radius:12px;
+  padding:12px 14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.24);
+}
+.search-inline[hidden]{display:none}
+.search-block[hidden],
+.menu-search[hidden]{display:none}
+.search-block.is-search-open,
+.menu-search.is-search-open{
+  cursor:text;
+}
+.menu-search.is-search-open{
+  margin-bottom:12px;
+}
+.search-block.is-search-querying,
+.menu-search.is-search-querying{
+  display:none;
+}
+.search-inline--side,
+.search-inline--menu{
+  width:var(--search-inline-width,100%);
+}
+.search-inline-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:2px solid var(--line);
+  padding-bottom:10px;
+  min-height:44px;
+  transition:border-color .18s ease;
+}
+.search-inline:focus-within .search-inline-top{
+  border-color:rgba(238,153,255,.66);
+}
+.search-icon{width:20px;height:20px;flex:0 0 20px;color:rgba(251,232,255,.6)}
+.search-input{
+  flex:1 1 auto;
+  min-width:0;
+  background:transparent;
+  border:0;
+  outline:0;
+  font-size:16px;
+  font-weight:700;
+  color:var(--text);
+  text-align:left;
+}
+.search-input::placeholder{color:rgba(251,232,255,.45)}
+.search-close{
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  display:grid;
+  place-items:center;
+  color:rgba(251,232,255,.6);
+}
+.search-close:hover,.search-close:focus-visible{color:var(--accent)}
+.search-close svg{width:18px;height:18px}
+.search-results{
+  list-style:none;
+  overflow-y:auto;
+  max-height:320px;
+  margin-top:12px;
+  display:grid;
+  gap:4px;
+}
+.search-results[hidden]{display:none}
+.search-result{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:2px;
+  padding:10px 8px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.search-result-name{font-size:16px;font-weight:700;color:var(--text)}
+.search-result-category{
+  font-size:11px;
+  font-weight:900;
+  color:rgba(251,232,255,.5);
+  text-transform:uppercase;
+}
+.search-result[aria-selected="true"],
+.search-result:hover{background:rgba(238,153,255,.12)}
+.search-result[aria-selected="true"] .search-result-name{color:var(--accent)}
+.search-empty{
+  margin-top:12px;
+  color:rgba(251,232,255,.6);
+  font-size:14px;
+  text-align:left;
+  padding:4px 0;
+}
+.search-empty[hidden]{display:none}
+
+/* Mobile service catalog/detail fit */
+.service-card,
+.service-meta,
+.service-name,
+.service-price,
+.detail-layout,
+.detail-main-photo,
+.detail-info,
+.detail-title,
+.detail-desc,
+.detail-order,
+.detail-second-photo{
+  min-width:0;
+}
+.service-card,
+.detail-main-photo{
+  width:100%;
+  max-width:100%;
+}
+.detail-second-photo{
+  max-width:100%;
+}
+.photo-box,
+.detail-main-photo,
+.detail-second-photo{
+  overflow:hidden;
+}
+.detail-title,
+.detail-desc{
+  word-break:normal;
+  hyphens:none;
+}
+.detail-title{
+  overflow-wrap:normal;
+  text-wrap:balance;
+}
+.detail-desc{
+  overflow-wrap:break-word;
+}
+.detail-back{
+  position:static;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:44px;
+  height:44px;
+  margin:0 0 16px;
+  border:1px solid rgba(251,232,255,.42);
+  border-radius:999px;
+  background:rgba(251,232,255,.06);
+  color:var(--text);
+}
+.detail-back svg{
+  width:22px;
+  height:22px;
+}
+.detail-back:hover,
+.detail-back:focus-visible{
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+@media(min-width:768px) and (max-width:1180px){
+  .cards-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:clamp(28px,5vw,64px) clamp(18px,3vw,34px);
+  }
+  .service-name{
+    white-space:normal;
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    word-break:normal;
+    overflow-wrap:break-word;
+    hyphens:none;
+  }
+}
+
+@media(max-width:767px){
+  .content-page,
+  .detail-page{
+    overflow-x:clip;
+  }
+  .content-page[data-view="services"]>.page-shell,
+  .detail-page .page-shell{
+    padding-left:16px;
+    padding-right:16px;
+  }
+  .catalog{
+    padding-top:36px;
+    padding-bottom:48px;
+  }
+  .catalog-grid{
+    display:block;
+    width:100%;
+    max-width:100%;
+  }
+  .category-list{
+    min-width:0;
+    margin-bottom:28px;
+  }
+  .cat-items{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    column-gap:16px;
+  }
+  .cards-grid{
+    width:100%;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+    padding-top:0;
+    align-items:stretch;
+  }
+  .service-card{
+    display:block;
+    overflow:hidden;
+  }
+  .photo-box{
+    aspect-ratio:1/1;
+  }
+  .service-meta{
+    grid-template-columns:minmax(0,1fr);
+    align-items:start;
+    gap:5px;
+    margin-top:7px;
+  }
+  .service-name{
+    font-size:clamp(12px,3.25vw,14px);
+    line-height:1.12;
+    white-space:normal;
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    text-overflow:clip;
+    word-break:normal;
+    overflow-wrap:break-word;
+    hyphens:none;
+  }
+  .service-price{
+    justify-self:start;
+    max-width:100%;
+    min-height:20px;
+    height:auto;
+    padding:3px 5px;
+    font-size:clamp(11px,3.1vw,13px);
+    line-height:1;
+    white-space:normal;
+    word-break:normal;
+    overflow-wrap:normal;
+  }
+
+  .detail-hero{
+    min-height:auto;
+    padding-bottom:calc(36px + env(safe-area-inset-bottom));
+  }
+  .detail-layout{
+    width:100%;
+    max-width:100%;
+    grid-template-columns:minmax(0,1fr);
+    gap:16px;
+    padding:20px 0 0;
+  }
+  .detail-main-photo{
+    height:auto;
+    min-height:0;
+    aspect-ratio:1/1;
+  }
+  .detail-info{
+    width:100%;
+    max-width:100%;
+    padding-top:0;
+  }
+  .detail-title{
+    font-size:clamp(22px,7vw,28px);
+    line-height:1.08;
+  }
+  .detail-price{
+    min-width:0;
+    max-width:100%;
+    min-height:24px;
+    height:auto;
+    padding:4px 7px;
+    font-size:14px;
+    line-height:1;
+  }
+  .detail-desc{
+    max-width:100%;
+    margin-top:16px;
+    font-size:14px;
+    line-height:1.45;
+  }
+  .detail-order{
+    width:100%;
+    max-width:100%;
+    height:40px;
+    margin-top:22px;
+  }
+  .detail-body{
+    min-height:0;
+    padding:32px 0 calc(56px + env(safe-area-inset-bottom));
+  }
+  .detail-second-photo{
+    width:100%;
+    max-width:100%;
+    height:auto;
+    aspect-ratio:1/1;
+    margin-left:0;
+  }
+}
+
+/* ---------- Visual refactor: cards, accordion, detail, menu, search (Task 4) ---------- */
+
+/* Stacking scale: content 0-9, sticky header 20, backdrops 40, panels 50 */
+.site-header{z-index:20}
+.menu-backdrop{
+  z-index:40;
+  background:rgba(4,2,10,.58);
+}
+.menu-view{
+  z-index:50;
+  border:1px solid var(--line);
+  border-radius:0 0 16px 16px;
+}
+.menu-view::before{
+  background:
+    radial-gradient(circle at 78% 30%,rgba(238,153,255,.08),transparent 36%),
+    linear-gradient(180deg,rgba(124,37,244,.04),rgba(238,153,255,.04));
+}
+/* Detail page: height follows content, not a forced viewport-sized box */
+.detail-body{
+  min-height:0;
+}
+
+/* Service card: vertical 3:4 preview (media), name+price stack in the body */
+.photo-box{
+  aspect-ratio:3/4;
+}
+.service-card__placeholder{
+  width:100%;
+  height:100%;
+  background-color:var(--service-placeholder-bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:clamp(12px,1.1vw,16px);
+  box-sizing:border-box;
+  color:var(--service-placeholder-text);
+}
+.service-card__placeholder-label{
+  max-width:100%;
+  min-width:0;
+  font-family:"Unbounded","Nunito",sans-serif;
+  font-size:clamp(13px,1.45vw,22px);
+  font-weight:500;
+  line-height:1.2;
+  word-break:normal;
+  overflow-wrap:break-word;
+  hyphens:none;
+}
+.service-detail__placeholder{
+  width:100%;
+  height:auto;
+  aspect-ratio:3/4;
+  background-color:var(--service-placeholder-bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:clamp(20px,4vw,48px);
+  box-sizing:border-box;
+  color:var(--service-placeholder-text);
+}
+.service-detail__placeholder-title{
+  max-width:100%;
+  min-width:0;
+  font-family:"Unbounded","Nunito",sans-serif;
+  font-size:clamp(22px,3vw,44px);
+  font-weight:500;
+  line-height:1.15;
+  word-break:normal;
+  overflow-wrap:break-word;
+  hyphens:none;
+}
+.photo-box img,
+.photo-box video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.service-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+
+@media(max-width:1180px){
+  .service-meta{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    gap:8px;
+    margin-top:12px;
+    padding-top:8px;
+    padding-bottom:8px;
+  }
+  .service-name{
+    min-height:2.4em;
+  }
+  .service-price{
+    align-self:flex-start;
+    margin-top:auto;
+    border-radius:6px;
+  }
+}
+
+@media(max-width:767px){
+  .cards-grid{
+    gap:24px 8px;
+  }
+  .service-card__placeholder{
+    padding:8px;
+  }
+  .service-card__placeholder-label{
+    font-size:clamp(10px,2.9vw,13px);
+  }
+  .service-price{
+    padding:4px 8px;
+  }
+
+  /* Accordion: single column, consistent indent, divided groups */
+  .category-list{
+    margin-bottom:24px;
+  }
+  .cat-toggle{
+    min-height:44px;
+    padding:12px 0;
+  }
+  .cat-heading{
+    margin:0;
+  }
+  .cat-group{
+    padding-bottom:8px;
+    margin-bottom:8px;
+    border-bottom:1px solid rgba(251,232,255,.1);
+  }
+  .cat-group:last-child{
+    margin-bottom:0;
+    border-bottom:0;
+  }
+  .cat-items{
+    grid-template-columns:1fr;
+    gap:8px;
+    margin:0 0 16px 16px;
+  }
+
+  /* Menu: real left-edge drawer, slides in, dvh + safe-area aware */
+  .menu-view{
+    left:0;
+    width:min(84vw,360px);
+    height:100dvh;
+    border-radius:0;
+    transform:translateX(-100%);
+    transition:opacity .26s ease,transform .28s ease,visibility 0s linear .28s;
+    padding-top:env(safe-area-inset-top);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .menu-view.open{
+    transform:translateX(0);
+    transition:opacity .26s ease,transform .28s ease,visibility 0s linear 0s;
+  }
+}
+
+/* ---------- Visual refinement: panel system, cards, detail page (Task 5) ---------- */
+
+/* Shared panel system: same background/border weight/shadow logic for menu + search */
+.menu-view{
+  background:linear-gradient(180deg,rgba(21,14,32,.97) 0%,rgba(30,18,52,.97) 100%),var(--panel);
+  border:0;
+  border-right:1px solid var(--line);
+  border-radius:0;
+  box-shadow:8px 0 40px rgba(0,0,0,.35);
+}
+.menu-view::before{
+  content:none;
+}
+
+/* Menu: drop the inner framed card, one flat panel, tighter/consistent rhythm */
+@media(min-width:768px){
+  .menu-view{
+    left:0;
+    width:clamp(340px,28vw,420px);
+    height:100dvh;
+  }
+}
+.menu-shell{
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+.menu-top{
+  height:auto;
+  gap:16px;
+  margin-bottom:24px;
+}
+.back-btn{
+  width:40px;
+  height:40px;
+}
+.back-btn svg{
+  width:26px;
+  height:26px;
+}
+.menu-search{
+  width:100%;
+  margin:0 0 32px;
+  text-align:left;
+}
+.menu-search:hover .search-label,
+.menu-search:focus-visible .search-label{
+  color:var(--accent);
+}
+.menu-search .search-line{
+  transition:background-color .18s ease;
+}
+.menu-search:hover .search-line,
+.menu-search:focus-visible .search-line{
+  background:var(--accent);
+}
+.menu-card{
+  min-height:0;
+  border:0;
+  border-radius:0;
+  padding:0;
+  background:none;
+}
+.menu-list{
+  gap:16px;
+}
+.menu-primary,
+.menu-secondary{
+  font-size:18px;
+}
+.menu-secondary{
+  margin-left:16px;
+}
+.menu-spacer{
+  height:1px;
+  margin:8px 0 16px;
+  background:var(--line);
+}
+
+/* Cards: price sits under the name on every breakpoint, not beside it */
+.service-meta{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  flex:1;
+  gap:8px;
+  margin-top:12px;
+  padding-top:10px;
+  padding-bottom:12px;
+}
+.service-name{
+  width:100%;
+  text-align:left;
+  min-height:2.4em;
+  line-height:1.2;
+  white-space:normal;
+  overflow:hidden;
+  text-overflow:clip;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  word-break:normal;
+  overflow-wrap:break-word;
+  hyphens:none;
+}
+.service-price{
+  align-self:flex-start;
+  margin-top:auto;
+  border-radius:6px;
+}
+
+/* Detail page: contained composition instead of edge-to-edge sprawl */
+.detail-hero .page-shell,
+.detail-body .page-shell{
+  width:min(1200px,100%);
+}
+.detail-back{
+  width:auto;
+  height:auto;
+  min-height:44px;
+  justify-content:flex-start;
+  padding:8px 4px;
+  border:0;
+  border-radius:0;
+  background:none;
+  font-size:15px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  color:rgba(251,232,255,.86);
+}
+.detail-back svg{
+  width:20px;
+  height:20px;
+  flex:0 0 20px;
+}
+.detail-title{
+  font-size:clamp(34px,4.8vw,66px);
+  line-height:.92;
+  word-break:normal;
+  overflow-wrap:normal;
+  hyphens:none;
+  text-wrap:balance;
+}
+.detail-price{
+  width:fit-content;
+  min-width:0;
+  height:auto;
+  margin-top:12px;
+  padding:6px 12px;
+  border-radius:6px;
+}
+.detail-desc{
+  max-width:52ch;
+  margin-top:24px;
+  font-family:"Nunito",sans-serif;
+  font-size:clamp(14px,1.2vw,18px);
+  font-weight:400;
+  line-height:1.55;
+  word-break:normal;
+  overflow-wrap:break-word;
+  hyphens:none;
+}
+.detail-order{
+  min-height:48px;
+  height:auto;
+  margin-top:32px;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:.02em;
+  border-width:1.5px;
+  border-color:rgba(251,232,255,.5);
+  background:rgba(251,232,255,.05);
+}
+.detail-order:hover{
+  background:rgba(238,153,255,.08);
+}
+.detail-body{
+  padding:0 0 calc(64px + env(safe-area-inset-bottom));
+}
+.detail-second-photo,
+.detail-main-photo{
+  overflow:hidden;
+}
+.detail-main-photo img,
+.detail-main-photo video,
+.detail-second-photo img,
+.detail-second-photo video{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  object-fit:contain;
+}
+.detail-second-photo{
+  width:min(100%,820px);
+  max-width:100%;
+  height:auto;
+  aspect-ratio:3/4;
+  margin:64px auto 0;
+}
+@media(max-width:1180px){
+  .detail-main-photo{
+    aspect-ratio:3/4;
+  }
+}
+@media(min-width:768px) and (max-width:1180px){
+  .detail-layout{
+    grid-template-columns:minmax(260px,420px) minmax(300px,460px);
+    justify-content:center;
+    gap:24px;
+  }
+}
+@media(min-width:1181px){
+  .detail-layout{
+    grid-template-columns:minmax(320px,460px) minmax(380px,540px);
+    justify-content:center;
+    gap:clamp(32px,4vw,56px);
+  }
+  .detail-main-photo{
+    height:auto;
+    aspect-ratio:3/4;
+  }
+}
+
+/* Generated service media */
+.photo-box.has-media,
+.detail-main-photo.has-media,
+.detail-second-photo.has-media,
+.service-gallery-item{
+  background:rgba(251,232,255,.045);
+}
+.photo-box.has-media{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.photo-box.media-error,
+.detail-main-photo.media-error,
+.detail-second-photo.media-error{
+  background:var(--photo);
+}
+.photo-box.media-error{
+  background:var(--service-placeholder-bg);
+}
+.detail-main-photo.has-media,
+.detail-second-photo.has-media{
+  height:auto;
+  aspect-ratio:auto;
+}
+.detail-main-photo.has-media img,
+.detail-main-photo.has-media video,
+.detail-second-photo.has-media img,
+.detail-second-photo.has-media video{
+  height:auto;
+}
+.service-gallery{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:24px;
+  width:100%;
+  max-width:100%;
+  margin:64px auto 0;
+}
+.service-gallery[hidden],
+.detail-gallery-placeholder[hidden]{
+  display:none;
+}
+.service-gallery-item{
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+}
+.service-gallery img,
+.service-gallery video{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  object-fit:contain;
+}
+@media(min-width:768px){
+  .service-gallery{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    align-items:start;
+  }
+  .service-gallery-item.is-landscape,
+  .service-gallery-item.is-video{
+    grid-column:1/-1;
+  }
+}
+@media(max-width:767px){
+  .service-gallery{
+    gap:18px;
+    margin-top:32px;
+  }
+}
+
+@media(min-width:1181px){
+  .catalog-grid{
+    grid-template-columns:minmax(220px,250px) minmax(0,1fr) 210px;
+    gap:clamp(32px,3vw,48px);
+  }
+  .catalog-side{
+    width:210px;
+    justify-self:stretch;
+    justify-items:stretch;
+  }
+  .catalog-side .search-block,
+  .catalog-side .search-inline{
+    width:100%;
+  }
+  .catalog-side .side-link,
+  .catalog-side .search-block{
+    text-align:right;
+  }
+}
+
+/* Sticky header + services sidebar polish */
+:root{
+  --header-height:76px;
+  --header-inline:58px;
+  --services-sidebar-offset:24px;
+}
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  width:100vw;
+  min-height:var(--header-height);
+  height:auto;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  display:block;
+  background:transparent;
+  background-color:transparent;
+  background-image:none;
+  border-bottom:0;
+  box-shadow:none;
+  backdrop-filter:none;
+  transition:background-color .22s ease,border-color .22s ease,box-shadow .22s ease,backdrop-filter .22s ease;
+}
+.site-header.is-scrolled,
+.home .site-header,
+.home .site-header.is-scrolled{
+  background:transparent;
+  background-color:transparent;
+  background-image:none;
+  border-bottom:0;
+  box-shadow:none;
+  backdrop-filter:none;
+}
+.site-header .brand-text,
+.site-header .order-link,
+.site-header .lang-btn{
+  text-shadow:0 1px 8px rgba(0,0,0,.35);
+}
+.site-header .hamburger span,
+.site-header .hamburger span::before,
+.site-header .hamburger span::after{
+  box-shadow:0 1px 8px rgba(0,0,0,.35);
+}
+.home-hero{
+  padding-top:calc(var(--header-height) + 24px);
+}
+.site-header__inner{
+  width:min(1710px,100%);
+  min-height:var(--header-height);
+  margin:0 auto;
+  padding:0 var(--header-inline);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:32px;
+}
+.site-header__inner>div:nth-child(2){
+  display:none;
+}
+.site-header .header-left,
+.site-header .header-right{
+  min-width:0;
+}
+.site-header .header-right{
+  justify-self:end;
+  gap:32px;
+}
+.home-side .search-label,
+.home-side .side-link,
+.catalog-side .search-label,
+.catalog-side .side-link{
+  font-family:"Unbounded",sans-serif;
+  font-weight:500;
+}
+.site-header .order-link{
+  font-family:"Nunito",sans-serif;
+  font-weight:400;
+}
+.footer-desc{
+  font-family:"Nunito",sans-serif;
+  font-weight:400;
+  line-height:1.5;
+}
+.content-page,
+.detail-page{
+  overflow:visible;
+}
+.content-page[data-view="services"] .catalog{
+  padding-top:clamp(40px,5vw,72px);
+}
+.content-page[data-view="services"] .catalog-grid{
+  overflow:visible;
+}
+.search-results[hidden]{
+  display:none;
+}
+@media(min-width:1181px){
+  .content-page[data-view="services"] .catalog-side{
+    position:sticky;
+    top:calc(var(--header-height) + var(--services-sidebar-offset));
+    z-index:10;
+    align-self:start;
+    padding-top:0;
+    max-height:calc(100vh - var(--header-height) - var(--services-sidebar-offset) - 16px);
+  }
+}
+@media(max-width:1180px){
+  :root{
+    --header-height:68px;
+    --header-inline:28px;
+  }
+  .content-page[data-view="services"] .catalog-side{
+    position:static;
+  }
+}
+@media(max-width:767px){
+  :root{
+    --header-height:62px;
+    --header-inline:16px;
+  }
+  .site-header__inner{
+    gap:12px;
+  }
+  .site-header .header-left{
+    gap:10px;
+  }
+  .site-header .header-right{
+    gap:8px;
+  }
+  .site-header .order-link{
+    display:none;
+  }
+  .content-page[data-view="services"] .catalog{
+    padding-top:32px;
+  }
+}
+@media(max-width:390px){
+  :root{
+    --header-height:58px;
+    --header-inline:12px;
+  }
+  .site-header__inner{
+    gap:8px;
+  }
+}
+</style>
+</head>
+<body>
+<main id="app">
+  <section class="view home" data-view="home" aria-label="Главная">
+    <div class="app">
+      <video class="video-bg" autoplay muted loop playsinline preload="auto" poster="banner3.png">
+        <source src="./hero-bg.webm" type="video/webm">
+      </video>
+      <div class="page-shell">
+        <header class="site-header">
+          <div class="site-header__inner">
+            <div class="header-left">
+            <button class="hamburger" type="button" data-menu-open aria-label="Открыть меню"><span></span></button>
+            <a class="brand" href="#home" aria-label="WaveSign">
+              <span class="brand-text">WaveSign</span>
+            </a>
+          </div>
+          <div></div>
+          <div class="header-right">
+            <a class="order-link" href="#order">Заказать</a>
+            <div class="lang-switch" aria-label="Выбор языка">
+              <button class="lang-btn active" type="button" data-lang="ru">RU</button>
+              <button class="lang-btn" type="button" data-lang="uk">UA</button>
+              <button class="lang-btn" type="button" data-lang="en">EN</button>
+            </div>
+          </div>
+          </div>
+        </header>
+        <div class="home-hero">
+          <h1 class="hero-title">Дизайн, анимация<br>и разработка</h1>
+          <aside class="home-side" aria-label="Быстрая навигация">
+            <button class="search-block" type="button" aria-label="Поиск">
+              <span class="search-label">Поиск</span>
+              <span class="search-line"></span>
+            </button>
+            <nav class="side-nav">
+              <a class="side-link" href="#order">Заказать</a>
+              <a class="side-link" href="#services">Услуги</a>
+            </nav>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="menu-backdrop" data-menu-close></div>
+  <section class="view menu-view" data-view="menu" aria-label="Меню">
+    <div class="menu-shell">
+      <div class="menu-top">
+        <button class="back-btn" type="button" data-menu-close aria-label="Закрыть меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        </button>
+        <a class="brand" href="#home" aria-label="WaveSign">
+          <span class="brand-text">WaveSign</span>
+        </a>
+      </div>
+      <button class="menu-search" type="button" aria-label="Поиск">
+        <span class="search-label">Поиск</span>
+        <span class="search-line"></span>
+      </button>
+      <nav class="menu-card" aria-label="Основная навигация">
+        <div class="menu-list">
+          <a class="menu-primary" href="#services">Услуги</a>
+          <a class="menu-secondary" href="#services" data-category-link="design">Дизайн и анимация</a>
+          <a class="menu-secondary" href="#services" data-category-link="development">Разработка</a>
+          <a class="menu-secondary" href="#services" data-category-link="additional">Дополнительно</a>
+          <span class="menu-spacer"></span>
+          <a class="menu-primary" href="#order">Заказать</a>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <section class="view content-page" data-view="services" aria-label="Услуги">
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="site-header__inner">
+          <div class="header-left">
+          <button class="hamburger" type="button" data-menu-open aria-label="Открыть меню"><span></span></button>
+          <a class="brand" href="#home" aria-label="WaveSign">
+            <span class="brand-text">WaveSign</span>
+          </a>
+        </div>
+        <div></div>
+        <div class="header-right">
+          <a class="order-link" href="#order">Заказать</a>
+          <div class="lang-switch" aria-label="Выбор языка">
+            <button class="lang-btn active" type="button" data-lang="ru">RU</button>
+            <button class="lang-btn" type="button" data-lang="uk">UA</button>
+            <button class="lang-btn" type="button" data-lang="en">EN</button>
+          </div>
+        </div>
+        </div>
+      </header>
+      <section class="catalog">
+        <div class="catalog-grid">
+          <aside class="category-list">
+            <h1 class="catalog-title">Услуги</h1>
+            <div class="cat-all">Все</div>
+            <div class="category-groups" id="categoryGroups"></div>
+          </aside>
+          <div class="cards-grid" id="servicesGrid"></div>
+          <aside class="catalog-side">
+            <button class="search-block" type="button" aria-label="Поиск">
+              <span class="search-label">Поиск</span>
+              <span class="search-line"></span>
+            </button>
+            <a class="side-link" href="#order">Заказать</a>
+            <a class="side-link" href="#services">Услуги</a>
+          </aside>
+        </div>
+      </section>
+    </div>
+    <footer class="site-footer" id="contacts">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="#home" aria-label="WaveSign">
+            <img class="brand-mark" src="new_logo.png" alt="">
+            <span class="brand-text">WaveSign</span>
+          </a>
+          <p class="footer-desc">IT-студия. Графический дизайн, моушн дизайн и разработка</p>
+          <p class="copyright">© 2026 WaveSign Studio.</p>
+        </div>
+        <div>
+          <div class="footer-title">Навигация</div>
+          <div class="footer-links">
+            <a href="#services">Услуги</a>
+            <a href="#order">Заказать</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Контакты</div>
+          <div class="footer-links">
+            <a href="https://t.me/wavesign">telegram: @wavesign</a>
+            <a href="mailto:wavesign.art@gmail.com">wavesign.art@gmail.com</a>
+            <a href="https://wa.me/">whatsapp: @wavesign</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+  <section class="view content-page order-page" data-view="order" aria-label="Форма заказа">
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="site-header__inner">
+          <div class="header-left">
+          <button class="hamburger" type="button" data-menu-open aria-label="Открыть меню"><span></span></button>
+          <a class="brand" href="#home" aria-label="WaveSign">
+            <span class="brand-text">WaveSign</span>
+          </a>
+        </div>
+        <div></div>
+        <div class="header-right">
+          <a class="order-link" href="#order">Заказать</a>
+          <div class="lang-switch" aria-label="Выбор языка">
+            <button class="lang-btn active" type="button" data-lang="ru">RU</button>
+            <button class="lang-btn" type="button" data-lang="uk">UA</button>
+            <button class="lang-btn" type="button" data-lang="en">EN</button>
+          </div>
+        </div>
+        </div>
+      </header>
+      <section class="order-section">
+        <div class="order-section-inner">
+          <div class="order-form-wrap">
+            <h1 class="order-page-title">Форма заказа</h1>
+            <form class="order-form" id="orderForm">
+              <label class="order-line order-line--service" for="orderService">
+                <span class="order-caption" id="orderServiceLabel">услуга</span>
+                <textarea class="order-field order-grow-field" id="orderService" name="service" autocomplete="off" rows="1"></textarea>
+              </label>
+              <label class="order-line order-line--idea" for="orderIdea">
+                <span class="order-caption" id="orderIdeaLabel">описание идеи</span>
+                <textarea class="order-field order-grow-field order-idea-field" id="orderIdea" name="idea" autocomplete="off" rows="1"></textarea>
+              </label>
+              <label class="order-line order-line--budget" for="orderBudget">
+                <span class="order-caption" id="orderBudgetLabel">бюджет</span>
+                <input class="order-field" id="orderBudget" name="budget" autocomplete="off" enterkeyhint="next">
+              </label>
+              <label class="order-line order-line--contact" for="orderContact">
+                <span class="order-caption" id="orderContactLabel">Контакты для связи</span>
+                <textarea class="order-field order-grow-field" id="orderContact" name="contact" autocomplete="off" rows="1"></textarea>
+              </label>
+              <button class="order-submit" type="submit">заказать</button>
+            </form>
+          </div>
+          <aside class="order-side" aria-label="Быстрая навигация">
+            <button class="search-block" type="button" aria-label="Поиск">
+              <span class="search-label">Поиск</span>
+              <span class="search-line"></span>
+            </button>
+            <nav class="side-nav">
+              <a class="side-link" href="#order">Заказать</a>
+              <a class="side-link" href="#services">Услуги</a>
+            </nav>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="view detail-page" data-view="detail" aria-label="Карточка услуги">
+    <div class="detail-hero">
+      <div class="page-shell">
+        <header class="site-header">
+          <div class="site-header__inner">
+            <div class="header-left">
+            <button class="hamburger" type="button" data-menu-open aria-label="Открыть меню"><span></span></button>
+            <a class="brand" href="#home" aria-label="WaveSign">
+              <span class="brand-text">WaveSign</span>
+            </a>
+          </div>
+          <div></div>
+          <div class="header-right">
+            <a class="order-link" href="#order">Заказать</a>
+            <div class="lang-switch" aria-label="Выбор языка">
+              <button class="lang-btn active" type="button" data-lang="ru">RU</button>
+              <button class="lang-btn" type="button" data-lang="uk">UA</button>
+              <button class="lang-btn" type="button" data-lang="en">EN</button>
+            </div>
+          </div>
+          </div>
+        </header>
+        <a class="detail-back" href="#services">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/><path d="M9 12h11"/></svg>
+          <span class="detail-back-label">Все услуги</span>
+        </a>
+        <section class="detail-layout">
+          <div class="detail-main-photo" aria-label="Место для фото"></div>
+          <aside class="detail-info">
+            <h1 class="detail-title" id="detailTitle">Лого</h1>
+            <div class="detail-price" id="detailPrice">$500</div>
+            <p class="detail-desc">описание описаниеописаниеописаниеописаниеописаниеописаниеописание</p>
+            <a class="detail-order" href="#order">заказать</a>
+          </aside>
+        </section>
+      </div>
+    </div>
+    <section class="detail-body">
+      <div class="page-shell">
+        <div class="service-gallery" id="serviceGallery" hidden></div>
+        <div class="detail-second-photo detail-gallery-placeholder" id="detailGalleryPlaceholder" aria-label="Место для фото"></div>
+      </div>
+    </section>
+    <footer class="site-footer" id="detailContacts">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="#home" aria-label="WaveSign">
+            <img class="brand-mark" src="new_logo.png" alt="">
+            <span class="brand-text">WaveSign</span>
+          </a>
+          <p class="footer-desc">IT-студия. Графический дизайн, моушн дизайн и разработка</p>
+          <p class="copyright">© 2026 WaveSign Studio.</p>
+        </div>
+        <div>
+          <div class="footer-title">Навигация</div>
+          <div class="footer-links">
+            <a href="#services">Услуги</a>
+            <a href="#order">Заказать</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-title">Контакты</div>
+          <div class="footer-links">
+            <a href="https://t.me/wavesign">telegram: @wavesign</a>
+            <a href="mailto:wavesign.art@gmail.com">wavesign.art@gmail.com</a>
+            <a href="https://wa.me/">whatsapp: @wavesign</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+</main>
+
+<div class="search-inline" id="searchInline" hidden>
+  <div class="search-inline-top">
+    <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input
+      type="text"
+      id="searchInput"
+      class="search-input"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="searchResults"
+      aria-autocomplete="list"
+      autocomplete="off"
+    >
+    <button type="button" class="search-close" data-search-close aria-label="Close search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <ul class="search-results" id="searchResults" role="listbox"></ul>
+  <p class="search-empty" id="searchEmpty" hidden></p>
+</div>
+
+<script src="./generated/service-media-manifest.js"></script>
+<script>
+const locales = {
+  ru: {
+    order:"Заказать",
+    services:"Услуги",
+    contacts:"Контакты",
+    search:"Поиск",
+    searchPlaceholder:"Поиск услуг",
+    searchNoResults:"Ничего не найдено",
+    heroTitle:"Дизайн, анимация<br>и разработка",
+    orderTitle:"Форма заказа",
+    orderService:"услуга",
+    orderIdea:"описание идеи",
+    orderBudget:"бюджет",
+    orderContact:"Контакты для связи",
+    orderSubmit:"заказать",
+    all:"Все",
+    nav:"Навигация",
+    footerDesc:"IT-студия. Графический дизайн, моушн дизайн и разработка",
+    contactTelegram:"telegram: @wavesign",
+    contactWhatsapp:"whatsapp: @wavesign",
+    detailDescription:"описание описаниеописаниеописаниеописаниеописаниеописаниеописание",
+    detailOrder:"заказать",
+    fromPrice:"от 100$",
+    detailFixedPrice:"$500",
+    backToServices:"Все услуги",
+    searchHint:"Начните вводить название услуги",
+    mediaProjectLabel:"работа"
+  },
+  uk: {
+    order:"Замовити",
+    services:"Послуги",
+    contacts:"Контакти",
+    search:"Пошук",
+    searchPlaceholder:"Пошук послуг",
+    searchNoResults:"Нічого не знайдено",
+    heroTitle:"Дизайн, анімація<br>і розробка",
+    orderTitle:"Форма замовлення",
+    orderService:"послуга",
+    orderIdea:"опис ідеї",
+    orderBudget:"бюджет",
+    orderContact:"Контакти для зв'язку",
+    orderSubmit:"замовити",
+    all:"Усе",
+    nav:"Навігація",
+    footerDesc:"IT-студія. Графічний дизайн, моушн дизайн і розробка",
+    contactTelegram:"telegram: @wavesign",
+    contactWhatsapp:"whatsapp: @wavesign",
+    detailDescription:"опис описописописописописописопис",
+    detailOrder:"замовити",
+    fromPrice:"від 100$",
+    detailFixedPrice:"$500",
+    backToServices:"Всі послуги",
+    searchHint:"Почніть вводити назву послуги",
+    mediaProjectLabel:"робота"
+  },
+  en: {
+    order:"Order",
+    services:"Services",
+    contacts:"Contacts",
+    search:"Search",
+    searchPlaceholder:"Search services",
+    searchNoResults:"No results found",
+    heroTitle:"Design, animation<br>and development",
+    orderTitle:"Order form",
+    orderService:"service",
+    orderIdea:"idea description",
+    orderBudget:"budget",
+    orderContact:"contact details",
+    orderSubmit:"order",
+    all:"All",
+    nav:"Navigation",
+    footerDesc:"IT studio. Graphic design, motion design and development",
+    contactTelegram:"telegram: @wavesign",
+    contactWhatsapp:"whatsapp: @wavesign",
+    detailDescription:"description descriptiondescriptiondescriptiondescriptiondescription",
+    detailOrder:"order",
+    fromPrice:"from $100",
+    detailFixedPrice:"$500",
+    backToServices:"All services",
+    searchHint:"Start typing a service name",
+    mediaProjectLabel:"project"
+  }
+};
+
+/* ---------- Language resolution (Task 1) ---------- */
+
+const SUPPORTED_LANGS = ["ru", "uk", "en"];
+const LANG_STORAGE_KEY = "wavesign-lang";
+const LEGACY_LANG_ALIASES = { ua: "uk" };
+
+function normalizeLangCode(code) {
+  if (!code) return null;
+  const primary = code.toString().trim().toLowerCase().split(/[-_]/)[0];
+  const mapped = LEGACY_LANG_ALIASES[primary] || primary;
+  return SUPPORTED_LANGS.includes(mapped) ? mapped : null;
+}
+
+function getCookie(name) {
+  try {
+    const escaped = name.replace(/([.$?*|{}()[\]\\/+^])/g, "\\$1");
+    const match = document.cookie.match(new RegExp("(?:^|; )" + escaped + "=([^;]*)"));
+    return match ? decodeURIComponent(match[1]) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function setCookie(name, value) {
+  try {
+    const oneYear = 60 * 60 * 24 * 365;
+    document.cookie = `${name}=${encodeURIComponent(value)};max-age=${oneYear};path=/;samesite=lax`;
+  } catch (error) {}
+}
+
+function readSavedLang() {
+  try {
+    const stored = localStorage.getItem(LANG_STORAGE_KEY);
+    const normalized = normalizeLangCode(stored);
+    if (normalized) return normalized;
+  } catch (error) {}
+  return normalizeLangCode(getCookie(LANG_STORAGE_KEY));
+}
+
+function saveLang(lang) {
+  try {
+    localStorage.setItem(LANG_STORAGE_KEY, lang);
+  } catch (error) {}
+  setCookie(LANG_STORAGE_KEY, lang);
+}
+
+function readUrlLang() {
+  try {
+    return normalizeLangCode(new URLSearchParams(window.location.search).get("lang"));
+  } catch (error) {
+    return null;
+  }
+}
+
+function detectBrowserLang() {
+  const candidates = (navigator.languages && navigator.languages.length)
+    ? navigator.languages
+    : [navigator.language].filter(Boolean);
+  for (const candidate of candidates) {
+    const normalized = normalizeLangCode(candidate);
+    if (normalized) return normalized;
+  }
+  return null;
+}
+
+function resolveInitialLang() {
+  return readUrlLang() || readSavedLang() || detectBrowserLang() || "en";
+}
+
+function syncLangInUrl(lang) {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", lang);
+    window.history.replaceState(window.history.state, "", url);
+  } catch (error) {}
+}
+
+let currentLang = resolveInitialLang();
+
+/* ---------- Single source of truth: services catalog (Task 3) ---------- */
+
+const SERVICE_CATEGORIES = [
+  { id:"design", name:{ en:"Design and animation", uk:"Дизайн і анімація", ru:"Дизайн и анимация" } },
+  { id:"development", name:{ en:"Development", uk:"Розробка", ru:"Разработка" } },
+  { id:"additional", name:{ en:"Additional", uk:"Додатково", ru:"Дополнительно" } }
+];
+
+const SERVICES_CATALOG = [
+  { id:"logo", categoryId:"design", group:0,
+    name:{ en:"Logo", uk:"Лого", ru:"Лого" },
+    keywords:{ en:["logo","logo design","brand mark","emblem"], uk:["лого","логотип","емблема"], ru:["лого","логотип","эмблема"] } },
+  { id:"logo-animation", categoryId:"design", group:0,
+    name:{ en:"Logo animation", uk:"Анімація лого", ru:"Анимация лого" },
+    keywords:{ en:["logo animation","animated logo","logo motion"], uk:["анімація лого","анімований логотип"], ru:["анимация лого","анимированный логотип"] } },
+  { id:"logo-animation-bundle", categoryId:"design", group:0,
+    name:{ en:"logo + animation", uk:"лого + анімація", ru:"лого + анимация" },
+    keywords:{ en:["logo + animation","logo and animation bundle","logo pack"], uk:["лого + анімація","лого та анімація"], ru:["лого + анимация","лого и анимация"] } },
+  { id:"brand-identity", categoryId:"design", group:1,
+    name:{ en:"brand identity", uk:"фірмовий стиль", ru:"фирменный стиль" },
+    keywords:{ en:["brand identity","branding","visual identity"], uk:["фірмовий стиль","брендинг"], ru:["фирменный стиль","брендинг"] } },
+  { id:"graphic-design", categoryId:"design", group:1,
+    name:{ en:"Graphic design", uk:"Графічний дизайн", ru:"Графический дизайн" },
+    keywords:{
+      en:["graphic design","graphics","menu design","menu","restaurant menu","cafe menu","price list","product card","product cards","product listing design","marketplace design","marketplace infographic","product infographic","photo editing","image editing","photo retouching","retouch","color correction","collage","photo manipulation","advertising banner","banner design","graphic materials"],
+      uk:["графічний дизайн","графіка","дизайн меню","меню","ресторанне меню","меню кафе","прайс","прайс-лист","картка товару","картки товарів","дизайн картки товару","маркетплейс","дизайн для маркетплейсу","інфографіка для маркетплейсу","інфографіка товару","обробка фотографій","обробка фото","редагування фото","ретуш","ретуш фотографій","кольорокорекція","колаж","фотомонтаж","рекламний банер","банер","графічні матеріали"],
+      ru:["графический дизайн","графика","дизайн меню","меню","ресторанное меню","кафе меню","прайс","прайс-лист","карточка товара","карточки товаров","дизайн карточки товара","маркетплейс","дизайн для маркетплейса","инфографика для маркетплейса","инфографика товара","обработка фотографий","обработка фото","редактирование фото","ретушь","ретушь фотографий","цветокоррекция","коллаж","фотомонтаж","рекламный баннер","баннер","графические материалы"]
+    } },
+  { id:"print-layouts", categoryId:"design", group:1,
+    name:{ en:"print layouts", uk:"макети для друку", ru:"макеты под печать" },
+    keywords:{
+      en:["print design","print layout","print-ready design","business card","business cards","postcard","postcards","flyer","flyers","leaflet","leaflets","booklet","booklets","brochure","brochures","poster","posters","print banner","calendar","calendars","certificate","certificates","invitation","invitations","sticker","stickers","label","labels","print","prints","printed materials","print preparation","promotional print","stationery"],
+      uk:["макети для друку","макет для друку","поліграфія","візитка","візитки","дизайн візитки","листівка","листівки","флаєр","флаєри","буклет","буклети","брошура","брошури","плакат","плакати","постер","постери","банер для друку","календар","календарі","сертифікат","сертифікати","запрошення","наліпка","наліпки","стікери","етикетка","етикетки","принт","принти","підготовка до друку","друкований макет","рекламна поліграфія"],
+      ru:["макеты под печать","макет для печати","полиграфия","визитка","визитки","дизайн визитки","открытка","открытки","дизайн открытки","листовка","листовки","флаер","флаеры","буклет","буклеты","брошюра","брошюры","плакат","плакаты","постер","постеры","баннер для печати","календарь","календари","сертификат","сертификаты","пригласительное","пригласительные","наклейка","наклейки","стикеры","этикетка","этикетки","принт","принты","подготовка к печати","печатный макет","рекламная полиграфия"]
+    } },
+  { id:"telegram-bot", categoryId:"development", group:0,
+    name:{ en:"Telegram Bot", uk:"Telegram Bot", ru:"Telegram Bot" },
+    keywords:{ en:["telegram bot","bot development","chatbot"], uk:["телеграм бот","чат-бот"], ru:["телеграм бот","чат-бот"] } },
+  { id:"ai-integration", categoryId:"development", group:0,
+    name:{ en:"AI integration", uk:"ШІ інтеграція", ru:"ИИ интеграция" },
+    keywords:{ en:["ai integration","artificial intelligence integration"], uk:["ші інтеграція","інтеграція ші","штучний інтелект"], ru:["ии интеграция","интеграция ии","искусственный интеллект"] } },
+  { id:"ai-agents", categoryId:"development", group:0,
+    name:{ en:"AI Agents", uk:"ШІ-Агенти", ru:"ИИ-Агенты" },
+    keywords:{ en:["ai agents","ai agent"], uk:["ші-агенти","ші агенти"], ru:["ии-агенты","ии агенты"] } },
+  { id:"turnkey-website", categoryId:"development", group:1,
+    name:{ en:"Turnkey website", uk:"Сайт під ключ", ru:"Сайт под ключ" },
+    keywords:{ en:["turnkey website","website development","site development"], uk:["сайт під ключ","розробка сайту"], ru:["сайт под ключ","разработка сайта"] } },
+  { id:"custom-software", categoryId:"development", group:1,
+    name:{ en:"Custom software", uk:"Софт на замовлення", ru:"Софт на заказ" },
+    keywords:{ en:["custom software","software development"], uk:["софт на замовлення","розробка по"], ru:["софт на заказ","разработка по"] } },
+  { id:"app-development", categoryId:"development", group:1,
+    name:{ en:"App development", uk:"Розробка застосунків", ru:"Разработка приложений" },
+    keywords:{ en:["app development","mobile app","application development"], uk:["розробка застосунків","мобільний застосунок"], ru:["разработка приложений","мобильное приложение"] } },
+  { id:"web3-development", categoryId:"development", group:2,
+    name:{ en:"Web3 development", uk:"Web3 розробка", ru:"Web3 разработка" },
+    keywords:{ en:["web3 development","web3","blockchain development"], uk:["web3 розробка","блокчейн розробка"], ru:["web3 разработка","блокчейн разработка"] } },
+  { id:"smart-contracts", categoryId:"development", group:2,
+    name:{ en:"Smart contracts", uk:"Смарт контракти", ru:"Смарт контракты" },
+    keywords:{ en:["smart contracts","smart contract"], uk:["смарт контракти","смарт-контракти"], ru:["смарт контракты","смарт-контракты"] } },
+  { id:"security-audit", categoryId:"development", group:2,
+    name:{ en:"Security audit", uk:"Аудит безпеки", ru:"Аудит безопасности" },
+    keywords:{ en:["security audit","code audit"], uk:["аудит безпеки"], ru:["аудит безопасности"] } },
+  { id:"naming", categoryId:"additional", group:0,
+    name:{ en:"Naming", uk:"Неймінг", ru:"Нейминг" },
+    keywords:{ en:["naming","brand naming"], uk:["неймінг","нейминг"], ru:["нейминг"] } },
+  { id:"slogans", categoryId:"additional", group:0,
+    name:{ en:"Slogans", uk:"Слогани", ru:"Слоганы" },
+    keywords:{ en:["slogans","tagline"], uk:["слогани","гасло"], ru:["слоганы"] } },
+  { id:"consultation", categoryId:"additional", group:1,
+    name:{ en:"Consultation", uk:"Консультація", ru:"Консультация" },
+    keywords:{ en:["consultation","consulting"], uk:["консультація"], ru:["консультация"] } },
+  { id:"info-search", categoryId:"additional", group:2,
+    name:{ en:"Information search", uk:"Пошук інформації", ru:"Поиск информации" },
+    keywords:{ en:["information search","research"], uk:["пошук інформації"], ru:["поиск информации"] } },
+  { id:"transcription", categoryId:"additional", group:2,
+    name:{ en:"Transcription", uk:"Транскрибація", ru:"Транскрибация" },
+    keywords:{ en:["transcription","audio transcription"], uk:["транскрибація","розшифровка аудіо"], ru:["транскрибация","расшифровка аудио"] } }
+];
+
+const SERVICE_ID_REDIRECTS = {
+  "business-cards": "print-layouts",
+  postcards: "print-layouts",
+  "menu-design": "graphic-design",
+  "product-cards": "graphic-design",
+  "photo-retouching": "graphic-design"
+};
+
+const SERVICE_DETAIL_DESCRIPTIONS = {
+  "logo": {
+    ru: "Разрабатываем уникальный логотип, который отражает характер бренда и остаётся узнаваемым в цифровых и печатных материалах.",
+    uk: "Розробляємо унікальний логотип, який відображає характер бренду і залишається впізнаваним у цифрових та друкованих матеріалах.",
+    en: "We design a unique logo that reflects your brand's character and stays recognizable across digital and print materials."
+  },
+  "logo-animation": {
+    ru: "Оживляем существующий логотип с помощью динамичной анимации для видео, социальных сетей, презентаций и цифровых продуктов.",
+    uk: "Оживляємо наявний логотип за допомогою динамічної анімації для відео, соціальних мереж, презентацій і цифрових продуктів.",
+    en: "We bring your existing logo to life with dynamic animation for video, social media, presentations, and digital products."
+  },
+  "logo-animation-bundle": {
+    ru: "Создаём логотип и сразу разрабатываем его анимированную версию, чтобы бренд получил цельную статичную и динамичную айдентику.",
+    uk: "Створюємо логотип і одразу розробляємо його анімовану версію, щоб бренд отримав цілісну статичну й динамічну айдентику.",
+    en: "We create a logo and its animated version together, giving your brand a cohesive static and motion identity."
+  },
+  "brand-identity": {
+    ru: "Формируем единую визуальную систему бренда: цвета, типографику, графические элементы и правила их использования.",
+    uk: "Формуємо єдину візуальну систему бренду: кольори, типографіку, графічні елементи та правила їх використання.",
+    en: "We build a consistent visual system for your brand: colors, typography, graphic elements, and usage guidelines."
+  },
+  "graphic-design": {
+    ru: "Создаём меню и прайс-листы, карточки товаров, инфографику, рекламные баннеры и другие графические материалы. Выполняем обработку, ретушь и цветокоррекцию фотографий.",
+    uk: "Створюємо меню та прайс-листи, картки товарів, інфографіку, рекламні банери й інші графічні матеріали. Виконуємо обробку, ретуш і кольорокорекцію фотографій.",
+    en: "We create menus, price lists, product cards, infographics, advertising banners, and other graphic materials. We also provide photo editing, retouching, and color correction."
+  },
+  "print-layouts": {
+    ru: "Подготавливаем макеты для качественной печати: визитки, открытки, флаеры, буклеты, постеры, календари, сертификаты, приглашения, наклейки, этикетки и принты.",
+    uk: "Готуємо макети для якісного друку: візитки, листівки, флаєри, буклети, постери, календарі, сертифікати, запрошення, наліпки, етикетки та принти.",
+    en: "We create print-ready layouts for business cards, postcards, flyers, booklets, posters, calendars, certificates, invitations, stickers, labels, and prints."
+  },
+  "telegram-bot": {
+    ru: "Разрабатываем Telegram-ботов для автоматизации общения, обработки заявок, продаж, поддержки клиентов и внутренних процессов.",
+    uk: "Розробляємо Telegram-ботів для автоматизації спілкування, обробки заявок, продажів, підтримки клієнтів і внутрішніх процесів.",
+    en: "We build Telegram bots that automate communication, request handling, sales, customer support, and internal workflows."
+  },
+  "ai-integration": {
+    ru: "Встраиваем инструменты искусственного интеллекта в существующие сайты, сервисы и рабочие процессы для автоматизации типовых задач.",
+    uk: "Впроваджуємо інструменти штучного інтелекту в наявні сайти, сервіси та робочі процеси для автоматизації типових завдань.",
+    en: "We integrate AI tools into existing websites, services, and workflows to automate routine tasks."
+  },
+  "ai-agents": {
+    ru: "Создаём ИИ-агентов, которые работают с данными, выполняют последовательности действий и помогают автоматизировать бизнес-процессы.",
+    uk: "Створюємо ШІ-агентів, які працюють з даними, виконують послідовності дій і допомагають автоматизувати бізнес-процеси.",
+    en: "We build AI agents that work with data, execute sequences of actions, and help automate business processes."
+  },
+  "turnkey-website": {
+    ru: "Проектируем и разрабатываем сайт от структуры и дизайна до запуска, адаптации под устройства и подключения необходимых функций.",
+    uk: "Проєктуємо і розробляємо сайт від структури та дизайну до запуску, адаптації під пристрої й підключення потрібних функцій.",
+    en: "We design and build your website from structure and design to launch, device adaptation, and feature integration."
+  },
+  "custom-software": {
+    ru: "Разрабатываем специализированное программное обеспечение под конкретные процессы, задачи и требования проекта.",
+    uk: "Розробляємо спеціалізоване програмне забезпечення під конкретні процеси, завдання та вимоги проєкту.",
+    en: "We develop custom software tailored to your specific processes, tasks, and project requirements."
+  },
+  "app-development": {
+    ru: "Создаём веб- и мобильные приложения с продуманным интерфейсом, необходимой логикой и интеграциями с внешними сервисами.",
+    uk: "Створюємо веб- і мобільні застосунки з продуманим інтерфейсом, необхідною логікою та інтеграціями із зовнішніми сервісами.",
+    en: "We build web and mobile apps with a thoughtful interface, the logic you need, and integrations with external services."
+  },
+  "web3-development": {
+    ru: "Разрабатываем Web3-продукты и интеграции с блокчейн-сетями, кошельками, токенами и децентрализованными приложениями.",
+    uk: "Розробляємо Web3-продукти та інтеграції з блокчейн-мережами, гаманцями, токенами й децентралізованими застосунками.",
+    en: "We build Web3 products and integrations with blockchain networks, wallets, tokens, and decentralized applications."
+  },
+  "smart-contracts": {
+    ru: "Проектируем и разрабатываем смарт-контракты для автоматического и прозрачного выполнения операций в блокчейн-среде.",
+    uk: "Проєктуємо і розробляємо смарт-контракти для автоматичного й прозорого виконання операцій у блокчейн-середовищі.",
+    en: "We design and develop smart contracts for automatic, transparent execution of operations on the blockchain."
+  },
+  "security-audit": {
+    ru: "Проверяем код, архитектуру и потенциальные уязвимости цифрового продукта и формируем рекомендации по снижению рисков.",
+    uk: "Перевіряємо код, архітектуру та потенційні вразливості цифрового продукту й формуємо рекомендації щодо зниження ризиків.",
+    en: "We review the code, architecture, and potential vulnerabilities of your product and provide recommendations to reduce risk."
+  },
+  "naming": {
+    ru: "Разрабатываем запоминающееся название для бренда, продукта или сервиса с учётом позиционирования и целевой аудитории.",
+    uk: "Розробляємо запам'ятовувану назву для бренду, продукту чи сервісу з урахуванням позиціонування та цільової аудиторії.",
+    en: "We create a memorable name for your brand, product, or service based on positioning and target audience."
+  },
+  "slogans": {
+    ru: "Создаём короткие и выразительные слоганы, которые передают основную идею бренда и подходят для рекламных коммуникаций.",
+    uk: "Створюємо короткі та виразні слогани, які передають основну ідею бренду й підходять для рекламних комунікацій.",
+    en: "We craft short, expressive slogans that capture your brand's core idea and work well in advertising communications."
+  },
+  "consultation": {
+    ru: "Разбираем задачу, оцениваем возможные решения и помогаем определить оптимальный формат, объём и последовательность работ.",
+    uk: "Розбираємо задачу, оцінюємо можливі рішення та допомагаємо визначити оптимальний формат, обсяг і послідовність робіт.",
+    en: "We break down the task, evaluate possible solutions, and help define the right format, scope, and order of work."
+  },
+  "info-search": {
+    ru: "Собираем, проверяем и структурируем информацию по заданной теме, чтобы подготовить удобную основу для анализа или дальнейшей работы.",
+    uk: "Збираємо, перевіряємо та структуруємо інформацію за заданою темою, щоб підготувати зручну основу для аналізу чи подальшої роботи.",
+    en: "We gather, verify, and structure information on a given topic to provide a solid foundation for analysis or further work."
+  },
+  "transcription": {
+    ru: "Преобразуем аудио и видео в структурированный текст с понятным форматированием и, при необходимости, разделением по участникам.",
+    uk: "Перетворюємо аудіо та відео на структурований текст із зрозумілим форматуванням і, за потреби, розподілом за учасниками.",
+    en: "We convert audio and video into structured text with clear formatting and, if needed, speaker-by-speaker separation."
+  }
+};
+
+function resolveServiceId(serviceId) {
+  return SERVICE_ID_REDIRECTS[serviceId] || serviceId;
+}
+
+SERVICES_CATALOG.forEach((service) => {
+  ["ru", "uk", "en"].forEach((locale) => {
+    const text = SERVICE_DETAIL_DESCRIPTIONS[service.id]?.[locale];
+    if (!text || !text.trim()) {
+      console.warn(`Missing description: ${service.id}/${locale}`);
+    }
+  });
+});
+
+function getServiceDetailDescription(service) {
+  return SERVICE_DETAIL_DESCRIPTIONS[service.id]?.[currentLang] || locales[currentLang].detailDescription;
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (ch) => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  }[ch]));
+}
+
+const SERVICE_MEDIA_MANIFEST = window.SERVICE_MEDIA_MANIFEST || {};
+
+function getServiceMedia(serviceId) {
+  return SERVICE_MEDIA_MANIFEST[serviceId] || { folder:null, cover:null, items:[] };
+}
+
+function getMediaMime(item) {
+  if (item.type === "video") return item.extension === "webm" ? "video/webm" : "video/mp4";
+  if (item.extension === "svg") return "image/svg+xml";
+  return `image/${item.extension === "jpg" ? "jpeg" : item.extension}`;
+}
+
+function getMediaClass(item) {
+  return [
+    item.orientation ? `is-${item.orientation}` : "",
+    item.type === "video" ? "is-video" : ""
+  ].filter(Boolean).join(" ");
+}
+
+function getMediaAlt(service, index) {
+  const l = locales[currentLang] || locales.en;
+  const serviceName = service.name[currentLang] || service.name.en || service.id;
+  return `${serviceName} — ${l.mediaProjectLabel || "project"} ${index}`;
+}
+
+function renderMediaElement(item, alt, options = {}) {
+  const source = escapeHtml(item.src);
+  const label = escapeHtml(alt);
+  const fallbackAttr = 'data-service-media';
+
+  if (item.type === "video") {
+    return `
+      <video ${fallbackAttr} autoplay muted loop playsinline preload="metadata" aria-label="${label}">
+        <source src="${source}" type="${getMediaMime(item)}">
+      </video>
+    `;
+  }
+
+  const loading = options.eager ? "eager" : "lazy";
+  return `<img ${fallbackAttr} src="${source}" alt="${label}" loading="${loading}" decoding="async">`;
+}
+
+function getCardMediaItem(service) {
+  const media = getServiceMedia(service.id);
+  const items = Array.isArray(media.items) ? media.items : [];
+  return media.cover || items[0] || null;
+}
+
+function renderCardPlaceholderLabel(label) {
+  return `<span class="service-card__placeholder-label">${escapeHtml(label)}</span>`;
+}
+
+function renderCardPlaceholder(service) {
+  const label = service.name[currentLang] || service.name.en || service.id;
+  return `
+    <span class="photo-box service-card__placeholder" aria-label="${escapeHtml(label)}" data-card-placeholder-label="${escapeHtml(label)}">
+      ${renderCardPlaceholderLabel(label)}
+    </span>
+  `;
+}
+
+function applyCardPlaceholder(container) {
+  const label = container.dataset.cardPlaceholderLabel || container.getAttribute("aria-label") || "";
+  container.classList.remove("has-media", "is-landscape", "is-portrait", "is-square", "is-video");
+  container.classList.add("service-card__placeholder", "media-error");
+  container.innerHTML = renderCardPlaceholderLabel(label);
+  if (label) container.setAttribute("aria-label", label);
+}
+
+function renderServiceDetailPlaceholder(service) {
+  const label = service.name[currentLang] || service.name.en || service.id;
+  return `<span class="service-detail__placeholder-title">${escapeHtml(label)}</span>`;
+}
+
+function renderCardMedia(service, index) {
+  const cover = getCardMediaItem(service);
+  if (!cover) return renderCardPlaceholder(service);
+  const mediaClass = getMediaClass(cover);
+  const alt = getMediaAlt(service, 1);
+  return `
+    <span class="photo-box has-media ${mediaClass}" aria-label="${escapeHtml(alt)}" data-card-placeholder-label="${escapeHtml(service.name[currentLang] || service.name.en || service.id)}">
+      ${renderMediaElement(cover, alt, { eager:index < 3 })}
+    </span>
+  `;
+}
+
+const grid = document.getElementById("servicesGrid");
+function renderServices() {
+  if (!grid) return;
+  const l = locales[currentLang];
+  grid.innerHTML = SERVICES_CATALOG.map((service, index) => `
+    <a class="service-card" href="#service-${service.id}">
+      ${renderCardMedia(service, index)}
+      <span class="service-meta">
+        <span class="service-name">${escapeHtml(service.name[currentLang])}</span>
+        <span class="service-price">${service.id === "logo" ? l.detailFixedPrice : l.fromPrice}</span>
+      </span>
+    </a>
+  `).join("");
+}
+
+function sameMediaItem(a, b) {
+  return Boolean(a && b && a.src === b.src);
+}
+
+function renderServiceDetailMedia(service) {
+  const media = getServiceMedia(service.id);
+  const items = Array.isArray(media.items) ? media.items : [];
+  const hasMedia = Boolean(media.cover) || items.length > 0;
+  const mainItem = media.cover || items[0] || null;
+  const galleryItems = mainItem
+    ? items.filter((item) => !sameMediaItem(item, mainItem))
+    : [];
+
+  if (detailMainPhoto) {
+    detailMainPhoto.classList.toggle("has-media", hasMedia);
+    detailMainPhoto.classList.remove("media-error", "service-detail__placeholder", "is-landscape", "is-portrait", "is-square", "is-video");
+    if (mainItem) {
+      getMediaClass(mainItem).split(" ").filter(Boolean).forEach((className) => detailMainPhoto.classList.add(className));
+      detailMainPhoto.innerHTML = renderMediaElement(mainItem, getMediaAlt(service, 1), { eager:true });
+      detailMainPhoto.setAttribute("aria-label", getMediaAlt(service, 1));
+    } else {
+      const label = service.name[currentLang] || service.name.en || service.id;
+      detailMainPhoto.classList.add("service-detail__placeholder");
+      detailMainPhoto.innerHTML = renderServiceDetailPlaceholder(service);
+      detailMainPhoto.setAttribute("aria-label", label);
+    }
+  }
+
+  if (!serviceGallery || !detailGalleryPlaceholder) return;
+
+  if (!hasMedia) {
+    serviceGallery.hidden = true;
+    serviceGallery.innerHTML = "";
+    detailGalleryPlaceholder.hidden = true;
+    return;
+  }
+
+  if (!galleryItems.length) {
+    serviceGallery.hidden = true;
+    serviceGallery.innerHTML = "";
+    detailGalleryPlaceholder.hidden = true;
+    return;
+  }
+
+  if (detailBody) detailBody.hidden = false;
+  serviceGallery.hidden = false;
+  detailGalleryPlaceholder.hidden = true;
+  serviceGallery.innerHTML = galleryItems.map((item, index) => {
+    const alt = getMediaAlt(service, index + 2);
+    const mediaClass = getMediaClass(item);
+    return `
+      <figure class="service-gallery-item ${mediaClass}">
+        ${renderMediaElement(item, alt)}
+      </figure>
+    `;
+  }).join("");
+}
+
+/* ---------- Services accordion (Task 2) ---------- */
+
+const CHEVRON_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+const openCategoryIds = new Set();
+
+function setPanelInert(panel, shouldHide) {
+  if (!panel) return;
+  if ("inert" in panel) panel.inert = shouldHide;
+  panel.setAttribute("aria-hidden", String(shouldHide));
+  panel.querySelectorAll("a").forEach((link) => {
+    link.tabIndex = shouldHide ? -1 : 0;
+  });
+}
+
+function applyCategoryOpenState(categoryId) {
+  const toggle = document.getElementById(`catToggle-${categoryId}`);
+  const panel = document.getElementById(`catPanel-${categoryId}`);
+  if (!toggle || !panel) return;
+  const isOpen = openCategoryIds.has(categoryId);
+  toggle.setAttribute("aria-expanded", String(isOpen));
+  panel.classList.toggle("open", isOpen);
+  setPanelInert(panel, !isOpen);
+}
+
+function closeOtherCategories(categoryId) {
+  Array.from(openCategoryIds).forEach((id) => {
+    if (id === categoryId) return;
+    openCategoryIds.delete(id);
+    applyCategoryOpenState(id);
+  });
+}
+
+function toggleCategory(categoryId) {
+  const isOpen = openCategoryIds.has(categoryId);
+  closeOtherCategories(categoryId);
+  if (isOpen) {
+    openCategoryIds.delete(categoryId);
+  } else {
+    openCategoryIds.add(categoryId);
+  }
+  applyCategoryOpenState(categoryId);
+}
+
+function expandCategory(categoryId) {
+  closeOtherCategories(categoryId);
+  openCategoryIds.add(categoryId);
+  applyCategoryOpenState(categoryId);
+}
+
+function renderCategoryList() {
+  const container = document.getElementById("categoryGroups");
+  if (!container) return;
+
+  container.innerHTML = SERVICE_CATEGORIES.map((category) => {
+    const items = SERVICES_CATALOG.filter((service) => service.categoryId === category.id);
+    const groupCount = items.reduce((max, service) => Math.max(max, service.group), 0) + 1;
+    const groupsHtml = Array.from({ length: groupCount }, (_, groupIndex) => {
+      const groupItems = items.filter((service) => service.group === groupIndex);
+      const linksHtml = groupItems.map((service) =>
+        `<a href="#service-${service.id}" data-service-id="${service.id}">${escapeHtml(service.name[currentLang])}</a>`
+      ).join("");
+      return `<div class="cat-items">${linksHtml}</div>`;
+    }).join("");
+
+    const toggleId = `catToggle-${category.id}`;
+    const panelId = `catPanel-${category.id}`;
+    const isOpen = openCategoryIds.has(category.id);
+
+    return `
+      <div class="cat-group">
+        <button type="button" class="cat-heading cat-toggle" id="${toggleId}" aria-expanded="${isOpen}" aria-controls="${panelId}">
+          <span class="cat-toggle-label">${escapeHtml(category.name[currentLang])}</span>
+          <span class="cat-toggle-icon" aria-hidden="true">${CHEVRON_SVG}</span>
+        </button>
+        <div class="cat-panel${isOpen ? " open" : ""}" id="${panelId}" role="region" aria-labelledby="${toggleId}">
+          <div class="cat-panel-inner">${groupsHtml}</div>
+        </div>
+      </div>`;
+  }).join("");
+
+  SERVICE_CATEGORIES.forEach((category) => {
+    setPanelInert(document.getElementById(`catPanel-${category.id}`), !openCategoryIds.has(category.id));
+  });
+}
+
+document.addEventListener("click", (event) => {
+  const toggle = event.target.closest(".cat-toggle");
+  if (!toggle) return;
+  toggleCategory(toggle.id.replace("catToggle-", ""));
+});
+
+document.addEventListener("click", (event) => {
+  const categoryLink = event.target.closest("[data-category-link]");
+  if (!categoryLink) return;
+  expandCategory(categoryLink.dataset.categoryLink);
+});
+
+/* ---------- Multilingual fuzzy search (Task 3) ---------- */
+
+function normalizeSearchText(value) {
+  return (value || "")
+    .toString()
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .replace(/['’ʼ`´‘]/g, "'")
+    .replace(/[-–—‑]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function levenshtein(a, b) {
+  const rows = a.length + 1;
+  const cols = b.length + 1;
+  const matrix = Array.from({ length: rows }, (_, i) => [i, ...new Array(cols - 1).fill(0)]);
+  for (let j = 0; j < cols; j += 1) matrix[0][j] = j;
+  for (let i = 1; i < rows; i += 1) {
+    for (let j = 1; j < cols; j += 1) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + cost
+      );
+    }
+  }
+  return matrix[rows - 1][cols - 1];
+}
+
+function fuzzyTokenMatches(queryToken, fieldToken) {
+  if (!queryToken || !fieldToken) return false;
+  if (fieldToken.includes(queryToken)) return true;
+  if (queryToken.length < 4) return false;
+  const maxDistance = queryToken.length <= 6 ? 1 : 2;
+  return levenshtein(queryToken, fieldToken) <= maxDistance;
+}
+
+function scoreField(queryNorm, queryTokens, fieldNorm) {
+  if (!fieldNorm) return 0;
+  if (fieldNorm === queryNorm) return 100;
+  if (fieldNorm.startsWith(queryNorm)) return 80;
+  if (fieldNorm.includes(queryNorm)) return 60;
+  const fieldTokens = fieldNorm.split(" ");
+  let matchedTokens = 0;
+  queryTokens.forEach((queryToken) => {
+    if (fieldTokens.some((fieldToken) => fuzzyTokenMatches(queryToken, fieldToken))) matchedTokens += 1;
+  });
+  if (matchedTokens === 0) return 0;
+  return Math.round((matchedTokens / queryTokens.length) * 40);
+}
+
+function searchServices(query, limit = 8) {
+  const queryNorm = normalizeSearchText(query);
+  if (!queryNorm) return [];
+  const queryTokens = queryNorm.split(" ").filter(Boolean);
+
+  const scored = SERVICES_CATALOG.map((service) => {
+    const fields = [
+      service.name.en, service.name.uk, service.name.ru,
+      ...service.keywords.en, ...service.keywords.uk, ...service.keywords.ru
+    ];
+    const best = fields.reduce((max, field) => {
+      const score = scoreField(queryNorm, queryTokens, normalizeSearchText(field));
+      return Math.max(max, score);
+    }, 0);
+    return { service, score: best };
+  }).filter((entry) => entry.score > 0);
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, limit).map((entry) => entry.service);
+}
+
+const searchInline = document.getElementById("searchInline");
+const searchInput = document.getElementById("searchInput");
+const searchResultsList = document.getElementById("searchResults");
+const searchEmpty = document.getElementById("searchEmpty");
+let searchActiveIndex = -1;
+let searchResultsData = [];
+let searchLastFocusedElement = null;
+let activeSearchTrigger = null;
+let activeSearchLocation = null;
+
+function syncSearchTriggerState() {
+  if (!activeSearchTrigger || !searchInput) return;
+  const hasQuery = searchInput.value.trim().length > 0;
+  activeSearchTrigger.classList.toggle("is-search-querying", hasQuery);
+}
+
+function openSearch(triggerElement) {
+  if (!searchInline || !triggerElement || searchInline.contains(triggerElement)) return;
+  searchLastFocusedElement = triggerElement;
+  if (activeSearchTrigger && activeSearchTrigger !== triggerElement) {
+    activeSearchTrigger.hidden = false;
+    activeSearchTrigger.classList.remove("is-search-open", "is-search-querying");
+  }
+  activeSearchLocation = triggerElement.classList.contains("menu-search") ? "drawer" : "desktop-nav";
+  searchInline.classList.remove("search-inline--side", "search-inline--menu");
+  searchInline.classList.add(activeSearchLocation === "drawer" ? "search-inline--menu" : "search-inline--side");
+  searchInline.style.setProperty("--search-inline-width", `${Math.ceil(triggerElement.getBoundingClientRect().width)}px`);
+  triggerElement.insertAdjacentElement("afterend", searchInline);
+  triggerElement.hidden = false;
+  triggerElement.classList.add("is-search-open");
+  triggerElement.classList.remove("is-search-querying");
+  activeSearchTrigger = triggerElement;
+  searchInline.hidden = false;
+  if (searchInput) searchInput.value = "";
+  renderSearchResults([]);
+  requestAnimationFrame(() => searchInput?.focus());
+  document.addEventListener("keydown", handleSearchKeydown, true);
+}
+
+function closeSearch({ restoreFocus = true } = {}) {
+  if (!searchInline || searchInline.hidden) return;
+  searchInline.hidden = true;
+  searchInline.classList.remove("search-inline--side", "search-inline--menu");
+  searchInline.style.removeProperty("--search-inline-width");
+  if (searchInput) {
+    searchInput.value = "";
+    searchInput.setAttribute("aria-expanded", "false");
+    searchInput.removeAttribute("aria-activedescendant");
+  }
+  renderSearchResults([]);
+  if (activeSearchTrigger) {
+    activeSearchTrigger.hidden = false;
+    activeSearchTrigger.classList.remove("is-search-open", "is-search-querying");
+  }
+  activeSearchTrigger = null;
+  activeSearchLocation = null;
+  document.removeEventListener("keydown", handleSearchKeydown, true);
+  if (restoreFocus && searchLastFocusedElement && typeof searchLastFocusedElement.focus === "function") {
+    searchLastFocusedElement.focus();
+  }
+}
+
+function updateSearchActiveDescendant() {
+  if (!searchResultsList || !searchInput) return;
+  searchResultsList.querySelectorAll(".search-result").forEach((node, index) => {
+    node.setAttribute("aria-selected", String(index === searchActiveIndex));
+  });
+  if (searchActiveIndex >= 0) {
+    searchInput.setAttribute("aria-activedescendant", `search-result-${searchActiveIndex}`);
+    document.getElementById(`search-result-${searchActiveIndex}`)?.scrollIntoView({ block:"nearest" });
+  } else {
+    searchInput.removeAttribute("aria-activedescendant");
+  }
+}
+
+function renderSearchResults(results) {
+  if (!searchResultsList || !searchInput || !searchEmpty) return;
+  searchResultsData = results;
+  searchActiveIndex = results.length ? 0 : -1;
+  const l = locales[currentLang];
+
+  searchResultsList.innerHTML = results.map((service, index) => {
+    const category = SERVICE_CATEGORIES.find((c) => c.id === service.categoryId);
+    return `
+      <li class="search-result" id="search-result-${index}" role="option" data-service-id="${service.id}" aria-selected="${index === searchActiveIndex}">
+        <span class="search-result-name">${escapeHtml(service.name[currentLang])}</span>
+        <span class="search-result-category">${category ? escapeHtml(category.name[currentLang]) : ""}</span>
+      </li>`;
+  }).join("");
+
+  const hasQuery = searchInput.value.trim().length > 0;
+  if (!hasQuery) {
+    searchResultsList.hidden = true;
+    searchEmpty.hidden = true;
+    searchEmpty.textContent = "";
+  } else if (results.length === 0) {
+    searchResultsList.hidden = true;
+    searchEmpty.hidden = false;
+    searchEmpty.textContent = l.searchNoResults;
+  } else {
+    searchResultsList.hidden = false;
+    searchEmpty.hidden = true;
+    searchEmpty.textContent = "";
+  }
+
+  searchInput.setAttribute("aria-expanded", String(hasQuery && results.length > 0));
+  syncSearchTriggerState();
+  updateSearchActiveDescendant();
+}
+
+function selectSearchResultById(serviceId) {
+  const service = SERVICES_CATALOG.find((s) => s.id === serviceId);
+  if (!service) return;
+  expandCategory(service.categoryId);
+  closeSearch();
+  window.location.hash = `#service-${service.id}`;
+}
+
+function handleSearchKeydown(event) {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    event.stopPropagation();
+    closeSearch();
+    return;
+  }
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    if (searchResultsData.length) {
+      searchActiveIndex = (searchActiveIndex + 1) % searchResultsData.length;
+      updateSearchActiveDescendant();
+    }
+    return;
+  }
+  if (event.key === "ArrowUp") {
+    event.preventDefault();
+    if (searchResultsData.length) {
+      searchActiveIndex = (searchActiveIndex - 1 + searchResultsData.length) % searchResultsData.length;
+      updateSearchActiveDescendant();
+    }
+    return;
+  }
+  if (event.key === "Enter") {
+    event.preventDefault();
+    if (searchActiveIndex >= 0) selectSearchResultById(searchResultsData[searchActiveIndex].id);
+  }
+}
+
+searchInput?.addEventListener("input", () => {
+  renderSearchResults(searchServices(searchInput.value));
+});
+
+searchResultsList?.addEventListener("click", (event) => {
+  const item = event.target.closest(".search-result");
+  if (!item) return;
+  selectSearchResultById(item.dataset.serviceId);
+});
+
+searchInline?.querySelector("[data-search-close]")?.addEventListener("pointerdown", (event) => {
+  event.stopPropagation();
+});
+
+searchInline?.querySelector("[data-search-close]")?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  closeSearch();
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-search-close]")) {
+    event.preventDefault();
+    event.stopPropagation();
+    closeSearch();
+    return;
+  }
+  if (searchInline?.contains(event.target)) return;
+
+  const trigger = event.target.closest("button.search-block, button.menu-search");
+  if (trigger) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (trigger === activeSearchTrigger && searchInline && !searchInline.hidden) {
+      searchInput?.focus();
+      return;
+    }
+    openSearch(trigger);
+    return;
+  }
+});
+
+function renderOrderText() {
+  const l = locales[currentLang];
+  setText(".order-page-title", l.orderTitle);
+  setText("#orderServiceLabel", l.orderService);
+  setText("#orderIdeaLabel", l.orderIdea);
+  setText("#orderBudgetLabel", l.orderBudget);
+  setText("#orderContactLabel", l.orderContact);
+  if (orderService) orderService.setAttribute("aria-label", l.orderService);
+  if (orderIdea) orderIdea.setAttribute("aria-label", l.orderIdea);
+  if (orderBudget) orderBudget.setAttribute("aria-label", l.orderBudget);
+  if (orderContact) orderContact.setAttribute("aria-label", l.orderContact);
+  setText(".order-submit", l.orderSubmit);
+}
+
+function fillOrderFormFromDraft() {
+  if (orderService) orderService.value = orderDraft.service || "";
+  if (orderBudget) orderBudget.value = orderDraft.budget || "";
+  requestAnimationFrame(resizeOrderTextareas);
+}
+
+const views = Array.from(document.querySelectorAll(".view"));
+const homeHeader = document.querySelector(".home .site-header");
+const menuView = document.querySelector(".menu-view");
+const menuBackdrop = document.querySelector(".menu-backdrop");
+const detailTitle = document.getElementById("detailTitle");
+const detailPrice = document.getElementById("detailPrice");
+const detailDesc = document.querySelector(".detail-desc");
+const detailMainPhoto = document.querySelector(".detail-main-photo");
+const detailBody = document.querySelector(".detail-body");
+const serviceGallery = document.getElementById("serviceGallery");
+const detailGalleryPlaceholder = document.getElementById("detailGalleryPlaceholder");
+const orderForm = document.getElementById("orderForm");
+const orderService = document.getElementById("orderService");
+const orderIdea = document.getElementById("orderIdea");
+const orderBudget = document.getElementById("orderBudget");
+const orderContact = document.getElementById("orderContact");
+const orderTextareas = Array.from(document.querySelectorAll(".order-grow-field"));
+let orderDraft = {service:"", budget:""};
+let viewTransitionTimer = null;
+
+function resizeOrderTextareas(preserveScroll = false) {
+  const scrollLeft = window.scrollX;
+  const scrollTop = window.scrollY;
+  const root = document.documentElement;
+  const previousScrollBehavior = root.style.scrollBehavior;
+  if (preserveScroll) root.style.scrollBehavior = "auto";
+
+  orderTextareas.forEach((field) => {
+    const minHeight = parseFloat(window.getComputedStyle(field).minHeight) || 0;
+    field.style.height = `${minHeight}px`;
+    field.style.height = `${Math.max(field.scrollHeight, minHeight)}px`;
+    if (field === document.activeElement) field.scrollTop = field.scrollHeight;
+  });
+
+  if (preserveScroll) {
+    window.scrollTo(scrollLeft, scrollTop);
+    requestAnimationFrame(() => {
+      window.scrollTo(scrollLeft, scrollTop);
+      root.style.scrollBehavior = previousScrollBehavior;
+    });
+  }
+}
+
+function setText(selector, value) {
+  document.querySelectorAll(selector).forEach((node) => {
+    node.textContent = value;
+  });
+}
+
+function setHTML(selector, value) {
+  document.querySelectorAll(selector).forEach((node) => {
+    node.innerHTML = value;
+  });
+}
+
+function applyLang() {
+  const l = locales[currentLang];
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll(".lang-btn").forEach((button) => {
+    button.classList.toggle("active", button.dataset.lang === currentLang);
+  });
+
+  setHTML(".hero-title", l.heroTitle);
+  setText(".order-link", l.order);
+  setText(".search-label", l.search);
+  document.querySelectorAll(".side-link[href='#order']").forEach((node) => node.textContent = l.order);
+  document.querySelectorAll(".side-link[href='#services']").forEach((node) => node.textContent = l.services);
+
+  const menuLinks = document.querySelectorAll(".menu-card a");
+  const categoryNames = SERVICE_CATEGORIES.map((category) => category.name[currentLang]);
+  [l.services, ...categoryNames, l.order].forEach((text, index) => {
+    if (menuLinks[index]) menuLinks[index].textContent = text;
+  });
+
+  setText(".catalog-title", l.services);
+  setText(".cat-all", l.all);
+
+  setText(".footer-desc", l.footerDesc);
+  const footerTitles = document.querySelectorAll(".footer-title");
+  footerTitles.forEach((node, index) => {
+    node.textContent = index % 2 === 0 ? l.nav : l.contacts;
+  });
+  document.querySelectorAll(".footer-links a[href='#services']").forEach((node) => node.textContent = l.services);
+  document.querySelectorAll(".footer-links a[href='#order']").forEach((node) => node.textContent = l.order);
+  document.querySelectorAll(".footer-links a[href='https://t.me/wavesign']").forEach((node) => node.textContent = l.contactTelegram);
+  document.querySelectorAll(".footer-links a[href='https://wa.me/']").forEach((node) => node.textContent = l.contactWhatsapp);
+
+  setText(".detail-desc", l.detailDescription);
+  setText(".detail-order", l.detailOrder);
+  setText(".detail-back-label", l.backToServices);
+
+  if (searchInput) {
+    searchInput.placeholder = l.searchPlaceholder;
+    searchInput.setAttribute("aria-label", l.searchPlaceholder);
+  }
+  if (searchInline) searchInline.setAttribute("aria-label", l.searchPlaceholder);
+
+  renderServices();
+  renderCategoryList();
+  renderOrderText();
+
+  if (searchInline && !searchInline.hidden && searchInput) {
+    renderSearchResults(searchServices(searchInput.value));
+  }
+}
+
+function setLang(lang) {
+  const normalized = normalizeLangCode(lang);
+  if (!normalized) return;
+  currentLang = normalized;
+  saveLang(normalized);
+  syncLangInUrl(normalized);
+  applyLang();
+  route(false);
+}
+
+function updateHomeHeaderScrollState() {
+  if (!homeHeader) return;
+  homeHeader.classList.toggle("is-scrolled", window.scrollY > 2);
+}
+
+function setView(name) {
+  const nextView = views.find((view) => view.dataset.view === name);
+  const currentView = views.find((view) => view.classList.contains("active") && view.dataset.view !== name);
+  if (!nextView) return;
+
+  if (currentView && activeSearchTrigger && currentView.contains(activeSearchTrigger)) {
+    closeSearch();
+  }
+
+  window.clearTimeout(viewTransitionTimer);
+  views.forEach((view) => view.classList.remove("is-leaving"));
+
+  if (!currentView) {
+    views.forEach((view) => view.classList.toggle("active", view === nextView));
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  currentView.classList.add("is-leaving");
+  currentView.classList.remove("active");
+
+  viewTransitionTimer = window.setTimeout(() => {
+    views.forEach((view) => {
+      view.classList.toggle("active", view === nextView);
+      view.classList.remove("is-leaving");
+    });
+    window.scrollTo(0, 0);
+  }, 180);
+}
+
+function openMenu() {
+  if (activeSearchTrigger && !menuView?.contains(activeSearchTrigger)) {
+    closeSearch({ restoreFocus:false });
+  }
+  menuView?.classList.add("open");
+  menuBackdrop?.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeMenu() {
+  if (activeSearchTrigger && menuView?.contains(activeSearchTrigger)) {
+    closeSearch({ restoreFocus:false });
+  }
+  menuView?.classList.remove("open");
+  menuBackdrop?.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function getRouteToken() {
+  const hash = window.location.hash.replace("#", "");
+  if (hash) return hash;
+  const servicePath = window.location.pathname.match(/\/services\/([^/?#]+)\/?$/);
+  return servicePath ? `service-${decodeURIComponent(servicePath[1])}` : "home";
+}
+
+function route(shouldScroll = true) {
+  const hash = getRouteToken();
+  if (hash === "menu") {
+    if (!views.some((view) => view.classList.contains("active") && view.dataset.view !== "menu")) {
+      setView("home");
+    }
+    openMenu();
+    return;
+  }
+  if (hash === "order") {
+    closeMenu();
+    setView("order");
+    renderOrderText();
+    fillOrderFormFromDraft();
+    return;
+  }
+  if (hash === "services") {
+    closeMenu();
+    setView("services");
+    return;
+  }
+  if (hash.startsWith("service-")) {
+    closeMenu();
+    const rawSlug = hash.replace("service-", "");
+    const slug = resolveServiceId(rawSlug);
+    if (slug !== rawSlug) {
+      window.history.replaceState(window.history.state, "", `#service-${slug}`);
+    }
+    const service = SERVICES_CATALOG.find((item) => item.id === slug) || SERVICES_CATALOG[0];
+    const l = locales[currentLang];
+    expandCategory(service.categoryId);
+    if (detailTitle) detailTitle.textContent = service.name[currentLang];
+    if (detailPrice) detailPrice.textContent = service.id === "logo" ? l.detailFixedPrice : l.fromPrice;
+    if (detailDesc) detailDesc.textContent = getServiceDetailDescription(service);
+    renderServiceDetailMedia(service);
+    setView("detail");
+    return;
+  }
+  if (hash === "contacts") {
+    closeMenu();
+    setView("services");
+    if (shouldScroll) {
+      requestAnimationFrame(() => document.getElementById("contacts")?.scrollIntoView({behavior:"smooth"}));
+    }
+    return;
+  }
+  closeMenu();
+  setView("home");
+}
+
+document.addEventListener("click", (event) => {
+  const detailOrder = event.target.closest(".detail-order");
+  if (detailOrder) {
+    orderDraft = {
+      service: detailTitle?.textContent.trim() || "",
+      budget: detailPrice?.textContent.trim() || ""
+    };
+    return;
+  }
+
+  const genericOrder = event.target.closest("a[href='#order']");
+  if (genericOrder && !detailOrder) {
+    orderDraft = {service:"", budget:""};
+  }
+});
+
+document.addEventListener("error", (event) => {
+  const target = event.target;
+  const media = target?.matches?.("source") ? target.parentElement : target;
+  if (!media?.matches?.("[data-service-media]")) return;
+
+  const container = media.closest(".photo-box,.detail-main-photo,.detail-second-photo,.service-gallery-item");
+  media.remove();
+  if (!container) return;
+  if (container.classList.contains("photo-box")) {
+    applyCardPlaceholder(container);
+    return;
+  }
+  container.classList.remove("has-media");
+  container.classList.add("media-error");
+  if (container.classList.contains("service-gallery-item")) container.hidden = true;
+}, true);
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-menu-open]")) {
+    if (menuView?.classList.contains("open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+    return;
+  }
+  if (event.target.closest("[data-menu-close]")) {
+    closeMenu();
+    return;
+  }
+  if (event.target.closest(".menu-view a")) {
+    closeMenu();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeMenu();
+});
+
+document.addEventListener("click", (event) => {
+  const langButton = event.target.closest("[data-lang]");
+  if (!langButton) return;
+  setLang(langButton.dataset.lang);
+});
+
+if (orderForm) {
+  orderTextareas.forEach((field) => {
+    field.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" || event.isComposing) return;
+      event.preventDefault();
+      field.setRangeText("\n", field.selectionStart, field.selectionEnd, "end");
+      field.dispatchEvent(new Event("input", {bubbles:true}));
+      resizeOrderTextareas(true);
+      field.focus({preventScroll:true});
+      field.scrollTop = field.scrollHeight;
+      requestAnimationFrame(() => {
+        field.focus({preventScroll:true});
+        field.scrollTop = field.scrollHeight;
+      });
+    });
+    field.addEventListener("input", () => resizeOrderTextareas(true));
+  });
+  resizeOrderTextareas();
+
+  orderForm.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || event.isComposing || event.target.tagName === "TEXTAREA") return;
+    const formSteps = Array.from(orderForm.querySelectorAll(".order-field, .order-submit"));
+    const nextStep = formSteps[formSteps.indexOf(event.target) + 1];
+    if (!nextStep) return;
+    event.preventDefault();
+    nextStep.focus();
+  });
+
+  orderForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const l = locales[currentLang];
+    const subject = encodeURIComponent(l.orderTitle);
+    const body = encodeURIComponent([
+      `${l.orderService}: ${orderService?.value || ""}`,
+      `${l.orderIdea}: ${orderIdea?.value || ""}`,
+      `${l.orderBudget}: ${orderBudget?.value || ""}`,
+      `${l.orderContact}: ${orderContact?.value || ""}`
+    ].join("\n"));
+    window.location.href = `mailto:wavesign.art@gmail.com?subject=${subject}&body=${body}`;
+  });
+}
+
+const heroVideo = document.querySelector(".video-bg");
+if (heroVideo) {
+  heroVideo.addEventListener("error", () => {
+    heroVideo.style.display = "none";
+  }, true);
+}
+
+window.addEventListener("scroll", updateHomeHeaderScrollState, { passive:true });
+window.addEventListener("hashchange", route);
+applyLang();
+route();
+updateHomeHeaderScrollState();
+</script>
+</body>
+</html>
