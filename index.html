@@ -1668,13 +1668,9 @@ a{color:inherit;text-decoration:none}
 .search-inline[hidden]{display:none}
 .search-block[hidden],
 .menu-search[hidden]{display:none}
+/* открытый поиск заменяет собой кнопку — она не дублируется рядом */
 .search-block.is-search-open,
-.menu-search.is-search-open{
-  cursor:text;
-}
-.menu-search.is-search-open{
-  margin-bottom:12px;
-}
+.menu-search.is-search-open,
 .search-block.is-search-querying,
 .menu-search.is-search-querying{
   display:none;
@@ -1682,6 +1678,9 @@ a{color:inherit;text-decoration:none}
 .search-inline--side,
 .search-inline--menu{
   width:var(--search-inline-width,100%);
+}
+.search-inline--menu{
+  margin:0 0 32px;
 }
 .search-inline-top{
   position:relative;
