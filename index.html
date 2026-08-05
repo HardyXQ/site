@@ -687,6 +687,25 @@ a{color:inherit;text-decoration:none}
   border-color:var(--accent);
   background:rgba(238,153,255,.06);
 }
+.order-submit[disabled]{opacity:.6;cursor:default}
+.order-submit[disabled]:hover{color:var(--text);border-color:rgba(251,232,255,.72);background:transparent}
+.order-trap{
+  position:absolute;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
+}
+.order-status{
+  margin-top:-24px;
+  min-height:22px;
+  font-size:17px;
+  line-height:1.3;
+  font-weight:700;
+  color:var(--accent);
+}
+.order-status.is-error{color:#ff9db2}
 
 .site-footer{
   background:var(--bg);
@@ -2763,7 +2782,9 @@ a{color:inherit;text-decoration:none}
                 <span class="order-caption" id="orderContactLabel">Контакты для связи</span>
                 <textarea class="order-field order-grow-field" id="orderContact" name="contact" autocomplete="off" rows="1"></textarea>
               </label>
+              <input class="order-trap" id="orderCompany" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
               <button class="order-submit" type="submit">заказать</button>
+              <p class="order-status" id="orderStatus" role="status" aria-live="polite"></p>
             </form>
           </div>
           <aside class="order-side" aria-label="Быстрая навигация">
@@ -2892,6 +2913,10 @@ const locales = {
     orderBudget:"бюджет",
     orderContact:"Контакты для связи",
     orderSubmit:"заказать",
+    orderSending:"отправляем…",
+    orderSuccess:"Заявка отправлена! Свяжемся с вами в ближайшее время.",
+    orderError:"Не удалось отправить. Напишите нам в telegram @wavesign.",
+    orderRequired:"Заполните описание идеи и контакты для связи.",
     all:"Все",
     nav:"Навигация",
     footerDesc:"IT-студия. Графический дизайн, моушн дизайн и разработка",
@@ -2919,6 +2944,10 @@ const locales = {
     orderBudget:"бюджет",
     orderContact:"Контакти для зв'язку",
     orderSubmit:"замовити",
+    orderSending:"надсилаємо…",
+    orderSuccess:"Заявку надіслано! Зв'яжемося з вами найближчим часом.",
+    orderError:"Не вдалося надіслати. Напишіть нам у telegram @wavesign.",
+    orderRequired:"Заповніть опис ідеї та контакти для зв'язку.",
     all:"Усе",
     nav:"Навігація",
     footerDesc:"IT-студія. Графічний дизайн, моушн дизайн і розробка",
@@ -2946,6 +2975,10 @@ const locales = {
     orderBudget:"budget",
     orderContact:"contact details",
     orderSubmit:"order",
+    orderSending:"sending…",
+    orderSuccess:"Your request has been sent! We'll get back to you shortly.",
+    orderError:"Sending failed. Message us on telegram @wavesign.",
+    orderRequired:"Please fill in the idea description and contact details.",
     all:"All",
     nav:"Navigation",
     footerDesc:"IT studio. Graphic design, motion design and development",
@@ -4079,7 +4112,45 @@ document.addEventListener("click", (event) => {
   setLang(langButton.dataset.lang);
 });
 
+/* ===== Отправка заявок в Telegram через Google Apps Script =====
+   1. Скрипт бэкенда лежит в apps-script/Code.gs — скопируйте его в
+      script.google.com и разверните как Web App (доступ: "Anyone").
+   2. Полученную ссылку .../exec вставьте в ORDER_ENDPOINT ниже.
+   3. ORDER_SECRET заполняйте только если в Script Properties задан FORM_SECRET.
+   Пока ORDER_ENDPOINT пустой, форма работает по-старому — через mailto. */
+const ORDER_ENDPOINT = "https://script.google.com/macros/s/AKfycbxYQBfbfChZ_WYbs8rmD9PVpdj_TqEiqaBcpPHJE8k9pmG2Dpugpzx8g7SEJSQ_N7Dz/exec";
+const ORDER_SECRET = "";
+
+async function sendOrder(payload) {
+  const body = JSON.stringify(payload);
+  let response;
+  try {
+    response = await fetch(ORDER_ENDPOINT, { method:"POST", body, redirect:"follow" });
+  } catch (networkError) {
+    // Ответ прочитать не дали (CORS) — повторяем без чтения ответа:
+    // запрос до Apps Script доходит, но результат нам не виден.
+    await fetch(ORDER_ENDPOINT, { method:"POST", mode:"no-cors", body });
+    return { ok:true };
+  }
+  if (!response.ok) throw new Error("HTTP " + response.status);
+  let data = null;
+  try { data = JSON.parse(await response.text()); } catch (parseError) { /* пустой ответ считаем успехом */ }
+  if (data && data.ok === false) throw new Error(data.error || "send failed");
+  return data || { ok:true };
+}
+
 if (orderForm) {
+  const orderStatus = document.getElementById("orderStatus");
+  const orderSubmitBtn = orderForm.querySelector(".order-submit");
+  const orderCompany = document.getElementById("orderCompany");
+  let orderSending = false;
+
+  const setOrderStatus = (message, isError) => {
+    if (!orderStatus) return;
+    orderStatus.textContent = message || "";
+    orderStatus.classList.toggle("is-error", !!isError);
+  };
+
   orderTextareas.forEach((field) => {
     field.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" || event.isComposing) return;
@@ -4096,6 +4167,9 @@ if (orderForm) {
     });
     field.addEventListener("input", () => resizeOrderTextareas(true));
   });
+  orderForm.addEventListener("input", () => {
+    if (orderStatus?.classList.contains("is-error")) setOrderStatus("", false);
+  });
   resizeOrderTextareas();
 
   orderForm.addEventListener("keydown", (event) => {
@@ -4107,17 +4181,55 @@ if (orderForm) {
     nextStep.focus();
   });
 
-  orderForm.addEventListener("submit", (event) => {
+  orderForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (orderSending) return;
     const l = locales[currentLang];
-    const subject = encodeURIComponent(l.orderTitle);
-    const body = encodeURIComponent([
-      `${l.orderService}: ${orderService?.value || ""}`,
-      `${l.orderIdea}: ${orderIdea?.value || ""}`,
-      `${l.orderBudget}: ${orderBudget?.value || ""}`,
-      `${l.orderContact}: ${orderContact?.value || ""}`
-    ].join("\n"));
-    window.location.href = `mailto:wavesign.art@gmail.com?subject=${subject}&body=${body}`;
+
+    const payload = {
+      service: orderService?.value.trim() || "",
+      idea: orderIdea?.value.trim() || "",
+      budget: orderBudget?.value.trim() || "",
+      contact: orderContact?.value.trim() || "",
+      company: orderCompany?.value.trim() || "",
+      lang: currentLang,
+      page: location.href,
+      secret: ORDER_SECRET
+    };
+
+    if (!payload.idea || !payload.contact) {
+      setOrderStatus(l.orderRequired, true);
+      (payload.idea ? orderContact : orderIdea)?.focus();
+      return;
+    }
+
+    if (!ORDER_ENDPOINT) {
+      const subject = encodeURIComponent(l.orderTitle);
+      const body = encodeURIComponent([
+        `${l.orderService}: ${payload.service}`,
+        `${l.orderIdea}: ${payload.idea}`,
+        `${l.orderBudget}: ${payload.budget}`,
+        `${l.orderContact}: ${payload.contact}`
+      ].join("\n"));
+      window.location.href = `mailto:wavesign.art@gmail.com?subject=${subject}&body=${body}`;
+      return;
+    }
+
+    orderSending = true;
+    if (orderSubmitBtn) orderSubmitBtn.disabled = true;
+    setOrderStatus(l.orderSending, false);
+
+    try {
+      await sendOrder(payload);
+      orderForm.reset();
+      resizeOrderTextareas(true);
+      setOrderStatus(locales[currentLang].orderSuccess, false);
+    } catch (error) {
+      setOrderStatus(locales[currentLang].orderError, true);
+    } finally {
+      orderSending = false;
+      if (orderSubmitBtn) orderSubmitBtn.disabled = false;
+    }
   });
 }
 
