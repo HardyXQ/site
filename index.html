@@ -2674,59 +2674,44 @@ a{color:inherit;text-decoration:none}
   }
 }
 
-/* Currency switch — visual sibling of .lang-switch */
-.cur-switch{
-  display:flex;
+/* Currency switch — sits under the price on the service detail page */
+.detail-info .cur-switch{
+  display:inline-flex;
   align-items:center;
-  gap:5px;
+  gap:4px;
+  margin-top:14px;
   padding:4px;
   border-radius:999px;
   background:rgba(251,232,255,.06);
-}
-.site-header .cur-btn{
-  text-shadow:0 1px 8px rgba(0,0,0,.35);
+  border:1px solid var(--line);
 }
 .cur-btn{
-  min-width:38px;
-  height:26px;
-  padding:0 7px;
+  min-width:34px;
+  height:30px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   border-radius:999px;
-  color:rgba(251,232,255,.6);
-  font-size:12px;
-  font-weight:900;
+  color:var(--muted);
+  font-size:16px;
+  font-weight:800;
   line-height:1;
-  letter-spacing:.02em;
   transition:color .18s ease,background-color .18s ease;
 }
 .cur-btn.active{
   color:var(--text);
-  background:rgba(251,232,255,.12);
-  box-shadow:inset 0 0 12px rgba(251,232,255,.06);
+  background:var(--hot);
 }
 .cur-btn:hover{
   color:var(--text);
-  background:rgba(238,153,255,.1);
+  background:rgba(238,153,255,.12);
+}
+.cur-btn.active:hover{
+  background:var(--hot);
 }
 .cur-btn:focus-visible{
   outline:2px solid var(--accent);
   outline-offset:2px;
-}
-@media(max-width:1180px){
-  .cur-btn{min-width:34px;font-size:11px;padding:0 6px}
-}
-@media(max-width:900px){
-  .cur-btn{min-width:31px;height:24px;font-size:10px}
-}
-@media(max-width:767px){
-  .cur-switch{gap:3px;padding:3px}
-  .cur-btn{min-width:28px;height:22px;font-size:9px;padding:0 4px}
-}
-@media(max-width:430px){
-  .cur-switch{gap:2px}
-  .cur-btn{min-width:24px;font-size:8px;padding:0 3px}
-}
-@media(max-width:340px){
-  .cur-switch{display:none}
 }
 </style>
 </head>
@@ -2815,12 +2800,6 @@ a{color:inherit;text-decoration:none}
         <div></div>
         <div class="header-right">
           <a class="order-link" href="#order">Заказать</a>
-          <div class="cur-switch" role="group" aria-label="Валюта">
-            <button class="cur-btn active" type="button" data-currency="USD" aria-pressed="true">USD</button>
-            <button class="cur-btn" type="button" data-currency="EUR" aria-pressed="false">EUR</button>
-            <button class="cur-btn" type="button" data-currency="RUB" aria-pressed="false">RUB</button>
-            <button class="cur-btn" type="button" data-currency="UAH" aria-pressed="false">UAH</button>
-          </div>
           <div class="lang-switch" aria-label="Выбор языка">
             <button class="lang-btn active" type="button" data-lang="ru">RU</button>
             <button class="lang-btn" type="button" data-lang="uk">UA</button>
@@ -2953,12 +2932,6 @@ a{color:inherit;text-decoration:none}
           <div></div>
           <div class="header-right">
             <a class="order-link" href="#order">Заказать</a>
-            <div class="cur-switch" role="group" aria-label="Валюта">
-              <button class="cur-btn active" type="button" data-currency="USD" aria-pressed="true">USD</button>
-              <button class="cur-btn" type="button" data-currency="EUR" aria-pressed="false">EUR</button>
-              <button class="cur-btn" type="button" data-currency="RUB" aria-pressed="false">RUB</button>
-              <button class="cur-btn" type="button" data-currency="UAH" aria-pressed="false">UAH</button>
-            </div>
             <div class="lang-switch" aria-label="Выбор языка">
               <button class="lang-btn active" type="button" data-lang="ru">RU</button>
               <button class="lang-btn" type="button" data-lang="uk">UA</button>
@@ -2976,6 +2949,12 @@ a{color:inherit;text-decoration:none}
           <aside class="detail-info">
             <h1 class="detail-title" id="detailTitle">Лого</h1>
             <div class="detail-price" id="detailPrice"></div>
+            <div class="cur-switch" role="group" aria-label="Валюта">
+              <button class="cur-btn active" type="button" data-currency="USD" aria-label="USD" aria-pressed="true">$</button>
+              <button class="cur-btn" type="button" data-currency="EUR" aria-label="EUR" aria-pressed="false">€</button>
+              <button class="cur-btn" type="button" data-currency="RUB" aria-label="RUB" aria-pressed="false">₽</button>
+              <button class="cur-btn" type="button" data-currency="UAH" aria-label="UAH" aria-pressed="false">₴</button>
+            </div>
             <p class="detail-desc">описание описаниеописаниеописаниеописаниеописаниеописаниеописание</p>
             <a class="detail-order" href="#order">заказать</a>
           </aside>
@@ -3318,7 +3297,7 @@ const CURRENCIES = {
   UAH: { rate: 41.5, symbol: "₴", placement: "before" }
 };
 
-const LANG_DEFAULT_CURRENCY = { ru: "RUB", uk: "UAH", en: "USD" };
+const DEFAULT_CURRENCY = "USD";
 
 function normalizeCurrencyCode(code) {
   const upper = (code || "").toString().trim().toUpperCase();
@@ -3351,8 +3330,7 @@ function readUrlCurrency() {
 function resolveInitialCurrency() {
   return readUrlCurrency()
     || readSavedCurrency()
-    || LANG_DEFAULT_CURRENCY[currentLang]
-    || "USD";
+    || DEFAULT_CURRENCY;
 }
 
 let currentCurrency = resolveInitialCurrency();
@@ -4163,6 +4141,7 @@ function applyLang() {
   setText(".detail-desc", l.detailDescription);
   setText(".detail-order", l.detailOrder);
   setText(".detail-back-label", l.backToServices);
+  document.querySelectorAll(".cur-switch").forEach((node) => node.setAttribute("aria-label", l.currencyLabel));
 
   if (searchInput) {
     searchInput.placeholder = l.searchPlaceholder;
