@@ -2673,6 +2673,61 @@ a{color:inherit;text-decoration:none}
     gap:8px;
   }
 }
+
+/* Currency switch — visual sibling of .lang-switch */
+.cur-switch{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:4px;
+  border-radius:999px;
+  background:rgba(251,232,255,.06);
+}
+.site-header .cur-btn{
+  text-shadow:0 1px 8px rgba(0,0,0,.35);
+}
+.cur-btn{
+  min-width:38px;
+  height:26px;
+  padding:0 7px;
+  border-radius:999px;
+  color:rgba(251,232,255,.6);
+  font-size:12px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.02em;
+  transition:color .18s ease,background-color .18s ease;
+}
+.cur-btn.active{
+  color:var(--text);
+  background:rgba(251,232,255,.12);
+  box-shadow:inset 0 0 12px rgba(251,232,255,.06);
+}
+.cur-btn:hover{
+  color:var(--text);
+  background:rgba(238,153,255,.1);
+}
+.cur-btn:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+@media(max-width:1180px){
+  .cur-btn{min-width:34px;font-size:11px;padding:0 6px}
+}
+@media(max-width:900px){
+  .cur-btn{min-width:31px;height:24px;font-size:10px}
+}
+@media(max-width:767px){
+  .cur-switch{gap:3px;padding:3px}
+  .cur-btn{min-width:28px;height:22px;font-size:9px;padding:0 4px}
+}
+@media(max-width:430px){
+  .cur-switch{gap:2px}
+  .cur-btn{min-width:24px;font-size:8px;padding:0 3px}
+}
+@media(max-width:340px){
+  .cur-switch{display:none}
+}
 </style>
 </head>
 <body>
@@ -2760,6 +2815,12 @@ a{color:inherit;text-decoration:none}
         <div></div>
         <div class="header-right">
           <a class="order-link" href="#order">Заказать</a>
+          <div class="cur-switch" role="group" aria-label="Валюта">
+            <button class="cur-btn active" type="button" data-currency="USD" aria-pressed="true">USD</button>
+            <button class="cur-btn" type="button" data-currency="EUR" aria-pressed="false">EUR</button>
+            <button class="cur-btn" type="button" data-currency="RUB" aria-pressed="false">RUB</button>
+            <button class="cur-btn" type="button" data-currency="UAH" aria-pressed="false">UAH</button>
+          </div>
           <div class="lang-switch" aria-label="Выбор языка">
             <button class="lang-btn active" type="button" data-lang="ru">RU</button>
             <button class="lang-btn" type="button" data-lang="uk">UA</button>
@@ -2892,6 +2953,12 @@ a{color:inherit;text-decoration:none}
           <div></div>
           <div class="header-right">
             <a class="order-link" href="#order">Заказать</a>
+            <div class="cur-switch" role="group" aria-label="Валюта">
+              <button class="cur-btn active" type="button" data-currency="USD" aria-pressed="true">USD</button>
+              <button class="cur-btn" type="button" data-currency="EUR" aria-pressed="false">EUR</button>
+              <button class="cur-btn" type="button" data-currency="RUB" aria-pressed="false">RUB</button>
+              <button class="cur-btn" type="button" data-currency="UAH" aria-pressed="false">UAH</button>
+            </div>
             <div class="lang-switch" aria-label="Выбор языка">
               <button class="lang-btn active" type="button" data-lang="ru">RU</button>
               <button class="lang-btn" type="button" data-lang="uk">UA</button>
@@ -2908,7 +2975,7 @@ a{color:inherit;text-decoration:none}
           <div class="detail-main-photo" aria-label="Место для фото"></div>
           <aside class="detail-info">
             <h1 class="detail-title" id="detailTitle">Лого</h1>
-            <div class="detail-price" id="detailPrice">$500</div>
+            <div class="detail-price" id="detailPrice"></div>
             <p class="detail-desc">описание описаниеописаниеописаниеописаниеописаниеописаниеописание</p>
             <a class="detail-order" href="#order">заказать</a>
           </aside>
@@ -3000,8 +3067,11 @@ const locales = {
     contactWhatsapp:"whatsapp: @wavesign",
     detailDescription:"описание описаниеописаниеописаниеописаниеописаниеописаниеописание",
     detailOrder:"заказать",
-    fromPrice:"от 100$",
-    detailFixedPrice:"$500",
+    priceFrom:"от",
+    priceUnitItem:"/ макет",
+    priceUnitHour:"/ час",
+    priceUnitMinute:"/ мин",
+    currencyLabel:"Валюта",
     backToServices:"Все услуги",
     searchHint:"Начните вводить название услуги",
     mediaProjectLabel:"работа"
@@ -3031,8 +3101,11 @@ const locales = {
     contactWhatsapp:"whatsapp: @wavesign",
     detailDescription:"опис описописописописописописопис",
     detailOrder:"замовити",
-    fromPrice:"від 100$",
-    detailFixedPrice:"$500",
+    priceFrom:"від",
+    priceUnitItem:"/ макет",
+    priceUnitHour:"/ год",
+    priceUnitMinute:"/ хв",
+    currencyLabel:"Валюта",
     backToServices:"Всі послуги",
     searchHint:"Почніть вводити назву послуги",
     mediaProjectLabel:"робота"
@@ -3062,8 +3135,11 @@ const locales = {
     contactWhatsapp:"whatsapp: @wavesign",
     detailDescription:"description descriptiondescriptiondescriptiondescriptiondescription",
     detailOrder:"order",
-    fromPrice:"from $100",
-    detailFixedPrice:"$500",
+    priceFrom:"from",
+    priceUnitItem:"/ item",
+    priceUnitHour:"/ hour",
+    priceUnitMinute:"/ min",
+    currencyLabel:"Currency",
     backToServices:"All services",
     searchHint:"Start typing a service name",
     mediaProjectLabel:"project"
@@ -3158,75 +3234,166 @@ const SERVICE_CATEGORIES = [
 ];
 
 const SERVICES_CATALOG = [
-  { id:"logo", categoryId:"design", group:0,
+  { id:"logo", categoryId:"design", group:0, price:{ from:300 },
     name:{ en:"Logo", uk:"Лого", ru:"Лого" },
     keywords:{ en:["logo","logo design","brand mark","emblem"], uk:["лого","логотип","емблема"], ru:["лого","логотип","эмблема"] } },
-  { id:"logo-animation", categoryId:"design", group:0,
+  { id:"logo-animation", categoryId:"design", group:0, price:{ from:200 },
     name:{ en:"Logo animation", uk:"Анімація лого", ru:"Анимация лого" },
     keywords:{ en:["logo animation","animated logo","logo motion"], uk:["анімація лого","анімований логотип"], ru:["анимация лого","анимированный логотип"] } },
-  { id:"logo-animation-bundle", categoryId:"design", group:0,
+  { id:"logo-animation-bundle", categoryId:"design", group:0, price:{ from:450 },
     name:{ en:"logo + animation", uk:"лого + анімація", ru:"лого + анимация" },
     keywords:{ en:["logo + animation","logo and animation bundle","logo pack"], uk:["лого + анімація","лого та анімація"], ru:["лого + анимация","лого и анимация"] } },
-  { id:"brand-identity", categoryId:"design", group:1,
+  { id:"brand-identity", categoryId:"design", group:1, price:{ from:900 },
     name:{ en:"brand identity", uk:"фірмовий стиль", ru:"фирменный стиль" },
     keywords:{ en:["brand identity","branding","visual identity"], uk:["фірмовий стиль","брендинг"], ru:["фирменный стиль","брендинг"] } },
-  { id:"graphic-design", categoryId:"design", group:1,
+  { id:"graphic-design", categoryId:"design", group:1, price:{ from:50, unit:"item" },
     name:{ en:"Graphic design", uk:"Графічний дизайн", ru:"Графический дизайн" },
     keywords:{
       en:["graphic design","graphics","menu design","menu","restaurant menu","cafe menu","price list","product card","product cards","product listing design","marketplace design","marketplace infographic","product infographic","photo editing","image editing","photo retouching","retouch","color correction","collage","photo manipulation","advertising banner","banner design","graphic materials"],
       uk:["графічний дизайн","графіка","дизайн меню","меню","ресторанне меню","меню кафе","прайс","прайс-лист","картка товару","картки товарів","дизайн картки товару","маркетплейс","дизайн для маркетплейсу","інфографіка для маркетплейсу","інфографіка товару","обробка фотографій","обробка фото","редагування фото","ретуш","ретуш фотографій","кольорокорекція","колаж","фотомонтаж","рекламний банер","банер","графічні матеріали"],
       ru:["графический дизайн","графика","дизайн меню","меню","ресторанное меню","кафе меню","прайс","прайс-лист","карточка товара","карточки товаров","дизайн карточки товара","маркетплейс","дизайн для маркетплейса","инфографика для маркетплейса","инфографика товара","обработка фотографий","обработка фото","редактирование фото","ретушь","ретушь фотографий","цветокоррекция","коллаж","фотомонтаж","рекламный баннер","баннер","графические материалы"]
     } },
-  { id:"print-layouts", categoryId:"design", group:1,
+  { id:"print-layouts", categoryId:"design", group:1, price:{ from:50, unit:"item" },
     name:{ en:"print layouts", uk:"макети для друку", ru:"макеты под печать" },
     keywords:{
       en:["print design","print layout","print-ready design","business card","business cards","postcard","postcards","flyer","flyers","leaflet","leaflets","booklet","booklets","brochure","brochures","poster","posters","print banner","calendar","calendars","certificate","certificates","invitation","invitations","sticker","stickers","label","labels","print","prints","printed materials","print preparation","promotional print","stationery"],
       uk:["макети для друку","макет для друку","поліграфія","візитка","візитки","дизайн візитки","листівка","листівки","флаєр","флаєри","буклет","буклети","брошура","брошури","плакат","плакати","постер","постери","банер для друку","календар","календарі","сертифікат","сертифікати","запрошення","наліпка","наліпки","стікери","етикетка","етикетки","принт","принти","підготовка до друку","друкований макет","рекламна поліграфія"],
       ru:["макеты под печать","макет для печати","полиграфия","визитка","визитки","дизайн визитки","открытка","открытки","дизайн открытки","листовка","листовки","флаер","флаеры","буклет","буклеты","брошюра","брошюры","плакат","плакаты","постер","постеры","баннер для печати","календарь","календари","сертификат","сертификаты","пригласительное","пригласительные","наклейка","наклейки","стикеры","этикетка","этикетки","принт","принты","подготовка к печати","печатный макет","рекламная полиграфия"]
     } },
-  { id:"telegram-bot", categoryId:"development", group:0,
+  { id:"telegram-bot", categoryId:"development", group:0, price:{ from:400 },
     name:{ en:"Telegram Bot", uk:"Telegram Bot", ru:"Telegram Bot" },
     keywords:{ en:["telegram bot","bot development","chatbot"], uk:["телеграм бот","чат-бот"], ru:["телеграм бот","чат-бот"] } },
-  { id:"ai-integration", categoryId:"development", group:0,
+  { id:"ai-integration", categoryId:"development", group:0, price:{ from:600 },
     name:{ en:"AI integration", uk:"ШІ інтеграція", ru:"ИИ интеграция" },
     keywords:{ en:["ai integration","artificial intelligence integration"], uk:["ші інтеграція","інтеграція ші","штучний інтелект"], ru:["ии интеграция","интеграция ии","искусственный интеллект"] } },
-  { id:"ai-agents", categoryId:"development", group:0,
+  { id:"ai-agents", categoryId:"development", group:0, price:{ from:1500 },
     name:{ en:"AI Agents", uk:"ШІ-Агенти", ru:"ИИ-Агенты" },
     keywords:{ en:["ai agents","ai agent"], uk:["ші-агенти","ші агенти"], ru:["ии-агенты","ии агенты"] } },
-  { id:"turnkey-website", categoryId:"development", group:1,
+  { id:"turnkey-website", categoryId:"development", group:1, price:{ from:900 },
     name:{ en:"Turnkey website", uk:"Сайт під ключ", ru:"Сайт под ключ" },
     keywords:{ en:["turnkey website","website development","site development"], uk:["сайт під ключ","розробка сайту"], ru:["сайт под ключ","разработка сайта"] } },
-  { id:"custom-software", categoryId:"development", group:1,
+  { id:"custom-software", categoryId:"development", group:1, price:{ from:2500 },
     name:{ en:"Custom software", uk:"Софт на замовлення", ru:"Софт на заказ" },
     keywords:{ en:["custom software","software development"], uk:["софт на замовлення","розробка по"], ru:["софт на заказ","разработка по"] } },
-  { id:"app-development", categoryId:"development", group:1,
+  { id:"app-development", categoryId:"development", group:1, price:{ from:3500 },
     name:{ en:"App development", uk:"Розробка застосунків", ru:"Разработка приложений" },
     keywords:{ en:["app development","mobile app","application development"], uk:["розробка застосунків","мобільний застосунок"], ru:["разработка приложений","мобильное приложение"] } },
-  { id:"web3-development", categoryId:"development", group:2,
+  { id:"web3-development", categoryId:"development", group:2, price:{ from:3000 },
     name:{ en:"Web3 development", uk:"Web3 розробка", ru:"Web3 разработка" },
     keywords:{ en:["web3 development","web3","blockchain development"], uk:["web3 розробка","блокчейн розробка"], ru:["web3 разработка","блокчейн разработка"] } },
-  { id:"smart-contracts", categoryId:"development", group:2,
+  { id:"smart-contracts", categoryId:"development", group:2, price:{ from:1500 },
     name:{ en:"Smart contracts", uk:"Смарт контракти", ru:"Смарт контракты" },
     keywords:{ en:["smart contracts","smart contract"], uk:["смарт контракти","смарт-контракти"], ru:["смарт контракты","смарт-контракты"] } },
-  { id:"security-audit", categoryId:"development", group:2,
+  { id:"security-audit", categoryId:"development", group:2, price:{ from:1200 },
     name:{ en:"Security audit", uk:"Аудит безпеки", ru:"Аудит безопасности" },
     keywords:{ en:["security audit","code audit"], uk:["аудит безпеки"], ru:["аудит безопасности"] } },
-  { id:"naming", categoryId:"additional", group:0,
+  { id:"naming", categoryId:"additional", group:0, price:{ from:150 },
     name:{ en:"Naming", uk:"Неймінг", ru:"Нейминг" },
     keywords:{ en:["naming","brand naming"], uk:["неймінг","нейминг"], ru:["нейминг"] } },
-  { id:"slogans", categoryId:"additional", group:0,
+  { id:"slogans", categoryId:"additional", group:0, price:{ from:80 },
     name:{ en:"Slogans", uk:"Слогани", ru:"Слоганы" },
     keywords:{ en:["slogans","tagline"], uk:["слогани","гасло"], ru:["слоганы"] } },
-  { id:"consultation", categoryId:"additional", group:1,
+  { id:"consultation", categoryId:"additional", group:1, price:{ from:60, unit:"hour" },
     name:{ en:"Consultation", uk:"Консультація", ru:"Консультация" },
     keywords:{ en:["consultation","consulting"], uk:["консультація"], ru:["консультация"] } },
-  { id:"info-search", categoryId:"additional", group:2,
+  { id:"info-search", categoryId:"additional", group:2, price:{ from:25, unit:"hour" },
     name:{ en:"Information search", uk:"Пошук інформації", ru:"Поиск информации" },
     keywords:{ en:["information search","research"], uk:["пошук інформації"], ru:["поиск информации"] } },
-  { id:"transcription", categoryId:"additional", group:2,
+  { id:"transcription", categoryId:"additional", group:2, price:{ from:2, unit:"minute" },
     name:{ en:"Transcription", uk:"Транскрибація", ru:"Транскрибация" },
     keywords:{ en:["transcription","audio transcription"], uk:["транскрибація","розшифровка аудіо"], ru:["транскрибация","расшифровка аудио"] } }
 ];
+
+/* ---------- Currency selection & price formatting ---------- */
+
+const SUPPORTED_CURRENCIES = ["USD", "EUR", "RUB", "UAH"];
+const CURRENCY_STORAGE_KEY = "wavesign-currency";
+
+/* Anchor currency is USD. Rates are indicative and are fixed in the contract
+   on the invoice date — see the WaveSign price document. */
+const CURRENCIES = {
+  USD: { rate: 1,    symbol: "$", placement: "before" },
+  EUR: { rate: 0.92, symbol: "€", placement: "before" },
+  RUB: { rate: 90,   symbol: "₽", placement: "after"  },
+  UAH: { rate: 41.5, symbol: "₴", placement: "before" }
+};
+
+const LANG_DEFAULT_CURRENCY = { ru: "RUB", uk: "UAH", en: "USD" };
+
+function normalizeCurrencyCode(code) {
+  const upper = (code || "").toString().trim().toUpperCase();
+  return SUPPORTED_CURRENCIES.includes(upper) ? upper : null;
+}
+
+function readSavedCurrency() {
+  try {
+    const normalized = normalizeCurrencyCode(localStorage.getItem(CURRENCY_STORAGE_KEY));
+    if (normalized) return normalized;
+  } catch (error) {}
+  return normalizeCurrencyCode(getCookie(CURRENCY_STORAGE_KEY));
+}
+
+function saveCurrency(code) {
+  try {
+    localStorage.setItem(CURRENCY_STORAGE_KEY, code);
+  } catch (error) {}
+  setCookie(CURRENCY_STORAGE_KEY, code);
+}
+
+function readUrlCurrency() {
+  try {
+    return normalizeCurrencyCode(new URLSearchParams(window.location.search).get("cur"));
+  } catch (error) {
+    return null;
+  }
+}
+
+function resolveInitialCurrency() {
+  return readUrlCurrency()
+    || readSavedCurrency()
+    || LANG_DEFAULT_CURRENCY[currentLang]
+    || "USD";
+}
+
+let currentCurrency = resolveInitialCurrency();
+
+/* Round a converted amount to a marketing-friendly step that scales with magnitude. */
+function roundPrice(value) {
+  if (value < 5) return Math.round(value * 10) / 10;
+  if (value < 30) return Math.round(value);
+  if (value < 1000) return Math.round(value / 5) * 5;
+  if (value < 10000) return Math.round(value / 50) * 50;
+  if (value < 100000) return Math.round(value / 500) * 500;
+  return Math.round(value / 1000) * 1000;
+}
+
+function convertFromUsd(usdAmount, currencyCode) {
+  const currency = CURRENCIES[currencyCode] || CURRENCIES.USD;
+  return roundPrice(usdAmount * currency.rate);
+}
+
+function formatMoney(amount, currencyCode) {
+  const currency = CURRENCIES[currencyCode] || CURRENCIES.USD;
+  const localeTag = currentLang === "en" ? "en-US" : "ru-RU";
+  const hasFraction = Math.abs(amount % 1) > 0;
+  const number = amount.toLocaleString(localeTag, {
+    minimumFractionDigits: hasFraction ? 1 : 0,
+    maximumFractionDigits: 1
+  });
+  return currency.placement === "before"
+    ? `${currency.symbol}${number}`
+    : `${number} ${currency.symbol}`;
+}
+
+function getServicePriceLabel(service) {
+  const l = locales[currentLang];
+  if (!service || !service.price) return "";
+  const amount = convertFromUsd(service.price.from, currentCurrency);
+  const parts = [l.priceFrom, formatMoney(amount, currentCurrency)];
+  const unitKey = { item: "priceUnitItem", hour: "priceUnitHour", minute: "priceUnitMinute" }[service.price.unit];
+  if (unitKey && l[unitKey]) parts.push(l[unitKey]);
+  return parts.join(" ");
+}
 
 const SERVICE_ID_REDIRECTS = {
   "business-cards": "print-layouts",
@@ -3451,13 +3618,12 @@ function renderCardMedia(service, index) {
 const grid = document.getElementById("servicesGrid");
 function renderServices() {
   if (!grid) return;
-  const l = locales[currentLang];
   grid.innerHTML = SERVICES_CATALOG.map((service, index) => `
     <a class="service-card" href="#service-${service.id}">
       ${renderCardMedia(service, index)}
       <span class="service-meta">
         <span class="service-name">${escapeHtml(service.name[currentLang])}</span>
-        <span class="service-price">${service.id === "logo" ? l.detailFixedPrice : l.fromPrice}</span>
+        <span class="service-price">${escapeHtml(getServicePriceLabel(service))}</span>
       </span>
     </a>
   `).join("");
@@ -3908,6 +4074,12 @@ const menuBackdrop = document.querySelector(".menu-backdrop");
 const detailTitle = document.getElementById("detailTitle");
 const detailPrice = document.getElementById("detailPrice");
 const detailDesc = document.querySelector(".detail-desc");
+let currentDetailService = null;
+
+function renderDetailPrice() {
+  if (!detailPrice || !currentDetailService) return;
+  detailPrice.textContent = getServicePriceLabel(currentDetailService);
+}
 const detailMainPhoto = document.querySelector(".detail-main-photo");
 const detailBody = document.querySelector(".detail-body");
 const serviceGallery = document.getElementById("serviceGallery");
@@ -4017,6 +4189,32 @@ function setLang(lang) {
   route(false);
 }
 
+function syncCurrencyInUrl(code) {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set("cur", code);
+    window.history.replaceState(window.history.state, "", url);
+  } catch (error) {}
+}
+
+function applyCurrency() {
+  document.querySelectorAll(".cur-btn").forEach((button) => {
+    button.classList.toggle("active", button.dataset.currency === currentCurrency);
+    button.setAttribute("aria-pressed", String(button.dataset.currency === currentCurrency));
+  });
+  renderServices();
+  renderDetailPrice();
+}
+
+function setCurrency(code) {
+  const normalized = normalizeCurrencyCode(code);
+  if (!normalized || normalized === currentCurrency) return;
+  currentCurrency = normalized;
+  saveCurrency(normalized);
+  syncCurrencyInUrl(normalized);
+  applyCurrency();
+}
+
 function updateHomeHeaderScrollState() {
   if (!homeHeader) return;
   homeHeader.classList.toggle("is-scrolled", window.scrollY > 2);
@@ -4106,10 +4304,10 @@ function route(shouldScroll = true) {
       window.history.replaceState(window.history.state, "", `#service-${slug}`);
     }
     const service = SERVICES_CATALOG.find((item) => item.id === slug) || SERVICES_CATALOG[0];
-    const l = locales[currentLang];
+    currentDetailService = service;
     expandCategory(service.categoryId);
     if (detailTitle) detailTitle.textContent = service.name[currentLang];
-    if (detailPrice) detailPrice.textContent = service.id === "logo" ? l.detailFixedPrice : l.fromPrice;
+    renderDetailPrice();
     if (detailDesc) detailDesc.textContent = getServiceDetailDescription(service);
     renderServiceDetailMedia(service);
     setView("detail");
@@ -4186,6 +4384,12 @@ document.addEventListener("click", (event) => {
   const langButton = event.target.closest("[data-lang]");
   if (!langButton) return;
   setLang(langButton.dataset.lang);
+});
+
+document.addEventListener("click", (event) => {
+  const currencyButton = event.target.closest("[data-currency]");
+  if (!currencyButton) return;
+  setCurrency(currencyButton.dataset.currency);
 });
 
 /* ===== Отправка заявок в Telegram через Google Apps Script =====
@@ -4319,6 +4523,7 @@ if (heroVideo) {
 window.addEventListener("scroll", updateHomeHeaderScrollState, { passive:true });
 window.addEventListener("hashchange", route);
 applyLang();
+applyCurrency();
 route();
 updateHomeHeaderScrollState();
 </script>
