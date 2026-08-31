@@ -122,9 +122,9 @@ export function AdminLayout({
           >
             <Menu className="h-5 w-5" />
           </button>
-          <nav className="flex min-w-0 items-center gap-1.5 text-sm">
+          <nav className="flex min-w-0 flex-1 items-center gap-1.5 text-sm">
             {(crumbs ?? []).map((c, i) => (
-              <span key={i} className="flex items-center gap-1.5 text-muted">
+              <span key={i} className="hidden items-center gap-1.5 text-muted sm:flex">
                 {c.to ? (
                   <Link to={c.to} className="hover:text-ink">
                     {c.label}
@@ -137,7 +137,7 @@ export function AdminLayout({
             ))}
             <span className="truncate font-medium text-ink">{title}</span>
           </nav>
-          <div className="ml-auto flex items-center gap-2">{actions}</div>
+          <div className="flex shrink-0 items-center gap-2">{actions}</div>
         </header>
 
         <main key={location.pathname} className="flex-1 p-4 lg:p-6">
