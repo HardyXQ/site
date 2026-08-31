@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import * as api from './api';
 import type { ServiceFilters } from './api';
-import type { AdminSettings, Category, ServiceWithRelations } from './types';
+import type { Category, ServiceWithRelations } from './types';
 
 export const qk = {
   categories: ['categories'] as const,
@@ -14,7 +14,6 @@ export const qk = {
   service: (id: string) => ['service', id] as const,
   dashboard: ['dashboard'] as const,
   recent: ['recent-services'] as const,
-  settings: ['settings'] as const,
 };
 
 export function useCategories(opts?: Partial<UseQueryOptions<Category[]>>) {
@@ -47,10 +46,6 @@ export function useDashboardStats() {
 
 export function useRecentServices() {
   return useQuery({ queryKey: qk.recent, queryFn: () => api.getRecentServices(6) });
-}
-
-export function useSettings() {
-  return useQuery({ queryKey: qk.settings, queryFn: api.getSettings });
 }
 
 /** Invalidate everything that can change when services/categories are mutated. */
@@ -95,14 +90,6 @@ export function useReorderServices() {
   return useMutation({
     mutationFn: (ids: string[]) => api.reorderServices(ids),
     onSuccess: invalidate,
-  });
-}
-
-export function useSaveSettings() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (value: AdminSettings) => api.saveSettings(value),
-    onSuccess: () => qc.invalidateQueries({ queryKey: qk.settings }),
   });
 }
 

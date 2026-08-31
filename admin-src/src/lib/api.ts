@@ -1,11 +1,5 @@
 import { supabase } from './supabase';
-import type {
-  AdminSettings,
-  Category,
-  Service,
-  ServiceImage,
-  ServiceWithRelations,
-} from './types';
+import type { Category, Service, ServiceImage, ServiceWithRelations } from './types';
 import type { CategoryFormValues, ServiceFormValues } from './schemas';
 import { removeUploadedImage } from './image';
 
@@ -394,22 +388,6 @@ export async function getRecentServices(limit = 6): Promise<ServiceWithRelations
     .limit(limit);
   if (error) throw error;
   return (data as ServiceWithRelations[]).map(sortImages);
-}
-
-// ---------------------------------------------------------------------------
-// settings
-// ---------------------------------------------------------------------------
-export async function getSettings(): Promise<AdminSettings> {
-  const { data, error } = await supabase.from('settings').select('value').eq('key', 'general').maybeSingle();
-  if (error) throw error;
-  return (data?.value as AdminSettings) ?? {};
-}
-
-export async function saveSettings(value: AdminSettings) {
-  const { error } = await supabase
-    .from('settings')
-    .upsert({ key: 'general', value }, { onConflict: 'key' });
-  if (error) throw error;
 }
 
 // ---------------------------------------------------------------------------

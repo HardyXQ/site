@@ -77,10 +77,3 @@ export const categorySchema = z.object({
   is_published: z.boolean(),
 });
 export type CategoryFormValues = z.infer<typeof categorySchema>;
-
-export const settingsSchema = z.object({
-  studio_name: z.string().trim().max(120).optional(),
-  contact_email: z.string().trim().email('Некорректный email').or(z.literal('')).optional(),
-  default_currency: z.enum(CURRENCIES).optional(),
-});
-export type SettingsFormValues = z.infer<typeof settingsSchema>;

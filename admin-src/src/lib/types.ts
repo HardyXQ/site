@@ -63,8 +63,3 @@ export interface ServiceWithRelations extends Service {
   images: ServiceImage[];
 }
 
-export interface AdminSettings {
-  studio_name?: string;
-  default_currency?: Currency;
-  contact_email?: string;
-}
