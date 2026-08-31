@@ -2231,23 +2231,36 @@ a{color:inherit;text-decoration:none}
   }
 }
 .menu-shell{
-  padding:32px;
+  padding:0 var(--header-inline) 40px;
   display:flex;
   flex-direction:column;
   min-height:100%;
 }
+/* Top row mirrors the site header exactly so the WaveSign logo does not jump
+   when the drawer opens: same side inset, same icon box, same gap, same height. */
 .menu-top{
-  height:auto;
-  gap:16px;
-  margin-bottom:24px;
+  height:var(--header-height);
+  min-height:var(--header-height);
+  align-items:center;
+  gap:10px;
+  margin-bottom:16px;
 }
 .back-btn{
-  width:40px;
-  height:40px;
+  width:38px;
+  height:38px;
 }
 .back-btn svg{
   width:26px;
   height:26px;
+}
+@media(max-width:767px){
+  .back-btn{width:32px;height:32px}
+  .back-btn svg{width:24px;height:24px}
+}
+/* From 768px up the sticky header full-bleeds and its content sits 7px inside
+   --header-inline; match that so the logo stays put in the drawer too. */
+@media(min-width:768px){
+  .menu-shell{padding-left:calc(var(--header-inline) - 7px)}
 }
 .menu-search{
   width:100%;
