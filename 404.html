@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WaveSign</title>
+    <script>
+      // GitHub Pages serves this file for any unknown path.
+      // Deep links into the admin SPA (/admin/services/new, …) land here first —
+      // stash the intended route and boot the SPA, which restores it.
+      (function () {
+        var path = location.pathname;
+        if (path === '/admin' || path.indexOf('/admin/') === 0) {
+          try {
+            sessionStorage.setItem(
+              'wavesign:redirect',
+              path.replace(/^\/admin/, '') + location.search + location.hash,
+            );
+          } catch (e) {}
+          location.replace('/admin/');
+        } else {
+          location.replace('/');
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.env.local
+admin-src/.vite/
+supabase/.branches/
+supabase/.temp/
+.supabase/
+dist/

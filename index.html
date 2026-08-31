@@ -687,6 +687,25 @@ a{color:inherit;text-decoration:none}
   border-color:var(--accent);
   background:rgba(238,153,255,.06);
 }
+.order-submit[disabled]{opacity:.6;cursor:default}
+.order-submit[disabled]:hover{color:var(--text);border-color:rgba(251,232,255,.72);background:transparent}
+.order-trap{
+  position:absolute;
+  left:-9999px;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
+}
+.order-status{
+  margin-top:-24px;
+  min-height:22px;
+  font-size:17px;
+  line-height:1.3;
+  font-weight:700;
+  color:var(--accent);
+}
+.order-status.is-error{color:#ff9db2}
 
 .site-footer{
   background:var(--bg);
@@ -1640,22 +1659,18 @@ a{color:inherit;text-decoration:none}
   max-width:100%;
   min-width:0;
   box-sizing:border-box;
-  background:linear-gradient(180deg,#150E20 0%,rgba(39,17,59,.98) 100%);
-  border:1px solid rgba(238,153,255,.18);
-  border-radius:12px;
-  padding:12px 14px;
-  box-shadow:0 12px 30px rgba(0,0,0,.24);
+  background:none;
+  border:0;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
 }
 .search-inline[hidden]{display:none}
 .search-block[hidden],
 .menu-search[hidden]{display:none}
+/* открытый поиск заменяет собой кнопку — она не дублируется рядом */
 .search-block.is-search-open,
-.menu-search.is-search-open{
-  cursor:text;
-}
-.menu-search.is-search-open{
-  margin-bottom:12px;
-}
+.menu-search.is-search-open,
 .search-block.is-search-querying,
 .menu-search.is-search-querying{
   display:none;
@@ -1664,17 +1679,31 @@ a{color:inherit;text-decoration:none}
 .search-inline--menu{
   width:var(--search-inline-width,100%);
 }
+.search-inline--menu{
+  margin:0 0 32px;
+}
 .search-inline-top{
+  position:relative;
   display:flex;
   align-items:center;
   gap:10px;
-  border-bottom:2px solid var(--line);
   padding-bottom:10px;
   min-height:44px;
-  transition:border-color .18s ease;
 }
-.search-inline:focus-within .search-inline-top{
-  border-color:rgba(238,153,255,.66);
+/* the search line itself: same weight as the collapsed .search-line */
+.search-inline-top::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:2px;
+  background:rgba(251,232,255,.72);
+  transition:background .18s ease,box-shadow .18s ease;
+}
+.search-inline:focus-within .search-inline-top::after{
+  background:linear-gradient(90deg,rgba(238,153,255,.95) 0%,rgba(124,37,244,.85) 100%);
+  box-shadow:0 0 12px rgba(238,153,255,.3);
 }
 .search-icon{width:20px;height:20px;flex:0 0 20px;color:rgba(251,232,255,.6)}
 .search-input{
@@ -1699,40 +1728,106 @@ a{color:inherit;text-decoration:none}
 }
 .search-close:hover,.search-close:focus-visible{color:var(--accent)}
 .search-close svg{width:18px;height:18px}
+/* Suggestions: one translucent rectangle flush under the search line,
+   exactly as wide as the line, tinted with the site gradient */
+.search-results,
+.search-empty{
+  width:100%;
+  margin-top:0;
+  border:1px solid rgba(238,153,255,.14);
+  border-top:0;
+  border-radius:0 0 14px 14px;
+  background:
+    linear-gradient(180deg,
+      rgba(238,153,255,.10) 0%,
+      rgba(124,37,244,.09) 45%,
+      rgba(21,14,32,.06) 100%);
+  -webkit-backdrop-filter:blur(14px) saturate(130%);
+  backdrop-filter:blur(14px) saturate(130%);
+  box-shadow:
+    inset 0 1px 0 rgba(251,232,255,.07),
+    0 18px 36px rgba(10,4,20,.26);
+  animation:searchPanelIn .2s ease both;
+}
+@keyframes searchPanelIn{
+  from{opacity:0;transform:translateY(-6px)}
+  to{opacity:1;transform:none}
+}
 .search-results{
   list-style:none;
   overflow-y:auto;
+  overscroll-behavior:contain;
   max-height:320px;
-  margin-top:12px;
   display:grid;
-  gap:4px;
+  gap:2px;
+  padding:6px;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(238,153,255,.28) transparent;
 }
+.search-results::-webkit-scrollbar{width:6px}
+.search-results::-webkit-scrollbar-thumb{
+  background:rgba(238,153,255,.28);
+  border-radius:99px;
+}
+.search-results::-webkit-scrollbar-track{background:transparent}
 .search-results[hidden]{display:none}
 .search-result{
+  position:relative;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:2px;
-  padding:10px 8px;
-  border-radius:8px;
+  gap:3px;
+  padding:9px 12px;
+  border-radius:10px;
   cursor:pointer;
+  transition:background .16s ease,color .16s ease;
 }
-.search-result-name{font-size:16px;font-weight:700;color:var(--text)}
+/* hairline between rows so the list reads as one block, not floating chips */
+.search-result + .search-result::before{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:-1px;
+  height:1px;
+  background:rgba(251,232,255,.07);
+}
+.search-result-name{
+  font-size:15px;
+  font-weight:800;
+  line-height:1.25;
+  color:var(--text);
+  transition:color .16s ease;
+}
 .search-result-category{
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
-  color:rgba(251,232,255,.5);
+  letter-spacing:.08em;
+  color:rgba(238,153,255,.55);
   text-transform:uppercase;
+  transition:color .16s ease;
 }
 .search-result[aria-selected="true"],
-.search-result:hover{background:rgba(238,153,255,.12)}
-.search-result[aria-selected="true"] .search-result-name{color:var(--accent)}
+.search-result:hover{
+  background:linear-gradient(90deg,rgba(238,153,255,.16) 0%,rgba(124,37,244,.12) 100%);
+}
+.search-result[aria-selected="true"]::before,
+.search-result:hover::before,
+.search-result:hover + .search-result::before,
+.search-result[aria-selected="true"] + .search-result::before{
+  opacity:0;
+}
+.search-result[aria-selected="true"] .search-result-name,
+.search-result:hover .search-result-name{color:var(--accent)}
+.search-result[aria-selected="true"] .search-result-category,
+.search-result:hover .search-result-category{color:rgba(238,153,255,.8)}
 .search-empty{
-  margin-top:12px;
   color:rgba(251,232,255,.6);
-  font-size:14px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.01em;
   text-align:left;
-  padding:4px 0;
+  padding:14px 14px;
 }
 .search-empty[hidden]{display:none}
 
@@ -2578,6 +2673,47 @@ a{color:inherit;text-decoration:none}
     gap:8px;
   }
 }
+
+/* Currency switch — sits under the price on the service detail page */
+.detail-info .cur-switch{
+  display:flex;
+  width:fit-content;
+  align-items:center;
+  gap:4px;
+  margin-top:20px;
+  padding:4px;
+  border-radius:999px;
+  background:rgba(251,232,255,.06);
+  border:1px solid var(--line);
+}
+.cur-btn{
+  min-width:34px;
+  height:30px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:16px;
+  font-weight:800;
+  line-height:1;
+  transition:color .18s ease,background-color .18s ease;
+}
+.cur-btn.active{
+  color:var(--text);
+  background:var(--hot);
+}
+.cur-btn:hover{
+  color:var(--text);
+  background:rgba(238,153,255,.12);
+}
+.cur-btn.active:hover{
+  background:var(--hot);
+}
+.cur-btn:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
 </style>
 </head>
 <body>
@@ -2763,7 +2899,9 @@ a{color:inherit;text-decoration:none}
                 <span class="order-caption" id="orderContactLabel">Контакты для связи</span>
                 <textarea class="order-field order-grow-field" id="orderContact" name="contact" autocomplete="off" rows="1"></textarea>
               </label>
+              <input class="order-trap" id="orderCompany" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
               <button class="order-submit" type="submit">заказать</button>
+              <p class="order-status" id="orderStatus" role="status" aria-live="polite"></p>
             </form>
           </div>
           <aside class="order-side" aria-label="Быстрая навигация">
@@ -2811,7 +2949,13 @@ a{color:inherit;text-decoration:none}
           <div class="detail-main-photo" aria-label="Место для фото"></div>
           <aside class="detail-info">
             <h1 class="detail-title" id="detailTitle">Лого</h1>
-            <div class="detail-price" id="detailPrice">$500</div>
+            <div class="detail-price" id="detailPrice"></div>
+            <div class="cur-switch" role="group" aria-label="Валюта">
+              <button class="cur-btn active" type="button" data-currency="USD" aria-label="USD" aria-pressed="true">$</button>
+              <button class="cur-btn" type="button" data-currency="EUR" aria-label="EUR" aria-pressed="false">€</button>
+              <button class="cur-btn" type="button" data-currency="RUB" aria-label="RUB" aria-pressed="false">₽</button>
+              <button class="cur-btn" type="button" data-currency="UAH" aria-label="UAH" aria-pressed="false">₴</button>
+            </div>
             <p class="detail-desc">описание описаниеописаниеописаниеописаниеописаниеописаниеописание</p>
             <a class="detail-order" href="#order">заказать</a>
           </aside>
@@ -2876,6 +3020,8 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <script src="./generated/service-media-manifest.js"></script>
+<script src="/public-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.46.1/dist/umd/supabase.js" crossorigin></script>
 <script>
 const locales = {
   ru: {
@@ -2892,6 +3038,10 @@ const locales = {
     orderBudget:"бюджет",
     orderContact:"Контакты для связи",
     orderSubmit:"заказать",
+    orderSending:"отправляем…",
+    orderSuccess:"Заявка отправлена! Свяжемся с вами в ближайшее время.",
+    orderError:"Не удалось отправить. Напишите нам в telegram @wavesign.",
+    orderRequired:"Заполните описание идеи и контакты для связи.",
     all:"Все",
     nav:"Навигация",
     footerDesc:"IT-студия. Графический дизайн, моушн дизайн и разработка",
@@ -2899,8 +3049,11 @@ const locales = {
     contactWhatsapp:"whatsapp: @wavesign",
     detailDescription:"описание описаниеописаниеописаниеописаниеописаниеописаниеописание",
     detailOrder:"заказать",
-    fromPrice:"от 100$",
-    detailFixedPrice:"$500",
+    priceFrom:"от",
+    priceUnitItem:"/ макет",
+    priceUnitHour:"/ час",
+    priceUnitMinute:"/ мин",
+    currencyLabel:"Валюта",
     backToServices:"Все услуги",
     searchHint:"Начните вводить название услуги",
     mediaProjectLabel:"работа"
@@ -2919,6 +3072,10 @@ const locales = {
     orderBudget:"бюджет",
     orderContact:"Контакти для зв'язку",
     orderSubmit:"замовити",
+    orderSending:"надсилаємо…",
+    orderSuccess:"Заявку надіслано! Зв'яжемося з вами найближчим часом.",
+    orderError:"Не вдалося надіслати. Напишіть нам у telegram @wavesign.",
+    orderRequired:"Заповніть опис ідеї та контакти для зв'язку.",
     all:"Усе",
     nav:"Навігація",
     footerDesc:"IT-студія. Графічний дизайн, моушн дизайн і розробка",
@@ -2926,8 +3083,11 @@ const locales = {
     contactWhatsapp:"whatsapp: @wavesign",
     detailDescription:"опис описописописописописописопис",
     detailOrder:"замовити",
-    fromPrice:"від 100$",
-    detailFixedPrice:"$500",
+    priceFrom:"від",
+    priceUnitItem:"/ макет",
+    priceUnitHour:"/ год",
+    priceUnitMinute:"/ хв",
+    currencyLabel:"Валюта",
     backToServices:"Всі послуги",
     searchHint:"Почніть вводити назву послуги",
     mediaProjectLabel:"робота"
@@ -2946,6 +3106,10 @@ const locales = {
     orderBudget:"budget",
     orderContact:"contact details",
     orderSubmit:"order",
+    orderSending:"sending…",
+    orderSuccess:"Your request has been sent! We'll get back to you shortly.",
+    orderError:"Sending failed. Message us on telegram @wavesign.",
+    orderRequired:"Please fill in the idea description and contact details.",
     all:"All",
     nav:"Navigation",
     footerDesc:"IT studio. Graphic design, motion design and development",
@@ -2953,8 +3117,11 @@ const locales = {
     contactWhatsapp:"whatsapp: @wavesign",
     detailDescription:"description descriptiondescriptiondescriptiondescriptiondescription",
     detailOrder:"order",
-    fromPrice:"from $100",
-    detailFixedPrice:"$500",
+    priceFrom:"from",
+    priceUnitItem:"/ item",
+    priceUnitHour:"/ hour",
+    priceUnitMinute:"/ min",
+    currencyLabel:"Currency",
     backToServices:"All services",
     searchHint:"Start typing a service name",
     mediaProjectLabel:"project"
@@ -3042,82 +3209,188 @@ let currentLang = resolveInitialLang();
 
 /* ---------- Single source of truth: services catalog (Task 3) ---------- */
 
-const SERVICE_CATEGORIES = [
+/* Initial data below is a build-time snapshot. On load it is replaced with live
+   data from Supabase (see loadServicesFromDatabase at the end of this script),
+   so the public site always reflects the admin panel without code changes. */
+let SERVICE_CATEGORIES = [
   { id:"design", name:{ en:"Design and animation", uk:"Дизайн і анімація", ru:"Дизайн и анимация" } },
   { id:"development", name:{ en:"Development", uk:"Розробка", ru:"Разработка" } },
   { id:"additional", name:{ en:"Additional", uk:"Додатково", ru:"Дополнительно" } }
 ];
 
-const SERVICES_CATALOG = [
-  { id:"logo", categoryId:"design", group:0,
+let SERVICES_CATALOG = [
+  { id:"logo", categoryId:"design", group:0, price:{ from:300 },
     name:{ en:"Logo", uk:"Лого", ru:"Лого" },
     keywords:{ en:["logo","logo design","brand mark","emblem"], uk:["лого","логотип","емблема"], ru:["лого","логотип","эмблема"] } },
-  { id:"logo-animation", categoryId:"design", group:0,
+  { id:"logo-animation", categoryId:"design", group:0, price:{ from:200 },
     name:{ en:"Logo animation", uk:"Анімація лого", ru:"Анимация лого" },
     keywords:{ en:["logo animation","animated logo","logo motion"], uk:["анімація лого","анімований логотип"], ru:["анимация лого","анимированный логотип"] } },
-  { id:"logo-animation-bundle", categoryId:"design", group:0,
+  { id:"logo-animation-bundle", categoryId:"design", group:0, price:{ from:450 },
     name:{ en:"logo + animation", uk:"лого + анімація", ru:"лого + анимация" },
     keywords:{ en:["logo + animation","logo and animation bundle","logo pack"], uk:["лого + анімація","лого та анімація"], ru:["лого + анимация","лого и анимация"] } },
-  { id:"brand-identity", categoryId:"design", group:1,
+  { id:"brand-identity", categoryId:"design", group:1, price:{ from:900 },
     name:{ en:"brand identity", uk:"фірмовий стиль", ru:"фирменный стиль" },
     keywords:{ en:["brand identity","branding","visual identity"], uk:["фірмовий стиль","брендинг"], ru:["фирменный стиль","брендинг"] } },
-  { id:"graphic-design", categoryId:"design", group:1,
+  { id:"graphic-design", categoryId:"design", group:1, price:{ from:50, unit:"item" },
     name:{ en:"Graphic design", uk:"Графічний дизайн", ru:"Графический дизайн" },
     keywords:{
       en:["graphic design","graphics","menu design","menu","restaurant menu","cafe menu","price list","product card","product cards","product listing design","marketplace design","marketplace infographic","product infographic","photo editing","image editing","photo retouching","retouch","color correction","collage","photo manipulation","advertising banner","banner design","graphic materials"],
       uk:["графічний дизайн","графіка","дизайн меню","меню","ресторанне меню","меню кафе","прайс","прайс-лист","картка товару","картки товарів","дизайн картки товару","маркетплейс","дизайн для маркетплейсу","інфографіка для маркетплейсу","інфографіка товару","обробка фотографій","обробка фото","редагування фото","ретуш","ретуш фотографій","кольорокорекція","колаж","фотомонтаж","рекламний банер","банер","графічні матеріали"],
       ru:["графический дизайн","графика","дизайн меню","меню","ресторанное меню","кафе меню","прайс","прайс-лист","карточка товара","карточки товаров","дизайн карточки товара","маркетплейс","дизайн для маркетплейса","инфографика для маркетплейса","инфографика товара","обработка фотографий","обработка фото","редактирование фото","ретушь","ретушь фотографий","цветокоррекция","коллаж","фотомонтаж","рекламный баннер","баннер","графические материалы"]
     } },
-  { id:"print-layouts", categoryId:"design", group:1,
+  { id:"print-layouts", categoryId:"design", group:1, price:{ from:50, unit:"item" },
     name:{ en:"print layouts", uk:"макети для друку", ru:"макеты под печать" },
     keywords:{
       en:["print design","print layout","print-ready design","business card","business cards","postcard","postcards","flyer","flyers","leaflet","leaflets","booklet","booklets","brochure","brochures","poster","posters","print banner","calendar","calendars","certificate","certificates","invitation","invitations","sticker","stickers","label","labels","print","prints","printed materials","print preparation","promotional print","stationery"],
       uk:["макети для друку","макет для друку","поліграфія","візитка","візитки","дизайн візитки","листівка","листівки","флаєр","флаєри","буклет","буклети","брошура","брошури","плакат","плакати","постер","постери","банер для друку","календар","календарі","сертифікат","сертифікати","запрошення","наліпка","наліпки","стікери","етикетка","етикетки","принт","принти","підготовка до друку","друкований макет","рекламна поліграфія"],
       ru:["макеты под печать","макет для печати","полиграфия","визитка","визитки","дизайн визитки","открытка","открытки","дизайн открытки","листовка","листовки","флаер","флаеры","буклет","буклеты","брошюра","брошюры","плакат","плакаты","постер","постеры","баннер для печати","календарь","календари","сертификат","сертификаты","пригласительное","пригласительные","наклейка","наклейки","стикеры","этикетка","этикетки","принт","принты","подготовка к печати","печатный макет","рекламная полиграфия"]
     } },
-  { id:"telegram-bot", categoryId:"development", group:0,
+  { id:"telegram-bot", categoryId:"development", group:0, price:{ from:400 },
     name:{ en:"Telegram Bot", uk:"Telegram Bot", ru:"Telegram Bot" },
     keywords:{ en:["telegram bot","bot development","chatbot"], uk:["телеграм бот","чат-бот"], ru:["телеграм бот","чат-бот"] } },
-  { id:"ai-integration", categoryId:"development", group:0,
+  { id:"ai-integration", categoryId:"development", group:0, price:{ from:600 },
     name:{ en:"AI integration", uk:"ШІ інтеграція", ru:"ИИ интеграция" },
     keywords:{ en:["ai integration","artificial intelligence integration"], uk:["ші інтеграція","інтеграція ші","штучний інтелект"], ru:["ии интеграция","интеграция ии","искусственный интеллект"] } },
-  { id:"ai-agents", categoryId:"development", group:0,
+  { id:"ai-agents", categoryId:"development", group:0, price:{ from:1500 },
     name:{ en:"AI Agents", uk:"ШІ-Агенти", ru:"ИИ-Агенты" },
     keywords:{ en:["ai agents","ai agent"], uk:["ші-агенти","ші агенти"], ru:["ии-агенты","ии агенты"] } },
-  { id:"turnkey-website", categoryId:"development", group:1,
+  { id:"turnkey-website", categoryId:"development", group:1, price:{ from:900 },
     name:{ en:"Turnkey website", uk:"Сайт під ключ", ru:"Сайт под ключ" },
     keywords:{ en:["turnkey website","website development","site development"], uk:["сайт під ключ","розробка сайту"], ru:["сайт под ключ","разработка сайта"] } },
-  { id:"custom-software", categoryId:"development", group:1,
+  { id:"custom-software", categoryId:"development", group:1, price:{ from:2500 },
     name:{ en:"Custom software", uk:"Софт на замовлення", ru:"Софт на заказ" },
     keywords:{ en:["custom software","software development"], uk:["софт на замовлення","розробка по"], ru:["софт на заказ","разработка по"] } },
-  { id:"app-development", categoryId:"development", group:1,
+  { id:"app-development", categoryId:"development", group:1, price:{ from:3500 },
     name:{ en:"App development", uk:"Розробка застосунків", ru:"Разработка приложений" },
     keywords:{ en:["app development","mobile app","application development"], uk:["розробка застосунків","мобільний застосунок"], ru:["разработка приложений","мобильное приложение"] } },
-  { id:"web3-development", categoryId:"development", group:2,
+  { id:"web3-development", categoryId:"development", group:2, price:{ from:3000 },
     name:{ en:"Web3 development", uk:"Web3 розробка", ru:"Web3 разработка" },
     keywords:{ en:["web3 development","web3","blockchain development"], uk:["web3 розробка","блокчейн розробка"], ru:["web3 разработка","блокчейн разработка"] } },
-  { id:"smart-contracts", categoryId:"development", group:2,
+  { id:"smart-contracts", categoryId:"development", group:2, price:{ from:1500 },
     name:{ en:"Smart contracts", uk:"Смарт контракти", ru:"Смарт контракты" },
     keywords:{ en:["smart contracts","smart contract"], uk:["смарт контракти","смарт-контракти"], ru:["смарт контракты","смарт-контракты"] } },
-  { id:"security-audit", categoryId:"development", group:2,
+  { id:"security-audit", categoryId:"development", group:2, price:{ from:1200 },
     name:{ en:"Security audit", uk:"Аудит безпеки", ru:"Аудит безопасности" },
     keywords:{ en:["security audit","code audit"], uk:["аудит безпеки"], ru:["аудит безопасности"] } },
-  { id:"naming", categoryId:"additional", group:0,
+  { id:"naming", categoryId:"additional", group:0, price:{ from:150 },
     name:{ en:"Naming", uk:"Неймінг", ru:"Нейминг" },
     keywords:{ en:["naming","brand naming"], uk:["неймінг","нейминг"], ru:["нейминг"] } },
-  { id:"slogans", categoryId:"additional", group:0,
+  { id:"slogans", categoryId:"additional", group:0, price:{ from:80 },
     name:{ en:"Slogans", uk:"Слогани", ru:"Слоганы" },
     keywords:{ en:["slogans","tagline"], uk:["слогани","гасло"], ru:["слоганы"] } },
-  { id:"consultation", categoryId:"additional", group:1,
+  { id:"consultation", categoryId:"additional", group:1, price:{ from:60, unit:"hour" },
     name:{ en:"Consultation", uk:"Консультація", ru:"Консультация" },
     keywords:{ en:["consultation","consulting"], uk:["консультація"], ru:["консультация"] } },
-  { id:"info-search", categoryId:"additional", group:2,
+  { id:"info-search", categoryId:"additional", group:2, price:{ from:25, unit:"hour" },
     name:{ en:"Information search", uk:"Пошук інформації", ru:"Поиск информации" },
     keywords:{ en:["information search","research"], uk:["пошук інформації"], ru:["поиск информации"] } },
-  { id:"transcription", categoryId:"additional", group:2,
+  { id:"transcription", categoryId:"additional", group:2, price:{ from:2, unit:"minute" },
     name:{ en:"Transcription", uk:"Транскрибація", ru:"Транскрибация" },
     keywords:{ en:["transcription","audio transcription"], uk:["транскрибація","розшифровка аудіо"], ru:["транскрибация","расшифровка аудио"] } }
 ];
+
+/* ---------- Currency selection & price formatting ---------- */
+
+const SUPPORTED_CURRENCIES = ["USD", "EUR", "RUB", "UAH"];
+const CURRENCY_STORAGE_KEY = "wavesign-currency";
+
+/* Anchor currency is USD. Rates are indicative and are fixed in the contract
+   on the invoice date — see the WaveSign price document. */
+const CURRENCIES = {
+  USD: { rate: 1,    symbol: "$",  placement: "before" },
+  EUR: { rate: 0.92, symbol: "€",  placement: "before" },
+  RUB: { rate: 90,   symbol: "₽",  placement: "after"  },
+  UAH: { rate: 41.5, symbol: "₴",  placement: "before" },
+  GBP: { rate: 0.79, symbol: "£",  placement: "before" },
+  PLN: { rate: 4.0,  symbol: "zł", placement: "after"  }
+};
+
+const DEFAULT_CURRENCY = "USD";
+
+function normalizeCurrencyCode(code) {
+  const upper = (code || "").toString().trim().toUpperCase();
+  return SUPPORTED_CURRENCIES.includes(upper) ? upper : null;
+}
+
+function readSavedCurrency() {
+  try {
+    const normalized = normalizeCurrencyCode(localStorage.getItem(CURRENCY_STORAGE_KEY));
+    if (normalized) return normalized;
+  } catch (error) {}
+  return normalizeCurrencyCode(getCookie(CURRENCY_STORAGE_KEY));
+}
+
+function saveCurrency(code) {
+  try {
+    localStorage.setItem(CURRENCY_STORAGE_KEY, code);
+  } catch (error) {}
+  setCookie(CURRENCY_STORAGE_KEY, code);
+}
+
+function readUrlCurrency() {
+  try {
+    return normalizeCurrencyCode(new URLSearchParams(window.location.search).get("cur"));
+  } catch (error) {
+    return null;
+  }
+}
+
+function resolveInitialCurrency() {
+  return readUrlCurrency()
+    || readSavedCurrency()
+    || DEFAULT_CURRENCY;
+}
+
+let currentCurrency = resolveInitialCurrency();
+
+/* Round a converted amount to a marketing-friendly step that scales with magnitude. */
+function roundPrice(value) {
+  if (value < 5) return Math.round(value * 10) / 10;
+  if (value < 30) return Math.round(value);
+  if (value < 1000) return Math.round(value / 5) * 5;
+  if (value < 10000) return Math.round(value / 50) * 50;
+  if (value < 100000) return Math.round(value / 500) * 500;
+  return Math.round(value / 1000) * 1000;
+}
+
+function convertMoney(amount, fromCode, toCode) {
+  const from = CURRENCIES[fromCode] || CURRENCIES.USD;
+  const to = CURRENCIES[toCode] || CURRENCIES.USD;
+  if (from === to) return roundPrice(amount);
+  return roundPrice((amount / from.rate) * to.rate);
+}
+
+function formatMoney(amount, currencyCode) {
+  const currency = CURRENCIES[currencyCode] || CURRENCIES.USD;
+  const localeTag = currentLang === "en" ? "en-US" : "ru-RU";
+  const hasFraction = Math.abs(amount % 1) > 0;
+  const number = amount.toLocaleString(localeTag, {
+    minimumFractionDigits: hasFraction ? 1 : 0,
+    maximumFractionDigits: 1
+  });
+  return currency.placement === "before"
+    ? `${currency.symbol}${number}`
+    : `${number} ${currency.symbol}`;
+}
+
+function getServicePriceLabel(service) {
+  const l = locales[currentLang];
+  if (!service || !service.price) return "";
+  const p = service.price;
+  const type = p.type || "from";
+  if (type === "on_request") return PRICE_ON_REQUEST[currentLang] || PRICE_ON_REQUEST.en;
+  const rawAmount = p.amount != null ? p.amount : p.from;
+  if (rawAmount == null || Number.isNaN(Number(rawAmount))) return "";
+  const amount = convertMoney(Number(rawAmount), p.currency || "USD", currentCurrency);
+  const parts = [];
+  if (type === "from") parts.push(l.priceFrom);
+  parts.push(formatMoney(amount, currentCurrency));
+  const unitKey = { item: "priceUnitItem", hour: "priceUnitHour", minute: "priceUnitMinute" }[p.unit];
+  if (unitKey && l[unitKey]) parts.push(l[unitKey]);
+  return parts.join(" ");
+}
+
+const PRICE_ON_REQUEST = { ru: "Цена по запросу", uk: "Ціна за запитом", en: "Price on request" };
 
 const SERVICE_ID_REDIRECTS = {
   "business-cards": "print-layouts",
@@ -3127,7 +3400,7 @@ const SERVICE_ID_REDIRECTS = {
   "photo-retouching": "graphic-design"
 };
 
-const SERVICE_DETAIL_DESCRIPTIONS = {
+let SERVICE_DETAIL_DESCRIPTIONS = {
   "logo": {
     ru: "Разрабатываем уникальный логотип, который отражает характер бренда и остаётся узнаваемым в цифровых и печатных материалах.",
     uk: "Розробляємо унікальний логотип, який відображає характер бренду і залишається впізнаваним у цифрових та друкованих матеріалах.",
@@ -3247,13 +3520,67 @@ function getServiceDetailDescription(service) {
   return SERVICE_DETAIL_DESCRIPTIONS[service.id]?.[currentLang] || locales[currentLang].detailDescription;
 }
 
+/* Remove anything unsafe from admin-authored rich text before injecting it. */
+function sanitizeRichHtml(html) {
+  const tpl = document.createElement("template");
+  tpl.innerHTML = String(html || "");
+  tpl.content.querySelectorAll("script,style,iframe,object,embed,link,meta").forEach((n) => n.remove());
+  tpl.content.querySelectorAll("*").forEach((el) => {
+    [...el.attributes].forEach((attr) => {
+      const name = attr.name.toLowerCase();
+      const value = attr.value.trim().toLowerCase();
+      if (name.startsWith("on")) el.removeAttribute(attr.name);
+      if ((name === "href" || name === "src") && value.startsWith("javascript:")) el.removeAttribute(attr.name);
+    });
+    if (el.tagName === "A") {
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener noreferrer");
+    }
+  });
+  return tpl.innerHTML;
+}
+
+function renderDetailDescription(service) {
+  if (!detailDesc) return;
+  const raw = SERVICE_DETAIL_DESCRIPTIONS[service.id]?.[currentLang];
+  if (raw && /<[a-z][\s\S]*>/i.test(raw)) {
+    detailDesc.innerHTML = sanitizeRichHtml(raw);
+  } else {
+    detailDesc.textContent = raw || locales[currentLang].detailDescription;
+  }
+}
+
+function applyServiceSeo(service) {
+  const seo = service.seo || {};
+  const name = service.name?.[currentLang] || service.name?.en || "";
+  const title = (seo.title && seo.title[currentLang]) || (name ? `${name} — WaveSign Studio` : "WaveSign Studio");
+  document.title = title;
+  const setMeta = (selector, attr, content) => {
+    const el = document.querySelector(selector);
+    if (el && content) el.setAttribute(attr, content);
+  };
+  const desc =
+    (seo.description && seo.description[currentLang]) ||
+    stripToText(SERVICE_DETAIL_DESCRIPTIONS[service.id]?.[currentLang] || "").slice(0, 200);
+  setMeta('meta[name="description"]', "content", desc || "IT-студия. Графический дизайн, моушн дизайн и разработка.");
+  setMeta('meta[property="og:title"]', "content", title);
+  if (desc) setMeta('meta[property="og:description"]', "content", desc);
+  if (seo.ogImage) setMeta('meta[property="og:image"]', "content", seo.ogImage);
+}
+
+function stripToText(html) {
+  const tmp = document.createElement("div");
+  tmp.innerHTML = String(html || "");
+  return (tmp.textContent || "").replace(/\s+/g, " ").trim();
+}
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (ch) => ({
     "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
   }[ch]));
 }
 
-const SERVICE_MEDIA_MANIFEST = window.SERVICE_MEDIA_MANIFEST || {};
+let SERVICE_MEDIA_MANIFEST = window.SERVICE_MEDIA_MANIFEST || {};
 
 function getServiceMedia(serviceId) {
   return SERVICE_MEDIA_MANIFEST[serviceId] || { folder:null, cover:null, items:[] };
@@ -3342,13 +3669,12 @@ function renderCardMedia(service, index) {
 const grid = document.getElementById("servicesGrid");
 function renderServices() {
   if (!grid) return;
-  const l = locales[currentLang];
   grid.innerHTML = SERVICES_CATALOG.map((service, index) => `
     <a class="service-card" href="#service-${service.id}">
       ${renderCardMedia(service, index)}
       <span class="service-meta">
         <span class="service-name">${escapeHtml(service.name[currentLang])}</span>
-        <span class="service-price">${service.id === "logo" ? l.detailFixedPrice : l.fromPrice}</span>
+        <span class="service-price">${escapeHtml(getServicePriceLabel(service))}</span>
       </span>
     </a>
   `).join("");
@@ -3799,6 +4125,12 @@ const menuBackdrop = document.querySelector(".menu-backdrop");
 const detailTitle = document.getElementById("detailTitle");
 const detailPrice = document.getElementById("detailPrice");
 const detailDesc = document.querySelector(".detail-desc");
+let currentDetailService = null;
+
+function renderDetailPrice() {
+  if (!detailPrice || !currentDetailService) return;
+  detailPrice.textContent = getServicePriceLabel(currentDetailService);
+}
 const detailMainPhoto = document.querySelector(".detail-main-photo");
 const detailBody = document.querySelector(".detail-body");
 const serviceGallery = document.getElementById("serviceGallery");
@@ -3882,6 +4214,7 @@ function applyLang() {
   setText(".detail-desc", l.detailDescription);
   setText(".detail-order", l.detailOrder);
   setText(".detail-back-label", l.backToServices);
+  document.querySelectorAll(".cur-switch").forEach((node) => node.setAttribute("aria-label", l.currencyLabel));
 
   if (searchInput) {
     searchInput.placeholder = l.searchPlaceholder;
@@ -3906,6 +4239,32 @@ function setLang(lang) {
   syncLangInUrl(normalized);
   applyLang();
   route(false);
+}
+
+function syncCurrencyInUrl(code) {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set("cur", code);
+    window.history.replaceState(window.history.state, "", url);
+  } catch (error) {}
+}
+
+function applyCurrency() {
+  document.querySelectorAll(".cur-btn").forEach((button) => {
+    button.classList.toggle("active", button.dataset.currency === currentCurrency);
+    button.setAttribute("aria-pressed", String(button.dataset.currency === currentCurrency));
+  });
+  renderServices();
+  renderDetailPrice();
+}
+
+function setCurrency(code) {
+  const normalized = normalizeCurrencyCode(code);
+  if (!normalized || normalized === currentCurrency) return;
+  currentCurrency = normalized;
+  saveCurrency(normalized);
+  syncCurrencyInUrl(normalized);
+  applyCurrency();
 }
 
 function updateHomeHeaderScrollState() {
@@ -3997,11 +4356,12 @@ function route(shouldScroll = true) {
       window.history.replaceState(window.history.state, "", `#service-${slug}`);
     }
     const service = SERVICES_CATALOG.find((item) => item.id === slug) || SERVICES_CATALOG[0];
-    const l = locales[currentLang];
+    currentDetailService = service;
     expandCategory(service.categoryId);
     if (detailTitle) detailTitle.textContent = service.name[currentLang];
-    if (detailPrice) detailPrice.textContent = service.id === "logo" ? l.detailFixedPrice : l.fromPrice;
-    if (detailDesc) detailDesc.textContent = getServiceDetailDescription(service);
+    renderDetailPrice();
+    if (detailDesc) renderDetailDescription(service);
+    applyServiceSeo(service);
     renderServiceDetailMedia(service);
     setView("detail");
     return;
@@ -4079,7 +4439,51 @@ document.addEventListener("click", (event) => {
   setLang(langButton.dataset.lang);
 });
 
+document.addEventListener("click", (event) => {
+  const currencyButton = event.target.closest("[data-currency]");
+  if (!currencyButton) return;
+  setCurrency(currencyButton.dataset.currency);
+});
+
+/* ===== Отправка заявок в Telegram через Google Apps Script =====
+   1. Скрипт бэкенда лежит в apps-script/Code.gs — скопируйте его в
+      script.google.com и разверните как Web App (доступ: "Anyone").
+   2. Полученную ссылку .../exec вставьте в ORDER_ENDPOINT ниже.
+   3. ORDER_SECRET заполняйте только если в Script Properties задан FORM_SECRET.
+   Пока ORDER_ENDPOINT пустой, форма работает по-старому — через mailto. */
+const ORDER_ENDPOINT = "https://script.google.com/macros/s/AKfycbxYQBfbfChZ_WYbs8rmD9PVpdj_TqEiqaBcpPHJE8k9pmG2Dpugpzx8g7SEJSQ_N7Dz/exec";
+const ORDER_SECRET = "";
+
+async function sendOrder(payload) {
+  const body = JSON.stringify(payload);
+  let response;
+  try {
+    response = await fetch(ORDER_ENDPOINT, { method:"POST", body, redirect:"follow" });
+  } catch (networkError) {
+    // Ответ прочитать не дали (CORS) — повторяем без чтения ответа:
+    // запрос до Apps Script доходит, но результат нам не виден.
+    await fetch(ORDER_ENDPOINT, { method:"POST", mode:"no-cors", body });
+    return { ok:true };
+  }
+  if (!response.ok) throw new Error("HTTP " + response.status);
+  let data = null;
+  try { data = JSON.parse(await response.text()); } catch (parseError) { /* пустой ответ считаем успехом */ }
+  if (data && data.ok === false) throw new Error(data.error || "send failed");
+  return data || { ok:true };
+}
+
 if (orderForm) {
+  const orderStatus = document.getElementById("orderStatus");
+  const orderSubmitBtn = orderForm.querySelector(".order-submit");
+  const orderCompany = document.getElementById("orderCompany");
+  let orderSending = false;
+
+  const setOrderStatus = (message, isError) => {
+    if (!orderStatus) return;
+    orderStatus.textContent = message || "";
+    orderStatus.classList.toggle("is-error", !!isError);
+  };
+
   orderTextareas.forEach((field) => {
     field.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" || event.isComposing) return;
@@ -4096,6 +4500,9 @@ if (orderForm) {
     });
     field.addEventListener("input", () => resizeOrderTextareas(true));
   });
+  orderForm.addEventListener("input", () => {
+    if (orderStatus?.classList.contains("is-error")) setOrderStatus("", false);
+  });
   resizeOrderTextareas();
 
   orderForm.addEventListener("keydown", (event) => {
@@ -4107,17 +4514,55 @@ if (orderForm) {
     nextStep.focus();
   });
 
-  orderForm.addEventListener("submit", (event) => {
+  orderForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (orderSending) return;
     const l = locales[currentLang];
-    const subject = encodeURIComponent(l.orderTitle);
-    const body = encodeURIComponent([
-      `${l.orderService}: ${orderService?.value || ""}`,
-      `${l.orderIdea}: ${orderIdea?.value || ""}`,
-      `${l.orderBudget}: ${orderBudget?.value || ""}`,
-      `${l.orderContact}: ${orderContact?.value || ""}`
-    ].join("\n"));
-    window.location.href = `mailto:wavesign.art@gmail.com?subject=${subject}&body=${body}`;
+
+    const payload = {
+      service: orderService?.value.trim() || "",
+      idea: orderIdea?.value.trim() || "",
+      budget: orderBudget?.value.trim() || "",
+      contact: orderContact?.value.trim() || "",
+      company: orderCompany?.value.trim() || "",
+      lang: currentLang,
+      page: location.href,
+      secret: ORDER_SECRET
+    };
+
+    if (!payload.idea || !payload.contact) {
+      setOrderStatus(l.orderRequired, true);
+      (payload.idea ? orderContact : orderIdea)?.focus();
+      return;
+    }
+
+    if (!ORDER_ENDPOINT) {
+      const subject = encodeURIComponent(l.orderTitle);
+      const body = encodeURIComponent([
+        `${l.orderService}: ${payload.service}`,
+        `${l.orderIdea}: ${payload.idea}`,
+        `${l.orderBudget}: ${payload.budget}`,
+        `${l.orderContact}: ${payload.contact}`
+      ].join("\n"));
+      window.location.href = `mailto:wavesign.art@gmail.com?subject=${subject}&body=${body}`;
+      return;
+    }
+
+    orderSending = true;
+    if (orderSubmitBtn) orderSubmitBtn.disabled = true;
+    setOrderStatus(l.orderSending, false);
+
+    try {
+      await sendOrder(payload);
+      orderForm.reset();
+      resizeOrderTextareas(true);
+      setOrderStatus(locales[currentLang].orderSuccess, false);
+    } catch (error) {
+      setOrderStatus(locales[currentLang].orderError, true);
+    } finally {
+      orderSending = false;
+      if (orderSubmitBtn) orderSubmitBtn.disabled = false;
+    }
   });
 }
 
@@ -4131,8 +4576,156 @@ if (heroVideo) {
 window.addEventListener("scroll", updateHomeHeaderScrollState, { passive:true });
 window.addEventListener("hashchange", route);
 applyLang();
+applyCurrency();
 route();
 updateHomeHeaderScrollState();
+
+/* ---------- Live content from Supabase (managed via /admin) ---------- */
+
+const LEGACY_KEYWORDS_BY_SLUG = SERVICES_CATALOG.reduce((acc, s) => {
+  acc[s.id] = s.keywords;
+  return acc;
+}, {});
+
+function mediaItemFromUrl(url, isCover) {
+  const clean = String(url).split("?")[0];
+  const ext = (clean.split(".").pop() || "").toLowerCase();
+  const isVideo = ["mp4", "webm", "mov", "m4v"].includes(ext);
+  return {
+    src: url,
+    type: isVideo ? "video" : "image",
+    extension: ext || (isVideo ? "mp4" : "jpg"),
+    orientation: null,
+    isCover: Boolean(isCover)
+  };
+}
+
+function deriveKeywords(row) {
+  const words = new Set();
+  ["ru", "uk", "en"].forEach((lang) => {
+    const t = (row.title && row.title[lang]) || "";
+    const s = (row.short_description && row.short_description[lang]) || "";
+    (t + " " + s)
+      .toLowerCase()
+      .replace(/<[^>]+>/g, " ")
+      .split(/[^a-zа-яёіїєґ0-9]+/i)
+      .filter((w) => w.length > 2)
+      .forEach((w) => words.add(w));
+  });
+  const list = [...words];
+  return { ru: list, uk: list, en: list };
+}
+
+function mapDbToCatalog(categories, services) {
+  const catById = new Map(categories.map((c) => [c.id, c]));
+
+  const nextCategories = categories
+    .slice()
+    .sort((a, b) => a.sort_order - b.sort_order)
+    .map((c) => ({ id: c.slug, name: normalizeI18n(c.name) }));
+
+  const nextCatalog = [];
+  const nextDescriptions = {};
+  const nextManifest = {};
+
+  services
+    .slice()
+    .sort((a, b) => a.sort_order - b.sort_order || String(a.created_at).localeCompare(b.created_at))
+    .forEach((row) => {
+      const cat = row.category_id ? catById.get(row.category_id) : null;
+      const slug = row.slug;
+
+      nextCatalog.push({
+        id: slug,
+        categoryId: cat ? cat.slug : "additional",
+        group: Number(row.sub_group) || 0,
+        name: normalizeI18n(row.title),
+        keywords: LEGACY_KEYWORDS_BY_SLUG[slug] || deriveKeywords(row),
+        price: {
+          amount: row.price_amount,
+          currency: row.price_currency || "USD",
+          type: row.price_type || "from",
+          unit: row.price_unit || null
+        },
+        seo: {
+          title: normalizeI18n(row.seo_title),
+          description: normalizeI18n(row.seo_description),
+          ogImage: row.og_image_url || null
+        }
+      });
+
+      nextDescriptions[slug] = normalizeI18n(row.description);
+
+      const gallery = (row.images || [])
+        .slice()
+        .sort((a, b) => a.sort_order - b.sort_order)
+        .map((img) => img.image_url);
+      const all = [];
+      const seen = new Set();
+      [row.main_image_url, ...gallery].filter(Boolean).forEach((url, idx) => {
+        if (seen.has(url)) return;
+        seen.add(url);
+        all.push(mediaItemFromUrl(url, idx === 0));
+      });
+      nextManifest[slug] = {
+        folder: null,
+        cover: all[0] || null,
+        items: all
+      };
+    });
+
+  return { nextCategories, nextCatalog, nextDescriptions, nextManifest };
+}
+
+function normalizeI18n(value) {
+  return {
+    ru: (value && value.ru) || "",
+    uk: (value && value.uk) || "",
+    en: (value && value.en) || ""
+  };
+}
+
+async function loadServicesFromDatabase() {
+  const cfg = window.WAVESIGN_CONFIG;
+  if (!cfg || !cfg.supabaseUrl || !cfg.supabaseAnonKey) return;
+  if (/^PROD_SUPABASE/.test(cfg.supabaseUrl)) return; // not configured yet
+  if (!window.supabase || typeof window.supabase.createClient !== "function") return;
+
+  try {
+    const db = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+      auth: { persistSession: false }
+    });
+
+    const [{ data: categories, error: catErr }, { data: services, error: svcErr }] = await Promise.all([
+      db.from("categories").select("*").eq("is_published", true).order("sort_order"),
+      db
+        .from("services")
+        .select("*, images:service_images(*)")
+        .eq("is_published", true)
+        .order("sort_order")
+    ]);
+    if (catErr) throw catErr;
+    if (svcErr) throw svcErr;
+    if (!services || !services.length) return;
+
+    const { nextCategories, nextCatalog, nextDescriptions, nextManifest } = mapDbToCatalog(
+      categories || [],
+      services
+    );
+
+    SERVICE_CATEGORIES = nextCategories.length ? nextCategories : SERVICE_CATEGORIES;
+    SERVICES_CATALOG = nextCatalog;
+    SERVICE_DETAIL_DESCRIPTIONS = nextDescriptions;
+    SERVICE_MEDIA_MANIFEST = nextManifest;
+
+    applyLang();
+    route(false);
+  } catch (err) {
+    console.warn("WaveSign: falling back to built-in catalog —", err && err.message ? err.message : err);
+  }
+}
+
+loadServicesFromDatabase();
 </script>
 </body>
 </html>
