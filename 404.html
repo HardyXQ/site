@@ -2,12 +2,14 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WaveSign</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex, follow" />
+    <title>404 — WaveSign Studio</title>
+    <link rel="icon" type="image/png" href="/new_logo.png" />
     <script>
-      // GitHub Pages serves this file for any unknown path.
-      // Deep links into the admin SPA (/admin/services/new, …) land here first —
-      // stash the intended route and boot the SPA, which restores it.
+      /* GitHub Pages serves this file for any unknown path.
+         Deep links into the admin SPA (/admin/services/new, …) must bounce to
+         the SPA, which restores the route. Everything else shows the 404 below. */
       (function () {
         var path = location.pathname;
         if (path === '/admin' || path.indexOf('/admin/') === 0) {
@@ -18,11 +20,260 @@
             );
           } catch (e) {}
           location.replace('/admin/');
-        } else {
-          location.replace('/');
         }
       })();
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Pixelify+Sans:wght@400..700&family=Unbounded:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --text: #fbe8ff;
+        --muted: rgba(251, 232, 255, 0.62);
+        --bg: #150e20;
+        --accent: #ee99ff;
+        --hot: #7c25f4;
+        --line: rgba(251, 232, 255, 0.12);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      html {
+        scrollbar-gutter: stable;
+      }
+      body {
+        min-height: 100svh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        font-weight: 700;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      /* faint square grid, matching the site */
+      .bg::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background-image: linear-gradient(rgba(251, 232, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(251, 232, 255, 0.035) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(120% 80% at 50% 40%, #000 30%, transparent 100%);
+      }
+      /* soft purple glow behind the number */
+      .bg::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 42%;
+        width: min(760px, 90vw);
+        aspect-ratio: 1;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(124, 37, 244, 0.32) 0%, rgba(124, 37, 244, 0) 62%);
+        filter: blur(10px);
+      }
+
+      .top {
+        position: relative;
+        z-index: 2;
+        padding: clamp(20px, 4vw, 40px) clamp(16px, 5vw, 58px);
+      }
+      .brand {
+        font-family: 'Pixelify Sans', monospace;
+        font-weight: 400;
+        font-synthesis: none;
+        font-size: clamp(20px, 4.4vw, 32px);
+        letter-spacing: 0.02em;
+        color: #c061ff;
+        text-shadow: 0 0 18px rgba(124, 37, 244, 0.35);
+        display: inline-block;
+      }
+
+      main {
+        position: relative;
+        z-index: 2;
+        min-height: calc(100svh - 2 * clamp(20px, 4vw, 40px) - clamp(28px, 6vw, 44px));
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 clamp(16px, 5vw, 40px) clamp(60px, 12vh, 120px);
+        gap: clamp(14px, 2.6vw, 22px);
+      }
+
+      .code {
+        font-family: 'Unbounded', 'Nunito', sans-serif;
+        font-weight: 800;
+        font-size: clamp(110px, 30vw, 300px);
+        line-height: 0.82;
+        letter-spacing: -0.02em;
+        background: linear-gradient(180deg, #ffffff 0%, var(--accent) 55%, var(--hot) 115%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 12px 44px rgba(124, 37, 244, 0.45));
+        user-select: none;
+      }
+      .title {
+        font-family: 'Unbounded', 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: clamp(20px, 4.6vw, 40px);
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        text-wrap: balance;
+      }
+      .desc {
+        max-width: 44ch;
+        color: var(--muted);
+        font-size: clamp(14px, 1.8vw, 17px);
+        font-weight: 600;
+        line-height: 1.55;
+      }
+
+      .actions {
+        margin-top: clamp(10px, 2vw, 18px);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0 30px;
+        border-radius: 999px;
+        font-family: 'Unbounded', 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: clamp(13px, 1.5vw, 15px);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .btn--primary {
+        background: var(--hot);
+        color: #fff;
+        box-shadow: 0 10px 30px -8px rgba(124, 37, 244, 0.7);
+      }
+      .btn--primary:hover {
+        background: #8b3bff;
+        transform: translateY(-2px);
+      }
+      .btn--ghost {
+        border: 1px solid rgba(251, 232, 255, 0.28);
+        color: rgba(251, 232, 255, 0.82);
+      }
+      .btn--ghost:hover {
+        border-color: var(--accent);
+        color: var(--text);
+        background: rgba(238, 153, 255, 0.08);
+        transform: translateY(-2px);
+      }
+      .btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .btn {
+          transition: none;
+        }
+        .btn:hover {
+          transform: none;
+        }
+      }
+      @media (max-width: 420px) {
+        .actions {
+          flex-direction: column;
+          align-self: stretch;
+        }
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="bg" aria-hidden="true"></div>
+
+    <header class="top">
+      <a class="brand" href="/" aria-label="WaveSign">WaveSign</a>
+    </header>
+
+    <main>
+      <div class="code">404</div>
+      <h1 class="title" data-i18n="title">Страница не найдена</h1>
+      <p class="desc" data-i18n="desc">
+        Такой страницы нет или она была перемещена. Проверьте адрес или вернитесь на главную.
+      </p>
+      <div class="actions">
+        <a class="btn btn--primary" href="/" data-i18n="home">На главную</a>
+        <a class="btn btn--ghost" href="/#services" data-i18n="services">Услуги</a>
+      </div>
+    </main>
+
+    <script>
+      (function () {
+        var STR = {
+          ru: {
+            title: 'Страница не найдена',
+            desc: 'Такой страницы нет или она была перемещена. Проверьте адрес или вернитесь на главную.',
+            home: 'На главную',
+            services: 'Услуги',
+          },
+          uk: {
+            title: 'Сторінку не знайдено',
+            desc: 'Такої сторінки немає або її було переміщено. Перевірте адресу або поверніться на головну.',
+            home: 'На головну',
+            services: 'Послуги',
+          },
+          en: {
+            title: 'Page not found',
+            desc: "This page doesn't exist or has been moved. Check the URL or head back home.",
+            home: 'Home',
+            services: 'Services',
+          },
+        };
+
+        function readLang() {
+          try {
+            var v = localStorage.getItem('wavesign-lang');
+            if (v) return v;
+          } catch (e) {}
+          var m = document.cookie.match(/(?:^|; )wavesign-lang=([^;]+)/);
+          if (m) return decodeURIComponent(m[1]);
+          var nav = (navigator.language || 'ru').slice(0, 2).toLowerCase();
+          return nav === 'uk' || nav === 'ua' ? 'uk' : nav === 'en' ? 'en' : 'ru';
+        }
+
+        var lang = readLang();
+        if (lang === 'ua') lang = 'uk';
+        var t = STR[lang] || STR.ru;
+        document.documentElement.lang = lang === 'uk' ? 'uk' : lang;
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (t[key]) el.textContent = t[key];
+        });
+      })();
+    </script>
+  </body>
 </html>
