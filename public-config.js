@@ -12,8 +12,9 @@
  */
 (function () {
   var PROD = {
-    supabaseUrl: 'PROD_SUPABASE_URL',
-    supabaseAnonKey: 'PROD_SUPABASE_ANON_KEY',
+    supabaseUrl: 'https://etdsqzlyzsuqeqdczajz.supabase.co',
+    supabaseAnonKey:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0ZHNxemx5enN1cWVxZGN6YWp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxNzM2ODgsImV4cCI6MjEwMzc0OTY4OH0.BjgGaV6WRCuyNvl8f5r220F5XEtH3lOuiy-aneo8b4E',
     publicSiteUrl: 'https://wavesign.art',
   };
 
