@@ -28,16 +28,16 @@
 <meta property="og:title" content="фирменный стиль — WaveSign Studio">
 <meta property="og:description" content="Формируем единую визуальную систему бренда: цвета, типографику, графические элементы и правила их использования.">
 <meta property="og:url" content="https://wavesign.art/services/brand-identity/">
-<meta property="og:image" content="https://wavesign.art/%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/cover.jpg">
+<meta property="og:image" content="https://wavesign.art/og-cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="фирменный стиль — WaveSign Studio">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="фирменный стиль — WaveSign Studio">
 <meta name="twitter:description" content="Формируем единую визуальную систему бренда: цвета, типографику, графические элементы и правила их использования.">
-<meta name="twitter:image" content="https://wavesign.art/%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/cover.jpg">
+<meta name="twitter:image" content="https://wavesign.art/og-cover.png">
 <script type="application/ld+json" id="seo-service">
-{"@context":"https://schema.org","@type":"Service","name":"фирменный стиль","serviceType":"фирменный стиль","description":"Формируем единую визуальную систему бренда: цвета, типографику, графические элементы и правила их использования.","url":"https://wavesign.art/services/brand-identity/","image":"https://wavesign.art/%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F/%D1%84%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C/cover.jpg","provider":{"@type":"Organization","name":"WaveSign Studio","url":"https://wavesign.art/"},"areaServed":["RU","UA","KZ","BY","PL","DE","GB","US"],"category":"Дизайн и анимация","offers":{"@type":"Offer","price":"450","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://wavesign.art/services/brand-identity/"}}
+{"@context":"https://schema.org","@type":"Service","name":"фирменный стиль","serviceType":"фирменный стиль","description":"Формируем единую визуальную систему бренда: цвета, типографику, графические элементы и правила их использования.","url":"https://wavesign.art/services/brand-identity/","image":"https://wavesign.art/og-cover.png","provider":{"@type":"Organization","name":"WaveSign Studio","url":"https://wavesign.art/"},"areaServed":["RU","UA","KZ","BY","PL","DE","GB","US"],"category":"Дизайн и анимация","offers":{"@type":"Offer","price":"450","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://wavesign.art/services/brand-identity/"}}
 </script>
 <script type="application/ld+json" id="seo-breadcrumb">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"WaveSign","item":"https://wavesign.art/"},{"@type":"ListItem","position":2,"name":"Услуги","item":"https://wavesign.art/services/"},{"@type":"ListItem","position":3,"name":"фирменный стиль","item":"https://wavesign.art/services/brand-identity/"}]}
@@ -45,6 +45,9 @@
 <!-- SEO:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://etdsqzlyzsuqeqdczajz.supabase.co" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="https://etdsqzlyzsuqeqdczajz.supabase.co">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Pixelify+Sans:wght@400..700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -2772,6 +2775,21 @@ a{color:inherit;text-decoration:none}
   outline:2px solid var(--accent);
   outline-offset:2px;
 }
+
+/* Skip rendering work for off-screen sections (progressive enhancement) */
+.service-card{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 360px;
+}
+.site-footer{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 240px;
+}
+.service-gallery,
+.detail-second-photo{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 600px;
+}
 </style>
 <script type="application/ld+json">
 {
@@ -2831,8 +2849,8 @@ a{color:inherit;text-decoration:none}
 <main id="app">
   <section class="view home" data-view="home" aria-label="Главная">
     <div class="app">
-      <video class="video-bg" autoplay muted loop playsinline preload="auto" poster="banner3.png">
-        <source src="./hero-bg.webm" type="video/webm">
+      <video class="video-bg" autoplay muted loop playsinline preload="none" poster="/banner3.webp">
+        <source data-src="./hero-bg.webm" type="video/webm">
       </video>
       <div class="page-shell">
         <header class="site-header">
@@ -3130,9 +3148,10 @@ a{color:inherit;text-decoration:none}
   <p class="search-empty" id="searchEmpty" hidden></p>
 </div>
 
-<script src="./generated/service-media-manifest.js"></script>
 <script src="/public-config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.46.1/dist/umd/supabase.js" crossorigin></script>
+<script src="./generated/service-media-manifest.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.46.1/dist/umd/supabase.js" crossorigin
+        onload="window.dispatchEvent(new Event('wavesign:sdk-ready'))"></script>
 <script>
 const locales = {
   ru: {
@@ -3879,14 +3898,14 @@ function renderMediaElement(item, alt, options = {}) {
 
   if (item.type === "video") {
     return `
-      <video ${fallbackAttr} autoplay muted loop playsinline preload="metadata" aria-label="${label}">
+      <video ${fallbackAttr} autoplay muted loop playsinline preload="none" aria-label="${label}">
         <source src="${source}" type="${getMediaMime(item)}">
       </video>
     `;
   }
 
-  const loading = options.eager ? "eager" : "lazy";
-  return `<img ${fallbackAttr} src="${source}" alt="${label}" loading="${loading}" decoding="async">`;
+  const eager = Boolean(options.eager);
+  return `<img ${fallbackAttr} src="${source}" alt="${label}" loading="${eager ? "eager" : "lazy"}" decoding="async" fetchpriority="${eager ? "high" : "low"}">`;
 }
 
 function getCardMediaItem(service) {
@@ -4856,6 +4875,18 @@ if (heroVideo) {
   heroVideo.addEventListener("error", () => {
     heroVideo.style.display = "none";
   }, true);
+  // Load the background clip only after the page is ready and the browser is idle
+  const loadHeroVideo = () => {
+    const source = heroVideo.querySelector("source[data-src]");
+    if (!source) return;
+    source.src = source.dataset.src;
+    source.removeAttribute("data-src");
+    heroVideo.load();
+  };
+  const scheduleHeroVideo = () =>
+    (window.requestIdleCallback || ((fn) => setTimeout(fn, 900)))(loadHeroVideo, { timeout: 3000 });
+  if (document.readyState === "complete") scheduleHeroVideo();
+  else window.addEventListener("load", scheduleHeroVideo, { once: true });
 }
 
 window.addEventListener("scroll", updateHomeHeaderScrollState, { passive:true });
@@ -4995,7 +5026,11 @@ async function loadServicesFromDatabase() {
   const cfg = window.WAVESIGN_CONFIG;
   if (!cfg || !cfg.supabaseUrl || !cfg.supabaseAnonKey) return;
   if (/^PROD_SUPABASE/.test(cfg.supabaseUrl)) return; // not configured yet
-  if (!window.supabase || typeof window.supabase.createClient !== "function") return;
+  if (!window.supabase || typeof window.supabase.createClient !== "function") {
+    // SDK is deferred — retry once it has loaded
+    window.addEventListener("wavesign:sdk-ready", () => loadServicesFromDatabase(), { once: true });
+    return;
+  }
 
   try {
     const db = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
