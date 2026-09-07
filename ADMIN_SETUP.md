@@ -133,3 +133,28 @@ npm run db:stop
   добавить `user_id` в таблицу `public.admins` (или `npm run create-admin` с новым email).
 - Обновить перенос данных из старого `index.html`: `npm run seed:build`.
 - Пересобрать `setup.sql`: `npm run setup:sql`.
+
+## SEO
+
+Публичный сайт — client-rendered SPA, поэтому для поисковиков генерируются
+статические страницы:
+
+```
+npm run build:seo     # sitemap.xml + services/index.html + services/<slug>/index.html
+                      # берёт опубликованные услуги из Supabase (ключи из public-config.js)
+git add sitemap.xml services && git commit -m "rebuild seo" && git push
+```
+
+**Запускать `npm run build:seo` после того, как добавили/переименовали/скрыли услугу
+в админке** — иначе у новой услуги не будет своей индексируемой страницы и её не
+будет в sitemap. (Контент на самих страницах подтягивается из БД в реальном времени;
+статичны только `<title>`, meta, canonical и JSON-LD.)
+
+Один раз после первого деплоя:
+- **Google Search Console** (search.google.com/search-console) → добавить домен →
+  Sitemaps → отправить `https://wavesign.art/sitemap.xml`.
+- **Яндекс.Вебмастер** (webmaster.yandex.ru) → то же самое.
+- Обложку для соцсетей (`og-cover.png`) при желании перегенерировать:
+  правьте `scripts/og-template.html`, затем `npm run build:og`.
+
+`npm run build` = собрать админку + SEO разом.

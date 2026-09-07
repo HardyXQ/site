@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /admin-src/
+Disallow: /supabase/
+Disallow: /scripts/
+Disallow: /apps-script/
+Disallow: /*?preview=
+
+Sitemap: https://wavesign.art/sitemap.xml

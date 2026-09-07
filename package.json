@@ -16,6 +16,9 @@
     "seed:build": "node scripts/build-seed.mjs",
     "setup:sql": "node scripts/build-setup-sql.mjs",
     "create-admin": "node scripts/create-admin.mjs",
+    "build:seo": "node scripts/build-seo.mjs",
+    "build:og": "node scripts/make-og.mjs",
+    "build": "npm run admin:build && npm run build:seo",
     "serve": "node scripts/dev-server.mjs"
   },
   "devDependencies": {

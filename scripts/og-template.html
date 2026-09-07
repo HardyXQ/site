@@ -1,0 +1,105 @@
+<!doctype html>
+<!-- Source for og-cover.png. Regenerate: node scripts/make-og.mjs -->
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Pixelify+Sans:wght@600&family=Unbounded:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; }
+      body {
+        background: #150e20;
+        color: #fbe8ff;
+        font-family: 'Nunito', sans-serif;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 92px;
+      }
+      .grid {
+        position: absolute; inset: -2px; z-index: 0;
+        background-image:
+          linear-gradient(rgba(251, 232, 255, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(251, 232, 255, 0.045) 1px, transparent 1px);
+        background-size: 72px 72px;
+        -webkit-mask-image: radial-gradient(130% 90% at 30% 45%, #000 30%, transparent 100%);
+      }
+      .glow {
+        position: absolute; z-index: 0;
+        width: 900px; height: 900px;
+        left: -180px; top: 50%; transform: translateY(-50%);
+        background: radial-gradient(circle, rgba(124, 37, 244, 0.4) 0%, rgba(124, 37, 244, 0) 60%);
+        filter: blur(8px);
+      }
+      .content { position: relative; z-index: 1; }
+      .brand {
+        font-family: 'Pixelify Sans', monospace;
+        font-size: 44px;
+        color: #c061ff;
+        letter-spacing: 0.02em;
+        text-shadow: 0 0 22px rgba(124, 37, 244, 0.4);
+        margin-bottom: 34px;
+      }
+      h1 {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 800;
+        font-size: 96px;
+        line-height: 1.04;
+        letter-spacing: -0.01em;
+        background: linear-gradient(180deg, #ffffff 0%, #ee99ff 78%, #7c25f4 120%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        max-width: 940px;
+      }
+      .tags {
+        margin-top: 40px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 12px 24px;
+        border: 1px solid rgba(251, 232, 255, 0.24);
+        border-radius: 999px;
+        color: rgba(251, 232, 255, 0.86);
+      }
+      .url {
+        position: absolute;
+        right: 92px;
+        bottom: 54px;
+        z-index: 1;
+        font-family: 'Pixelify Sans', monospace;
+        font-size: 26px;
+        color: rgba(251, 232, 255, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <div class="glow"></div>
+    <div class="content">
+      <div class="brand">WaveSign</div>
+      <h1>Дизайн,<br />анимация<br />и&nbsp;разработка</h1>
+      <div class="tags">
+        <span class="tag">Брендинг</span>
+        <span class="tag">Моушн</span>
+        <span class="tag">Сайты</span>
+        <span class="tag">Боты · ИИ · Web3</span>
+      </div>
+    </div>
+    <div class="url">wavesign.art</div>
+  </body>
+</html>

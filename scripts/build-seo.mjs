@@ -1,0 +1,293 @@
+/**
+ * Generates the static SEO surface for the (client-rendered) site:
+ *   - sitemap.xml
+ *   - services/index.html                    (indexable "Services" page)
+ *   - services/<slug>/index.html             (one indexable page per service,
+ *                                             unique <title>/description/canonical
+ *                                             + Service & BreadcrumbList JSON-LD)
+ *
+ * Data comes from Supabase (published services) when reachable, otherwise from
+ * the catalogue embedded in index.html.
+ *
+ *   npm run build:seo
+ */
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const ORIGIN = 'https://wavesign.art';
+const LANGS = ['ru', 'uk', 'en'];
+const TODAY = new Date().toISOString().slice(0, 10);
+
+const html = readFileSync(join(root, 'index.html'), 'utf8');
+
+/* ---------- read runtime config from public-config.js ---------- */
+function readProdConfig() {
+  try {
+    const cfg = readFileSync(join(root, 'public-config.js'), 'utf8');
+    const block = cfg.slice(cfg.indexOf('var PROD'));
+    const url = block.match(/supabaseUrl:\s*'([^']+)'/)?.[1];
+    const key = block.match(/supabaseAnonKey:\s*'([^']+)'/)?.[1];
+    if (url && key && !/^PROD_SUPABASE/.test(url)) return { url, key };
+  } catch {}
+  return null;
+}
+
+/* ---------- fallback: pull the literals out of index.html ---------- */
+function extractLiteral(name) {
+  let start = html.indexOf(`const ${name} =`);
+  if (start === -1) start = html.indexOf(`let ${name} =`);
+  if (start === -1) throw new Error(`literal ${name} not found`);
+  let i = html.indexOf('=', start) + 1;
+  while (' \n\r\t'.includes(html[i])) i++;
+  const opener = html[i];
+  const closer = opener === '[' ? ']' : '}';
+  let depth = 0,
+    end = -1,
+    inStr = null;
+  for (let j = i; j < html.length; j++) {
+    const ch = html[j];
+    if (inStr) {
+      if (ch === '\\') { j++; continue; }
+      if (ch === inStr) inStr = null;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === '`') { inStr = ch; continue; }
+    if (ch === opener) depth++;
+    else if (ch === closer && --depth === 0) { end = j; break; }
+  }
+  // eslint-disable-next-line no-new-func
+  return Function(`"use strict"; return (${html.slice(i, end + 1)});`)();
+}
+
+function fromEmbedded() {
+  const cats = extractLiteral('SERVICE_CATEGORIES');
+  const catalog = extractLiteral('SERVICES_CATALOG');
+  const desc = extractLiteral('SERVICE_DETAIL_DESCRIPTIONS');
+  return catalog.map((s) => ({
+    slug: s.id,
+    title: s.name,
+    short: desc[s.id] || {},
+    description: desc[s.id] || {},
+    seo_title: {},
+    seo_description: {},
+    category: cats.find((c) => c.id === s.categoryId)?.name || {},
+    price: s.price || {},
+    image: null,
+    sort: catalog.indexOf(s),
+  }));
+}
+
+async function fromSupabase(cfg) {
+  const h = { apikey: cfg.key, Authorization: `Bearer ${cfg.key}` };
+  const q = (p) => fetch(`${cfg.url}/rest/v1/${p}`, { headers: h }).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+  const [cats, svcs] = await Promise.all([
+    q('categories?select=id,slug,name&is_published=eq.true'),
+    q('services?select=slug,title,short_description,description,seo_title,seo_description,price_amount,price_currency,price_type,price_unit,main_image_url,sort_order,category_id&is_published=eq.true&order=sort_order'),
+  ]);
+  const catById = new Map(cats.map((c) => [c.id, c]));
+  return svcs.map((s) => ({
+    slug: s.slug,
+    title: s.title || {},
+    short: s.short_description || {},
+    description: s.description || {},
+    seo_title: s.seo_title || {},
+    seo_description: s.seo_description || {},
+    category: (s.category_id && catById.get(s.category_id)?.name) || {},
+    price: { amount: s.price_amount, currency: s.price_currency, type: s.price_type, unit: s.price_unit },
+    image: s.main_image_url || null,
+    sort: s.sort_order,
+  }));
+}
+
+/* ---------- helpers ---------- */
+const pick = (o, l) => (o && (o[l] || o.ru || o.uk || o.en)) || '';
+const stripTags = (s) => String(s).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+const esc = (s) =>
+  String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const xmlEsc = (s) => String(s).replace(/[&<>'"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&apos;', '"': '&quot;' }[c]));
+
+function seoBlock({ title, description, canonical, image, type, breadcrumbLd, serviceLd }) {
+  const img = image || `${ORIGIN}/og-cover.png`;
+  const alt = [`<link rel="alternate" hreflang="x-default" href="${canonical}">`]
+    .concat(LANGS.map((l) => `<link rel="alternate" hreflang="${l}" href="${canonical}?lang=${l}">`))
+    .join('\n');
+  return `<!-- SEO:start (generated by scripts/build-seo.mjs) -->
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
+<meta name="author" content="WaveSign Studio">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#150E20">
+<meta name="format-detection" content="telephone=no">
+<meta name="application-name" content="WaveSign Studio">
+<link rel="canonical" href="${canonical}">
+${alt}
+<link rel="icon" type="image/png" href="/new_logo.png">
+<link rel="apple-touch-icon" href="/new_logo.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="${type}">
+<meta property="og:site_name" content="WaveSign Studio">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="uk_UA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${esc(img)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(title)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${esc(img)}">
+${serviceLd ? `<script type="application/ld+json" id="${serviceLd['@type'] === 'ItemList' ? 'seo-itemlist' : 'seo-service'}">\n${JSON.stringify(serviceLd)}\n</script>` : ''}
+${breadcrumbLd ? `<script type="application/ld+json" id="seo-breadcrumb">\n${JSON.stringify(breadcrumbLd)}\n</script>` : ''}
+<!-- SEO:end -->`;
+}
+
+function makePage(replacementSeo) {
+  let out = html.replace(/<!-- SEO:start[\s\S]*?<!-- SEO:end -->/, replacementSeo);
+  // page lives at /services/<slug>/ or /services/ — resolve root-relative assets
+  out = out.replace('<meta name="viewport"', '<base href="/">\n<meta name="viewport"');
+  return out;
+}
+
+/* ---------- run ---------- */
+const cfg = readProdConfig();
+let services;
+try {
+  services = cfg ? await fromSupabase(cfg) : fromEmbedded();
+  console.log(`SEO source: ${cfg ? 'Supabase' : 'embedded catalogue'} — ${services.length} services`);
+} catch (e) {
+  console.warn('Supabase unreachable, using embedded catalogue —', e);
+  services = fromEmbedded();
+}
+services.sort((a, b) => (a.sort ?? 0) - (b.sort ?? 0));
+
+/* wipe old generated service pages */
+const servicesDir = join(root, 'services');
+if (existsSync(servicesDir)) {
+  for (const d of readdirSync(servicesDir)) rmSync(join(servicesDir, d), { recursive: true, force: true });
+}
+mkdirSync(servicesDir, { recursive: true });
+
+/* /services/ hub */
+const hubTitle = 'Услуги студии — WaveSign Studio';
+const hubDesc =
+  'Все услуги WaveSign: логотип и фирменный стиль, анимация лого, графический дизайн, макеты под печать, сайты под ключ, Telegram-боты, ИИ-агенты, Web3 и смарт-контракты, аудит безопасности.';
+writeFileSync(
+  join(servicesDir, 'index.html'),
+  makePage(
+    seoBlock({
+      title: hubTitle,
+      description: hubDesc,
+      canonical: `${ORIGIN}/services/`,
+      type: 'website',
+      breadcrumbLd: {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'WaveSign', item: `${ORIGIN}/` },
+          { '@type': 'ListItem', position: 2, name: 'Услуги', item: `${ORIGIN}/services/` },
+        ],
+      },
+      serviceLd: {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Услуги WaveSign',
+        itemListElement: services.map((s, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: pick(s.title, 'ru'),
+          url: `${ORIGIN}/services/${s.slug}/`,
+        })),
+      },
+    }),
+  ),
+  'utf8',
+);
+
+/* one page per service */
+for (const s of services) {
+  const name = pick(s.title, 'ru') || s.slug;
+  const title = pick(s.seo_title, 'ru') || `${name} — WaveSign Studio`;
+  const description =
+    pick(s.seo_description, 'ru') ||
+    stripTags(pick(s.short, 'ru') || pick(s.description, 'ru')).slice(0, 200) ||
+    hubDesc;
+  const canonical = `${ORIGIN}/services/${s.slug}/`;
+  const image = s.image ? new URL(s.image, ORIGIN + '/').href : `${ORIGIN}/og-cover.png`;
+  const rawAmount = s.price?.amount ?? s.price?.from ?? null;
+  const offers =
+    s.price?.type === 'on_request' || rawAmount == null
+      ? undefined
+      : {
+          '@type': 'Offer',
+          price: String(rawAmount),
+          priceCurrency: s.price?.currency || 'USD',
+          availability: 'https://schema.org/InStock',
+          url: canonical,
+        };
+
+  const seo = seoBlock({
+    title,
+    description,
+    canonical,
+    image,
+    type: 'article',
+    serviceLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name,
+      serviceType: name,
+      description,
+      url: canonical,
+      image,
+      provider: { '@type': 'Organization', name: 'WaveSign Studio', url: `${ORIGIN}/` },
+      areaServed: ['RU', 'UA', 'KZ', 'BY', 'PL', 'DE', 'GB', 'US'],
+      ...(pick(s.category, 'ru') ? { category: pick(s.category, 'ru') } : {}),
+      ...(offers ? { offers } : {}),
+    },
+    breadcrumbLd: {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'WaveSign', item: `${ORIGIN}/` },
+        { '@type': 'ListItem', position: 2, name: 'Услуги', item: `${ORIGIN}/services/` },
+        { '@type': 'ListItem', position: 3, name, item: canonical },
+      ],
+    },
+  });
+
+  mkdirSync(join(servicesDir, s.slug), { recursive: true });
+  writeFileSync(join(servicesDir, s.slug, 'index.html'), makePage(seo), 'utf8');
+}
+
+/* sitemap.xml */
+const urls = [];
+const addUrl = (loc, priority, changefreq) => {
+  urls.push(
+    `  <url>\n    <loc>${xmlEsc(loc)}</loc>\n    <lastmod>${TODAY}</lastmod>\n` +
+      `    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n` +
+      LANGS.map(
+        (l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${xmlEsc(loc)}?lang=${l}"/>`,
+      ).join('\n') +
+      `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${xmlEsc(loc)}"/>\n  </url>`,
+  );
+};
+addUrl(`${ORIGIN}/`, '1.0', 'weekly');
+addUrl(`${ORIGIN}/services/`, '0.9', 'weekly');
+for (const s of services) addUrl(`${ORIGIN}/services/${s.slug}/`, '0.8', 'monthly');
+
+writeFileSync(
+  join(root, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+    urls.join('\n') +
+    `\n</urlset>\n`,
+  'utf8',
+);
+
+console.log(`wrote sitemap.xml (${urls.length} urls), services/index.html, ${services.length} service pages`);
