@@ -155,7 +155,8 @@ function makePage(replacementSeo) {
 }
 
 /* ---------- run ---------- */
-const cfg = readProdConfig();
+const forceEmbedded = process.argv.includes('--embedded');
+const cfg = forceEmbedded ? null : readProdConfig();
 let services;
 try {
   services = cfg ? await fromSupabase(cfg) : fromEmbedded();
