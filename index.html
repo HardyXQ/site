@@ -2805,6 +2805,18 @@ a{color:inherit;text-decoration:none}
   content-visibility:auto;
   contain-intrinsic-size:auto 600px;
 }
+
+/* Pixel icons matching the Pixelify Sans logo: hamburger bars + back arrows */
+.hamburger span{display:none}
+.hamburger{
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 9' shape-rendering='crispEdges' fill='%23c061ff'%3E%3Crect x='0' y='1' width='10' height='1'/%3E%3Crect x='0' y='4' width='10' height='1'/%3E%3Crect x='0' y='7' width='10' height='1'/%3E%3C/svg%3E") center/76% auto no-repeat;
+}
+.back-btn svg,
+.detail-back svg{
+  stroke:none;
+  image-rendering:pixelated;
+}
+.back-btn{color:#c061ff}
 </style>
 <script type="application/ld+json">
 {
@@ -2909,7 +2921,7 @@ a{color:inherit;text-decoration:none}
     <div class="menu-shell">
       <div class="menu-top">
         <button class="back-btn" type="button" data-menu-close aria-label="Закрыть меню">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 12 12" fill="currentColor" shape-rendering="crispEdges"><rect x="0" y="5" width="12" height="2"/><rect x="0" y="5" width="2" height="2"/><rect x="1" y="4" width="2" height="2"/><rect x="2" y="3" width="2" height="2"/><rect x="3" y="2" width="2" height="2"/><rect x="4" y="1" width="2" height="2"/><rect x="1" y="6" width="2" height="2"/><rect x="2" y="7" width="2" height="2"/><rect x="3" y="8" width="2" height="2"/><rect x="4" y="9" width="2" height="2"/></svg>
         </button>
         <a class="brand" href="#home" aria-label="WaveSign">
           <span class="brand-text">WaveSign</span>
@@ -3086,7 +3098,7 @@ a{color:inherit;text-decoration:none}
           </div>
         </header>
         <a class="detail-back" href="#services">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/><path d="M9 12h11"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 12 12" fill="currentColor" shape-rendering="crispEdges"><rect x="0" y="5" width="12" height="2"/><rect x="0" y="5" width="2" height="2"/><rect x="1" y="4" width="2" height="2"/><rect x="2" y="3" width="2" height="2"/><rect x="3" y="2" width="2" height="2"/><rect x="4" y="1" width="2" height="2"/><rect x="1" y="6" width="2" height="2"/><rect x="2" y="7" width="2" height="2"/><rect x="3" y="8" width="2" height="2"/><rect x="4" y="9" width="2" height="2"/></svg>
           <span class="detail-back-label">Все услуги</span>
         </a>
         <section class="detail-layout">
