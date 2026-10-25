@@ -3101,7 +3101,7 @@ a{color:inherit;text-decoration:none}
           </div>
         </div>
         <div class="footer-bottom">
-          <p class="copyright">© 2026 WaveSign Studio.</p>
+          <p class="copyright">© 2026 WaveSign Studio. Все права защищены.</p>
           <nav class="footer-legal" aria-label="Legal">
             <a href="/privacy/" data-legal="privacy">Политика конфиденциальности</a>
             <a href="/offer/" data-legal="offer">Публичная оферта</a>
@@ -3250,7 +3250,7 @@ a{color:inherit;text-decoration:none}
           </div>
         </div>
         <div class="footer-bottom">
-          <p class="copyright">© 2026 WaveSign Studio.</p>
+          <p class="copyright">© 2026 WaveSign Studio. Все права защищены.</p>
           <nav class="footer-legal" aria-label="Legal">
             <a href="/privacy/" data-legal="privacy">Политика конфиденциальности</a>
             <a href="/offer/" data-legal="offer">Публичная оферта</a>
@@ -4608,11 +4608,11 @@ function setHTML(selector, value) {
 }
 
 const LEGAL_LABELS = {
-  ru: { cookieText:'Мы используем только функциональные cookie — они запоминают язык и валюту. Аналитики и рекламы нет. <a href="/cookies/">Подробнее</a>', cookieOk:"Понятно", privacy:"Политика конфиденциальности", offer:"Публичная оферта", terms:"Условия использования", cookies:"Cookie",
+  ru: { rights:"Все права защищены.", cookieText:'Мы используем только функциональные cookie — они запоминают язык и валюту. Аналитики и рекламы нет. <a href="/cookies/">Подробнее</a>', cookieOk:"Понятно", privacy:"Политика конфиденциальности", offer:"Публичная оферта", terms:"Условия использования", cookies:"Cookie",
         consent:'Отправляя заявку, вы соглашаетесь с <a href="/privacy/" target="_blank" rel="noopener">политикой конфиденциальности</a> и <a href="/offer/" target="_blank" rel="noopener">офертой</a>.' },
-  uk: { cookieText:'Ми використовуємо лише функціональні cookie — вони запам’ятовують мову та валюту. Аналітики й реклами немає. <a href="/cookies/">Докладніше</a>', cookieOk:"Зрозуміло", privacy:"Політика конфіденційності", offer:"Публічна оферта", terms:"Умови використання", cookies:"Cookie",
+  uk: { rights:"Всі права захищені.", cookieText:'Ми використовуємо лише функціональні cookie — вони запам’ятовують мову та валюту. Аналітики й реклами немає. <a href="/cookies/">Докладніше</a>', cookieOk:"Зрозуміло", privacy:"Політика конфіденційності", offer:"Публічна оферта", terms:"Умови використання", cookies:"Cookie",
         consent:'Надсилаючи заявку, ви погоджуєтеся з <a href="/privacy/" target="_blank" rel="noopener">політикою конфіденційності</a> та <a href="/offer/" target="_blank" rel="noopener">офертою</a>.' },
-  en: { cookieText:'We only use functional cookies — they remember your language and currency. No analytics or ads. <a href="/cookies/">Learn more</a>', cookieOk:"Got it", privacy:"Privacy Policy", offer:"Public Offer", terms:"Terms of Use", cookies:"Cookies",
+  en: { rights:"All rights reserved.", cookieText:'We only use functional cookies — they remember your language and currency. No analytics or ads. <a href="/cookies/">Learn more</a>', cookieOk:"Got it", privacy:"Privacy Policy", offer:"Public Offer", terms:"Terms of Use", cookies:"Cookies",
         consent:'By submitting the request you agree to the <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a> and the <a href="/offer/" target="_blank" rel="noopener">Public Offer</a>.' }
 };
 
@@ -4643,6 +4643,7 @@ function applyLang() {
   document.querySelectorAll(".footer-legal a[data-legal]").forEach((node) => node.textContent = legal[node.dataset.legal]);
   const orderConsent = document.getElementById("orderConsent");
   if (orderConsent) orderConsent.innerHTML = legal.consent;
+  document.querySelectorAll(".copyright").forEach((node) => node.textContent = `© ${new Date().getFullYear()} WaveSign Studio. ${legal.rights}`);
   const cookieText = document.getElementById("cookieNoticeText");
   const cookieOk = document.getElementById("cookieNoticeOk");
   if (cookieText) cookieText.innerHTML = legal.cookieText;

@@ -132,11 +132,11 @@ footer{padding:20px 0 48px;color:rgba(251,232,255,.5);font-size:13px}
 <nav class="docs" aria-label="Документи" lang="uk" data-lang="uk" hidden><a href="/privacy/">Політика конфіденційності</a><a href="/offer/" aria-current="page">Публічна оферта</a><a href="/terms/">Умови використання сайту</a><a href="/cookies/">Політика cookie</a></nav>
 <nav class="docs" aria-label="Documents" lang="en" data-lang="en" hidden><a href="/privacy/">Privacy Policy</a><a href="/offer/" aria-current="page">Public Offer (Services Agreement)</a><a href="/terms/">Terms of Use</a><a href="/cookies/">Cookie Policy</a></nav>
 </main>
-<footer>© 2026 WaveSign Studio</footer>
+<footer data-rights>© 2026 WaveSign Studio. Все права защищены.</footer>
 </div>
 <script>
 (function () {
-  var KEY = 'wavesign-lang', LANGS = ['ru', 'uk', 'en'], TITLES = {"ru":"Публичная оферта — WaveSign Studio","uk":"Публічна оферта — WaveSign Studio","en":"Public Offer (Services Agreement) — WaveSign Studio"};
+  var KEY = 'wavesign-lang', LANGS = ['ru', 'uk', 'en'], TITLES = {"ru":"Публичная оферта — WaveSign Studio","uk":"Публічна оферта — WaveSign Studio","en":"Public Offer (Services Agreement) — WaveSign Studio"}, RIGHTS = { ru: 'Все права защищены.', uk: 'Всі права захищені.', en: 'All rights reserved.' };
   function norm(c) {
     c = String(c || '').toLowerCase().split(/[-_]/)[0];
     return c === 'ua' ? 'uk' : LANGS.indexOf(c) > -1 ? c : null;
@@ -149,6 +149,8 @@ footer{padding:20px 0 48px;color:rgba(251,232,255,.5);font-size:13px}
   function apply(lang) {
     document.documentElement.lang = lang;
     document.title = TITLES[lang];
+    var r = document.querySelector('[data-rights]');
+    if (r) r.textContent = '© ' + new Date().getFullYear() + ' WaveSign Studio. ' + RIGHTS[lang];
     [].forEach.call(document.querySelectorAll('[data-lang]'), function (n) { n.hidden = n.getAttribute('data-lang') !== lang; });
     [].forEach.call(document.querySelectorAll('[data-set-lang]'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === lang)); });
   }

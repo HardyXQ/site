@@ -376,11 +376,11 @@ ${home}
 ${body}
 ${navs}
 </main>
-<footer>© 2026 WaveSign Studio</footer>
+<footer data-rights>© 2026 WaveSign Studio. Все права защищены.</footer>
 </div>
 <script>
 (function () {
-  var KEY = 'wavesign-lang', LANGS = ['ru', 'uk', 'en'], TITLES = ${titles};
+  var KEY = 'wavesign-lang', LANGS = ['ru', 'uk', 'en'], TITLES = ${titles}, RIGHTS = { ru: 'Все права защищены.', uk: 'Всі права захищені.', en: 'All rights reserved.' };
   function norm(c) {
     c = String(c || '').toLowerCase().split(/[-_]/)[0];
     return c === 'ua' ? 'uk' : LANGS.indexOf(c) > -1 ? c : null;
@@ -393,6 +393,8 @@ ${navs}
   function apply(lang) {
     document.documentElement.lang = lang;
     document.title = TITLES[lang];
+    var r = document.querySelector('[data-rights]');
+    if (r) r.textContent = '© ' + new Date().getFullYear() + ' WaveSign Studio. ' + RIGHTS[lang];
     [].forEach.call(document.querySelectorAll('[data-lang]'), function (n) { n.hidden = n.getAttribute('data-lang') !== lang; });
     [].forEach.call(document.querySelectorAll('[data-set-lang]'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === lang)); });
   }
