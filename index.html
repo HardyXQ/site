@@ -2813,16 +2813,40 @@ a{color:inherit;text-decoration:none}
 }
 
 /* Legal links + order-form consent note */
+.footer-bottom{
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:14px 28px;
+  margin-top:-8px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+}
+.footer-bottom .copyright{margin:0}
 .footer-legal{
   display:flex;
   flex-wrap:wrap;
-  gap:6px 18px;
-  margin-top:14px;
+  gap:8px;
   font-size:12px;
-  line-height:1.4;
+  line-height:1;
 }
-.footer-legal a{color:rgba(251,232,255,.58);transition:color .18s ease}
-.footer-legal a:hover,.footer-legal a:focus-visible{color:var(--accent)}
+.footer-legal a{
+  padding:8px 14px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:rgba(251,232,255,.68);
+  transition:color .18s ease,border-color .18s ease,background-color .18s ease;
+}
+.footer-legal a:hover,.footer-legal a:focus-visible{
+  color:var(--text);
+  border-color:rgba(238,153,255,.5);
+  background:rgba(238,153,255,.08);
+}
+@media(max-width:760px){
+  .footer-bottom{flex-direction:column;align-items:flex-start;margin-top:0}
+}
 .order-consent{
   margin-top:-8px;
   max-width:560px;
@@ -2832,6 +2856,49 @@ a{color:inherit;text-decoration:none}
   color:rgba(251,232,255,.58);
 }
 .order-consent a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* Cookie notice (informational: only functional cookies are used) */
+.cookie-notice{
+  position:fixed;
+  left:24px;
+  bottom:24px;
+  z-index:200;
+  width:min(420px,calc(100vw - 32px));
+  padding:18px 20px;
+  border:1px solid rgba(251,232,255,.16);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(30,18,52,.94) 0%,rgba(21,14,32,.96) 100%);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  color:var(--muted);
+  opacity:0;
+  transform:translateY(16px);
+  pointer-events:none;
+  transition:opacity .35s ease,transform .35s ease;
+}
+.cookie-notice[hidden]{display:none}
+.cookie-notice.is-visible{opacity:1;transform:none;pointer-events:auto}
+.cookie-notice__text{font-size:14px;line-height:1.5;font-weight:600}
+.cookie-notice__text a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.cookie-notice__actions{display:flex;justify-content:flex-end;margin-top:14px}
+.cookie-notice__btn{
+  padding:10px 22px;
+  border-radius:999px;
+  background:var(--text);
+  color:var(--bg);
+  font-size:14px;
+  font-weight:800;
+  transition:filter .18s ease,transform .18s ease;
+}
+.cookie-notice__btn:hover{filter:brightness(.92)}
+.cookie-notice__btn:active{transform:scale(.97)}
+@media(max-width:520px){
+  .cookie-notice{left:16px;right:16px;bottom:16px;width:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  .cookie-notice{transition:none}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -3007,13 +3074,6 @@ a{color:inherit;text-decoration:none}
             <span class="brand-text">WaveSign</span>
           </a>
           <p class="footer-desc">IT-студия. Графический дизайн, моушн дизайн и разработка</p>
-          <p class="copyright">© 2026 WaveSign Studio.</p>
-          <nav class="footer-legal" aria-label="Legal">
-            <a href="/privacy/" data-legal="privacy">Политика конфиденциальности</a>
-            <a href="/offer/" data-legal="offer">Публичная оферта</a>
-            <a href="/terms/" data-legal="terms">Условия использования</a>
-            <a href="/cookies/" data-legal="cookies">Cookie</a>
-          </nav>
         </div>
         <div>
           <div class="footer-title">Навигация</div>
@@ -3029,6 +3089,15 @@ a{color:inherit;text-decoration:none}
             <a href="mailto:wavesign.art@gmail.com">wavesign.art@gmail.com</a>
             <a href="https://wa.me/">whatsapp: @wavesign</a>
           </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 WaveSign Studio.</p>
+          <nav class="footer-legal" aria-label="Legal">
+            <a href="/privacy/" data-legal="privacy">Политика конфиденциальности</a>
+            <a href="/offer/" data-legal="offer">Публичная оферта</a>
+            <a href="/terms/" data-legal="terms">Условия использования</a>
+            <a href="/cookies/" data-legal="cookies">Cookie</a>
+          </nav>
         </div>
       </div>
     </footer>
@@ -3154,13 +3223,6 @@ a{color:inherit;text-decoration:none}
             <span class="brand-text">WaveSign</span>
           </a>
           <p class="footer-desc">IT-студия. Графический дизайн, моушн дизайн и разработка</p>
-          <p class="copyright">© 2026 WaveSign Studio.</p>
-          <nav class="footer-legal" aria-label="Legal">
-            <a href="/privacy/" data-legal="privacy">Политика конфиденциальности</a>
-            <a href="/offer/" data-legal="offer">Публичная оферта</a>
-            <a href="/terms/" data-legal="terms">Условия использования</a>
-            <a href="/cookies/" data-legal="cookies">Cookie</a>
-          </nav>
         </div>
         <div>
           <div class="footer-title">Навигация</div>
@@ -3176,6 +3238,15 @@ a{color:inherit;text-decoration:none}
             <a href="mailto:wavesign.art@gmail.com">wavesign.art@gmail.com</a>
             <a href="https://wa.me/">whatsapp: @wavesign</a>
           </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="copyright">© 2026 WaveSign Studio.</p>
+          <nav class="footer-legal" aria-label="Legal">
+            <a href="/privacy/" data-legal="privacy">Политика конфиденциальности</a>
+            <a href="/offer/" data-legal="offer">Публичная оферта</a>
+            <a href="/terms/" data-legal="terms">Условия использования</a>
+            <a href="/cookies/" data-legal="cookies">Cookie</a>
+          </nav>
         </div>
       </div>
     </footer>
@@ -3204,6 +3275,12 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <script src="/public-config.js"></script>
+<div class="cookie-notice" id="cookieNotice" role="region" aria-label="Cookie" hidden>
+  <p class="cookie-notice__text" id="cookieNoticeText"></p>
+  <div class="cookie-notice__actions">
+    <button class="cookie-notice__btn" type="button" id="cookieNoticeOk">Понятно</button>
+  </div>
+</div>
 <script src="./generated/service-media-manifest.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.46.1/dist/umd/supabase.js" crossorigin
         onload="window.dispatchEvent(new Event('wavesign:sdk-ready'))"></script>
@@ -4521,11 +4598,11 @@ function setHTML(selector, value) {
 }
 
 const LEGAL_LABELS = {
-  ru: { privacy:"Политика конфиденциальности", offer:"Публичная оферта", terms:"Условия использования", cookies:"Cookie",
+  ru: { cookieText:'Мы используем только функциональные cookie — они запоминают язык и валюту. Аналитики и рекламы нет. <a href="/cookies/">Подробнее</a>', cookieOk:"Понятно", privacy:"Политика конфиденциальности", offer:"Публичная оферта", terms:"Условия использования", cookies:"Cookie",
         consent:'Отправляя заявку, вы соглашаетесь с <a href="/privacy/" target="_blank" rel="noopener">политикой конфиденциальности</a> и <a href="/offer/" target="_blank" rel="noopener">офертой</a>.' },
-  uk: { privacy:"Політика конфіденційності", offer:"Публічна оферта", terms:"Умови використання", cookies:"Cookie",
+  uk: { cookieText:'Ми використовуємо лише функціональні cookie — вони запам’ятовують мову та валюту. Аналітики й реклами немає. <a href="/cookies/">Докладніше</a>', cookieOk:"Зрозуміло", privacy:"Політика конфіденційності", offer:"Публічна оферта", terms:"Умови використання", cookies:"Cookie",
         consent:'Надсилаючи заявку, ви погоджуєтеся з <a href="/privacy/" target="_blank" rel="noopener">політикою конфіденційності</a> та <a href="/offer/" target="_blank" rel="noopener">офертою</a>.' },
-  en: { privacy:"Privacy Policy", offer:"Public Offer", terms:"Terms of Use", cookies:"Cookies",
+  en: { cookieText:'We only use functional cookies — they remember your language and currency. No analytics or ads. <a href="/cookies/">Learn more</a>', cookieOk:"Got it", privacy:"Privacy Policy", offer:"Public Offer", terms:"Terms of Use", cookies:"Cookies",
         consent:'By submitting the request you agree to the <a href="/privacy/" target="_blank" rel="noopener">Privacy Policy</a> and the <a href="/offer/" target="_blank" rel="noopener">Public Offer</a>.' }
 };
 
@@ -4556,6 +4633,10 @@ function applyLang() {
   document.querySelectorAll(".footer-legal a[data-legal]").forEach((node) => node.textContent = legal[node.dataset.legal]);
   const orderConsent = document.getElementById("orderConsent");
   if (orderConsent) orderConsent.innerHTML = legal.consent;
+  const cookieText = document.getElementById("cookieNoticeText");
+  const cookieOk = document.getElementById("cookieNoticeOk");
+  if (cookieText) cookieText.innerHTML = legal.cookieText;
+  if (cookieOk) cookieOk.textContent = legal.cookieOk;
   const footerTitles = document.querySelectorAll(".footer-title");
   footerTitles.forEach((node, index) => {
     node.textContent = index % 2 === 0 ? l.nav : l.contacts;
@@ -5135,6 +5216,22 @@ async function loadServicesFromDatabase() {
 }
 
 loadServicesFromDatabase();
+
+/* Cookie notice: informational, shown once until dismissed */
+(function initCookieNotice() {
+  const notice = document.getElementById("cookieNotice");
+  const ok = document.getElementById("cookieNoticeOk");
+  if (!notice || !ok) return;
+  const KEY = "wavesign-cookie-notice";
+  try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+  notice.hidden = false;
+  setTimeout(() => notice.classList.add("is-visible"), 900);
+  ok.addEventListener("click", () => {
+    try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    notice.classList.remove("is-visible");
+    setTimeout(() => { notice.hidden = true; }, 400);
+  });
+})();
 </script>
 </body>
 </html>
