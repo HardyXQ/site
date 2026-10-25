@@ -615,7 +615,7 @@ window.SERVICE_MEDIA_MANIFEST = {
         "extension": "webp",
         "relativePath": "process.webp",
         "width": 1400,
-        "height": 875,
+        "height": 933,
         "orientation": "landscape"
       },
       {
