@@ -393,7 +393,7 @@ a{color:inherit;text-decoration:none}
     linear-gradient(rgba(251,232,255,.045) 1px,transparent 1px),
     linear-gradient(90deg,rgba(251,232,255,.045) 1px,transparent 1px);
   background-size:auto,55px 55px,55px 55px;
-  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.86) 48%,rgba(0,0,0,.32) 100%);
+  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.88) 40%,rgba(0,0,0,.5) 75%,transparent 100%);
 }
 .content-page::after{
   content:none;
@@ -549,7 +549,7 @@ a{color:inherit;text-decoration:none}
     linear-gradient(rgba(251,232,255,.045) 1px,transparent 1px),
     linear-gradient(90deg,rgba(251,232,255,.045) 1px,transparent 1px);
   background-size:auto,55px 55px,55px 55px;
-  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.86) 48%,rgba(0,0,0,.32) 100%);
+  mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.88) 40%,rgba(0,0,0,.5) 75%,transparent 100%);
 }
 .detail-page::after{
   content:none;
@@ -1602,6 +1602,13 @@ a{color:inherit;text-decoration:none}
   margin-top:auto;
   margin-bottom:-1px;
   box-shadow:0 2px 0 #100a19;
+}
+
+/* Seamless page background: the gradient fades into --bg and runs under the footer */
+.content-page>.site-footer,
+.detail-page>.site-footer{
+  background:transparent;
+  box-shadow:none;
 }
 
 /* Order form captions inside fields */
