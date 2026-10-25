@@ -624,9 +624,9 @@ window.SERVICE_MEDIA_MANIFEST = {
         "filename": "mobile.webp",
         "extension": "webp",
         "relativePath": "mobile.webp",
-        "width": 390,
-        "height": 844,
-        "orientation": "portrait"
+        "width": 2000,
+        "height": 1333,
+        "orientation": "landscape"
       }
     ]
   },
