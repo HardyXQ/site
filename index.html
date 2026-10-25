@@ -2480,6 +2480,14 @@ a{color:inherit;text-decoration:none}
 .service-gallery-item{
   background:rgba(251,232,255,.045);
 }
+/* One media look across the site: same radius + hairline as the gallery tiles */
+.photo-box.has-media,
+.detail-main-photo.has-media,
+.detail-second-photo.has-media{
+  border-radius:18px;
+  border:1px solid var(--line);
+  overflow:hidden;
+}
 .photo-box.has-media{
   display:flex;
   align-items:center;
