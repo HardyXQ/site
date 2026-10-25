@@ -575,8 +575,60 @@ window.SERVICE_MEDIA_MANIFEST = {
   },
   "turnkey-website": {
     "folder": null,
-    "cover": null,
-    "items": []
+    "cover": {
+      "src": "./assets/services/turnkey-website/cover.webp",
+      "type": "image",
+      "filename": "cover.webp",
+      "extension": "webp",
+      "relativePath": "cover.webp",
+      "width": 1400,
+      "height": 933,
+      "orientation": "landscape",
+      "isCover": true
+    },
+    "items": [
+      {
+        "src": "./assets/services/turnkey-website/cover.webp",
+        "type": "image",
+        "filename": "cover.webp",
+        "extension": "webp",
+        "relativePath": "cover.webp",
+        "width": 1400,
+        "height": 933,
+        "orientation": "landscape",
+        "isCover": true
+      },
+      {
+        "src": "./assets/services/turnkey-website/services.webp",
+        "type": "image",
+        "filename": "services.webp",
+        "extension": "webp",
+        "relativePath": "services.webp",
+        "width": 1400,
+        "height": 933,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./assets/services/turnkey-website/process.webp",
+        "type": "image",
+        "filename": "process.webp",
+        "extension": "webp",
+        "relativePath": "process.webp",
+        "width": 1400,
+        "height": 875,
+        "orientation": "landscape"
+      },
+      {
+        "src": "./assets/services/turnkey-website/mobile.webp",
+        "type": "image",
+        "filename": "mobile.webp",
+        "extension": "webp",
+        "relativePath": "mobile.webp",
+        "width": 390,
+        "height": 844,
+        "orientation": "portrait"
+      }
+    ]
   },
   "web3-development": {
     "folder": null,
