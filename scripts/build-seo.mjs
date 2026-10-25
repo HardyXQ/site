@@ -2,6 +2,7 @@
  * Generates the static SEO surface for the (client-rendered) site:
  *   - sitemap.xml
  *   - services/index.html                    (indexable "Services" page)
+ *   - privacy/ offer/ terms/ cookies/        (legal pages, content in scripts/legal-content.mjs)
  *   - services/<slug>/index.html             (one indexable page per service,
  *                                             unique <title>/description/canonical
  *                                             + Service & BreadcrumbList JSON-LD)
@@ -14,6 +15,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { LEGAL_DOCS, LEGAL_UI, LEGAL_UPDATED } from './legal-content.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://wavesign.art';
@@ -266,6 +268,155 @@ for (const s of services) {
   writeFileSync(join(servicesDir, s.slug, 'index.html'), makePage(seo), 'utf8');
 }
 
+
+/* ---------- legal pages: /privacy/ /offer/ /terms/ /cookies/ ---------- */
+const LANG_LABEL = { ru: 'RU', uk: 'UA', en: 'EN' };
+const para = (s) => `<p>${s}</p>`;
+
+function renderSections(sections) {
+  return sections
+    .map(([heading, ...body]) => {
+      let out = `<h2>${esc(heading)}</h2>`;
+      let list = [];
+      const flush = () => {
+        if (list.length) out += `<ul>${list.map((li) => `<li>${li}</li>`).join('')}</ul>`;
+        list = [];
+      };
+      for (const line of body) {
+        if (line.startsWith('- ')) list.push(line.slice(2));
+        else { flush(); out += para(line); }
+      }
+      flush();
+      return `<section>${out}</section>`;
+    })
+    .join('\n');
+}
+
+function legalPage(doc) {
+  const canonical = `${ORIGIN}/${doc.slug}/`;
+  const seo = seoBlock({
+    title: `${doc.title.ru} — WaveSign Studio`,
+    description: doc.desc.ru,
+    canonical,
+    type: 'article',
+    breadcrumbLd: {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'WaveSign', item: `${ORIGIN}/` },
+        { '@type': 'ListItem', position: 2, name: doc.title.ru, item: canonical },
+      ],
+    },
+  });
+  const titles = JSON.stringify(Object.fromEntries(LANGS.map((l) => [l, `${doc.title[l]} — WaveSign Studio`])));
+  const body = LANGS.map(
+    (l) => `<article class="doc" lang="${l}" data-lang="${l}"${l === 'ru' ? '' : ' hidden'}>
+<h1>${esc(doc.title[l])}</h1>
+<p class="meta">${esc(LEGAL_UI.updated[l])}: ${LEGAL_UPDATED}</p>
+${renderSections(doc.sections[l])}
+</article>`,
+  ).join('\n');
+  const nav = (l) =>
+    LEGAL_DOCS.map(
+      (d) => `<a href="/${d.slug}/"${d.slug === doc.slug ? ' aria-current="page"' : ''}>${esc(d.title[l])}</a>`,
+    ).join('');
+  const navs = LANGS.map(
+    (l) => `<nav class="docs" aria-label="${esc(LEGAL_UI.docs[l])}" lang="${l}" data-lang="${l}"${l === 'ru' ? '' : ' hidden'}>${nav(l)}</nav>`,
+  ).join('\n');
+  const home = LANGS.map(
+    (l) => `<a class="home" href="/" lang="${l}" data-lang="${l}"${l === 'ru' ? '' : ' hidden'}>&larr; ${esc(LEGAL_UI.home[l])}</a>`,
+  ).join('');
+
+  return `<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+${seo}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Pixelify+Sans:wght@400..700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--text:#FBE8FF;--muted:rgba(251,232,255,.72);--bg:#150E20;--accent:#EE99FF;--line:rgba(251,232,255,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:linear-gradient(180deg,#09060e 0%,#160c2a 45%,#2b1a52 100%),var(--bg);background-attachment:fixed;color:var(--text);font-family:"Nunito",system-ui,sans-serif;font-weight:600;line-height:1.65}
+a{color:var(--accent);text-underline-offset:3px}
+.wrap{width:min(860px,100%);margin:0 auto;padding:0 24px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;height:88px}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:38px;height:38px}
+.brand span{font-family:"Pixelify Sans",monospace;font-size:30px;line-height:1;color:#c061ff}
+.langs{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:rgba(251,232,255,.06)}
+.langs button{border:0;border-radius:999px;padding:6px 12px;background:transparent;color:var(--muted);font:800 13px "Nunito",sans-serif;cursor:pointer}
+.langs button[aria-pressed="true"]{background:rgba(251,232,255,.16);color:var(--text)}
+.home{display:inline-block;margin:8px 0 28px;font-weight:800;text-decoration:none}
+h1{font-family:"Unbounded","Nunito",sans-serif;font-size:clamp(28px,5vw,44px);line-height:1.1;font-weight:700;margin-bottom:10px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:36px}
+h2{font-size:20px;font-weight:800;margin:34px 0 10px;color:var(--text)}
+p,li{color:var(--muted);font-size:16px}
+p+p,ul+p,p+ul{margin-top:10px}
+ul{padding-left:22px}
+li+li{margin-top:6px}
+b{color:var(--text)}
+.docs{display:flex;flex-wrap:wrap;gap:8px 22px;margin:56px 0 0;padding-top:24px;border-top:1px solid var(--line);font-size:14px}
+.docs a{text-decoration:none;color:var(--muted)}
+.docs a:hover,.docs a[aria-current]{color:var(--accent)}
+footer{padding:20px 0 48px;color:rgba(251,232,255,.5);font-size:13px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="brand" href="/" aria-label="WaveSign"><img src="/new_logo.png" alt=""><span>WaveSign</span></a>
+<div class="langs" role="group" aria-label="Language">${LANGS.map((l) => `<button type="button" data-set-lang="${l}" aria-pressed="${l === 'ru'}">${LANG_LABEL[l]}</button>`).join('')}</div>
+</header>
+<main>
+${home}
+${body}
+${navs}
+</main>
+<footer>© 2026 WaveSign Studio</footer>
+</div>
+<script>
+(function () {
+  var KEY = 'wavesign-lang', LANGS = ['ru', 'uk', 'en'], TITLES = ${titles};
+  function norm(c) {
+    c = String(c || '').toLowerCase().split(/[-_]/)[0];
+    return c === 'ua' ? 'uk' : LANGS.indexOf(c) > -1 ? c : null;
+  }
+  function stored() {
+    try { var v = norm(localStorage.getItem(KEY)); if (v) return v; } catch (e) {}
+    var m = document.cookie.match(/(?:^|; )wavesign-lang=([^;]*)/);
+    return m ? norm(decodeURIComponent(m[1])) : null;
+  }
+  function apply(lang) {
+    document.documentElement.lang = lang;
+    document.title = TITLES[lang];
+    [].forEach.call(document.querySelectorAll('[data-lang]'), function (n) { n.hidden = n.getAttribute('data-lang') !== lang; });
+    [].forEach.call(document.querySelectorAll('[data-set-lang]'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === lang)); });
+  }
+  function save(lang) {
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+    document.cookie = KEY + '=' + encodeURIComponent(lang) + ';max-age=31536000;path=/;samesite=lax';
+  }
+  var q = norm(new URLSearchParams(location.search).get('lang'));
+  apply(q || stored() || norm(navigator.language) || 'ru');
+  [].forEach.call(document.querySelectorAll('[data-set-lang]'), function (b) {
+    b.addEventListener('click', function () { var l = b.getAttribute('data-set-lang'); save(l); apply(l); });
+  });
+})();
+</script>
+</body>
+</html>
+`;
+}
+
+for (const doc of LEGAL_DOCS) {
+  mkdirSync(join(root, doc.slug), { recursive: true });
+  writeFileSync(join(root, doc.slug, 'index.html'), legalPage(doc), 'utf8');
+}
+
 /* sitemap.xml */
 const urls = [];
 const addUrl = (loc, priority, changefreq) => {
@@ -281,6 +432,7 @@ const addUrl = (loc, priority, changefreq) => {
 addUrl(`${ORIGIN}/`, '1.0', 'weekly');
 addUrl(`${ORIGIN}/services/`, '0.9', 'weekly');
 for (const s of services) addUrl(`${ORIGIN}/services/${s.slug}/`, '0.8', 'monthly');
+for (const d of LEGAL_DOCS) addUrl(`${ORIGIN}/${d.slug}/`, '0.3', 'yearly');
 
 writeFileSync(
   join(root, 'sitemap.xml'),
@@ -291,4 +443,4 @@ writeFileSync(
   'utf8',
 );
 
-console.log(`wrote sitemap.xml (${urls.length} urls), services/index.html, ${services.length} service pages`);
+console.log(`wrote sitemap.xml (${urls.length} urls), services/index.html, ${services.length} service pages, ${LEGAL_DOCS.length} legal pages`);

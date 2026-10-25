@@ -220,4 +220,44 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://wavesign.art/services/transcription/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wavesign.art/services/transcription/"/>
   </url>
+  <url>
+    <loc>https://wavesign.art/privacy/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://wavesign.art/privacy/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://wavesign.art/privacy/?lang=uk"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wavesign.art/privacy/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wavesign.art/privacy/"/>
+  </url>
+  <url>
+    <loc>https://wavesign.art/offer/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://wavesign.art/offer/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://wavesign.art/offer/?lang=uk"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wavesign.art/offer/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wavesign.art/offer/"/>
+  </url>
+  <url>
+    <loc>https://wavesign.art/terms/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://wavesign.art/terms/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://wavesign.art/terms/?lang=uk"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wavesign.art/terms/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wavesign.art/terms/"/>
+  </url>
+  <url>
+    <loc>https://wavesign.art/cookies/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://wavesign.art/cookies/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://wavesign.art/cookies/?lang=uk"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://wavesign.art/cookies/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wavesign.art/cookies/"/>
+  </url>
 </urlset>
